@@ -1,0 +1,1351 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Home of DS614 - Big Data Engineering, DAU">
+      
+      
+      
+        <link rel="canonical" href="https://ankushchander.com/lectures/Lecture3_4/">
+      
+      
+      
+        <link rel="next" href="../../code/lecture_3_4/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Lecture3_4 - DS614 - Big Data Engineering | DAU</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quick-recap" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DS614 - Big Data Engineering | DAU" class="md-header__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DS614 - Big Data Engineering | DAU
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture3_4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../code/lecture_3_4/" class="md-tabs__link">
+          
+  
+  
+  Code
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DS614 - Big Data Engineering | DAU" class="md-nav__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DS614 - Big Data Engineering | DAU
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lectures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lectures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture3_4
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture3_4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-recap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick recap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agenda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agenda
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-study-storage-internals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why study storage internals?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-engine-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage engine overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-revision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Revision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Revision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#layered-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layered architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory hierarchy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#storage-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage devices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-hierarchy-and-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory hierarchy and Cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locality-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Locality principles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relative-latencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relative latencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disk access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hdd-vs-ssd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HDD vs SSD
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-based-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log based storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-based-storage-hash-indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log based storage + hash indexes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Log based storage + hash indexes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation details:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tradeoffs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/lecture_3_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture3_4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-recap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick recap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agenda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agenda
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-study-storage-internals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why study storage internals?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-engine-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage engine overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-revision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Revision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Revision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#layered-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layered architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory hierarchy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#storage-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage devices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-hierarchy-and-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory hierarchy and Cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locality-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Locality principles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relative-latencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relative latencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disk access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hdd-vs-ssd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HDD vs SSD
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-based-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log based storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-based-storage-hash-indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log based storage + hash indexes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Log based storage + hash indexes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation details:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tradeoffs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h2 id="quick-recap">Quick recap</h2>
+<ul>
+<li>Data Engineer: skills and responsibilities</li>
+<li>Data Engineering lifecycle</li>
+</ul>
+<hr />
+<h2 id="agenda">Agenda</h2>
+<ul>
+<li>Revision<ul>
+<li>System overview</li>
+<li>Memory hierarchy</li>
+</ul>
+</li>
+<li>Storage engines<ul>
+<li>Log based storage</li>
+<li>Hash indexes</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="why-study-storage-internals">Why study storage internals?</h2>
+<ul>
+<li>To pick right tools for your use case</li>
+<li>To be able to tune the configurations of storage engine as per your requirements</li>
+</ul>
+<hr />
+<h2 id="storage-engine-overview">Storage engine overview</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Transaction processing systems(OLTP)</th>
+<th>Analytics processing(OLAP)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Primarily used for</strong></td>
+<td>End user/customer, via web application</td>
+<td>Internal analyst, for decision support</td>
+</tr>
+<tr>
+<td><strong>What data represents</strong></td>
+<td>Latest state of data (current point in time)</td>
+<td>History of events that happened over time</td>
+</tr>
+<tr>
+<td><strong>Dataset size</strong></td>
+<td>Gigabytes to terabytes</td>
+<td>Terabytes to petabytes</td>
+</tr>
+<tr>
+<td><strong>Main write pattern</strong></td>
+<td>Random-access, low-latency writes from user input</td>
+<td>Bulk import (ETL) or event stream</td>
+</tr>
+<tr>
+<td><strong>Main read pattern</strong></td>
+<td>Small number of records per query, fetched by key</td>
+<td>Aggregate over large number of records</td>
+</tr>
+<tr>
+<td><strong>Implementation types</strong></td>
+<td>- Log structured database<br>- B tree based databases</td>
+<td>- Columnar storage</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="quick-revision">Quick Revision</h2>
+<h3 id="system-overview">System overview</h3>
+<h4 id="layered-architecture">Layered architecture</h4>
+<p><img alt="Image" src="../../images/layered_architecture.png" /> 
+Image credits: CSAPP</p>
+<hr />
+<h4 id="hardware-overview">Hardware overview</h4>
+<p><img alt="Layered architecture" src="../../images/hardware_organization.png" />
+Image credits: CSAPP</p>
+<hr />
+<p><strong>Buses</strong> are like nervous system of the computer. Data moves from one place to another via buses. Buses are charecterized by word size as well as bits that can be transfered in a given time.</p>
+<hr />
+<p><strong>IO devices</strong> are what connects a computer to external world. It"s like humans have 5 senses, computer has IO devices. 4 key IO devices that we will concern ourselves with are: <br />
+    1. Display: out device through which computer talks back with the user.<br />
+    2. Keyboard/mouse: input device through which computer listens to the user<br />
+    3. Storage device: This is the long term storage that computer has. All programs initially lies here.   </p>
+<hr />
+<p><strong>Main memory</strong> is the area where program is loaded when it is to be run and it stays there while it"s being executed. Think of it like short term memory in humans. Any task in ordered to be done should inside our memory.</p>
+<hr />
+<p><strong>Processor</strong> is where results and addresses are computed in the program. It has 3 main parts:<br />
+1. Program counter<br />
+2. registers <br />
+3. ALU(Arithmetic and Logical unit)   </p>
+<hr />
+<h4 id="memory-hierarchy">Memory hierarchy</h4>
+<h5 id="storage-devices">Storage devices</h5>
+<ol>
+<li><strong>Random Access Memory</strong><ol>
+<li>Static RAM(SRAM) is used for cache memories, both on and off the CPU chip.</li>
+<li>DRAM(Dynamic RAM) is used for the main memory plus the frame buffer of a graphics system.</li>
+</ol>
+</li>
+<li><strong>HDD(Magnetic Storage)</strong> use spinning magnetic platters to store data. A read/write head moves over the platters to read or write data. </li>
+<li><strong>Solid state disks(SSD)</strong> store data on interconnected flash memory chips that retain data even when powered off. </li>
+</ol>
+<hr />
+<h5 id="memory-hierarchy-and-cache">Memory hierarchy and Cache</h5>
+<p>The storage devices in every computer system are organised as a memory hierarchy. As we move from the top of the hierarchy to the bottom, the devices become slower, larger, and less costly per byte.</p>
+<p>The main idea of a memory hierarchy is that <em>storage at one level serves as a cache for storage at the next lower level</em>. Thus, the register ﬁle is a cache for the L1 cache. Caches L1 and L2 are caches for L2 and L3, respectively. The L3 cache is a cache for the main memory, which is a cache for the disk.
+<div class="highlight"><pre><span></span><code>lscpu<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>cache<span class="p">;</span>getconf<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>CACHE
+</code></pre></div></p>
+<hr />
+<p><img alt="Memory hierarchy" src="https://raw.githubusercontent.com/Ankush-Chander/IT603-notes/6678e9b7bcc58cd88b6feb98a6e216d8d7743365/lectures/images/memory_hierarchy.png" />
+Image credits: CSAPP</p>
+<hr />
+<h5 id="caching">Caching</h5>
+<ul>
+<li>Hardware : Registers, L1, L2, L3  act as cache for main memory.   </li>
+<li>Operating system: Main memory acts as cache for disc while implementing virtual memory.  </li>
+<li>Application programs: Browser cache recently accessed web pages for faster loading. </li>
+</ul>
+<hr />
+<h5 id="locality-principles">Locality principles</h5>
+<p>Cache leads to improved performance because of following principles:</p>
+<p><strong>Temporal locality:</strong>  a memory location that is referenced once is likely to be referenced again multiple times in the near future.<br />
+<strong>Spatial locality:</strong>  if a memory location is referenced once, then the program is likely to reference a nearby memory location in the near future.</p>
+<hr />
+<h5 id="relative-latencies">Relative latencies</h5>
+<p><img alt="" src="https://github.com/Ankush-Chander/Tech-Talks/blob/main/img/relative-time-latencies-computer-programming.jpg?raw=true" /><br />
+Image credits:  <a href="https://alvinalexander.com/photos/relative-time-latencies-and-computer-programming/">relative-time-latencies-and-computer-programming</a></p>
+<hr />
+<h5 id="disk-access">Disk access</h5>
+<p><strong>HDD VS SSD</strong></p>
+<p><img alt="" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.backblaze.com%2Fblog%2Fwp-content%2Fuploads%2F2018%2F03%2Fhdd_vs_ssd_bz.png&amp;f=1&amp;nofb=1&amp;ipt=76d3c4be5f73e71b2c849f000de3bee3d74654017daf767b31408013513e86de" />
+Image credits: <a href="https://www.backblaze.com/blog/ssd-vs-hdd-future-of-storage">Backblaze</a></p>
+<p>Total Read Time = <strong>Seek time  + Rotational latency (HDD only)  + Transfer time (sequential read)</strong></p>
+<h5 id="hdd-vs-ssd">HDD vs SSD</h5>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>HDD</th>
+<th>SSD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sequential read</strong></td>
+<td>Excellent</td>
+<td>Excellent</td>
+</tr>
+<tr>
+<td><strong>Random read</strong></td>
+<td>Terrible</td>
+<td>Acceptable</td>
+</tr>
+<tr>
+<td><strong>Seek cost</strong></td>
+<td>Dominant</td>
+<td>None</td>
+</tr>
+<tr>
+<td><strong>Throughput</strong></td>
+<td>High if sequential</td>
+<td>High</td>
+</tr>
+<tr>
+<td><strong>Latency variance</strong></td>
+<td>Huge</td>
+<td>Small</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="log-based-storage">Log based storage</h1>
+<p>A log is an <strong>append-only sequence of records</strong>. It doesn’t have to be human-readable; it might
+be binary and intended only for other programs to read.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+db_set<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">,</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>database
+<span class="o">}</span>
+
+db_get<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>grep<span class="w"> </span><span class="s2">&quot;^</span><span class="nv">$1</span><span class="s2">,&quot;</span><span class="w"> </span>database<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;s/^</span><span class="nv">$1</span><span class="s2">,//&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
+<span class="o">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- Faster writes since appending to a file is a cheap operation</td>
+<td>- Read complexity is O(n) since each read requires us to <br>read the whole file</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="log-based-storage-hash-indexes">Log based storage + hash indexes</h1>
+<p><strong>Key idea:</strong> Along with appending to the log file maintain a in-memory hashmap that acts as a signpost to the actual keys.</p>
+<p><img alt="" src="../../images/log_hash_map.png" />
+Image credits: Designing Data-Intensive Applications</p>
+<h3 id="implementation-details">Implementation details:</h3>
+<ul>
+<li><strong>How do we avoid running out of disk space?</strong>:
+  <em>via compaction</em>: Process of timely removing the duplicates from segment file. </li>
+<li><strong>File format:</strong> CSV is not the best format for a log. It’s faster and simpler to use a binary format
+that first encodes the length of a string in bytes, followed by the raw string
+(without need for escaping).</li>
+<li><strong>How to delete record?</strong> If you want to delete a key and its associated value, you have to append a special
+deletion record to the data file (sometimes called a tombstone). When log segments are merged, the tombstone tells the merging process to discard any previous values for the deleted key.</li>
+<li><strong>Crash recovery</strong>:<ul>
+<li>Read all segment and regenerate hash map on service restart(painful if we have large segment files)</li>
+<li>Maintain hashmap on disk also and read it into memory on restart.</li>
+</ul>
+</li>
+<li><strong>Concurrency:</strong> One write thread, multiple read thread</li>
+</ul>
+<h2 id="tradeoffs">Tradeoffs</h2>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Appending and segment merging are <strong>sequential write operations</strong>, which are generally <strong>much faster than random writes</strong>, especially on magnetic spinning-disk hard drives.  </li>
+<li>Concurrency and crash recovery are much simpler if segment files are append-only or immutable.  </li>
+<li>Merging old segments avoids the problem of data files getting fragmented over time  </li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Hash table must fit into main memory. so if you have a very large number of keys, you’re out of luck.  </li>
+<li>Range queries are not efficient. For example, you cannot easily scan over all keys between kitty00000 and kitty99999—you’d have to look up each key individu‐
+ally in the hash maps.  </li>
+</ul>
+<hr />
+<h1 id="references">References</h1>
+<ol>
+<li><a href="https://csapp.cs.cmu.edu/">Chapter 1, Computer Systems: A Programmer's Perspective(CSAPP)</a></li>
+<li>Chapter 3, Designing Data intensive Applications</li>
+<li><a href="https://arpitbhayani.me/blogs/bitcask">Bitcask - A Log-Structured fast KV store</a></li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="../../code/lecture_3_4/" class="md-footer__link md-footer__link--next" aria-label="Next: Lecture3_4">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lecture3_4
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Ankush Chander
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.expand", "navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
