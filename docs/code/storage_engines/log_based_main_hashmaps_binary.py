@@ -80,9 +80,15 @@ async def get_db(key):
 
 @app.delete("/delete_db/{key}")
 async def delete(key):
-  with open("database.bin", "a") as fp:
+  with open("database.bin", "ab") as fp:
       position = fp.tell()
-      fp.write(f"{key},__TOMBSTONE__\n")
+      
+      header = struct.pack("II", len(key), len("__TOMBSTONE__"))
+      fp.write(header)
+           
+      fp.write(key.encode("utf-8"))
+      fp.write("__TOMBSTONE__".encode("utf-8"))
+
       KEY_OFFSET_MAP[key] = position
   return {"message": "value deleted"}    
 
