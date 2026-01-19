@@ -1,6 +1,7 @@
 ---
 delivery date:
   - "[[2026-01-13]]"
+  - "[[2026-01-16]]"
 ---
 ## Quick recap
 - Data Engineer: skills and responsibilities
@@ -134,7 +135,9 @@ Total Read Time = **Seek time  + Rotational latency (HDD only)  + Transfer time 
 | **Latency variance** | Huge               | Small      |
 
 --- 
-# Log based storage
+# Log based storage 
+
+Refer [code](../code/storage_engines/log_based_main.py)
 
 A log is an **append-only sequence of records**. It doesn’t have to be human-readable; it might
 be binary and intended only for other programs to read.
@@ -159,7 +162,9 @@ db_get () {
 
 ---
 
-# Log based storage + hash indexes
+# Log based storage + hash indexes 
+
+Refer [code](../code/storage_engines/log_based_main_hashmaps.py)
 
 **Key idea:** Along with appending to the log file maintain a in-memory hashmap that acts as a signpost to the actual keys.
 
