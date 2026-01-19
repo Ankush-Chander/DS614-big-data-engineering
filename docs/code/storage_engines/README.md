@@ -1,3 +1,11 @@
+```
+├── database.csv  # database log file
+├── log_based_main_hashmaps.py  # log based storage engine with hashmaps
+├── log_based_main.py  # log based storage engine
+├── README.md  # this file
+└── requirements.txt  # dependencies
+```
+
 # Log based storage engine
 This is a simple log based storage engine implementation using FastAPI
 
