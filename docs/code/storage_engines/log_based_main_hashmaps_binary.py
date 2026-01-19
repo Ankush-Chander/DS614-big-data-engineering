@@ -3,6 +3,12 @@ from pydantic import BaseModel
 import pandas as pd
 import struct
 import os
+import threading
+
+write_lock = threading.Lock()
+
+index_lock = threading.Lock()
+
 
 app = FastAPI()
 
@@ -33,22 +39,25 @@ class Item(BaseModel):
   key: str
   val: str
 
+def write_record(fp, key, val):
+  position = fp.tell()
+  header = struct.pack("II", len(key), len(val))
+  fp.write(header)
+  key_bytes = key.encode("utf-8")
+  val_bytes = val.encode("utf-8")
+  fp.write(key_bytes)
+  fp.write(val_bytes)
+  return position
+
+
 @app.post("/set_db")
-async def set_db(item:Item):
-    with open("database.bin", "ab") as fp:
-      position = fp.tell()
-      
-      key = item.key.encode("utf-8")
-      val = item.val.encode("utf-8")
-
-      header = struct.pack("II", len(key), len(val))
-      fp.write(header) # TypeError: write() argument must be str, not bytes
-           
-      fp.write(key)
-      fp.write(val)
-
-      KEY_OFFSET_MAP[item.key] = position
-      print(KEY_OFFSET_MAP)
+def set_db(item:Item):
+    with write_lock as wl:
+      with open("database.bin", "ab") as fp:
+        position = write_record(fp, item.key, item.val)
+        
+        with index_lock:
+          KEY_OFFSET_MAP[item.key] = position
     return {"message": "value set"}
 
 
@@ -80,21 +89,17 @@ async def get_db(key):
 
 @app.delete("/delete_db/{key}")
 async def delete(key):
-  with open("database.bin", "ab") as fp:
-      position = fp.tell()
-      
-      header = struct.pack("II", len(key), len("__TOMBSTONE__"))
-      fp.write(header)
-           
-      fp.write(key.encode("utf-8"))
-      fp.write("__TOMBSTONE__".encode("utf-8"))
-
-      KEY_OFFSET_MAP[key] = position
-  return {"message": "value deleted"}    
+    with write_lock as wl:
+      with open("database.bin", "ab") as fp:
+        position = write_record(fp, key, "__TOMBSTONE__")
+        
+        with index_lock:
+          KEY_OFFSET_MAP[key] = position
+    return {"message": "value deleted"}    
 
 
 @app.get("/compact_db")
-async def compact():
+def compact():
   """
   remove tombstones and remove duplicates
   """
@@ -111,10 +116,8 @@ async def compact():
         val = fp.read(val_len).decode("utf-8")
 
         if fp.tell() == KEY_OFFSET_MAP.get(key, None) and val != "__TOMBSTONE__":
-          KEY_OFFSET_MAP[key] = fp2.tell()
-          fp2.write(header)
-          fp2.write(key.encode("utf-8"))
-          fp2.write(val.encode("utf-8"))
+          position = write_record(fp2, key, val)
+          KEY_OFFSET_MAP[key] = position
         
   os.remove("database.bin")
   os.rename("database_compact.bin", "database.bin")
