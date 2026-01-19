@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/lectures/Lecture3_4/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/Lecture3_4_5/">
       
       
         <link rel="prev" href="../..">
       
       
-        <link rel="next" href="../../code/lecture_3_4/">
+        <link rel="next" href="../../code/storage_engines/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Lecture3_4 - DS614 - Big Data Engineering | DAU</title>
+        <title>Lecture3_4_5 - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Lecture3_4
+              Lecture3_4_5
             
           </span>
         </div>
@@ -226,7 +226,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../code/lecture_3_4/" class="md-tabs__link">
+        <a href="../../code/storage_engines/" class="md-tabs__link">
           
   
   
@@ -374,7 +374,7 @@
   <span class="md-ellipsis">
     
   
-    Lecture3_4
+    Lecture3_4_5
   
 
     
@@ -392,7 +392,7 @@
   <span class="md-ellipsis">
     
   
-    Lecture3_4
+    Lecture3_4_5
   
 
     
@@ -745,14 +745,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../code/lecture_3_4/" class="md-nav__link">
+      <a href="../../code/storage_engines/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Lecture3_4
+    Storage Engines
   
 
     
@@ -1243,6 +1243,7 @@ Image credits: <a href="https://www.backblaze.com/blog/ssd-vs-hdd-future-of-stor
 </table>
 <hr />
 <h1 id="log-based-storage">Log based storage</h1>
+<p>Refer <a href="../../code/storage_engines/log_based_main.py">code</a></p>
 <p>A log is an <strong>append-only sequence of records</strong>. It doesn’t have to be human-readable; it might
 be binary and intended only for other programs to read.</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
@@ -1270,6 +1271,7 @@ db_get<span class="w"> </span><span class="o">()</span><span class="w"> </span><
 </table>
 <hr />
 <h1 id="log-based-storage-hash-indexes">Log based storage + hash indexes</h1>
+<p>Refer <a href="../../code/storage_engines/log_based_main_hashmaps.py">code</a></p>
 <p><strong>Key idea:</strong> Along with appending to the log file maintain a in-memory hashmap that acts as a signpost to the actual keys.</p>
 <p><img alt="" src="../../images/log_hash_map.png" />
 Image credits: Designing Data-Intensive Applications</p>
@@ -1358,13 +1360,13 @@ ally in the hash maps.  </li>
         
         
           
-          <a href="../../code/lecture_3_4/" class="md-footer__link md-footer__link--next" aria-label="Next: Lecture3_4">
+          <a href="../../code/storage_engines/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage Engines">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Lecture3_4
+                Storage Engines
               </div>
             </div>
             <div class="md-footer__button md-icon">
