@@ -4,11 +4,7 @@ import pandas as pd
 import struct
 import os
 import threading
-
-write_lock = threading.Lock()
-
-index_lock = threading.Lock()
-
+import psutil
 
 app = FastAPI()
 
@@ -41,6 +37,7 @@ class Item(BaseModel):
 
 def write_record(fp, key, val):
   position = fp.tell()
+  print(f"process:{os.getpid()}, thread: {threading.current_thread().ident} running on CPU core: {psutil.Process().cpu_num()} read offset:{position}")
   header = struct.pack("II", len(key), len(val))
   fp.write(header)
   key_bytes = key.encode("utf-8")
@@ -52,12 +49,9 @@ def write_record(fp, key, val):
 
 @app.post("/set_db")
 def set_db(item:Item):
-    with write_lock as wl:
-      with open("database.bin", "ab") as fp:
+    with open("database.bin", "ab") as fp:
         position = write_record(fp, item.key, item.val)
-        
-        with index_lock:
-          KEY_OFFSET_MAP[item.key] = position
+        KEY_OFFSET_MAP[item.key] = position
     return {"message": "value set"}
 
 
@@ -89,12 +83,10 @@ async def get_db(key):
 
 @app.delete("/delete_db/{key}")
 async def delete(key):
-    with write_lock as wl:
-      with open("database.bin", "ab") as fp:
+    with open("database.bin", "ab") as fp:
         position = write_record(fp, key, "__TOMBSTONE__")
         
-        with index_lock:
-          KEY_OFFSET_MAP[key] = position
+    KEY_OFFSET_MAP[key] = position
     return {"message": "value deleted"}    
 
 

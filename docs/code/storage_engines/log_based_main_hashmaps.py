@@ -14,9 +14,10 @@ via tombstones.
 3. How do we handle the ever growing file?
 via compaction
 
-4. How do we handle larger than main memory dataset?
-5. How do we optimize dataset format?
-6. How do we handle service restart/crash?
+4. How do we optimize dataset format?
+5. How do we handle concurrency?
+6. How do we handle larger than main memory dataset?
+7. How do we handle service restart/crash?
 """
 # hashmap with O(1) key lookup
 KEY_OFFSET_MAP = {}
