@@ -5,8 +5,8 @@ Welcome to the course on Big Data Engineering.
 ---
 ## Lectures
 
-- [Lecture 3_4_5: Storage Internals](lectures/Lecture3_4_5.md)
-    - Log based storage
-    - Hash indexes
-    - Columnar storage
+- Storage Engines
+    - [Prerequisites](lectures/0storage_prerequisites.md)
+    - [Log based storage + Hash indexes](lectures/1hash_indexes.md)
+    - [SSTables + LSM Trees](lectures/2ssts_lsm_trees.md)
 ---

@@ -11,10 +11,13 @@ copyright: Ankush Chander
 nav:
   - Home: 'index.md'
   - Lectures:
-      - Lecture3_4_5: 'lectures/Lecture3_4_5.md'
+      - Storage Engines:
+        - Prerequisites: 'lectures/0storage_prerequisites.md'
+        - Log Based Storage + Hash Indexes: 'lectures/1hash_indexes.md'
+        - SSTables + LSM Trees: 'lectures/2ssts_lsm_trees.md'
   - Code:
       - Storage Engines: 'code/storage_engines/README.md'
-
+      - SSTable: 'https://github.com/Ankush-Chander/sorted-string-table-101'
 
 ## Configuration
 theme:
