@@ -12,13 +12,16 @@ nav:
   - Home: 'index.md'
   - Lectures:
       - Storage Engines:
-        - Prerequisites: 'lectures/0storage_prerequisites.md'
+        - System Prerequisites: 'lectures/0storage_prerequisites.md'
+        - Concurrency Prerequisites: 'notebooks/concurrency_prerequisites.ipynb'
         - Log Based Storage + Hash Indexes: 'lectures/1hash_indexes.md'
         - SSTables + LSM Trees: 'lectures/2ssts_lsm_trees.md'
+        - B-Trees: 'lectures/3btrees.md'
   - Code:
       - Storage Engines: 'code/storage_engines/README.md'
       - SSTable: 'https://github.com/Ankush-Chander/sorted-string-table-101'
-
+      - B-Tree: 
+        - "SQLite Demo": 'notebooks/sql_demo.ipynb'
 ## Configuration
 theme:
   name: material
@@ -48,7 +51,8 @@ theme:
 #  favicon: assets/logo-up42.ico #browser tab logo
 #
 ## Plugins
-# plugins:
+plugins:
+  - mkdocs-jupyter
 #   - blog:
 #       enabled: true
 #       blog_dir: blog

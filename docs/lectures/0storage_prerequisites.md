@@ -82,16 +82,16 @@ Image credits:  [relative-time-latencies-and-computer-programming](https://alvin
 
 ---
 
-##### Disk access
+#### Disk access
 
-**HDD VS SSD**
+##### HDD vs SSD
 
 ![](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.backblaze.com%2Fblog%2Fwp-content%2Fuploads%2F2018%2F03%2Fhdd_vs_ssd_bz.png&f=1&nofb=1&ipt=76d3c4be5f73e71b2c849f000de3bee3d74654017daf767b31408013513e86de)
 Image credits: [Backblaze](https://www.backblaze.com/blog/ssd-vs-hdd-future-of-storage)
 
 Total Read Time = **Seek time  + Rotational latency (HDD only)  + Transfer time (sequential read)**
 
-##### HDD vs SSD
+
 
 | Pattern              | HDD                | SSD        |
 | -------------------- | ------------------ | ---------- |
@@ -100,3 +100,118 @@ Total Read Time = **Seek time  + Rotational latency (HDD only)  + Transfer time 
 | **Seek cost**        | Dominant           | None       |
 | **Throughput**       | High if sequential | High       |
 | **Latency variance** | Huge               | Small      |
+
+
+
+##### HDD Semantics (Magnetic Storage)
+
+![](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*vqRQ_1UwPFMEketV_A1VyQ.jpeg)
+Image credits: [Medium](https://medium.com/@youssefshibl000/database-internals-chapter-2-b-tree-basics-ffa4983afa8c)
+
+Units of Operation
+
+* **Sector:** The Sector is the atomic unit for Reading, Writing, and Overwriting.
+
+
+* **Reads:** Mechanical seek + rotation
+* **Writes:** In-place overwrite (old data is destroyed)
+* **Deletes:** Metadata-only; data remains until overwritten
+* **Bottleneck:** Seek time (milliseconds)
+
+Implications:
+
+* Data layout matters enormously
+* [Fragmentation](https://en.wikipedia.org/wiki/File_system_fragmentation) hurts performance
+* Defragmentation helps
+
+---
+
+##### SSD Semantics (NAND Flash)
+
+![](../images/SSD_structure.png)
+
+SSDs are governed by a **write–erase asymmetry**.
+
+Units of Operation
+
+-  **Page:** Smallest read/write unit (4KB–16KB)
+- **Block:** Smallest erase unit (multiple pages, often MBs)
+
+One-Way Writes  
+- Cells start erased (`1`)  
+- Writes flip bits to `0`  
+- You **cannot flip `0 → 1` without erasing the entire block**
+
+---
+
+##### Out-of-Place Updates (Copy-on-Write)
+
+Because pages cannot be overwritten:
+* Updates are written to **new pages**
+* Old pages are marked **stale**
+* Physical data moves over time  
+
+This applies to:
+
+* File edits
+* Database updates
+* Metadata changes
+
+---
+
+##### Flash Translation Layer (FTL)
+
+The FTL is firmware running inside the **SSD controller**.
+
+Its responsibilities:
+
+* Map **logical block addresses (LBAs)** to **physical pages**
+* Perform wear leveling
+* Handle garbage collection
+* Hide flash complexity from the OS
+
+Key insight:
+
+> Logical addresses are stable; physical locations are not.
+
+---
+
+##### Garbage Collection & Write Amplification
+
+Because stale pages accumulate:
+
+* SSDs periodically **copy live pages**, erase blocks, and reuse them
+* This background work causes **Write Amplification (WA)**
+
+Example:
+
+* App writes 4KB
+* SSD internally moves 12KB
+* WA = 3×
+
+Implications:
+
+* Random writes increase WA
+* Sequential writes reduce GC overhead
+* SSD lifetime and performance depend heavily on write patterns
+
+---
+
+##### TRIM and Deletes
+
+* **HDD delete:** Metadata-only
+* **SSD delete:** Requires **TRIM** so the SSD knows data is invalid
+
+Without TRIM:
+
+* SSD assumes deleted data is still live
+* GC becomes inefficient
+* Performance degrades over time
+
+
+---
+## References
+
+1. [CSAPP, Chapter 1](https://csapp.cs.cmu.edu/)
+2. [Database Internals, Chapter 2](https://www.databass.dev/)
+3. [Log-structured file systems: There's one in every SSD [LWN.net]](https://lwn.net/Articles/353411)

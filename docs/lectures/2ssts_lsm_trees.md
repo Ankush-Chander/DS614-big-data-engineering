@@ -129,4 +129,4 @@ Because we only touch a small slice of the data, we don't need massive temporary
 ## References
 1. [SSTable and Log Structured Storage: LevelDB - igvita.com](https://www.igvita.com/2012/02/06/sstable-and-log-structured-storage-leveldb)
 2. Chapter 3, Designing Data Intensive Applications
-3. [Bloom Filters](https://arpitbhayani.me/blogs/bloom-filters) 
+3. [Bloom Filters - samwho.dev](https://samwho.dev/bloom-filters) 
