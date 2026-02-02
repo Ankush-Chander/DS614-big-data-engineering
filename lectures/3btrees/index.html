@@ -947,18 +947,21 @@
 <p>A B-tree is a self-balancing tree designed specifically to maintain sorted data and allow searches, sequential access, insertions, and deletions in logarithmic time, <em>while minimizing disk I/O</em>.</p>
 <h4 id="key-characteristics">Key Characteristics</h4>
 <ol>
-<li><strong>High Fan-out:</strong> Unlike a binary tree (which has 2 children), a B-tree node can have hundreds or thousands of children. This dramatically reduces the height of the tree.</li>
-<li><strong>Fat Nodes:</strong> Each node is designed to fit exactly inside one disk page (e.g., 4KB).</li>
-<li><strong>Multiple Keys per Node:</strong> Instead of 1 key, a node contains an ordered array of keys (e.g., 100 keys).</li>
+<li><strong>High Fan-out:</strong> Unlike a binary tree (which has 2 children), a B-tree node can have hundreds or thousands of children. This dramatically reduces the height of the tree.  </li>
+<li><strong>Fat Nodes:</strong> Each node is designed to fit exactly inside one disk page (e.g., 4KB).  </li>
+<li><strong>Multiple Keys per Node:</strong> Instead of 1 key, a node contains an ordered array of keys (e.g., 100 keys).  </li>
 </ol>
 <h4 id="how-it-optimizes-for-disk">How it optimizes for Disk</h4>
-<p>Imagine you want to find a number in a dataset of 1 billion items.
-- <strong>Binary Tree:</strong> Height is <span class="arithmatex"><span class="MathJax_Preview">\approx 30</span><script type="math/tex">\approx 30</script></span>. You might need <strong>30 disk seeks</strong>.
-- <strong>B-Tree (Degree 1000):</strong> Height is <span class="arithmatex"><span class="MathJax_Preview">\approx 3</span><script type="math/tex">\approx 3</script></span>. You only need <strong>3 disk seeks</strong>.</p>
+<p>Imagine you want to find a number in a dataset of 1 billion items.<br />
+- <strong>Binary Tree:</strong> Height is <span class="arithmatex"><span class="MathJax_Preview">\approx 30</span><script type="math/tex">\approx 30</script></span>. You might need <strong>30 disk seeks</strong>.<br />
+- <strong>B-Tree (Degree 1000):</strong> Height is <span class="arithmatex"><span class="MathJax_Preview">\approx 3</span><script type="math/tex">\approx 3</script></span>. You only need <strong>3 disk seeks</strong>.  </p>
 <p>When you load a B-Tree node, you get hundreds of keys in a single I/O operation. Once that node is in RAM, you can binary search those keys instantly (nanoseconds) to decide which child pointer to follow next.</p>
+<hr />
+<p><strong>Mandatory reading(aligned with lecture)</strong>:  <a href="https://planetscale.com/blog/btrees-and-database-indexes">B-trees and database indexes — PlanetScale</a> </p>
 <hr />
 <h2 id="references">References</h2>
 <ol>
+<li><a href="https://planetscale.com/blog/btrees-and-database-indexes">B-trees and database indexes — PlanetScale</a> </li>
 <li><a href="https://www.databass.dev/">Database Internals, Chapter 2</a></li>
 <li><a href="">Designing Data Intensive Applications, Chapter 3</a></li>
 </ol>
