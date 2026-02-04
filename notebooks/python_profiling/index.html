@@ -1915,7 +1915,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="python-profiling">Python profiling<a class="anchor-link" href="#python-profiling">¶</a></h1>
+<h1 id="python-profiling">Python profiling<a class="anchor-link" href="#python-profiling">¶</a></h1><p><a href="https://colab.research.google.com/github/Ankush-Chander/DS614-big-data-engineering/blob/main/docs/notebooks/python_profiling.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/></a></p>
 </div>
 </div>
 </div>
@@ -2374,7 +2374,7 @@ kernprof -l -v  python_script.py
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
@@ -2404,7 +2404,7 @@ kernprof -l -v  python_script.py
 <pre>Wrote profile results to 'insertion_sort.py.lprof'
 Timer unit: 1e-06 s
 
-Total time: 0.00904529 s
+Total time: 0.00419 s
 File: profiling_examples/insertion_sort.py
 Function: insertion_sort at line 13
 
@@ -2413,16 +2413,16 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     13                                           @profile
     14                                           def insertion_sort(arr):
     15                                               # Traverse through 1 to len(arr)
-    16        99         64.4      0.7      0.7      for i in range(1, len(arr)):
-    17        98         62.4      0.6      0.7          key = arr[i]
+    16        99         28.7      0.3      0.7      for i in range(1, len(arr)):
+    17        98         28.1      0.3      0.7          key = arr[i]
     18                                                   # Move elements of arr[0..i-1], that are
     19                                                   # greater than key, to one position ahead
     20                                                   # of their current position
-    21        98         58.5      0.6      0.6          j = i - 1
-    22      4949       2974.3      0.6     32.9          while j &gt;= 0 and key &lt; arr[j]:
-    23      4851       3109.6      0.6     34.4              arr[j + 1] = arr[j]
-    24      4851       2716.7      0.6     30.0              j -= 1
-    25        98         59.5      0.6      0.7          arr[j + 1] = key
+    21        98         26.6      0.3      0.6          j = i - 1
+    22      4949       1403.0      0.3     33.5          while j &gt;= 0 and key &lt; arr[j]:
+    23      4851       1399.7      0.3     33.4              arr[j + 1] = arr[j]
+    24      4851       1276.3      0.3     30.5              j -= 1
+    25        98         27.6      0.3      0.7          arr[j + 1] = key
 
 </pre>
 </div>
