@@ -174,6 +174,15 @@
   
     
     
+      
+  
+  
+  
+    
+  
+  
+    
+    
       <li class="md-tabs__item md-tabs__item--active">
         <a href="../../lectures/0storage_prerequisites/" class="md-tabs__link">
           
@@ -183,6 +192,9 @@
 
         </a>
       </li>
+    
+  
+
     
   
 
@@ -372,6 +384,58 @@
             
   
     Storage Engines
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prerequisites
   
 
           </label>
@@ -768,6 +832,14 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
               
                 
   
@@ -839,6 +911,34 @@
     
   
     B-Trees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/4columnar_storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Columnar Storage
   
 
     
@@ -1841,7 +1941,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-1">
@@ -1872,12 +1972,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Collecting memory_profiler
-  Downloading memory_profiler-0.61.0-py3-none-any.whl.metadata (20 kB)
+<pre>Requirement already satisfied: memory_profiler in /home/ankush/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages (0.61.0)
 Requirement already satisfied: psutil in /home/ankush/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages (from memory_profiler) (7.2.1)
-Downloading memory_profiler-0.61.0-py3-none-any.whl (31 kB)
-Installing collected packages: memory_profiler
-Successfully installed memory_profiler-0.61.0
 </pre>
 </div>
 </div>
@@ -1892,15 +1988,15 @@ Successfully installed memory_profiler-0.61.0
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="fundamental-computer-system">Fundamental Computer System<a class="anchor-link" href="#fundamental-computer-system">¶</a></h2><ul>
-<li><p>Computing units<br/>
+<li><p><strong>Computing units</strong><br/>
 Provides the ability to transform bits it recieves  into other bits or to change the state of process.
 Eg: CPU(commonly used), GPU(auxilary unit)</p>
 </li>
-<li><p>Memory units<br/>
+<li><p><strong>Memory units</strong><br/>
 Used to store bits.<br/>
 Eg: Spinning disc, Solid State Drive(SSD), RAM, l1/l2/l3 cache, CPU registers</p>
 </li>
-<li><p>Communication layers<br/>
+<li><p><strong>Communication layers</strong><br/>
 How fast we can move data from one place to another<br/>
 Eg: Frontside bus(between RAM and l1/l2 cache), External bus(hardware devices to CPU and main memory)</p>
 </li>
@@ -1917,9 +2013,9 @@ Eg: Frontside bus(between RAM and l1/l2 cache), External bus(hardware devices to
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="computing-units">Computing units<a class="anchor-link" href="#computing-units">¶</a></h2><p>Provides the ability to transform bits it recieves  into other bits or to change the state of process.</p>
 <p><strong>Measurements:</strong><br/>
-How many cycles per second?(Clock speed)<br/>
+<em>How many cycles per second?(Clock speed)</em><br/>
 A CPU cycle is the basic unit of time used by a CPU to execute an instruction. It consists of a fetch, decode, execute, and write-back phase.</p>
-<p>How many instructions per cycle(IPC)?<br/>
+<p><em>How many instructions per cycle(IPC)?</em><br/>
 Having a high IPC can drastically affect computing by changing the level of vectorization that is possible.</p>
 </div>
 </div>
@@ -1931,13 +2027,13 @@ Having a high IPC can drastically affect computing by changing the level of vect
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="commands">Commands:<a class="anchor-link" href="#commands">¶</a></h4><pre><code>lscpu
-eg: output
-CPU MHz:                         1700.000 # 1 MHz means 1 million cycles per second
-CPU max MHz:                     4700.0000
-CPU min MHz:                     400.0000
-BogoMIPS:                        3379.20  # Million instructions per second
-</code></pre>
+<h4 id="commands">Commands:<a class="anchor-link" href="#commands">¶</a></h4><div class="highlight"><pre><span></span>lscpu
+
+<span class="c1"># eg: output</span>
+<span class="c1"># CPU max MHz:          4680.0000 # 1 MHz means 1 million cycles per second</span>
+<span class="c1"># CPU min MHz:          400.0000</span>
+<span class="c1"># BogoMIPS:             6587.72 # Million instructions per second</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -1948,7 +2044,7 @@ BogoMIPS:                        3379.20  # Million instructions per second
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="memory-units">Memory units<a class="anchor-link" href="#memory-units">¶</a></h3><p>Used to store bits.
+<h3 id="memory-units">Memory units<a class="anchor-link" href="#memory-units">¶</a></h3><p>Used to store bits.<br/>
 <strong>Measurements:</strong></p>
 <ol>
 <li>How much data it can hold?</li>
@@ -1991,9 +2087,9 @@ How much data can a bus move in transfer?(Bus width)
 How many transfers bus can make in 1 second(bus frequency)</p>
 <p><strong>Types of bus:</strong></p>
 <ol>
-<li>Frontside bus: connects RAM to l1/l2 cache</li>
-<li>External bus: connect external devices to system memory/CPU</li>
-<li>PCI bus: For peripheral devices</li>
+<li><em>Frontside bus:</em> connects RAM to l1/l2 cache</li>
+<li><em>External bus:</em> connect external devices to system memory/CPU</li>
+<li><em>PCI bus:</em> For peripheral devices</li>
 </ol>
 </div>
 </div>
@@ -2009,7 +2105,7 @@ How many transfers bus can make in 1 second(bus frequency)</p>
 Memory is automatically allocated and freed when needed.
 Leads to mempory fragmentation.</p>
 <p><strong>Dynamic types and language not being compiled</strong><br/>
-If code is static than compiler can make lot of optimization to lay out objects in memory efficiently so that CPU run certain instructions more efficiently. Python being dynalic language reduces the scope of such optimzation.</p>
+If code is static than compiler can make lot of optimization to lay out objects in memory efficiently so that CPU run certain instructions more efficiently. Python being dynamic language reduces the scope of such optimzation.</p>
 <p><strong>Global interpretor lock(GIL)</strong><br/>
 Python handles race condtions and deadlocks using GIL. GIL makes sure that a Python process can run only one instruction at a time regardless of number of cores it is currently using.</p>
 </div>
@@ -2063,7 +2159,7 @@ Python handles race condtions and deadlocks using GIL. GIL makes sure that a Pyt
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-2">
@@ -2100,7 +2196,7 @@ print(f"took {time.time() - s_time} secs")</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>took 4.00043511390686 secs
+<pre>took 4.00043249130249 secs
 </pre>
 </div>
 </div>

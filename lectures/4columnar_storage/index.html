@@ -10,25 +10,31 @@
       
       
       
+        <link rel="canonical" href="https://ankushchander.com/lectures/4columnar_storage/">
       
+      
+        <link rel="prev" href="../3btrees/">
+      
+      
+        <link rel="next" href="../../code/storage_engines/">
       
       
         
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>DS614 - Big Data Engineering | DAU</title>
+        <title>Columnar Storage - DS614 - Big Data Engineering | DAU</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -47,7 +53,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -69,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#oltp-vs-olap" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -79,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="DS614 - Big Data Engineering | DAU" class="md-header__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+    <a href="../.." title="DS614 - Big Data Engineering | DAU" class="md-header__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -99,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Columnar Storage
             
           </span>
         </div>
@@ -132,7 +143,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -149,6 +160,8 @@
   
   
   
+    
+  
   
     
     
@@ -156,6 +169,8 @@
   
   
   
+    
+  
   
     
     
@@ -163,11 +178,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="/lectures/0storage_prerequisites/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../0storage_prerequisites/" class="md-tabs__link">
           
   
   
@@ -193,7 +210,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/code/storage_engines/" class="md-tabs__link">
+        <a href="../../code/storage_engines/" class="md-tabs__link">
           
   
   
@@ -227,7 +244,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="DS614 - Big Data Engineering | DAU" class="md-nav__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+    <a href="../.." title="DS614 - Big Data Engineering | DAU" class="md-nav__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -245,7 +262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -269,26 +286,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -306,7 +326,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -321,8 +341,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -331,13 +353,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
         
           
           <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
@@ -358,7 +378,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -428,7 +448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/lectures/0storage_prerequisites/" class="md-nav__link">
+      <a href="../0storage_prerequisites/" class="md-nav__link">
         
   
   
@@ -456,7 +476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/notebooks/concurrency_prerequisites/" class="md-nav__link">
+      <a href="../../notebooks/concurrency_prerequisites/" class="md-nav__link">
         
   
   
@@ -484,7 +504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/notebooks/python_profiling/" class="md-nav__link">
+      <a href="../../notebooks/python_profiling/" class="md-nav__link">
         
   
   
@@ -520,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/lectures/1hash_indexes/" class="md-nav__link">
+      <a href="../1hash_indexes/" class="md-nav__link">
         
   
   
@@ -548,7 +568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/lectures/2ssts_lsm_trees/" class="md-nav__link">
+      <a href="../2ssts_lsm_trees/" class="md-nav__link">
         
   
   
@@ -576,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/lectures/3btrees/" class="md-nav__link">
+      <a href="../3btrees/" class="md-nav__link">
         
   
   
@@ -601,10 +621,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/lectures/4columnar_storage/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -620,6 +649,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -699,7 +729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/code/storage_engines/" class="md-nav__link">
+      <a href="../../code/storage_engines/" class="md-nav__link">
         
   
   
@@ -807,7 +837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/notebooks/sql_demo/" class="md-nav__link">
+      <a href="../../notebooks/sql_demo/" class="md-nav__link">
         
   
   
@@ -860,6 +890,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -872,8 +904,123 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+
+<h1 id="oltp-vs-olap">OLTP vs OLAP</h1>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Transaction processing systems (OLTP)</th>
+<th>Analytic systems (OLAP)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main read pattern</td>
+<td>Small number of records per query, fetched by key</td>
+<td>Aggregate over large number of records</td>
+</tr>
+<tr>
+<td>Main write pattern</td>
+<td>Random-access, low-latency writes from user input</td>
+<td>Bulk import (ETL) or event stream</td>
+</tr>
+<tr>
+<td>Primarily used by</td>
+<td>End user/customer, via web application</td>
+<td>Internal analyst, for decision support</td>
+</tr>
+<tr>
+<td>What data represents</td>
+<td>Latest state of data (current point in time)</td>
+<td>History of events that happened over time</td>
+</tr>
+<tr>
+<td>Dataset size</td>
+<td>Gigabytes to terabytes</td>
+<td>Terabytes to petabytes</td>
+</tr>
+</tbody>
+</table>
+<h1 id="data-warehouse">Data Warehouse</h1>
+<p>A data warehouse, is a separate database that analysts can query without affecting OLTP operations. The data warehouse contains a read-only copy of the data in all the various OLTP systems in the company.</p>
+<h1 id="columnar-storage">Columnar Storage</h1>
+<h2 id="row-vs-column">Row vs. Column</h2>
+<p><strong>Row-Oriented</strong>: Stores all data for a single record (e.g., Name, Age, Salary) together. This is ideal for OLTP (Online Transaction Processing) where you frequently read or write specific individual records (e.g., adding a new user).   </p>
+<p><strong>Column-Oriented</strong>: Stores all data for a single attribute (e.g., all "Salaries") together. This is ideal for OLAP (Online Analytical Processing) where you want to perform calculations on a specific metric across millions of records (e.g., "What is the average salary?").</p>
+<p>Let's consider a simple <code>Employees</code> table with the following schema:
+<code>id</code> (int), <code>age</code> (int), <code>salary</code> (int), <code>dept</code> (string)</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>age</th>
+<th>salary</th>
+<th>dept</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>25</td>
+<td>50000</td>
+<td>HR</td>
+</tr>
+<tr>
+<td>1</td>
+<td>30</td>
+<td>60000</td>
+<td>Tech</td>
+</tr>
+<tr>
+<td>2</td>
+<td>45</td>
+<td>90000</td>
+<td>Sales</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-row-oriented-storage">1. Row-Oriented Storage</h4>
+<p>In a row store, data is written <strong>row by row</strong>. The storage on disk looks like a long continuous stream of records:</p>
+<p><code>0, 25, 50000, HR; 1, 30, 60000, Tech; 2, 45, 90000, Sales</code></p>
+<p>If you want to calculate the <strong>Average Salary</strong>:<br />
+- The generic "Row" engine must read the entire row (including <code>id</code>, <code>age</code>, and <code>dept</code>) just to get to the <code>salary</code>. <br />
+- This wastes I/O bandwidth reading data you don't need.</p>
+<h4 id="2-column-oriented-storage">2. Column-Oriented Storage</h4>
+<p>In a column store, data is written <strong>column by column</strong>.</p>
+<p><code>0, 1, 2</code> (IDs)
+<code>25, 30, 45</code> (Ages)
+<code>50000, 60000, 90000</code> (Salaries)
+<code>HR, Tech, Sales</code> (Depts)</p>
+<p>If you want to calculate the <strong>Average Salary</strong>:
+- The engine only reads the <code>Salaries</code> block: <code>50000, 60000, 90000</code>.<br />
+- It ignores <code>IDs</code>, <code>Ages</code>, and <code>Depts</code> entirely.<br />
+- This is significantly faster for aggregations (OLAP).  </p>
+<h2 id="why-columnar-storage-is-better-for-olap">Why Columnar Storage is better for OLAP</h2>
+<ol>
+<li><strong>I/O Efficiency</strong>: When performing an aggregation, you only need to read the columns that are relevant to the query. This reduces the amount of data that needs to be read from disk. </li>
+<li><strong>Compression</strong>: Since all data in a column is of the same type, it can be compressed much more effectively than row-oriented storage. </li>
+<li><strong>Cache Efficiency</strong>: Since related data is stored together, it is more likely to be found in the CPU cache, which reduces the time it takes to access the data. </li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -885,6 +1032,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../3btrees/" class="md-footer__link md-footer__link--prev" aria-label="Previous: B-Trees">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                B-Trees
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../code/storage_engines/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage Engines">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Storage Engines
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -916,10 +1101,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/", "features": ["navigation.tabs", "navigation.expand", "navigation.footer"], "search": "/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.expand", "navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

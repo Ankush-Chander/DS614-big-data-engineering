@@ -166,6 +166,13 @@
   
     
     
+      
+  
+  
+  
+  
+    
+    
       <li class="md-tabs__item">
         <a href="../../../lectures/0storage_prerequisites/" class="md-tabs__link">
           
@@ -175,6 +182,9 @@
 
         </a>
       </li>
+    
+  
+
     
   
 
@@ -372,6 +382,58 @@
   
   
   
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prerequisites
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../lectures/0storage_prerequisites/" class="md-nav__link">
         
@@ -450,6 +512,14 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
               
                 
   
@@ -521,6 +591,34 @@
     
   
     B-Trees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lectures/4columnar_storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Columnar Storage
   
 
     
@@ -1224,7 +1322,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b0c0f268">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=e15f0f06">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1248,20 +1346,22 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="kn">import</span><span class="w"> </span><span class="nn">fire</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">array</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-1">import time
 import sys
 import random
 import fire
 import array
-import numpy as np</div>
+import numpy as np
+import pandas as pd</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=facf8b0b">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3c6bdf69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1280,14 +1380,14 @@ import numpy as np</div>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Generate 1 million rows of data</span>
-<span class="n">n_rows</span> <span class="o">=</span> <span class="mi">1_000_000_0</span>
+<span class="n">n_rows</span> <span class="o">=</span> <span class="mi">1_000_000</span>
 <span class="n">ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_rows</span><span class="p">))</span>
 <span class="n">ages</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_rows</span><span class="p">)]</span>
 <span class="n">salaries</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">40000</span><span class="p">,</span> <span class="mi">150000</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_rows</span><span class="p">)]</span>
 <span class="n">departments</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">'HR'</span><span class="p">,</span> <span class="s1">'Tech'</span><span class="p">,</span> <span class="s1">'Sales'</span><span class="p">,</span> <span class="s1">'Admin'</span><span class="p">])</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_rows</span><span class="p">)]</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-2"># Generate 1 million rows of data
-n_rows = 1_000_000_0
+n_rows = 1_000_000
 ids = list(range(n_rows))
 ages = [random.randint(18, 90) for _ in range(n_rows)]
 salaries = [random.randint(40000, 150000) for _ in range(n_rows)]
@@ -1298,7 +1398,7 @@ departments = [random.choice(['HR', 'Tech', 'Sales', 'Admin']) for _ in range(n_
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=fc9ac6e2">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c362a88c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1325,7 +1425,7 @@ departments = [random.choice(['HR', 'Tech', 'Sales', 'Admin']) for _ in range(n_
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3a69ad3d">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6c5f7a72">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1362,7 +1462,7 @@ except ImportError:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0e0bd0af">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=918879ee">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1425,7 +1525,7 @@ except ImportError:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b79635ee">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c3106f4f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1452,7 +1552,7 @@ except ImportError:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=569e1477">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31182dcb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1511,7 +1611,7 @@ except ImportError:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4958b456">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b8ddfecc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1538,7 +1638,7 @@ except ImportError:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2a4d9be8">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5983d749">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1556,7 +1656,7 @@ except ImportError:
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TrueColumnStore</span><span class="p">:</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ColumnStore</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">ages</span><span class="p">,</span> <span class="n">salaries</span><span class="p">,</span> <span class="n">depts</span><span class="p">):</span>
         <span class="c1"># 'I' = unsigned int (strictly contiguous C-array in memory)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">salaries</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">'I'</span><span class="p">,</span> <span class="n">salaries</span><span class="p">)</span>
@@ -1575,7 +1675,7 @@ except ImportError:
         <span class="c1"># It adds multiple numbers in a single CPU cycle.</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">np_salaries</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-9">class TrueColumnStore:
+<div class="clipboard-copy-txt" id="cell-9">class ColumnStore:
     def __init__(self, ids, ages, salaries, depts):
         # 'I' = unsigned int (strictly contiguous C-array in memory)
         self.salaries = array.array('I', salaries)
@@ -1599,7 +1699,7 @@ except ImportError:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a9df52fa">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9eda0aab">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1617,16 +1717,60 @@ except ImportError:
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">PandasColumnStore</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">ages</span><span class="p">,</span> <span class="n">salaries</span><span class="p">,</span> <span class="n">depts</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+            <span class="s1">'id'</span><span class="p">:</span> <span class="n">ids</span><span class="p">,</span>
+            <span class="s1">'age'</span><span class="p">:</span> <span class="n">ages</span><span class="p">,</span>
+            <span class="s1">'salary'</span><span class="p">:</span> <span class="n">salaries</span><span class="p">,</span>
+            <span class="s1">'dept'</span><span class="p">:</span> <span class="n">depts</span>
+        <span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span>
+
+    <span class="nd">@profile</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_average_salary_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Python's sum() on an array module is highly optimized C code</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">'salary'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="nd">@profile</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_average_salary_via_iterrows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Numpy uses SIMD (Single Instruction, Multiple Data) </span>
+        <span class="c1"># It adds multiple numbers in a single CPU cycle.</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="n">row</span><span class="p">[</span><span class="s1">'salary'</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-10"></div>
+<div class="clipboard-copy-txt" id="cell-10">class PandasColumnStore:
+    def __init__(self, ids, ages, salaries, depts):
+        df = pd.DataFrame({
+            'id': ids,
+            'age': ages,
+            'salary': salaries,
+            'dept': depts
+        })
+        self.df = df
+
+    @profile
+    def get_average_salary_pandas(self):
+        # Python's sum() on an array module is highly optimized C code
+        return self.df['salary'].mean()
+
+    @profile
+    def get_average_salary_via_iterrows(self):
+        # Numpy uses SIMD (Single Instruction, Multiple Data) 
+        # It adds multiple numbers in a single CPU cycle.
+        total = 0
+        for _, row in self.df.iterrows():
+            total += row['salary']
+        return total / self.df.shape[0]</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=1081037d">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=509cb60b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1665,7 +1809,7 @@ except ImportError:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6c1fd76d">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7887f495">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1704,7 +1848,7 @@ except ImportError:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f3b2acde">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2b4b03a1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1743,7 +1887,7 @@ except ImportError:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f21450bb">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9cb22fc0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1782,7 +1926,7 @@ except ImportError:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33afac40">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f808bc72">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1800,20 +1944,102 @@ except ImportError:
 </div>
 </clipboard-copy>
 </div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">col_pandas_based_average</span><span class="p">():</span>
+    <span class="n">pandas_db</span> <span class="o">=</span> <span class="n">PandasColumnStore</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">ages</span><span class="p">,</span> <span class="n">salaries</span><span class="p">,</span> <span class="n">departments</span><span class="p">)</span>
+    <span class="c1"># Test Column Store</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">col_avg</span> <span class="o">=</span> <span class="n">pandas_db</span><span class="o">.</span><span class="n">get_average_salary_pandas</span><span class="p">()</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Col Store Time: </span><span class="si">{</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> seconds"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-15">def col_pandas_based_average():
+    pandas_db = PandasColumnStore(ids, ages, salaries, departments)
+    # Test Column Store
+    start = time.time()
+    col_avg = pandas_db.get_average_salary_pandas()
+    end = time.time()
+    print(f"Col Store Time: {end - start:.5f} seconds")</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=af501ac9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-16">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">col_pandas_based_average_via_iterrows</span><span class="p">():</span>
+    <span class="n">pandas_db</span> <span class="o">=</span> <span class="n">PandasColumnStore</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">ages</span><span class="p">,</span> <span class="n">salaries</span><span class="p">,</span> <span class="n">departments</span><span class="p">)</span>
+    <span class="c1"># Test Column Store</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">col_avg</span> <span class="o">=</span> <span class="n">pandas_db</span><span class="o">.</span><span class="n">get_average_salary_via_iterrows</span><span class="p">()</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Col Store Time: </span><span class="si">{</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> seconds"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-16">def col_pandas_based_average_via_iterrows():
+    pandas_db = PandasColumnStore(ids, ages, salaries, departments)
+    # Test Column Store
+    start = time.time()
+    col_avg = pandas_db.get_average_salary_via_iterrows()
+    end = time.time()
+    print(f"Col Store Time: {end - start:.5f} seconds")</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=22bef761">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-17">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="n">fire</span><span class="o">.</span><span class="n">Fire</span><span class="p">({</span>
         <span class="s2">"row_based_average"</span><span class="p">:</span> <span class="n">row_based_average</span><span class="p">,</span>
         <span class="s2">"col_list_based_average"</span><span class="p">:</span> <span class="n">col_list_based_average</span><span class="p">,</span>
         <span class="s2">"col_array_based_average"</span><span class="p">:</span> <span class="n">col_array_based_average</span><span class="p">,</span>
-        <span class="s2">"col_numpy_based_average"</span><span class="p">:</span> <span class="n">col_numpy_based_average</span>
+        <span class="s2">"col_numpy_based_average"</span><span class="p">:</span> <span class="n">col_numpy_based_average</span><span class="p">,</span>
+        <span class="s2">"col_pandas_based_average"</span><span class="p">:</span> <span class="n">col_pandas_based_average</span><span class="p">,</span>
+        <span class="s2">"col_pandas_based_average_via_iterrows"</span><span class="p">:</span> <span class="n">col_pandas_based_average_via_iterrows</span><span class="p">,</span>
     <span class="p">})</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-15">if __name__ == "__main__":
+<div class="clipboard-copy-txt" id="cell-17">if __name__ == "__main__":
     fire.Fire({
         "row_based_average": row_based_average,
         "col_list_based_average": col_list_based_average,
         "col_array_based_average": col_array_based_average,
-        "col_numpy_based_average": col_numpy_based_average
+        "col_numpy_based_average": col_numpy_based_average,
+        "col_pandas_based_average": col_pandas_based_average,
+        "col_pandas_based_average_via_iterrows": col_pandas_based_average_via_iterrows,
     })</div>
 </div>
 </div>
@@ -1821,7 +2047,7 @@ except ImportError:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0c98a92e">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e02e178d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1832,7 +2058,7 @@ except ImportError:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6681a656">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c22f68f9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
