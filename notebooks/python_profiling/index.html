@@ -930,9 +930,25 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../lectures/4columnar_storage/" class="md-nav__link">
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_5" id="__nav_2_1_5_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -946,7 +962,79 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Columnar Storage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/4columnar_storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OLTP vs OLAP
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pandas_parquet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pandas parquet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1941,7 +2029,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-1">
@@ -2159,7 +2247,7 @@ Python handles race condtions and deadlocks using GIL. GIL makes sure that a Pyt
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-2">
@@ -2196,7 +2284,7 @@ print(f"took {time.time() - s_time} secs")</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>took 4.00043249130249 secs
+<pre>took 4.0003697872161865 secs
 </pre>
 </div>
 </div>
@@ -2282,7 +2370,7 @@ lengthy_function()</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Function 'lengthy_function' executed in 4.0001s
+<pre>Function 'lengthy_function' executed in 4.0003s
 </pre>
 </div>
 </div>
@@ -2320,8 +2408,10 @@ lengthy_function()</div>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="err">!</span> <span class="n">time</span> <span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">profiling_examples</span><span class="o">/</span><span class="n">insertion_sort</span><span class="o">.</span><span class="n">py</span>  <span class="mi">10000</span>
+<span class="err">!</span> <span class="n">time</span> <span class="n">python3</span> <span class="o">-</span><span class="n">u</span> <span class="n">profiling_examples</span><span class="o">/</span><span class="n">merge_sort</span><span class="o">.</span><span class="n">py</span>  <span class="mi">10000</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-4">! time python3 -u profiling_examples/insertion_sort.py  10000</div>
+<div class="clipboard-copy-txt" id="cell-4">! time python3 -u profiling_examples/insertion_sort.py  10000
+! time python3 -u profiling_examples/merge_sort.py  10000</div>
 </div>
 </div>
 </div>
@@ -2334,9 +2424,13 @@ lengthy_function()</div>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-real	0m5.379s
-user	0m5.343s
-sys	0m0.017s
+real	0m2.514s
+user	0m2.507s
+sys	0m0.006s
+
+real	0m0.026s
+user	0m0.024s
+sys	0m0.002s
 </pre>
 </div>
 </div>
@@ -2374,7 +2468,7 @@ kernprof -l -v  python_script.py
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
@@ -2401,10 +2495,11 @@ kernprof -l -v  python_script.py
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Wrote profile results to 'insertion_sort.py.lprof'
+<pre>[100, 99, 98, 97, 96, 95, 94, 93, 92, 91]
+Wrote profile results to 'insertion_sort.py.lprof'
 Timer unit: 1e-06 s
 
-Total time: 0.00419 s
+Total time: 0.00398147 s
 File: profiling_examples/insertion_sort.py
 Function: insertion_sort at line 13
 
@@ -2413,16 +2508,16 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     13                                           @profile
     14                                           def insertion_sort(arr):
     15                                               # Traverse through 1 to len(arr)
-    16        99         28.7      0.3      0.7      for i in range(1, len(arr)):
-    17        98         28.1      0.3      0.7          key = arr[i]
+    16        99         29.1      0.3      0.7      for i in range(1, len(arr)):
+    17        98         27.9      0.3      0.7          key = arr[i]
     18                                                   # Move elements of arr[0..i-1], that are
     19                                                   # greater than key, to one position ahead
     20                                                   # of their current position
-    21        98         26.6      0.3      0.6          j = i - 1
-    22      4949       1403.0      0.3     33.5          while j &gt;= 0 and key &lt; arr[j]:
-    23      4851       1399.7      0.3     33.4              arr[j + 1] = arr[j]
-    24      4851       1276.3      0.3     30.5              j -= 1
-    25        98         27.6      0.3      0.7          arr[j + 1] = key
+    21        98         26.4      0.3      0.7          j = i - 1
+    22      4949       1324.4      0.3     33.3          while j &gt;= 0 and key &lt; arr[j]:
+    23      4851       1328.8      0.3     33.4              arr[j + 1] = arr[j]
+    24      4851       1217.1      0.3     30.6              j -= 1
+    25        98         27.7      0.3      0.7          arr[j + 1] = key
 
 </pre>
 </div>
@@ -2436,7 +2531,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
@@ -2466,7 +2561,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 <pre>Wrote profile results to 'merge_sort.py.lprof'
 Timer unit: 1e-06 s
 
-Total time: 0.00295416 s
+Total time: 0.00140043 s
 File: profiling_examples/merge_sort.py
 Function: merge_sort at line 17
 
@@ -2474,42 +2569,42 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
     17                                           @profile
     18                                           def merge_sort(arr):
-    19       197        203.1      1.0      6.9      if len(arr) &gt; 1:
+    19       197         94.5      0.5      6.7      if len(arr) &gt; 1:
     20                                           
     21                                                   # Finding the mid of the array
-    22        98         67.5      0.7      2.3          mid = len(arr) // 2
+    22        98         31.2      0.3      2.2          mid = len(arr) // 2
     23                                           
     24                                                   # Dividing the array elements
-    25        98         72.8      0.7      2.5          L = arr[:mid]
+    25        98         36.5      0.4      2.6          L = arr[:mid]
     26                                           
     27                                                   # into 2 halves
-    28        98         63.6      0.6      2.2          R = arr[mid:]
+    28        98         30.1      0.3      2.2          R = arr[mid:]
     29                                           
     30                                                   # Sorting the first half
-    31        98        259.6      2.6      8.8          merge_sort(L)
+    31        98        124.6      1.3      8.9          merge_sort(L)
     32                                           
     33                                                   # Sorting the second half
-    34        98        262.5      2.7      8.9          merge_sort(R)
+    34        98        121.5      1.2      8.7          merge_sort(R)
     35                                           
-    36        98         52.9      0.5      1.8          i = j = k = 0
+    36        98         25.9      0.3      1.8          i = j = k = 0
     37                                           
     38                                                   # Copy data to temp arrays L[] and R[]
-    39       450        285.6      0.6      9.7          while i &lt; len(L) and j &lt; len(R):
-    40       352        211.8      0.6      7.2              if L[i] &lt;= R[j]:
+    39       450        134.2      0.3      9.6          while i &lt; len(L) and j &lt; len(R):
+    40       352        101.8      0.3      7.3              if L[i] &lt;= R[j]:
     41                                                           arr[k] = L[i]
     42                                                           i += 1
     43                                                       else:
-    44       352        201.6      0.6      6.8                  arr[k] = R[j]
-    45       352        195.8      0.6      6.6                  j += 1
-    46       352        183.9      0.5      6.2              k += 1
+    44       352         97.4      0.3      7.0                  arr[k] = R[j]
+    45       352         92.7      0.3      6.6                  j += 1
+    46       352         92.3      0.3      6.6              k += 1
     47                                           
     48                                                   # Checking if any element was left
-    49       410        248.6      0.6      8.4          while i &lt; len(L):
-    50       312        196.0      0.6      6.6              arr[k] = L[i]
-    51       312        168.0      0.5      5.7              i += 1
-    52       312        163.7      0.5      5.5              k += 1
+    49       410        113.4      0.3      8.1          while i &lt; len(L):
+    50       312         86.0      0.3      6.1              arr[k] = L[i]
+    51       312         85.0      0.3      6.1              i += 1
+    52       312         78.3      0.3      5.6              k += 1
     53                                           
-    54        98        117.3      1.2      4.0          while j &lt; len(R):
+    54        98         55.1      0.6      3.9          while j &lt; len(R):
     55                                                       arr[k] = R[j]
     56                                                       j += 1
     57                                                       k += 1
@@ -2617,7 +2712,7 @@ sudo perf stat -e cycles,stalled-cycles-frontend,stalled-cycles-backend,instruct
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-7">
@@ -2644,7 +2739,7 @@ sudo perf stat -e cycles,stalled-cycles-frontend,stalled-cycles-backend,instruct
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>535 μs ± 7.56 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<pre>258 μs ± 7.41 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre>
 </div>
 </div>
@@ -2657,7 +2752,7 @@ sudo perf stat -e cycles,stalled-cycles-frontend,stalled-cycles-backend,instruct
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
@@ -2692,7 +2787,7 @@ for i in range(10000):
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>409 μs ± 20.1 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<pre>386 μs ± 885 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre>
 </div>
 </div>
@@ -2705,7 +2800,7 @@ for i in range(10000):
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-9">
@@ -2732,7 +2827,7 @@ for i in range(10000):
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>peak memory: 85.76 MiB, increment: 0.12 MiB
+<pre>peak memory: 85.82 MiB, increment: 0.00 MiB
 </pre>
 </div>
 </div>
@@ -2745,7 +2840,7 @@ for i in range(10000):
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-10">
@@ -2780,7 +2875,7 @@ for i in range(1000000):
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>peak memory: 114.97 MiB, increment: 29.88 MiB
+<pre>peak memory: 114.71 MiB, increment: 29.62 MiB
 </pre>
 </div>
 </div>
@@ -2820,7 +2915,7 @@ Since data is fragmented across different memory locations, you must move each p
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-11">
@@ -2889,7 +2984,7 @@ def norm_square_numpy_dot(vector):
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-12">
@@ -2920,7 +3015,7 @@ norm_square_list(vector)</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>55.7 ms ± 461 μs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<pre>56.2 ms ± 135 μs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre>
 </div>
 </div>
@@ -2933,7 +3028,7 @@ norm_square_list(vector)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-13">
@@ -2964,7 +3059,7 @@ norm_square_list_comprehension(vector)</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>67.9 ms ± 1.74 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<pre>61.1 ms ± 338 μs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre>
 </div>
 </div>
@@ -2977,7 +3072,7 @@ norm_square_list_comprehension(vector)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-14">
@@ -3012,7 +3107,7 @@ norm_square_numpy(vector_numpy)
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>944 μs ± 119 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<pre>907 μs ± 37.5 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 </pre>
 </div>
 </div>
