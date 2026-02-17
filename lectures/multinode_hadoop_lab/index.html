@@ -10,13 +10,9 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/code/storage_engines/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/multinode_hadoop_lab/">
       
       
-        <link rel="prev" href="../../lectures/6hdfs/">
-      
-      
-        <link rel="next" href="../../notebooks/sql_demo/">
       
       
         
@@ -27,7 +23,7 @@
     
     
       
-        <title>Storage Engines - DS614 - Big Data Engineering | DAU</title>
+        <title>Multi-Node Hadoop Cluster Lab (VirtualBox) - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -76,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#log-based-storage-engine" class="md-skip">
+        <a href="#multi-node-hadoop-cluster-lab-virtualbox" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Storage Engines
+              Multi-Node Hadoop Cluster Lab (VirtualBox)
             
           </span>
         </div>
@@ -178,7 +174,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../lectures/0storage_prerequisites/" class="md-tabs__link">
+        <a href="../0storage_prerequisites/" class="md-tabs__link">
           
   
   
@@ -200,13 +196,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../code/storage_engines/" class="md-tabs__link">
           
   
   
@@ -441,7 +435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/0storage_prerequisites/" class="md-nav__link">
+      <a href="../0storage_prerequisites/" class="md-nav__link">
         
   
   
@@ -533,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/1hash_indexes/" class="md-nav__link">
+      <a href="../1hash_indexes/" class="md-nav__link">
         
   
   
@@ -561,7 +555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/2ssts_lsm_trees/" class="md-nav__link">
+      <a href="../2ssts_lsm_trees/" class="md-nav__link">
         
   
   
@@ -589,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/3btrees/" class="md-nav__link">
+      <a href="../3btrees/" class="md-nav__link">
         
   
   
@@ -669,7 +663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/4columnar_storage/" class="md-nav__link">
+      <a href="../4columnar_storage/" class="md-nav__link">
         
   
   
@@ -821,7 +815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/6hdfs/" class="md-nav__link">
+      <a href="../6hdfs/" class="md-nav__link">
         
   
   
@@ -861,29 +855,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -901,7 +892,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -916,37 +907,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Storage Engines
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../code/storage_engines/" class="md-nav__link">
         
   
   
@@ -962,59 +926,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Setup
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#run" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Run
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1195,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../batch_processing/hadoop%20single%20node%20cluster/" class="md-nav__link">
+      <a href="../../code/batch_processing/hadoop%20single%20node%20cluster/" class="md-nav__link">
         
   
   
@@ -1258,10 +1169,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setup
+        Prerequisites
       
     </span>
   </a>
@@ -1269,10 +1180,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run" class="md-nav__link">
+  <a href="#phase-1-base-vm-preparation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Run
+        Phase 1: Base VM Preparation
       
     </span>
   </a>
@@ -1280,10 +1191,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
+  <a href="#phase-2-cloning-networking" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API
+        Phase 2: Cloning &amp; Networking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-hadoop-configuration-on-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Hadoop Configuration (On Master)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-4-sync-launch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Sync &amp; Launch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-5-verification-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5: Verification Task
       
     </span>
   </a>
@@ -1307,39 +1251,125 @@
 
 
 
-<div class="highlight"><pre><span></span><code>├── database.csv  # database log file
-├── log_based_main_hashmaps.py  # log based storage engine with hashmaps
-├── log_based_main.py  # log based storage engine
-├── README.md  # this file
-└── requirements.txt  # dependencies
-</code></pre></div>
-<h1 id="log-based-storage-engine">Log based storage engine</h1>
-<p>This is a simple log based storage engine implementation using FastAPI</p>
-<p>Source : <a href="log_based_main/">log_based_storage_engine</a></p>
-<h2 id="setup">Setup</h2>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</code></pre></div>
-<h2 id="run">Run</h2>
-<div class="highlight"><pre><span></span><code>uvicorn<span class="w"> </span>log_based_main:app<span class="w"> </span>--reload
-</code></pre></div>
-<h2 id="api">API</h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># set key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/set_db<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;accept: application/json&#39;</span><span class="w">   </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{&quot;key&quot;:&quot;42&quot;,&quot;val&quot;:&quot;life&quot;}&#39;</span>
-
-<span class="c1"># get key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/get_db/42
-<span class="c1"># returns `life`</span>
-
-<span class="c1"># update key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/set_db<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;accept: application/json&#39;</span><span class="w">   </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{&quot;key&quot;:&quot;42&quot;,&quot;val&quot;:&quot;answer to life&quot;}&#39;</span>
-
-<span class="c1"># get key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/get_db/42
-<span class="c1"># returns `answer to life`</span>
-
-<span class="c1"># inspect database</span>
-cat<span class="w"> </span>database.csv
-</code></pre></div>
+<h1 id="multi-node-hadoop-cluster-lab-virtualbox">Multi-Node Hadoop Cluster Lab (VirtualBox)</h1>
+<p><strong>Goal</strong>: Simulate a real-world cluster environment using Virtual machines.
+<strong>Architecture</strong>: 1 Master Node (NameNode + ResourceManager) + 2 Worker Nodes (DataNode + NodeManager).</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li><strong>Host Machine</strong>: At least 16GB RAM recommended (4GB per VM + Host overhead).</li>
+<li><strong>Software</strong>: VirtualBox, Ubuntu Server ISO (20.04 or 22.04 LTS).</li>
+</ul>
+<hr />
+<h2 id="phase-1-base-vm-preparation">Phase 1: Base VM Preparation</h2>
+<p><em>We create one perfect VM and clone it to save time.</em></p>
+<ol>
+<li><strong>Create VM</strong>:</li>
+<li>Name: <code>hadoop-base</code></li>
+<li>RAM: 4GB, Disk: 20GB (Dynamically allocated).</li>
+<li>Network: <strong>Bridged Adapter</strong> (important for unique IPs on LAN) or <strong>NAT Network</strong>.</li>
+<li><strong>OS Install</strong>:</li>
+<li>Install Ubuntu Server.</li>
+<li>Create user <code>hadoop</code>.</li>
+<li><strong>Software Install</strong>:
+   <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>openjdk-8-jdk<span class="w"> </span>ssh<span class="w"> </span>pdsh
+wget<span class="w"> </span><span class="o">[</span>apache-hadoop-url<span class="o">]</span>.tar.gz
+tar<span class="w"> </span>-xzvf<span class="w"> </span>hadoop-*.tar.gz
+mv<span class="w"> </span>hadoop-*<span class="w"> </span>~/hadoop
+</code></pre></div></li>
+<li><strong>Environment Variables (.bashrc)</strong>:</li>
+<li>Set <code>JAVA_HOME</code>, <code>HADOOP_HOME</code>, and add bins to <code>PATH</code>.</li>
+</ol>
+<hr />
+<h2 id="phase-2-cloning-networking">Phase 2: Cloning &amp; Networking</h2>
+<ol>
+<li><strong>Clone VMs</strong>:</li>
+<li>Shutdown <code>hadoop-base</code>.</li>
+<li>Clone to <code>hadoop-master</code> (Mac address policy: Generate new Mac addresses).</li>
+<li>Clone to <code>hadoop-slave1</code>.</li>
+<li>Clone to <code>hadoop-slave2</code>.</li>
+<li><strong>Hostname &amp; IP Setup</strong>:</li>
+<li>Boot each VM.</li>
+<li>Set hostname: <code>sudo hostnamectl set-hostname master</code> (do same for slave1, slave2).</li>
+<li>Check IP: <code>ip addr show</code> (Assumed: Master=192.168.1.10, Slave1=192.168.1.11, Slave2=192.168.1.12).</li>
+<li><strong>Hosts File (/etc/hosts)</strong>:</li>
+<li><strong>On ALL nodes</strong>, edit <code>/etc/hosts</code> to include:
+     <div class="highlight"><pre><span></span><code>192.168.1.10 master
+192.168.1.11 slave1
+192.168.1.12 slave2
+</code></pre></div></li>
+<li><strong>SSH Key Exchange</strong>:</li>
+<li>On <code>master</code>: <code>ssh-keygen -t rsa</code></li>
+<li>Copy id to all nodes (including itself):
+     <div class="highlight"><pre><span></span><code>ssh-copy-id<span class="w"> </span>master
+ssh-copy-id<span class="w"> </span>slave1
+ssh-copy-id<span class="w"> </span>slave2
+</code></pre></div></li>
+<li><strong>Verify</strong>: <code>ssh slave1</code> should not ask for a password.</li>
+</ol>
+<hr />
+<h2 id="phase-3-hadoop-configuration-on-master">Phase 3: Hadoop Configuration (On Master)</h2>
+<p><em>Edit files in <code>$HADOOP_HOME/etc/hadoop/</code></em></p>
+<ol>
+<li><strong>core-site.xml</strong>:
+   <div class="highlight"><pre><span></span><code><span class="nt">&lt;property&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>fs.defaultFS<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value&gt;</span>hdfs://master:9000<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div></li>
+<li><strong>hdfs-site.xml</strong>:
+   <div class="highlight"><pre><span></span><code><span class="nt">&lt;property&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>dfs.replication<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value&gt;</span>2<span class="nt">&lt;/value&gt;</span><span class="w"> </span><span class="cm">&lt;!-- Since we have 2 slaves --&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;property&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>dfs.namenode.name.dir<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value&gt;</span>/home/hadoop/hadoop_data/namenode<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;property&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>dfs.datanode.data.dir<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value&gt;</span>/home/hadoop/hadoop_data/datanode<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div></li>
+<li><strong>mapred-site.xml</strong>:
+   <div class="highlight"><pre><span></span><code><span class="nt">&lt;property&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>mapreduce.framework.name<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value&gt;</span>yarn<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div></li>
+<li><strong>yarn-site.xml</strong>:
+   <div class="highlight"><pre><span></span><code><span class="nt">&lt;property&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>yarn.nodemanager.aux-services<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value&gt;</span>mapreduce_shuffle<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;property&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>yarn.resourcemanager.hostname<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value&gt;</span>master<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div></li>
+<li><strong>workers file</strong>:</li>
+<li>Replace <code>localhost</code> with:
+     <div class="highlight"><pre><span></span><code>slave1
+slave2
+</code></pre></div></li>
+</ol>
+<hr />
+<h2 id="phase-4-sync-launch">Phase 4: Sync &amp; Launch</h2>
+<ol>
+<li><strong>Copy Configs to Slaves</strong>:
+   <div class="highlight"><pre><span></span><code>scp<span class="w"> </span><span class="nv">$HADOOP_HOME</span>/etc/hadoop/*<span class="w"> </span>slave1:<span class="nv">$HADOOP_HOME</span>/etc/hadoop/
+scp<span class="w"> </span><span class="nv">$HADOOP_HOME</span>/etc/hadoop/*<span class="w"> </span>slave2:<span class="nv">$HADOOP_HOME</span>/etc/hadoop/
+</code></pre></div></li>
+<li><strong>Format NameNode</strong> (Only on Master, Only ONCE):
+   <code>hdfs namenode -format</code></li>
+<li><strong>Start Cluster</strong> (On Master):
+   <code>start-dfs.sh</code>
+   <code>start-yarn.sh</code></li>
+<li><strong>Verify Process</strong>:</li>
+<li>On Master: <code>jps</code> should show <code>NameNode</code>, <code>ResourceManager</code>, <code>SecondaryNameNode</code>.</li>
+<li>On Slaves: <code>jps</code> should show <code>DataNode</code>, <code>NodeManager</code>.</li>
+</ol>
+<h2 id="phase-5-verification-task">Phase 5: Verification Task</h2>
+<p>Run the WordCount example from the single-node lab, but observe the ResourceManager UI (<a href="http://master:8088">http://master:8088</a>) to see containers running on <code>slave1</code> and <code>slave2</code>.</p>
 
 
 
@@ -1364,44 +1394,6 @@ cat<span class="w"> </span>database.csv
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../../lectures/6hdfs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Distributed Filesystem">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Distributed Filesystem
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../../notebooks/sql_demo/" class="md-footer__link md-footer__link--next" aria-label="Next: SQLite Demo">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                SQLite Demo
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">

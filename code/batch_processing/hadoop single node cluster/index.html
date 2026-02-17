@@ -1,0 +1,1551 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Home of DS614 - Big Data Engineering, DAU">
+      
+      
+      
+        <link rel="canonical" href="https://ankushchander.com/code/batch_processing/hadoop%20single%20node%20cluster/">
+      
+      
+        <link rel="prev" href="../../../notebooks/sql_demo/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Hadoop Single Node Cluster - DS614 - Big Data Engineering | DAU</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#endgoal" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="DS614 - Big Data Engineering | DAU" class="md-header__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DS614 - Big Data Engineering | DAU
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Hadoop Single Node Cluster
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../lectures/0storage_prerequisites/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../storage_engines/" class="md-tabs__link">
+          
+  
+  
+  Code
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="DS614 - Big Data Engineering | DAU" class="md-nav__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DS614 - Big Data Engineering | DAU
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lectures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lectures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Layer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Storage Layer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prerequisites
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lectures/0storage_prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notebooks/concurrency_prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concurrency Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notebooks/python_profiling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python profiling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lectures/1hash_indexes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Log Based Storage + Hash Indexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lectures/2ssts_lsm_trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSTables + LSM Trees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lectures/3btrees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B-Trees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_5" id="__nav_2_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Columnar Storage
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Columnar Storage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lectures/4columnar_storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OLTP vs OLAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notebooks/pandas_parquet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pandas parquet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transform Layer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Transform Layer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notebooks/batch_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    References
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lectures/6hdfs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed Filesystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage_engines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Engines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Ankush-Chander/sorted-string-table-101" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSTable
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B-Tree
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    B-Tree
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notebooks/sql_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQLite Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Batch Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hadoop Single Node Cluster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="endgoal">Endgoal</h1>
+<p>Set up a single node hadoop cluster
+- <strong>HDFS</strong> → storage layer
+    - NameNode = metadata manager
+    - DataNode = block storage
+- <strong>YARN</strong> → resource manager
+    - ResourceManager
+    - NodeManager
+- <strong>MapReduce</strong> → compute engine</p>
+<h1 id="prerequisites">Prerequisites</h1>
+<p>Hadoop is a Java-based framework, so the Java Development Kit (JDK) is a mandatory requirement. It allows Hadoop to run its jar files and daemons.
+1. Install JAVA
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>java<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>default-java
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Java is already installed&quot;</span>
+<span class="k">fi</span>
+</code></pre></div></p>
+<ol>
+<li>Install SSH</li>
+</ol>
+<p>Hadoop uses SSH (Secure Shell) to manage its nodes. Even in a single-node setup (pseudo-distributed mode), Hadoop requires SSH to start and stop its daemons locally.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># install ssh</span>
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span>dpkg<span class="w"> </span>-s<span class="w"> </span>openssh-server<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openssh-server<span class="w"> </span>openssh-client
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;OpenSSH Server is already installed&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+<h1 id="usergroup-configuration">User/group configuration</h1>
+<p>It is best practice to run Hadoop under a dedicated user account. This ensures process isolation and prevents permission conflicts with other system users or root. We create a <code>hadoop</code> group and an <code>hduser</code> for this purpose.
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>getent<span class="w"> </span>group<span class="w"> </span>hadoop<span class="w"> </span>&gt;/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>sudo<span class="w"> </span>groupadd<span class="w"> </span>hadoop
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Group &#39;hadoop&#39; already exists&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># add hduser to hadoop group</span>
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span>id<span class="w"> </span>-u<span class="w"> </span>hduser<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>sudo<span class="w"> </span>adduser<span class="w"> </span>--ingroup<span class="w"> </span>hadoop<span class="w"> </span>hduser
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;User &#39;hduser&#39; already exists&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># switch to hduser</span>
+su<span class="w"> </span>-<span class="w"> </span>hduser
+
+<span class="c1"># configure ssh</span>
+<span class="c1"># We generate an SSH key pair for the hduser and add the public key to authorized_keys.</span>
+<span class="c1"># This enables password-less login to localhost, which allows Hadoop scripts to start daemons automatically without user intervention.</span>
+ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-P<span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span>-f<span class="w"> </span>~/.ssh/id_rsa
+cat<span class="w"> </span>~/.ssh/id_rsa.pub<span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.ssh/authorized_keys
+chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/authorized_keys
+
+<span class="c1">#verify passwordless login</span>
+ssh<span class="w"> </span>localhost
+</code></pre></div></p>
+<h1 id="hadoop-download">Hadoop download</h1>
+<p>We download the stable release of Hadoop, extract it to <code>/usr/local/</code>, and change the ownership to <code>hduser</code>. This directory will serve as the <code>HADOOP_HOME</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Execute as normal user</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;/usr/local/hadoop&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>/usr/local
+<span class="w">    </span>sudo<span class="w"> </span>wget<span class="w"> </span>-c<span class="w"> </span>https://dlcdn.apache.org/hadoop/common/stable/hadoop-3.4.2.tar.gz
+<span class="w">    </span>sudo<span class="w"> </span>tar<span class="w"> </span>-xvf<span class="w"> </span>hadoop-3.4.2.tar.gz
+<span class="w">    </span>sudo<span class="w"> </span>mv<span class="w"> </span>hadoop-3.4.2<span class="w"> </span>hadoop
+<span class="w">    </span>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>hduser:hadoop<span class="w"> </span>hadoop
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hadoop is already installed at /usr/local/hadoop&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+<h1 id="hadoop-configuration">Hadoop configuration</h1>
+<h3 id="update-homebashrc">Update $HOME/.bashrc</h3>
+<p>We verify existing environment or set new environment variables in <code>.bashrc</code> so that the shell knows where to find Hadoop commands (<code>/bin</code> and <code>/sbin</code>) and the Java runtime. This simplifies running commands from any directory.
+<div class="highlight"><pre><span></span><code><span class="c1"># $HOME/.bashrc</span>
+<span class="c1"># Set Hadoop-related environment variables</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">HADOOP_HOME</span><span class="o">=</span>/usr/local/hadoop
+
+<span class="c1"># Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/default-java
+
+<span class="c1"># Some convenient aliases and functions for running Hadoop-related commands</span>
+<span class="nb">unalias</span><span class="w"> </span>fs<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="nb">alias</span><span class="w"> </span><span class="nv">fs</span><span class="o">=</span><span class="s2">&quot;hadoop fs&quot;</span>
+<span class="nb">unalias</span><span class="w"> </span>hls<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null
+<span class="nb">alias</span><span class="w"> </span><span class="nv">hls</span><span class="o">=</span><span class="s2">&quot;fs -ls&quot;</span>
+
+<span class="c1"># If you have LZO compression enabled in your Hadoop cluster and</span>
+<span class="c1"># compress job outputs with LZOP (not covered in this tutorial):</span>
+<span class="c1"># Conveniently inspect an LZOP compressed file from the command</span>
+<span class="c1"># line; run via:</span>
+<span class="c1">#</span>
+<span class="c1"># $ lzohead /hdfs/path/to/lzop/compressed/file.lzo</span>
+<span class="c1">#</span>
+<span class="c1"># Requires installed &#39;lzop&#39; command.</span>
+<span class="c1">#</span>
+lzohead<span class="w"> </span><span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>hadoop<span class="w"> </span>fs<span class="w"> </span>-cat<span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>lzop<span class="w"> </span>-dc<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1000<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
+<span class="o">}</span>
+
+<span class="c1"># Add Hadoop bin/ directory to PATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HADOOP_HOME</span>/bin
+</code></pre></div></p>
+<h2 id="update-hadoop-configs">Update hadoop configs</h2>
+<p>We must explicitly set <code>JAVA_HOME</code> in <code>hadoop-env.sh</code> to ensure Hadoop allows access to the correct Java installation, regardless of the shell's current environment state.
+<div class="highlight"><pre><span></span><code><span class="c1"># set this line in etc/hadoop/hadoop-env.sh</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/default-java
+</code></pre></div></p>
+<p>Edit <code>etc/hadoop/core-site.xml</code></p>
+<p>This file contains configuration settings for Hadoop Core, such as I/O settings that are common to HDFS and MapReduce.
+- <code>hadoop.tmp.dir</code>: Specifies the base directory for temporary files.
+- <code>fs.default.name</code>: Points to the NameNode (the master node of HDFS) URI.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;property&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>hadoop.tmp.dir<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value&gt;</span>/app/hadoop/tmp<span class="nt">&lt;/value&gt;</span>
+<span class="w">  </span><span class="nt">&lt;description&gt;</span>A<span class="w"> </span>base<span class="w"> </span>for<span class="w"> </span>other<span class="w"> </span>temporary<span class="w"> </span>directories.<span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+
+<span class="nt">&lt;property&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>fs.default.name<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value&gt;</span>hdfs://localhost:54310<span class="nt">&lt;/value&gt;</span>
+<span class="w">  </span><span class="nt">&lt;description&gt;</span>The<span class="w"> </span>name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>default<span class="w"> </span>file<span class="w"> </span>system.<span class="w">  </span>A<span class="w"> </span>URI<span class="w"> </span>whose
+<span class="w">  </span>scheme<span class="w"> </span>and<span class="w"> </span>authority<span class="w"> </span>determine<span class="w"> </span>the<span class="w"> </span>FileSystem<span class="w"> </span>implementation.<span class="w">  </span>The
+<span class="w">  </span>uri&#39;s<span class="w"> </span>scheme<span class="w"> </span>determines<span class="w"> </span>the<span class="w"> </span>config<span class="w"> </span>property<span class="w"> </span>(fs.SCHEME.impl)<span class="w"> </span>naming
+<span class="w">  </span>the<span class="w"> </span>FileSystem<span class="w"> </span>implementation<span class="w"> </span>class.<span class="w">  </span>The<span class="w"> </span>uri&#39;s<span class="w"> </span>authority<span class="w"> </span>is<span class="w"> </span>used<span class="w"> </span>to
+<span class="w">  </span>determine<span class="w"> </span>the<span class="w"> </span>host,<span class="w"> </span>port,<span class="w"> </span>etc.<span class="w"> </span>for<span class="w"> </span>a<span class="w"> </span>filesystem.<span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div>
+<p>Edit <code>etc/hadoop/mapred-site.xml</code>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;property&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>mapreduce.framework.name<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value&gt;</span>yarn<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div>
+Edit <code>etc/hadoop/yarn-site.xml</code></p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;property&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>yarn.nodemanager.aux-services<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value&gt;</span>mapreduce_shuffle<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div>
+<p>Edit <code>etc/hadoop/hdfs-site.xml</code></p>
+<p>This file holds configuration settings for the HDFS daemons (NameNode, DataNode, etc.).
+- <code>dfs.replication</code>: We set this to <code>1</code> because we are running on a single node. The default is 3, but we don't have other nodes to replicate data to.
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;property&gt;</span>
+<span class="w">  </span><span class="nt">&lt;name&gt;</span>dfs.replication<span class="nt">&lt;/name&gt;</span>
+<span class="w">  </span><span class="nt">&lt;value&gt;</span>1<span class="nt">&lt;/value&gt;</span>
+<span class="w">  </span><span class="nt">&lt;description&gt;</span>Default<span class="w"> </span>block<span class="w"> </span>replication.
+<span class="w">  </span>The<span class="w"> </span>actual<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>replications<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>specified<span class="w"> </span>when<span class="w"> </span>the<span class="w"> </span>file<span class="w"> </span>is<span class="w"> </span>created.
+<span class="w">  </span>The<span class="w"> </span>default<span class="w"> </span>is<span class="w"> </span>used<span class="w"> </span>if<span class="w"> </span>replication<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>specified<span class="w"> </span>in<span class="w"> </span>create<span class="w"> </span>time.
+<span class="w">  </span><span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div></p>
+<h2 id="setup-hdfs-directory">Setup HDFS directory</h2>
+<p>We need to manually create the directory we defined in <code>hadoop.tmp.dir</code> and assign the correct permissions so the <code>hduser</code> can write to it.
+<div class="highlight"><pre><span></span><code><span class="c1"># Filesystem related setup</span>
+sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/app/hadoop/tmp
+sudo<span class="w"> </span>chown<span class="w"> </span>hduser:hadoop<span class="w"> </span>/app/hadoop/tmp
+<span class="c1"># ...and if you want to tighten up security, chmod from 755 to 750...</span>
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">750</span><span class="w"> </span>/app/hadoop/tmp
+</code></pre></div></p>
+<h2 id="prepare-data">Prepare data</h2>
+<p>We will download some sample text files (books from Project Gutenberg) to test our Hadoop cluster.
+1. Download files to the local /tmp directory.
+2. Create a directory inside the HDFS system.
+3. Copy the files from the local filesystem into HDFS.
+4. Verify blocks and storage.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># on host machine</span>
+sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/tmp/gutenberg
+<span class="nb">cd</span><span class="w"> </span>/tmp/gutenberg
+sudo<span class="w"> </span>wget<span class="w"> </span>-c<span class="w"> </span>https://www.gutenberg.org/cache/epub/20417/pg20417.txt<span class="w"> </span>https://www.gutenberg.org/cache/epub/5000/pg5000.txt<span class="w"> </span>https://www.gutenberg.org/cache/epub/4300/pg4300.txt
+
+<span class="c1"># create a big file by concatenating pg5000.txt 100 times</span>
+sudo<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;for i in {1..100}; do cat pg5000.txt; done &gt; pg5000_100.txt&#39;</span>
+
+<span class="c1"># check if files downloaded correctly</span>
+ls<span class="w">  </span>/tmp/gutenberg
+</code></pre></div>
+<h2 id="start-hadoop">Start Hadoop</h2>
+<p>Now that configuration is complete, we initialize and start the cluster.
+- <code>namenode -format</code>: Initializes the DFS filesystem structure. This should only be done once.
+- <code>start-all.sh</code>: Starts all Hadoop daemons.
+- <code>jps</code>: Checks running Java processes to verify everything started correctly.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">## Formatting the HDFS filesystem via the NameNode</span>
+./bin/hadoop<span class="w"> </span>namenode<span class="w"> </span>-format
+
+<span class="c1">## start hadoop cluster</span>
+./sbin/start-all.sh
+
+<span class="c1">## test all nodes started</span>
+jps
+</code></pre></div>
+<h2 id="load-data-to-hdfs">Load data to HDFS</h2>
+<div class="highlight"><pre><span></span><code><span class="c1">###############################</span>
+<span class="c1"># to be run as hduser</span>
+sudo<span class="w"> </span>su<span class="w"> </span>-<span class="w"> </span>hduser
+<span class="c1"># create directory on data node</span>
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-mkdir<span class="w"> </span>-p<span class="w"> </span>/usr/hduser/gutenberg
+
+<span class="c1"># copy files from host to datanode</span>
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-copyFromLocal<span class="w"> </span>/tmp/gutenberg<span class="w"> </span>/usr/hduser
+
+<span class="c1"># check if files copied successfully</span>
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-ls<span class="w">  </span>/usr/hduser/gutenberg
+</code></pre></div>
+<h2 id="investigate-datametadata">Investigate Data/metadata</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># data to be found at</span>
+ls<span class="w"> </span>-lh<span class="w"> </span>/app/hadoop/tmp/dfs/data
+
+<span class="c1"># metadata to be found at</span>
+ls<span class="w"> </span>-lh<span class="w"> </span>/app/hadoop/tmp/dfs/name
+
+<span class="c1"># get size of block</span>
+hdfs<span class="w"> </span>getconf<span class="w"> </span>-confKey<span class="w"> </span>dfs.blocksize<span class="w"> </span>
+<span class="c1"># returns 134217728 (128MB)</span>
+
+<span class="c1"># blocks info of file</span>
+hdfs<span class="w"> </span>fsck<span class="w"> </span>/usr/hduser/gutenberg/pg5000.txt<span class="w"> </span>-files<span class="w"> </span>-blocks<span class="w"> </span>-locations
+
+<span class="c1"># block info of the big file</span>
+hdfs<span class="w"> </span>fsck<span class="w"> </span>/usr/hduser/gutenberg/pg5000_100.txt<span class="w"> </span>-files<span class="w"> </span>-blocks<span class="w"> </span>-locations
+</code></pre></div>
+<h2 id="web-ui">Web UI</h2>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NameNode</td>
+<td><a href="http://localhost:9870/">http://localhost:9870</a></td>
+</tr>
+<tr>
+<td>ResourceManager</td>
+<td><a href="http://localhost:8088/">http://localhost:8088</a></td>
+</tr>
+<tr>
+<td>## Cluster stats</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Finally, we perform a health check report to verify the status of the HDFS nodes and available capacity.</p>
+<div class="highlight"><pre><span></span><code>hdfs<span class="w"> </span>dfsadmin<span class="w"> </span>-report
+</code></pre></div>
+<h2 id="run-word-count-using-hadoop">Run word count using hadoop</h2>
+<div class="highlight"><pre><span></span><code>hadoop<span class="w"> </span>jar<span class="w"> </span>share/hadoop/mapreduce/hadoop-mapreduce-examples-3.4.2.jar<span class="w"> </span>wordcount<span class="w"> </span>/usr/hduser/gutenberg/pg5000.txt<span class="w"> </span>/usr/hduser/gutenberg-out
+</code></pre></div>
+<hr />
+<h3 id="common-pitfalls">Common pitfalls</h3>
+<ol>
+<li>If NameNode fails:<ul>
+<li>Check JAVA_HOME</li>
+<li>Check permissions</li>
+<li>Check logs in <code>$HADOOP_HOME/logs</code>   </li>
+</ul>
+</li>
+</ol>
+<h3 id="further-experiments">Further Experiments</h3>
+<ul>
+<li>Change block size to 1MB → observe blocks</li>
+<li>Change replication to 2 → observe failure</li>
+<li>Kill DataNode → observe report</li>
+</ul>
+<h1 id="references">References</h1>
+<ul>
+<li><a href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/SingleCluster.html">Apache Hadoop 3.4.2 &#x2013; Hadoop: Setting up a Single Node Cluster.</a></li>
+<li><a href="https://www.michael-noll.com/tutorials/running-hadoop-on-ubuntu-linux-single-node-cluster">Running Hadoop On Ubuntu Linux (Single-Node Cluster) - outdated but good</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../../notebooks/sql_demo/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SQLite Demo">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                SQLite Demo
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Ankush Chander
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.expand", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

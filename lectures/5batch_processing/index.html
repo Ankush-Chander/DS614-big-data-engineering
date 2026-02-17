@@ -10,13 +10,9 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/code/storage_engines/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/5batch_processing/">
       
       
-        <link rel="prev" href="../../lectures/6hdfs/">
-      
-      
-        <link rel="next" href="../../notebooks/sql_demo/">
       
       
         
@@ -27,7 +23,7 @@
     
     
       
-        <title>Storage Engines - DS614 - Big Data Engineering | DAU</title>
+        <title>5batch processing - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -76,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#log-based-storage-engine" class="md-skip">
+        <a href="#online-vs-offline-systems" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Storage Engines
+              5batch processing
             
           </span>
         </div>
@@ -178,7 +174,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../lectures/0storage_prerequisites/" class="md-tabs__link">
+        <a href="../0storage_prerequisites/" class="md-tabs__link">
           
   
   
@@ -200,13 +196,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../code/storage_engines/" class="md-tabs__link">
           
   
   
@@ -441,7 +435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/0storage_prerequisites/" class="md-nav__link">
+      <a href="../0storage_prerequisites/" class="md-nav__link">
         
   
   
@@ -533,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/1hash_indexes/" class="md-nav__link">
+      <a href="../1hash_indexes/" class="md-nav__link">
         
   
   
@@ -561,7 +555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/2ssts_lsm_trees/" class="md-nav__link">
+      <a href="../2ssts_lsm_trees/" class="md-nav__link">
         
   
   
@@ -589,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/3btrees/" class="md-nav__link">
+      <a href="../3btrees/" class="md-nav__link">
         
   
   
@@ -669,7 +663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/4columnar_storage/" class="md-nav__link">
+      <a href="../4columnar_storage/" class="md-nav__link">
         
   
   
@@ -821,7 +815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/6hdfs/" class="md-nav__link">
+      <a href="../6hdfs/" class="md-nav__link">
         
   
   
@@ -861,29 +855,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -901,7 +892,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -916,37 +907,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Storage Engines
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../code/storage_engines/" class="md-nav__link">
         
   
   
@@ -962,59 +926,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Setup
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#run" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Run
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1195,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../batch_processing/hadoop%20single%20node%20cluster/" class="md-nav__link">
+      <a href="../../code/batch_processing/hadoop%20single%20node%20cluster/" class="md-nav__link">
         
   
   
@@ -1248,8 +1159,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1258,32 +1167,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
+  <a href="#online-vs-offline-systems" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setup
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#run" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Run
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API
+        Online vs offline systems
       
     </span>
   </a>
@@ -1307,45 +1194,87 @@
 
 
 
-<div class="highlight"><pre><span></span><code>├── database.csv  # database log file
-├── log_based_main_hashmaps.py  # log based storage engine with hashmaps
-├── log_based_main.py  # log based storage engine
-├── README.md  # this file
-└── requirements.txt  # dependencies
-</code></pre></div>
-<h1 id="log-based-storage-engine">Log based storage engine</h1>
-<p>This is a simple log based storage engine implementation using FastAPI</p>
-<p>Source : <a href="log_based_main/">log_based_storage_engine</a></p>
-<h2 id="setup">Setup</h2>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</code></pre></div>
-<h2 id="run">Run</h2>
-<div class="highlight"><pre><span></span><code>uvicorn<span class="w"> </span>log_based_main:app<span class="w"> </span>--reload
-</code></pre></div>
-<h2 id="api">API</h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># set key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/set_db<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;accept: application/json&#39;</span><span class="w">   </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{&quot;key&quot;:&quot;42&quot;,&quot;val&quot;:&quot;life&quot;}&#39;</span>
+  <h1>5batch processing</h1>
 
-<span class="c1"># get key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/get_db/42
-<span class="c1"># returns `life`</span>
+<h3 id="online-vs-offline-systems">Online vs offline systems</h3>
+<hr />
+<ol>
+<li><strong>Services (Online Systems)</strong></li>
+<li>Wait for client requests.</li>
+<li>Process each request quickly and return a response.</li>
+<li><strong>Primary performance metric:</strong> Response time (latency).</li>
+<li><strong>Key requirement:</strong> High availability (must be reachable when needed).</li>
+<li>Example: Web servers, APIs, databases serving live queries.</li>
+</ol>
+<hr />
+<ol>
+<li>
+<p><strong>Batch Processing Systems (Offline Systems)</strong></p>
+</li>
+<li>
+<p>Process large volumes of data as jobs.</p>
+</li>
+<li>Jobs run periodically (e.g., daily) and may take minutes to days.</li>
+<li>No user is waiting for immediate results.</li>
+<li><strong>Primary performance metric:</strong> Throughput (how much data can be processed in a given time).</li>
+<li>Example: Nightly analytics, report generation, large-scale data transformations.</li>
+</ol>
+<hr />
+<ol>
+<li><strong>Stream Processing Systems (Near-Real-Time Systems)</strong></li>
+<li>Continuously consume events and produce outputs.</li>
+<li>Process data shortly after events occur (not waiting for full datasets).</li>
+<li>Lower latency than batch systems.</li>
+<li>Bridge between online and batch processing.</li>
+<li><strong>Primary focus:</strong> Low-latency processing of continuous data streams.</li>
+<li>Example: Real-time fraud detection, live metrics dashboards.</li>
+</ol>
+<hr />
+<p><strong>Core Differences at a Glance</strong></p>
+<table>
+<thead>
+<tr>
+<th>System Type</th>
+<th>Input Model</th>
+<th>User Waiting?</th>
+<th>Main Metric</th>
+<th>Latency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Services</td>
+<td>Request-driven</td>
+<td>Yes</td>
+<td>Response time</td>
+<td>Very low</td>
+</tr>
+<tr>
+<td>Batch</td>
+<td>Fixed dataset</td>
+<td>No</td>
+<td>Throughput</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Stream</td>
+<td>Continuous events</td>
+<td>Usually no</td>
+<td>Low latency + throughput</td>
+<td>Low</td>
+</tr>
+</tbody>
+</table>
+<hr />
 
-<span class="c1"># update key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/set_db<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;accept: application/json&#39;</span><span class="w">   </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{&quot;key&quot;:&quot;42&quot;,&quot;val&quot;:&quot;answer to life&quot;}&#39;</span>
-
-<span class="c1"># get key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/get_db/42
-<span class="c1"># returns `answer to life`</span>
-
-<span class="c1"># inspect database</span>
-cat<span class="w"> </span>database.csv
-</code></pre></div>
 
 
 
 
 
 
+  
+  
 
 
 
@@ -1364,44 +1293,6 @@ cat<span class="w"> </span>database.csv
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../../lectures/6hdfs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Distributed Filesystem">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Distributed Filesystem
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../../notebooks/sql_demo/" class="md-footer__link md-footer__link--next" aria-label="Next: SQLite Demo">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                SQLite Demo
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">

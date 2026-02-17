@@ -10,13 +10,9 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/code/storage_engines/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/map_reduce_lab_plan/">
       
       
-        <link rel="prev" href="../../lectures/6hdfs/">
-      
-      
-        <link rel="next" href="../../notebooks/sql_demo/">
       
       
         
@@ -27,7 +23,7 @@
     
     
       
-        <title>Storage Engines - DS614 - Big Data Engineering | DAU</title>
+        <title>MapReduce Hands-on Lab Plan - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -76,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#log-based-storage-engine" class="md-skip">
+        <a href="#mapreduce-hands-on-lab-plan" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Storage Engines
+              MapReduce Hands-on Lab Plan
             
           </span>
         </div>
@@ -178,7 +174,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../lectures/0storage_prerequisites/" class="md-tabs__link">
+        <a href="../0storage_prerequisites/" class="md-tabs__link">
           
   
   
@@ -200,13 +196,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../code/storage_engines/" class="md-tabs__link">
           
   
   
@@ -441,7 +435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/0storage_prerequisites/" class="md-nav__link">
+      <a href="../0storage_prerequisites/" class="md-nav__link">
         
   
   
@@ -533,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/1hash_indexes/" class="md-nav__link">
+      <a href="../1hash_indexes/" class="md-nav__link">
         
   
   
@@ -561,7 +555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/2ssts_lsm_trees/" class="md-nav__link">
+      <a href="../2ssts_lsm_trees/" class="md-nav__link">
         
   
   
@@ -589,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/3btrees/" class="md-nav__link">
+      <a href="../3btrees/" class="md-nav__link">
         
   
   
@@ -669,7 +663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/4columnar_storage/" class="md-nav__link">
+      <a href="../4columnar_storage/" class="md-nav__link">
         
   
   
@@ -821,7 +815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/6hdfs/" class="md-nav__link">
+      <a href="../6hdfs/" class="md-nav__link">
         
   
   
@@ -861,29 +855,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -901,7 +892,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -916,37 +907,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Storage Engines
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../code/storage_engines/" class="md-nav__link">
         
   
   
@@ -962,59 +926,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Setup
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#run" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Run
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1195,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../batch_processing/hadoop%20single%20node%20cluster/" class="md-nav__link">
+      <a href="../../code/batch_processing/hadoop%20single%20node%20cluster/" class="md-nav__link">
         
   
   
@@ -1258,10 +1169,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
+  <a href="#lab-1-environment-setup-single-node-cluster" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setup
+        Lab 1: Environment Setup (Single Node Cluster)
       
     </span>
   </a>
@@ -1269,10 +1180,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run" class="md-nav__link">
+  <a href="#lab-2-hdfs-interaction" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Run
+        Lab 2: HDFS Interaction
       
     </span>
   </a>
@@ -1280,10 +1191,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
+  <a href="#lab-3-running-classic-mapreduce-wordcount" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API
+        Lab 3: Running Classic MapReduce (WordCount)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-4-hadoop-streaming-with-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lab 4: Hadoop Streaming with Python
       
     </span>
   </a>
@@ -1307,39 +1229,69 @@
 
 
 
-<div class="highlight"><pre><span></span><code>├── database.csv  # database log file
-├── log_based_main_hashmaps.py  # log based storage engine with hashmaps
-├── log_based_main.py  # log based storage engine
-├── README.md  # this file
-└── requirements.txt  # dependencies
+<h1 id="mapreduce-hands-on-lab-plan">MapReduce Hands-on Lab Plan</h1>
+<p><strong>Goal</strong>: Students will set up a Hadoop environment, understand HDFS basic commands, and run MapReduce jobs using both standard JARs and Python (Hadoop Streaming).</p>
+<h2 id="lab-1-environment-setup-single-node-cluster">Lab 1: Environment Setup (Single Node Cluster)</h2>
+<p><strong>Objective</strong>: Get a working Hadoop environment.
+1. <strong>Prerequisites</strong>: Java 8+, SSH setup (passwordless localhost login).
+2. <strong>Download &amp; Install</strong>: 
+   - Download Apache Hadoop binary.
+   - Configure <code>JAVA_HOME</code> in <code>hadoop-env.sh</code>.
+3. <strong>Configuration</strong>:
+   - <code>core-site.xml</code>: Set <code>fs.defaultFS</code> to <code>hdfs://localhost:9000</code>.
+   - <code>hdfs-site.xml</code>: Set replication to 1 (since single node).
+4. <strong>Initialization</strong>:
+   - Format NameNode: <code>hdfs namenode -format</code>
+   - Start DFS daemons: <code>start-dfs.sh</code>
+   - Start YARN daemons: <code>start-yarn.sh</code>
+5. <strong>Verification</strong>: Access web interfaces.
+   - NameNode UI: <a href="http://localhost:9870">http://localhost:9870</a>
+   - ResourceManager UI: <a href="http://localhost:8088">http://localhost:8088</a></p>
+<h2 id="lab-2-hdfs-interaction">Lab 2: HDFS Interaction</h2>
+<p><strong>Objective</strong>: Basic manipulation of the distributed filesystem.
+1. <strong>Copy From Local</strong>:
+   - <code>hdfs dfs -mkdir /input</code>
+   - <code>hdfs dfs -put local_file.txt /input/</code>
+2. <strong>List &amp; Inspect</strong>:
+   - <code>hdfs dfs -ls /</code>
+   - <code>hdfs dfs -cat /input/local_file.txt</code>
+   - <code>hdfs dfs -tail /input/local_file.txt</code>
+3. <strong>Copy To Local</strong>:
+   - <code>hdfs dfs -get /input/local_file.txt ./downloaded_file.txt</code>
+4. <strong>Management</strong>:
+   - Check disk usage: <code>hdfs dfs -du -h /</code>
+   - Remove files: <code>hdfs dfs -rm /input/local_file.txt</code></p>
+<h2 id="lab-3-running-classic-mapreduce-wordcount">Lab 3: Running Classic MapReduce (WordCount)</h2>
+<p><strong>Objective</strong>: Run the "Hello World" of MapReduce using provided Java examples.
+1. <strong>Prepare Data</strong>: Upload a large text file (e.g., Book from Project Gutenberg) to HDFS <code>/input/book.txt</code>.
+2. <strong>Run Job</strong>:
+   <div class="highlight"><pre><span></span><code>hadoop<span class="w"> </span>jar<span class="w"> </span><span class="nv">$HADOOP_HOME</span>/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar<span class="w"> </span>wordcount<span class="w"> </span>/input<span class="w"> </span>/output
 </code></pre></div>
-<h1 id="log-based-storage-engine">Log based storage engine</h1>
-<p>This is a simple log based storage engine implementation using FastAPI</p>
-<p>Source : <a href="log_based_main/">log_based_storage_engine</a></p>
-<h2 id="setup">Setup</h2>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</code></pre></div>
-<h2 id="run">Run</h2>
-<div class="highlight"><pre><span></span><code>uvicorn<span class="w"> </span>log_based_main:app<span class="w"> </span>--reload
-</code></pre></div>
-<h2 id="api">API</h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># set key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/set_db<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;accept: application/json&#39;</span><span class="w">   </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{&quot;key&quot;:&quot;42&quot;,&quot;val&quot;:&quot;life&quot;}&#39;</span>
-
-<span class="c1"># get key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/get_db/42
-<span class="c1"># returns `life`</span>
-
-<span class="c1"># update key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/set_db<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;accept: application/json&#39;</span><span class="w">   </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{&quot;key&quot;:&quot;42&quot;,&quot;val&quot;:&quot;answer to life&quot;}&#39;</span>
-
-<span class="c1"># get key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/get_db/42
-<span class="c1"># returns `answer to life`</span>
-
-<span class="c1"># inspect database</span>
-cat<span class="w"> </span>database.csv
-</code></pre></div>
+3. <strong>Inspect Output</strong>:
+   - Note: Output is a directory, not a file.
+   - <code>hdfs dfs -ls /output</code> (Check for <code>_SUCCESS</code> and <code>part-r-00000</code>).
+   - <code>hdfs dfs -cat /output/part-r-00000 | head</code></p>
+<h2 id="lab-4-hadoop-streaming-with-python">Lab 4: Hadoop Streaming with Python</h2>
+<p><strong>Objective</strong>: Write MapReduce logic in a familiar language (Python) using stdin/stdout.
+1. <strong>Develop <code>mapper.py</code></strong>:
+   - Read lines from stdin.
+   - Split into words.
+   - Print <code>word\t1</code> to stdout.
+2. <strong>Develop <code>reducer.py</code></strong>:
+   - Read <code>word\tcount</code> from stdin.
+   - Aggregate counts for same key (relying on input being sorted by key).
+   - Print final <code>word\tsum</code> to stdout.
+3. <strong>Test Locally</strong> (Crucial Step):
+   - <code>cat test_data.txt | ./mapper.py | sort | ./reducer.py</code>
+4. <strong>Run on Hadoop</strong>:
+   <div class="highlight"><pre><span></span><code>mapred<span class="w"> </span>streaming<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-input<span class="w"> </span>/input/book.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-output<span class="w"> </span>/output-python<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-mapper<span class="w"> </span>mapper.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-reducer<span class="w"> </span>reducer.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-file<span class="w"> </span>mapper.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-file<span class="w"> </span>reducer.py
+</code></pre></div></p>
 
 
 
@@ -1364,44 +1316,6 @@ cat<span class="w"> </span>database.csv
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../../lectures/6hdfs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Distributed Filesystem">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Distributed Filesystem
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../../notebooks/sql_demo/" class="md-footer__link md-footer__link--next" aria-label="Next: SQLite Demo">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                SQLite Demo
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">

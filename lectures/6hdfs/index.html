@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/code/storage_engines/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/6hdfs/">
       
       
-        <link rel="prev" href="../../lectures/6hdfs/">
+        <link rel="prev" href="../../notebooks/batch_processing/">
       
       
-        <link rel="next" href="../../notebooks/sql_demo/">
+        <link rel="next" href="../../code/storage_engines/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Storage Engines - DS614 - Big Data Engineering | DAU</title>
+        <title>Distributed Filesystem - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#log-based-storage-engine" class="md-skip">
+        <a href="#local-filesystem" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Storage Engines
+              Distributed Filesystem
             
           </span>
         </div>
@@ -160,6 +160,8 @@
   
   
   
+    
+  
   
     
     
@@ -167,6 +169,8 @@
   
   
   
+    
+  
   
     
     
@@ -174,11 +178,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../lectures/0storage_prerequisites/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../0storage_prerequisites/" class="md-tabs__link">
           
   
   
@@ -200,13 +206,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../code/storage_engines/" class="md-tabs__link">
           
   
   
@@ -282,26 +286,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -319,7 +326,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -441,7 +448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/0storage_prerequisites/" class="md-nav__link">
+      <a href="../0storage_prerequisites/" class="md-nav__link">
         
   
   
@@ -533,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/1hash_indexes/" class="md-nav__link">
+      <a href="../1hash_indexes/" class="md-nav__link">
         
   
   
@@ -561,7 +568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/2ssts_lsm_trees/" class="md-nav__link">
+      <a href="../2ssts_lsm_trees/" class="md-nav__link">
         
   
   
@@ -589,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/3btrees/" class="md-nav__link">
+      <a href="../3btrees/" class="md-nav__link">
         
   
   
@@ -669,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/4columnar_storage/" class="md-nav__link">
+      <a href="../4columnar_storage/" class="md-nav__link">
         
   
   
@@ -738,8 +745,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -748,13 +757,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
@@ -775,7 +782,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -818,104 +825,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../lectures/6hdfs/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Distributed Filesystem
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Code
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Code
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
     
   
   
@@ -925,8 +834,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -935,7 +842,7 @@
   <span class="md-ellipsis">
     
   
-    Storage Engines
+    Distributed Filesystem
   
 
     
@@ -953,7 +860,7 @@
   <span class="md-ellipsis">
     
   
-    Storage Engines
+    Distributed Filesystem
   
 
     
@@ -969,8 +876,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -979,10 +884,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
+  <a href="#local-filesystem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setup
+        Local Filesystem
       
     </span>
   </a>
@@ -990,10 +895,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run" class="md-nav__link">
+  <a href="#data-vs-metadata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Run
+        Data vs Metadata
       
     </span>
   </a>
@@ -1001,10 +906,132 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
+  <a href="#hard-links-vs-softlinks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API
+        Hard links vs softlinks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-are-stored-in-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Files are stored in blocks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Files are stored in blocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-disk-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is a Disk Block?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-use-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why use blocks?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributed-filesystems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Filesystems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distributed Filesystems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-block-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Block Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture-masterworker-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture: Master/Worker Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow-and-coherency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Flow and Coherency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-topology-rack-awareness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Topology (Rack Awareness)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
       
     </span>
   </a>
@@ -1015,6 +1042,101 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/storage_engines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Engines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1195,7 +1317,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../batch_processing/hadoop%20single%20node%20cluster/" class="md-nav__link">
+      <a href="../../code/batch_processing/hadoop%20single%20node%20cluster/" class="md-nav__link">
         
   
   
@@ -1248,8 +1370,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1258,10 +1378,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
+  <a href="#local-filesystem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setup
+        Local Filesystem
       
     </span>
   </a>
@@ -1269,10 +1389,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run" class="md-nav__link">
+  <a href="#data-vs-metadata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Run
+        Data vs Metadata
       
     </span>
   </a>
@@ -1280,10 +1400,132 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
+  <a href="#hard-links-vs-softlinks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API
+        Hard links vs softlinks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-are-stored-in-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Files are stored in blocks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Files are stored in blocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-disk-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is a Disk Block?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-use-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why use blocks?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributed-filesystems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Filesystems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distributed Filesystems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-block-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Block Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architecture-masterworker-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture: Master/Worker Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow-and-coherency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Flow and Coherency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-topology-rack-awareness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Topology (Rack Awareness)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
       
     </span>
   </a>
@@ -1307,45 +1549,146 @@
 
 
 
-<div class="highlight"><pre><span></span><code>├── database.csv  # database log file
-├── log_based_main_hashmaps.py  # log based storage engine with hashmaps
-├── log_based_main.py  # log based storage engine
-├── README.md  # this file
-└── requirements.txt  # dependencies
+<h2 id="local-filesystem">Local Filesystem</h2>
+<p>A filesystem is a method and data structure that an operating system uses to manage and organize files on a storage device such as a hard drive, SSD, or USB flash drive.<br />
+Eg: ext3, ext4, ntfs, fat32  </p>
+<p>Related commands/utilities: <code>gparted</code></p>
+<hr />
+<h2 id="data-vs-metadata">Data vs Metadata</h2>
+<p><strong>Inode:</strong> It is a data structure that stores metadata about a file or a directory, except for its name and actual data content.   When you create a file, the filesystem allocates an inode and assigns it an inode number.<br />
+- <strong>Unique Identification</strong>: Each inode has a unique number within the filesystem, called the inode number.<br />
+- <strong>Mapping</strong>: filenames =&gt; inode numbers. When you access a file by name, the filesystem looks up the inode number in the directory.    </p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span>stat<span class="w"> </span>file.txt
 </code></pre></div>
-<h1 id="log-based-storage-engine">Log based storage engine</h1>
-<p>This is a simple log based storage engine implementation using FastAPI</p>
-<p>Source : <a href="log_based_main/">log_based_storage_engine</a></p>
-<h2 id="setup">Setup</h2>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<hr />
+<h2 id="hard-links-vs-softlinks">Hard links vs softlinks</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Hard Link</th>
+<th>Soft Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Points to</td>
+<td>Inode</td>
+<td>Path</td>
+</tr>
+<tr>
+<td>Can link to directories</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Deleting original file</td>
+<td>Data remains accessible</td>
+<td>Link becomes broken</td>
+</tr>
+<tr>
+<td>Filesystem limitations</td>
+<td>Same filesystem only</td>
+<td>Can cross filesystems</td>
+</tr>
+</tbody>
+</table>
+<p>Related commands:</p>
+<div class="highlight"><pre><span></span><code>ln<span class="w"> </span>-s<span class="w"> </span>source_file<span class="w"> </span>target_file<span class="w"> </span><span class="c1"># creates soft link</span>
+ln<span class="w"> </span>source_file<span class="w"> </span>target_file<span class="w"> </span><span class="c1"># creates soft link</span>
 </code></pre></div>
-<h2 id="run">Run</h2>
-<div class="highlight"><pre><span></span><code>uvicorn<span class="w"> </span>log_based_main:app<span class="w"> </span>--reload
-</code></pre></div>
-<h2 id="api">API</h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># set key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/set_db<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;accept: application/json&#39;</span><span class="w">   </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{&quot;key&quot;:&quot;42&quot;,&quot;val&quot;:&quot;life&quot;}&#39;</span>
+<hr />
+<h2 id="files-are-stored-in-blocks">Files are stored in blocks</h2>
+<h3 id="what-is-a-disk-block"><strong>What Is a Disk Block?</strong></h3>
+<p>At the lowest level, a hard disk (or SSD) does <strong>not read individual bytes</strong>.
+It reads and writes in <strong>fixed-size chunks</strong> called:</p>
+<blockquote>
+<p><strong>Disk blocks</strong> (also called sectors)</p>
+</blockquote>
+<p><strong>Typical Sizes</strong>
+- HDD traditional sector: <strong>512 bytes</strong>
+- Modern drives (Advanced Format): <strong>4 KB</strong>
+- SSD internal pages: often 4KB or larger
+You cannot read 1 byte from disk.<br />
+You must read at least one block.</p>
+<p>Each block is:
+- Addressable
+- Fixed size
+- Atomic unit of IO</p>
+<h3 id="why-use-blocks">Why use blocks?</h3>
+<ol>
+<li><em>Efficiency</em>
+    Disk hardware is optimized for:<ul>
+<li>Reading contiguous regions</li>
+<li>Not individual bytes</li>
+</ul>
+</li>
+<li><em>Addressing Simplicity</em>
+    Instead of storing:<blockquote>
+<p>File occupies bytes 123–456
+    Filesystem stores:
+  File uses blocks:&gt; 18, 19, 20
+    Much simpler mapping.</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Directories organize namespace.  </li>
+<li>Inodes organize metadata.  </li>
+<li>Blocks store data.  </li>
+<li>Physical placement is an implementation detail.</li>
+</ul>
+<h2 id="distributed-filesystems">Distributed Filesystems</h2>
+<h4 id="the-block-strategy">The Block Strategy</h4>
+<ul>
+<li><strong>Size:</strong> Defaulting to 64 MB or 128 MB, blocks are the atomic unit of storage.  </li>
+<li><strong>Separation:</strong> A file's blocks need not reside on the same disk or machine, allowing files to exceed the size of any single disk in the cluster.  </li>
+<li><strong>Replication:</strong> To handle fault tolerance, every block is replicated (default factor: 3) across physically separate machines. If a node fails, the system transparently replicates lost blocks from remaining copies</li>
+</ul>
+<h4 id="architecture-masterworker-pattern">Architecture: Master/Worker Pattern</h4>
+<ul>
+<li><strong>Namenode (The Master):</strong> Manages the filesystem namespace and metadata (file tree, permissions) entirely in memory. It tracks which Datanodes hold which blocks, but it does <em>not</em> persistently store block locations; these are reconstructed from Datanode reports upon startup.  <ul>
+<li><em>Scalability constraint:</em> The number of files is limited by the Namenode's memory.   </li>
+<li><em>Reliability:</em> The Namenode is a Single Point of Failure (SPOF). High Availability (HA) configurations use an Active-Standby pair with shared edits to mitigate this.          </li>
+</ul>
+</li>
+<li><strong>Datanodes (The Workers):</strong> Responsible for storing and retrieving blocks as instructed by the client or Namenode.</li>
+</ul>
+<h4 id="data-flow-and-coherency">Data Flow and Coherency</h4>
+<p><strong>The Read Path:</strong> Clients contact the Namenode to get block locations (sorted by network proximity) and then retrieve data directly from the Datanodes. This separates control traffic from data traffic, preventing the Namenode from becoming a bottleneck.</p>
+<p><img alt="image" src="../../images/hdfs_read.png" />
+Image credits: <a href="https://opac.daiict.ac.in/cgi-bin/koha/opac-detail.pl?biblionumber=24428">Hadoop : the definitive guide</a></p>
+<p><strong>The Write Path (Pipeline):</strong> Writes are pipelined. The client writes packets to an internal queue; data flows from Client <span class="arithmatex"><span class="MathJax_Preview">\to</span><script type="math/tex">\to</script></span> Datanode A <span class="arithmatex"><span class="MathJax_Preview">\to</span><script type="math/tex">\to</script></span> Datanode B <span class="arithmatex"><span class="MathJax_Preview">\to</span><script type="math/tex">\to</script></span> Datanode C. An acknowledgment packet must return from all nodes in the pipeline before the write is considered successful.
+<img alt="image" src="../../images/hdfs_write.png" />
+Image credits: <a href="https://opac.daiict.ac.in/cgi-bin/koha/opac-detail.pl?biblionumber=24428">Hadoop : the definitive guide</a></p>
+<p><strong>Coherency Model:</strong>
+HDFS sacrifices some POSIX coherency for performance.
+- A file being written is not immediately visible to other readers.
+- Data becomes visible only when a full block is written or when the <code>sync()</code> method is explicitly called.
+- Closing a file performs an implicit sync.</p>
+<h3 id="network-topology-rack-awareness">Network Topology (Rack Awareness)</h3>
+<p>Hadoop utilizes a tree topology to calculate "distance" (bandwidth cost). Distance is calculated as the sum of distances to the closest common ancestor. <br />
+- <em>Write Placement Policy:</em> To balance reliability and bandwidth, the default strategy places replica 1 on the local node, replica 2 on a different rack, and replica 3 on a different node in the same remote rack.</p>
+<p>Bandwidth  between two nodes is used as a measure of distance.<br />
+The idea is that the bandwidth available for each of the following scenarios becomes progressively less: 
+<div class="highlight"><pre><span></span><code>Processes on the same node &gt; Different nodes on the same rack &gt;  Nodes on different racks in the same data center &gt; Nodes in different data centers
+</code></pre></div></p>
+<p><img alt="" src="../../images/hadoop_network_distance.png" /></p>
+<hr />
+<h1 id="references">References</h1>
+<ol>
+<li><a href="https://opac.daiict.ac.in/cgi-bin/koha/opac-detail.pl?biblionumber=24428">Chapter 3, Hadoop : the definitive guide by White, Tom</a></li>
+</ol>
 
-<span class="c1"># get key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/get_db/42
-<span class="c1"># returns `life`</span>
-
-<span class="c1"># update key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/set_db<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;accept: application/json&#39;</span><span class="w">   </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{&quot;key&quot;:&quot;42&quot;,&quot;val&quot;:&quot;answer to life&quot;}&#39;</span>
-
-<span class="c1"># get key</span>
-curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8000/get_db/42
-<span class="c1"># returns `answer to life`</span>
-
-<span class="c1"># inspect database</span>
-cat<span class="w"> </span>database.csv
-</code></pre></div>
 
 
 
 
 
 
+  
+  
 
 
 
@@ -1369,7 +1712,7 @@ cat<span class="w"> </span>database.csv
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../lectures/6hdfs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Distributed Filesystem">
+          <a href="../../notebooks/batch_processing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: References">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1379,20 +1722,20 @@ cat<span class="w"> </span>database.csv
                 Previous
               </span>
               <div class="md-ellipsis">
-                Distributed Filesystem
+                References
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../notebooks/sql_demo/" class="md-footer__link md-footer__link--next" aria-label="Next: SQLite Demo">
+          <a href="../../code/storage_engines/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage Engines">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                SQLite Demo
+                Storage Engines
               </div>
             </div>
             <div class="md-footer__button md-icon">
