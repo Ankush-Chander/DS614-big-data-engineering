@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://ankushchander.com/lectures/map_reduce/">
       
       
+        <link rel="prev" href="../6hdfs/">
+      
+      
+        <link rel="next" href="../../code/storage_engines/">
       
       
         
@@ -23,7 +27,7 @@
     
     
       
-        <title>Key Ideas in MapReduce & Distributed Systems - DS614 - Big Data Engineering | DAU</title>
+        <title>Map reduce framework - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#key-ideas-in-mapreduce-distributed-systems" class="md-skip">
+        <a href="#core-concepts" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Key Ideas in MapReduce &amp; Distributed Systems
+              Map reduce framework
             
           </span>
         </div>
@@ -156,6 +160,8 @@
   
   
   
+    
+  
   
     
     
@@ -163,6 +169,8 @@
   
   
   
+    
+  
   
     
     
@@ -170,10 +178,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../0storage_prerequisites/" class="md-tabs__link">
           
   
@@ -276,26 +286,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -313,7 +326,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -732,8 +745,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -742,13 +757,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
@@ -769,7 +782,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -831,6 +844,516 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Map reduce framework
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Map reduce framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-distributed-filesystems-dfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Distributed Filesystems (DFS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-data-locality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data Locality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-shared-nothing-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Shared-Nothing Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-fault-tolerance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Fault Tolerance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-mapreduce-execution-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete MapReduce Execution Pipeline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete MapReduce Execution Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#job-submission-planning-before-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job Submission &amp; Planning (Before Everything)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-splits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Splits
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Input Splits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logical-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical View
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formal-input-to-mapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formal Input to Mapper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systems-perspective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Systems Perspective
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Map Phase
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Map Phase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logical-view_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical View
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-wordcount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example (WordCount)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21-map-side-buffering-hidden-but-critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Map-Side Buffering (Hidden but Critical)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-spill-phase-when-buffer-fills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Spill Phase (When Buffer Fills)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-combiner-optional-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Combiner (Optional Optimization)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-map-side-merge-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Map-Side Merge Phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-shuffle-and-sort-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Shuffle and Sort Phase
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Shuffle and Sort Phase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-partitioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Partitioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-copy-phase-network-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Copy Phase (Network Transfer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-reduce-side-buffering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Reduce-Side Buffering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-reduce-side-merge-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Reduce-Side Merge Phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4reduce-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4️Reduce Phase
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4️Reduce Phase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logical-view_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical View
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Property
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-output-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 Output Phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-handling-cross-cutting-concern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Handling (Cross-Cutting Concern)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Failure Handling (Cross-Cutting Concern)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-map-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If Map Fails:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-reducer-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If Reducer Fails:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why It Works:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-expanded-version-compact-structured-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Expanded Version (Compact Structured Form)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete Expanded Version (Compact Structured Form)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hadoop-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hadoop Terminology
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hadoop Terminology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#daemons-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Daemons (Services)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#job-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1159,8 +1682,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1172,12 +1693,12 @@
   <a href="#core-concepts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        core concepts
+        Core concepts
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="core concepts">
+    <nav class="md-nav" aria-label="Core concepts">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1230,22 +1751,266 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-mapreduce-programming-model" class="md-nav__link">
+  <a href="#complete-mapreduce-execution-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The MapReduce Programming Model
+        Complete MapReduce Execution Pipeline
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="The MapReduce Programming Model">
+    <nav class="md-nav" aria-label="Complete MapReduce Execution Pipeline">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-phases" class="md-nav__link">
+  <a href="#job-submission-planning-before-everything" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Phases
+        Job Submission &amp; Planning (Before Everything)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-splits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Splits
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Input Splits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logical-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical View
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formal-input-to-mapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formal Input to Mapper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systems-perspective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Systems Perspective
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Map Phase
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Map Phase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logical-view_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical View
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-wordcount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example (WordCount)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21-map-side-buffering-hidden-but-critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Map-Side Buffering (Hidden but Critical)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-spill-phase-when-buffer-fills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Spill Phase (When Buffer Fills)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-combiner-optional-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Combiner (Optional Optimization)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-map-side-merge-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Map-Side Merge Phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-shuffle-and-sort-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Shuffle and Sort Phase
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Shuffle and Sort Phase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-partitioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Partitioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-copy-phase-network-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Copy Phase (Network Transfer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-reduce-side-buffering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Reduce-Side Buffering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-reduce-side-merge-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Reduce-Side Merge Phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4reduce-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4️Reduce Phase
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4️Reduce Phase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logical-view_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical View
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Property
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-output-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 Output Phase
       
     </span>
   </a>
@@ -1258,6 +2023,68 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#failure-handling-cross-cutting-concern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure Handling (Cross-Cutting Concern)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Failure Handling (Cross-Cutting Concern)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-map-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If Map Fails:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-reducer-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If Reducer Fails:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why It Works:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-expanded-version-compact-structured-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Expanded Version (Compact Structured Form)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete Expanded Version (Compact Structured Form)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#hadoop-terminology" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1295,15 +2122,9 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Questions
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1324,54 +2145,257 @@
 
 
 
-<h1 id="key-ideas-in-mapreduce-distributed-systems">Key Ideas in MapReduce &amp; Distributed Systems</h1>
-<h2 id="core-concepts">core concepts</h2>
-<h3 id="1-distributed-filesystems-dfs">1. Distributed Filesystems (DFS)</h3>
-<p>To process massive datasets with MapReduce, you first need a way to store them spanning multiple machines.
-- <strong>Blocks</strong>: Files are split into large fixed-size chunks (e.g., 128MB).
-- <strong>Replication</strong>: Each block is replicated (usually 3x) across different nodes for fault tolerance.
-- <strong>NameNode/Master</strong>: Stores metadata (file directory tree and the mapping of file blocks to DataNodes).
-- <strong>DataNode/Worker</strong>: Stores the actual data blocks.</p>
-<h3 id="2-data-locality">2. Data Locality</h3>
+<h3 id="core-concepts">Core concepts</h3>
+<h4 id="1-distributed-filesystems-dfs">1. Distributed Filesystems (DFS)</h4>
+<p>To process massive datasets with MapReduce, you first need a way to store them spanning multiple machines.<br />
+- <strong>Blocks</strong>: Files are split into large fixed-size chunks (e.g., 128MB).<br />
+- <strong>Replication</strong>: Each block is replicated (usually 3x) across different nodes for fault tolerance.<br />
+- <strong>NameNode/Master</strong>: Stores metadata (file directory tree and the mapping of file blocks to DataNodes).<br />
+- <strong>DataNode/Worker</strong>: Stores the actual data blocks.  </p>
+<h4 id="2-data-locality">2. Data Locality</h4>
 <p><em>Moving computation is cheaper than moving data.</em>
 Instead of pulling data to a central processing server, the MapReduce framework schedules the <strong>Map</strong> task on the node where the data already resides (or as close as possible).</p>
-<h3 id="3-shared-nothing-architecture">3. Shared-Nothing Architecture</h3>
+<h4 id="3-shared-nothing-architecture">3. Shared-Nothing Architecture</h4>
 <ul>
-<li>Nodes do not share memory or disk storage.</li>
-<li>They communicate only via the network.</li>
+<li>Nodes do not share memory or disk storage.  </li>
+<li>They communicate only via the network.  </li>
 <li>This makes the system linearly scalable; adding more nodes adds more processing power and storage without complex locking mechanisms.</li>
 </ul>
-<h3 id="4-fault-tolerance">4. Fault Tolerance</h3>
+<h4 id="4-fault-tolerance">4. Fault Tolerance</h4>
 <p>In a cluster of thousands of machines, failure is the norm, not the exception.
-- <strong>Worker Failure</strong>: The Master detects a worker node is unresponsive (heartbeats stop). It re-schedules the tasks of that worker on other nodes that have a distinct replica of the data.
-- <strong>Stragglers</strong>: If a machine is slow (but not dead), the Master can launch a "Speculative Execution" (backup copy) of the task on another machine. The result from whoever finishes first is taken.</p>
+- <strong>Worker Failure</strong>: The Master detects a worker node is unresponsive (heartbeats stop). It re-schedules the tasks of that worker on other nodes that have a distinct replica of the data.      <br />
+- <strong>Stragglers</strong>: If a machine is slow (but not dead), the Master can launch a "Speculative Execution" (backup copy) of the task on another machine. The result from whoever finishes first is taken.     </p>
+<h2 id="complete-mapreduce-execution-pipeline">Complete MapReduce Execution Pipeline</h2>
+<h3 id="job-submission-planning-before-everything">Job Submission &amp; Planning (Before Everything)</h3>
+<ul>
+<li>Client submits job (jar + config).</li>
+<li>Framework:<ul>
+<li>Computes number of <strong>input splits</strong></li>
+<li>Determines number of <strong>map tasks</strong></li>
+<li>Determines number of <strong>reduce tasks</strong></li>
+<li>Initializes metadata structures</li>
+</ul>
+</li>
+<li>Schedules tasks close to data (data locality).</li>
+</ul>
 <hr />
-<h2 id="the-mapreduce-programming-model">The MapReduce Programming Model</h2>
-<h3 id="the-phases">The Phases</h3>
-<ol>
-<li><strong>Input Splits</strong>: The input data is logically split into chunks.</li>
-<li><strong>Map Phase</strong>:</li>
-<li>Input: <span class="arithmatex"><span class="MathJax_Preview">&lt;k1, v1&gt;</span><script type="math/tex"><k1, v1></script></span></li>
-<li>Operation: User defines code to process the input and emit intermediate keys.</li>
-<li>Output: list(<span class="arithmatex"><span class="MathJax_Preview">&lt;k2, v2&gt;</span><script type="math/tex"><k2, v2></script></span>)</li>
-<li><strong>Shuffle and Sort</strong>: The framework handles this "magically".</li>
-<li>All values for the same key <span class="arithmatex"><span class="MathJax_Preview">k2</span><script type="math/tex">k2</script></span> are grouped together.</li>
-<li>Data is transferred across the network from Mappers to Reducers.</li>
-<li><strong>Reduce Phase</strong>:</li>
-<li>Input: <span class="arithmatex"><span class="MathJax_Preview">&lt;k2, list(v2)&gt;</span><script type="math/tex"><k2, list(v2)></script></span></li>
-<li>Operation: User defines code to aggregate the list of values.</li>
-<li>Output: <span class="arithmatex"><span class="MathJax_Preview">&lt;k3, v3&gt;</span><script type="math/tex"><k3, v3></script></span> (Final Result)</li>
-</ol>
+<h3 id="input-splits">Input Splits</h3>
+<h4 id="logical-view">Logical View</h4>
+<p>The input dataset is logically divided into splits.
+Each split generates one Map task.</p>
+<h4 id="formal-input-to-mapper">Formal Input to Mapper</h4>
+<p>[  <k_1, v_1>  ]</p>
+<ul>
+<li>( k_1 ) = input key (e.g., byte offset)</li>
+<li>( v_1 ) = input value (e.g., line of text)</li>
+</ul>
+<h4 id="systems-perspective">Systems Perspective</h4>
+<ul>
+<li>Splits usually match HDFS block size (e.g., 128MB).</li>
+<li>Map tasks are scheduled on nodes that physically contain the data.</li>
+<li>Reading is sequential and streaming.</li>
+</ul>
 <hr />
-<h2 id="hadoop-terminology">Hadoop Terminology</h2>
-<h3 id="daemons-services">Daemons (Services)</h3>
+<h3 id="map-phase">Map Phase</h3>
+<h4 id="logical-view_1">Logical View</h4>
+<p>User defines:
+map(k_1, v_1) =&gt; list(<k_2, v_2>)
+Mapper processes records independently.</p>
+<h4 id="example-wordcount">Example (WordCount)</h4>
+<p>map(offset, line) =&gt; (word, 1)</p>
+<hr />
+<h3 id="21-map-side-buffering-hidden-but-critical">2.1 Map-Side Buffering (Hidden but Critical)</h3>
+<p>Mapper does <strong>NOT immediately write output to disk.</strong>
+Intermediate pairs are stored in an <strong>in-memory circular buffer</strong>.
+- Size controlled by:
+    <div class="highlight"><pre><span></span><code>mapreduce.task.io.sort.mb
+</code></pre></div></p>
+<p>The buffer stores:
+- Serialized key-value data
+- Metadata (partition, offsets)</p>
+<hr />
+<h3 id="22-spill-phase-when-buffer-fills">2.2 Spill Phase (When Buffer Fills)</h3>
+<p>When buffer reaches threshold (~80% full):
+1. Records are <strong>sorted by key</strong>
+2. Partitioned by reducer
+3. Optionally passed through <strong>Combiner</strong>
+4. Written to local disk as a spill file</p>
+<p>This produces:</p>
+<div class="highlight"><pre><span></span><code>spill_1
+spill_2
+spill_3
+...
+</code></pre></div>
+<p>Each spill file is:</p>
+<ul>
+<li>Sorted</li>
+<li>Partitioned</li>
+</ul>
+<hr />
+<h3 id="23-combiner-optional-optimization">2.3 Combiner (Optional Optimization)</h3>
+<p>If defined:</p>
+<p>combine(k_2, list(v_2)) =&gt; list(<k_2, v_2>)</p>
+<p>Executed:
+- During spill
+- Or during merge
+Constraints:
+- Must be associative
+- Must be commutative
+Purpose:
+- Reduce intermediate data size
+- Reduce network traffic</p>
+<hr />
+<h3 id="24-map-side-merge-phase">2.4 Map-Side Merge Phase</h3>
+<p>If multiple spill files exist:
+- Framework performs multi-way external merge sort.
+- Produces ONE final map output file.</p>
+<p>This file is:
+- Sorted by key
+- Partitioned by reducer
+- Indexed (offsets for each partition)</p>
+<p>Now mapper is complete.</p>
+<hr />
+<h3 id="3-shuffle-and-sort-phase">3 Shuffle and Sort Phase</h3>
+<p>This is fully handled by the framework.</p>
+<p>But it is NOT “magic”.
+It has multiple sub-phases:</p>
+<hr />
+<h4 id="31-partitioning">3.1 Partitioning</h4>
+<p>Each intermediate key ( k_2 ) is assigned:</p>
+<p>partition = hash(k_2)\mod R  </p>
+<p>Where:
+- ( R ) = number of reducers</p>
+<p>Each reducer is responsible for one partition.</p>
+<hr />
+<h4 id="32-copy-phase-network-transfer">3.2 Copy Phase (Network Transfer)</h4>
+<p>Each reducer:
+- Contacts all mappers
+- Fetches its partition
+This is:
+- Parallel
+- Over network
+- Often compressed</p>
+<p>This stage is usually the biggest bottleneck.</p>
+<hr />
+<h4 id="33-reduce-side-buffering">3.3 Reduce-Side Buffering</h4>
+<p>Reducer receives segments:<br />
+- Small segments → memory<br />
+- Large segments → disk<br />
+If memory fills:<br />
+- Segments spill to disk  </p>
+<hr />
+<h4 id="34-reduce-side-merge-phase">3.4 Reduce-Side Merge Phase</h4>
+<p>Reducer performs multi-way external merge:</p>
+<div class="highlight"><pre><span></span><code>segment1
+segment2
+segment3
+...
+</code></pre></div>
+<p>Merged into one sorted stream.  </p>
+<p>Now framework guarantees:</p>
+<p><k_2, list(v_2)></p>
+<p>Grouped and sorted by key.</p>
+<hr />
+<h3 id="4reduce-phase">4️Reduce Phase</h3>
+<h4 id="logical-view_2">Logical View</h4>
+<p>User defines:
+reduce(k_2, list(v_2)) =&gt; list(<k_3, v_3>)</p>
+<p>Reducer processes one key at a time.</p>
+<h4 id="important-property">Important Property</h4>
+<p>Reducer sees values as an <strong>iterator</strong>, not full list in memory.
+Streaming execution:
+<div class="highlight"><pre><span></span><code>for key in sorted_keys:
+    process values
+</code></pre></div></p>
+<p>Memory-efficient.</p>
+<hr />
+<h3 id="5-output-phase">5 Output Phase</h3>
+<p>Reducer writes:
+<k_3, v_3></p>
+<p>to HDFS.</p>
+<p>Properties:
+- One output file per reducer
+- Written sequentially
+- Replicated (e.g., 3 copies)
+- Durable</p>
+<p>Unlike map output, reduce output survives failures.</p>
+<hr />
+<h1 id="failure-handling-cross-cutting-concern">Failure Handling (Cross-Cutting Concern)</h1>
+<h4 id="if-map-fails">If Map Fails:</h4>
+<ul>
+<li>Task is re-executed.   </li>
+<li>Intermediate output recomputed.</li>
+</ul>
+<h4 id="if-reducer-fails">If Reducer Fails:</h4>
+<ul>
+<li>Restarted.</li>
+<li>Refetches partitions.</li>
+</ul>
+<h4 id="why-it-works">Why It Works:</h4>
+<ul>
+<li>Deterministic tasks</li>
+<li>Side-effect free user code</li>
+<li>Intermediate output recomputable    </li>
+</ul>
+<hr />
+<h1 id="complete-expanded-version-compact-structured-form">Complete Expanded Version (Compact Structured Form)</h1>
+<div class="highlight"><pre><span></span><code>#### The Phases
+
+0. Job Setup:
+   - Job submitted
+   - Input splits computed
+   - Tasks scheduled (data locality)
+
+1. Input Splits:
+   - Logical division of input into splits
+   - Each split → one Map task
+   - Mapper Input: &lt;k1, v1&gt;
+
+2. Map Phase:
+   - User function:
+       map(k1, v1) → list(&lt;k2, v2&gt;)
+   - Output written to in-memory buffer
+
+2.1 Buffering &amp; Spill:
+   - Buffer fills
+   - Records sorted by key
+   - Partitioned by reducer
+   - Optional Combiner applied
+   - Written to local disk as spill files
+
+2.2 Map-Side Merge:
+   - Multiple spills merged
+   - Final sorted, partitioned map output produced
+
+3. Shuffle and Sort:
+   - Partition: hash(k2) % R
+   - Reducers fetch partitions over network
+   - Reduce-side buffering
+   - External merge sort
+   - Framework groups values:
+       &lt;k2, list(v2)&gt;
+
+4. Reduce Phase:
+   - User function:
+       reduce(k2, list(v2)) → list(&lt;k3, v3&gt;)
+   - Streaming execution per key
+
+5. Output:
+   - Results written to HDFS
+   - One file per reducer
+   - Durable storage
+</code></pre></div>
+<hr />
+<hr />
+<h3 id="hadoop-terminology">Hadoop Terminology</h3>
+<h4 id="daemons-services">Daemons (Services)</h4>
 <ol>
 <li><strong>NameNode</strong>: Master of the filesystem (HDFS). Keeps the directory tree and knows where all blocks are.</li>
 <li><strong>DataNode</strong>: Worker of the filesystem. Stores the actual blocks on its HDD.</li>
 <li><strong>ResourceManager (YARN)</strong>: The master arbitrator of all cluster resources.</li>
 <li><strong>NodeManager (YARN)</strong>: The per-machine agent dealing with containers on a single node.</li>
 </ol>
-<h3 id="job-components">Job Components</h3>
+<h4 id="job-components">Job Components</h4>
 <ul>
 <li><strong>Job</strong>: A full execution unit (Mapper + Reducer + Config).</li>
 <li><strong>Task</strong>: An individual slice of work (Map Task or Reduce Task) running on one machine.</li>
@@ -1379,10 +2403,6 @@ Instead of pulling data to a central processing server, the MapReduce framework 
 <li><strong>Partitioner</strong>: Decides which Reducer gets which key (usually <code>hash(key) % num_reducers</code>).</li>
 <li><strong>Combiner</strong>: A "Mini-Reducer" running locally after the Map phase to reduce network traffic (e.g., pre-summing counts).</li>
 </ul>
-<h2 id="questions">Questions</h2>
-<ol>
-<li>What is the difference between file system and distributed file system(whats the need of it)?</li>
-</ol>
 
 
 
@@ -1407,6 +2427,44 @@ Instead of pulling data to a central processing server, the MapReduce framework 
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../6hdfs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Distributed Filesystem">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Distributed Filesystem
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../code/storage_engines/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage Engines">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Storage Engines
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
