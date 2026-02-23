@@ -32,7 +32,8 @@ if __name__ == '__main__':
     except Exception as err:
         list_size = 100
     randomlist = list(range(list_size, 1, -1))
-    # print(randomlist)
+    randomlist = sorted(randomlist, reverse=True)
+    print(randomlist[:10])
     sorted_list = insertion_sort(randomlist)
     # print(randomlist)
 
