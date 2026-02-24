@@ -26,6 +26,7 @@ nav:
         - Batch Processing: 'notebooks/batch_processing.ipynb'
         - Distributed Filesystem: 'lectures/6hdfs.md'
         - Map reduce framework: 'lectures/map_reduce.md'
+        - Spark Intro: 'lectures/spark_intro.md'
   - Code:
       - Storage Engines: 'code/storage_engines/README.md'
       - SSTable: 'https://github.com/Ankush-Chander/sorted-string-table-101'
@@ -33,6 +34,8 @@ nav:
         - "SQLite Demo": 'notebooks/sql_demo.ipynb'
       - Batch Processing:
         - "Hadoop Single Node Cluster": 'code/batch_processing/hadoop single node cluster.md'
+        - "Non Sudoer Hadoop Single Node Cluster": 'code/batch_processing/non_sudoer_hadoop_single_node_cluster.md'
+        
 ## Configuration
 theme:
   name: material

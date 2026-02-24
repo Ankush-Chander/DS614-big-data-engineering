@@ -20,4 +20,5 @@ Welcome to the course on Big Data Engineering.
     - [Batch Processing](notebooks/batch_processing.ipynb)
     - [Distributed Filesystem](lectures/6hdfs.md)
     - [Map reduce framework](lectures/map_reduce.md)
+    - [Spark Intro](lectures/spark_intro.md)
 ---
