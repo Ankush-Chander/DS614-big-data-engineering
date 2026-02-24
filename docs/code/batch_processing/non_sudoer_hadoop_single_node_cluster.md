@@ -165,7 +165,7 @@ $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 Set:
 
 ```bash
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64  # adjust to your path
 ```
 
 ---
@@ -193,7 +193,7 @@ Replace contents with:
 Replace `YOUR_USERNAME` with output of:
 
 ```bash
-echo $HOME
+whoami
 ```
 
 ---
@@ -219,6 +219,11 @@ echo $HOME
 </property>
 
 </configuration>
+```
+Replace `YOUR_USERNAME` with output of:
+
+```bash
+whoami
 ```
 
 ---
@@ -248,7 +253,11 @@ Edit:
 </property>
 </configuration>
 ```
+Replace `YOUR_USERNAME` with output of:
 
+```bash
+whoami
+```
 ---
 
 ### yarn-site.xml
