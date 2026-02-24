@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/lectures/2ssts_lsm_trees/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/spark_intro/">
       
       
-        <link rel="prev" href="../1hash_indexes/">
+        <link rel="prev" href="../map_reduce/">
       
       
-        <link rel="next" href="../3btrees/">
+        <link rel="next" href="../../code/storage_engines/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>SSTables + LSM Trees - DS614 - Big Data Engineering | DAU</title>
+        <title>Spark Intro - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#quick-recap" class="md-skip">
+        <a href="#the-architecture-of-scale-why-sparks-lazy-strategy-is-its-greatest-strength" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SSTables + LSM Trees
+              Spark Intro
             
           </span>
         </div>
@@ -341,8 +341,6 @@
                 
   
   
-    
-  
   
   
     
@@ -353,11 +351,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
         
           
           <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
@@ -378,7 +378,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -565,35 +565,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    SSTables + LSM Trees
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../2ssts_lsm_trees/" class="md-nav__link">
         
   
   
@@ -609,163 +584,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#quick-recap" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick recap
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sstables-key-characters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SSTables: Key characters
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#write-path" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Write path
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#read-path" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Read path
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mergingcompaction-decisions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Merging/Compaction decisions
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Merging/Compaction decisions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#size-tiered-compaction-stc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Size-Tiered Compaction (STC)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Size-Tiered Compaction (STC)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#how-it-works-the-snowball-effect" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it works (The "Snowball" Effect)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#leveled-compaction-lc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Leveled Compaction (LC)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Leveled Compaction (LC)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#how-it-works-the-bookshelf-method" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it works (The "Bookshelf" Method)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#summary-comparison-table" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary Comparison Table
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        References
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -927,8 +745,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -937,13 +757,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
@@ -964,7 +782,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1063,10 +881,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../spark_intro/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spark Intro
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1082,6 +927,114 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction-the-single-machine-wall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction: The "Single Machine" Wall
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-lazy-superpower-why-doing-nothing-is-sparks-best-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The "Lazy" Superpower: Why Doing Nothing is Spark’s Best Feature
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-driver-and-the-executors-a-tale-of-brains-and-brawn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. The Driver and the Executors: A Tale of Brains and Brawn
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-performance-myth-sql-is-as-fast-as-scala" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. The Performance Myth: SQL is as Fast as Scala
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-narrow-vs-wide-the-hidden-cost-of-the-shuffle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Narrow vs. Wide: The Hidden Cost of the "Shuffle"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-dataframes-the-spreadsheet-that-spans-thousands-of-computers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. DataFrames: The Spreadsheet That Spans Thousands of Computers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-conclusion-the-power-of-the-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Conclusion: The Power of the Plan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1466,6 +1419,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1474,10 +1429,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-recap" class="md-nav__link">
+  <a href="#1-introduction-the-single-machine-wall" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick recap
+        1. Introduction: The "Single Machine" Wall
       
     </span>
   </a>
@@ -1485,10 +1440,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sstables-key-characters" class="md-nav__link">
+  <a href="#2-the-lazy-superpower-why-doing-nothing-is-sparks-best-feature" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SSTables: Key characters
+        2. The "Lazy" Superpower: Why Doing Nothing is Spark’s Best Feature
       
     </span>
   </a>
@@ -1496,10 +1451,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#write-path" class="md-nav__link">
+  <a href="#3-the-driver-and-the-executors-a-tale-of-brains-and-brawn" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Write path
+        3. The Driver and the Executors: A Tale of Brains and Brawn
       
     </span>
   </a>
@@ -1507,10 +1462,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#read-path" class="md-nav__link">
+  <a href="#4-the-performance-myth-sql-is-as-fast-as-scala" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Read path
+        4. The Performance Myth: SQL is as Fast as Scala
       
     </span>
   </a>
@@ -1518,94 +1473,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mergingcompaction-decisions" class="md-nav__link">
+  <a href="#5-narrow-vs-wide-the-hidden-cost-of-the-shuffle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Merging/Compaction decisions
+        5. Narrow vs. Wide: The Hidden Cost of the "Shuffle"
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Merging/Compaction decisions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#size-tiered-compaction-stc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Size-Tiered Compaction (STC)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Size-Tiered Compaction (STC)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#how-it-works-the-snowball-effect" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it works (The "Snowball" Effect)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#leveled-compaction-lc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Leveled Compaction (LC)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Leveled Compaction (LC)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#how-it-works-the-bookshelf-method" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it works (The "Bookshelf" Method)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#summary-comparison-table" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary Comparison Table
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
+  <a href="#6-dataframes-the-spreadsheet-that-spans-thousands-of-computers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        References
+        6. DataFrames: The Spreadsheet That Spans Thousands of Computers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-conclusion-the-power-of-the-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Conclusion: The Power of the Plan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference
       
     </span>
   </a>
@@ -1629,162 +1533,81 @@
 
 
 
-  <h1>SSTables + LSM Trees</h1>
-
-<h2 id="quick-recap">Quick recap</h2>
+<h1 id="the-architecture-of-scale-why-sparks-lazy-strategy-is-its-greatest-strength">The Architecture of Scale: Why Spark’s “Lazy” Strategy is its Greatest Strength</h1>
+<h3 id="1-introduction-the-single-machine-wall">1. Introduction: The "Single Machine" Wall</h3>
+<p>For most developers, the computer sitting on their desk is a powerhouse—perfect for streaming media, writing code, or managing complex spreadsheets. But there is a specific, inevitable moment in the life of every data professional where that machine fails: the "Data Wall." It happens when a dataset becomes so massive that a single machine lacks the RAM or the CPU cycles to process it in a reasonable timeframe.</p>
+<p>To break through this wall, <mark>we turn to a <strong>cluster</strong>—a group of computers that pool their resources to act as a single, high-powered unit.</mark> However, a group of machines alone is not powerful; without a framework to coordinate them, they are just a collection of disconnected hardware. <mark>Apache Spark is that framework. It acts as the "brain," managing and coordinating the execution of tasks across the cluster, transforming a pile of servers into a unified engine of distributed intelligence.</mark></p>
+<h3 id="2-the-lazy-superpower-why-doing-nothing-is-sparks-best-feature">2. The "Lazy" Superpower: Why Doing Nothing is Spark’s Best Feature</h3>
+<p>One of the most counter-intuitive aspects of Spark is that when you tell it to do something, it often does... nothing. This is known as <strong>Lazy Evaluation</strong>. To a beginner, it looks like Spark is being slow; to an expert, you realize Spark is actually re-engineering your logic. Instead of modifying data the moment you express an operation, Spark waits until the last possible moment to execute the computation.</p>
+<p>As you define transformations, Spark is actually building a "graph of computation instructions." <mark>By waiting, Spark can look at the entire chain of events and compile your raw transformations into a streamlined physical plan optimized for efficiency.</mark> A prime example is "predicate pushdown." If you define a complex job on a massive dataset like the <code>2015-summary.csv</code> flight data but add a filter at the end to see only flights from "Romania," Spark won't process the whole file. It will optimize the plan to fetch only the records you actually need.</p>
+<p>"Lazy evaluation means that Spark will wait until the very last moment to execute the graph of computation instructions. In Spark, instead of modifying the data immediately when you express some operation, you build up a plan of transformations that you would like to apply to your source data."</p>
+<h3 id="3-the-driver-and-the-executors-a-tale-of-brains-and-brawn">3. The Driver and the Executors: A Tale of Brains and Brawn</h3>
+<p>A Spark Application is not a monolithic entity; it is a coordinated dance between two distinct roles: the <strong>Driver</strong> and the <strong>Executors</strong>.</p>
+<p>The <strong>Driver Process</strong> is the "heart" of your application. It sits on a node in the cluster and runs your <code>main()</code> function. It is the architect of your job, responsible for three critical tasks:</p>
 <ul>
-<li>Log based storage + in-memory Hashmaps<ul>
-<li>Engines powered by logs(append only records) are write efficient</li>
-<li>Read efficiency is improved via in memory hashmaps(key=&gt;byte offsets)</li>
-<li>Binary files(byte streams) are preferred over text files for storing log</li>
-<li>Logs grow very fast hence broken into segments and occassionally compacted </li>
-<li>Storage engine has lots of shared resources, hence concurrency management  </li>
+<li><strong>Maintaining information</strong> about the Spark Application and its state.</li>
+<li><strong>Responding</strong> to a user’s program or input.</li>
+<li><strong>Analyzing, distributing, and scheduling</strong> work across the executors.</li>
+</ul>
+<p>The <strong>Executors</strong> provide the "brawn." These are the worker processes that actually carry out the heavy lifting. Each executor is responsible for only two things:</p>
+<ul>
+<li><strong>Executing code</strong> assigned to it by the driver.</li>
+<li><strong>Reporting the state</strong> of that computation back to the driver node.</li>
+</ul>
+<p>While the Driver thinks, the Executors act. This split allows Spark to scale across thousands of machines while maintaining a single point of control via the <code>SparkSession</code>.</p>
+<h3 id="4-the-performance-myth-sql-is-as-fast-as-scala">4. The Performance Myth: SQL is as Fast as Scala</h3>
+<p>There is a persistent myth that to get "real" performance out of Spark, you must write in Scala. This is simply not true if you are using Spark’s <strong>Structured APIs</strong>.</p>
+<p>Whether you write in Python, R, or SQL, you aren't writing explicit JVM instructions. Instead, Spark acts as a translator. Your Python code is converted into the same underlying bytecode as Scala code. When you look at an <code>explain</code> plan for a query—whether written via the <code>sqlWay</code> or the <code>dataFrameWay</code>—you will see identical physical steps like <code>HashAggregate</code> (for grouping) and <code>Exchange</code> (for moving data).</p>
+<p><strong>Note: Performance characteristics are similar across all Structured APIs because Spark translates them into the same optimized underlying physical plan.</strong></p>
+<h3 id="5-narrow-vs-wide-the-hidden-cost-of-the-shuffle">5. Narrow vs. Wide: The Hidden Cost of the "Shuffle"</h3>
+<p>To write efficient Spark code, you must understand the "Hidden Cost": the <strong>Shuffle</strong>. Transformations in Spark fall into two categories, and the difference determines whether your job takes seconds or hours.</p>
+<ul>
+<li><strong>Narrow Transformations:</strong> In these operations (like <code>where</code> or <code>filter</code>), each input partition contributes to exactly one output partition. Spark can perform these in-memory through "pipelining." It is the fastest way to process data.<br />
+  Imagine you want to find all transactions that happened in <strong>London</strong>.
+    Since the data is already partitioned (split) across different worker nodes, each node can look at its own slice of data, discard the non-London rows, and keep the rest. One partition of input leads directly to one partition of output.
+        <div class="highlight"><pre><span></span><code><span class="c1"># Narrow Transformation: No data moves between nodes</span>
+<span class="n">london_txns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">city</span> <span class="o">==</span> <span class="s2">&quot;London&quot;</span><span class="p">)</span>
+</code></pre></div><ul>
+<li><strong>Why it's fast:</strong> No node needs to talk to another. It’s "pipelined," meaning Spark can chain this with other narrow operations (like <code>map</code> or <code>select</code>) in one single breath without stopping.</li>
 </ul>
 </li>
-<li>Key Questions still unanswered<ul>
-<li>What if number of keys exceeds RAM rendering in-memory hash maps infeasible</li>
-<li>How do we scan all keys within a range?</li>
+<li>
+<p><strong>Wide Transformations:</strong> These operations (like <code>groupBy</code> or <code>sort</code>) require data from many input partitions to be combined. This triggers a <strong>shuffle</strong>.<br />
+<strong>Example:</strong> <code>groupBy()</code>  <br />
+    Now, imagine you want to calculate the <strong>total sales per city</strong> across the entire globe.
+    Because "London" transactions might be scattered across Node A, Node B, and Node C, Spark cannot calculate the final total for London until it moves all London-related rows to the <em>same</em> physical location. This is the <strong>Shuffle</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Wide Transformation: Triggers a shuffle</span>
+<span class="n">city_totals</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;city&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li><strong>The Hidden Cost:</strong> * <strong>Network:</strong> Data is flying across your cluster cables.<ul>
+<li><strong>Disk I/O:</strong> Spark often writes this data to disk temporarily to ensure it doesn't lose it during the move.</li>
+<li><strong>CPU:</strong> It has to serialize (package) and deserialize (unpackage) the data.
+"A wide dependency (or wide transformation) style transformation will have input partitions contributing to many output partitions. You will often hear this referred to as a shuffle whereby Spark will exchange partitions across the cluster."</li>
 </ul>
 </li>
 </ul>
-<hr />
-<h2 id="sstables-key-characters">SSTables: Key characters</h2>
-<p><img alt="" src="../../images/SST_big_picture.png" />
-Image Credits: Google Gemini</p>
-<hr />
-<ul>
-<li><strong>Sorted String tables</strong>: All logs storing the key value pairs are sorted by keys</li>
-<li><strong>Sorted String indexes</strong>: Sparse indexes of all sorted segments are stored in-memory</li>
-<li><strong>Memtable</strong>: An in-memory structure that allows keys to be stored in a sorted manner. All new keys are stored in memtable and eventually flushed into disc as an SST segment</li>
-<li><strong>Write ahead log(WAL)</strong>: To prevent data loss in case of service crash/shutdown. memtable contents are also written on disc as a backup</li>
-<li><strong>Bloom Filter:</strong> A probabilistic data structure that helps in quickly ruling out whether a key <em>may be found</em> in a segment or <em>sure to be absent</em> in it.</li>
-</ul>
-<hr />
-<h2 id="write-path">Write path</h2>
-<ul>
-<li>All keys are first written in memtable.</li>
-<li>When memtable exceeds a certain threshold,  it is flushed into a sorted segment(along with corresponding bloom filter as well as sparse index)</li>
-<li>Memtable ensures that all keys are unique in a given Segment</li>
-<li>Segments are merged in background</li>
-</ul>
-<p><img alt="" src="../../images/SST_immemory_index.png" /></p>
-<p>Image Credits: Designing Data Intensive Applications</p>
-<hr />
-<h2 id="read-path">Read path</h2>
-<ul>
-<li><strong>Check MemTable:</strong> Is the key in the active memory buffer? If yes, return immediately (fastest).</li>
-<li><strong>Check Immutable MemTable:</strong> If there is a MemTable currently being flushed to disk, check there.</li>
-<li><strong>Check SSTables (L0, L1, etc.):</strong> If not in memory, the database must check the disk files. It searches the SSTables from <strong>newest to oldest</strong>.<ul>
-<li><em>Optimization:</em> Before reading the actual file, it checks the <strong>Bloom Filter</strong>. If the filter says "Key not present," it skips that SSTable entirely.</li>
-<li>If the filter returns positive, it uses the <strong>Sparse Index</strong> to find the specific block in the file to read.</li>
-</ul>
 </li>
 </ul>
-<hr />
-<h2 id="mergingcompaction-decisions">Merging/Compaction decisions</h2>
-<h3 id="size-tiered-compaction-stc"><strong>Size-Tiered Compaction (STC)</strong></h3>
-<p><em>Used by: HBase, Cassandra (default), ScyllaDB</em></p>
-<p>The philosophy here is: <strong>"Delay the work."</strong> It is lazy. It wants to accept writes as fast as possible and only organizes files when it absolutely has to.</p>
-<h4 id="how-it-works-the-snowball-effect"><strong>How it works (The "Snowball" Effect)</strong></h4>
-<p>Imagine you have buckets of different sizes on your disk.<br />
-1. <strong>Flush:</strong> MemTables are flushed to disk as small SSTables (Tier 1).<br />
-2. <strong>Accumulate:</strong> The system waits until it has, say, <strong>4 small SSTables</strong> of similar size.<br />
-3. <strong>Merge:</strong> It triggers a compaction to merge these 4 small files into <strong>1 medium SSTable</strong> (Tier 2).<br />
-4. <strong>Repeat:</strong> It waits until it has <strong>4 medium SSTables</strong>, then merges them into <strong>1 large SSTable</strong> (Tier 3).  </p>
-<p><strong>Pros:</strong><br />
--  <strong>Write Optimized:</strong> Excellent for write-heavy workloads (like IoT logs). The system does minimal re-writing.<br />
-<strong>Cons</strong>:<br />
--  <strong>High Read Amplification:</strong> This is the big downside. To find a key, you might have to check <strong>many</strong> different files because the keys are not neatly separated. You might have <code>kitty1</code> in the small file, the medium file, <em>and</em> the large file.<br />
--  <strong>Space Spikes:</strong> Merging a "Large Tier" is painful. If you have four 10GB files, you need to write a new 40GB file. During the merge, you temporarily need <strong>80GB</strong> of disk space (40GB input + 40GB output).  </p>
-<h3 id="leveled-compaction-lc"><strong>Leveled Compaction (LC)</strong></h3>
-<p><em>Used by: LevelDB, RocksDB, Cassandra (optional)</em>  </p>
-<p>The philosophy here is: <strong>"Keep it clean constantly."</strong> It is strict. It does extra work during writes to ensure reads are super fast later.  </p>
-<h4 id="how-it-works-the-bookshelf-method"><strong>How it works (The "Bookshelf" Method)</strong></h4>
-<p>The disk is divided into <strong>Levels</strong> (L0, L1, L2...), each with a target size limit (e.g., L1 is 100MB, L2 is 1GB).  </p>
-<p>Crucially, in <strong>L1 and deeper</strong>, the system guarantees that <strong>keys do not overlap</strong> between files.  </p>
+<p>Unlike narrow transformations, shuffles are expensive because Spark must write results to disk and move data across the network. Optimizing these wide dependencies is where the real work of a Spark developer lives.</p>
+<h3 id="6-dataframes-the-spreadsheet-that-spans-thousands-of-computers">6. DataFrames: The Spreadsheet That Spans Thousands of Computers</h3>
+<p>The <strong>DataFrame</strong> is the most common way to interact with Spark. Conceptually, it is just a spreadsheet with rows, named columns, and a schema. However, while a standard spreadsheet lives on one machine, a Spark DataFrame is physically <strong>partitioned</strong> across the cluster.</p>
+<p>A <strong>partition</strong> is a collection of rows that sits on one physical machine. This relationship is the literal definition of your parallelism. Warning : <strong>If you have only one partition, Spark will have a parallelism of only one, even if you have thousands of executors.</strong></p>
+<p>Furthermore, DataFrames are <strong>immutable</strong>. You never change the data in place; you create a "logical lineage" of new DataFrames. This functional approach ensures that if a machine fails, Spark knows exactly how to recompute the lost data by following the lineage back to the source, such as the <code>2015-summary.csv</code> file.</p>
+<h3 id="7-conclusion-the-power-of-the-plan">7. Conclusion: The Power of the Plan</h3>
+<p>Mastering Spark requires a shift in mindset: you aren't just "running commands"; you are building a <strong>logical lineage</strong>. Every operation you write adds a node to a <strong>Directed Acyclic Graph (DAG)</strong> of transformations.</p>
+<p>Your greatest tool in this journey is the <code>df.explain()</code> method. Think of it as your "Crystal Ball." It allows you to peek under the hood and see the physical plan—including the <code>HashAggregate</code> and <code>Exchange</code> steps—before a single row is actually processed.</p>
+<p>By understanding how Spark talks to cluster managers like <strong>YARN</strong> or <strong>Mesos</strong> to coordinate its work, you move from being a user to being an architect. This foundation is what allows you to eventually master the vastness of the Spark ecosystem, from complex machine learning pipelines to real-time streaming data. The next time you write a query, don't just run it—<code>explain</code> it, and see the plan for yourself.</p>
+<h2 id="reference">Reference</h2>
 <ul>
-<li><strong>File A:</strong> <code>apple</code> ... <code>cat</code>  </li>
-<li><strong>File B:</strong> <code>dog</code> ... <code>fish</code>  </li>
-<li><strong>File C:</strong> <code>goat</code> ... <code>zebra</code>  </li>
+<li>Chapter 2, Spark: The Definitive Guide: Big Data Processing Made Simple by Bill Chambers and Matei Zaharia</li>
 </ul>
-<p>You will <em>never</em> find <code>cat</code> in File B.  </p>
-<p><strong>The "Incremental" Merge</strong>  </p>
-<blockquote>
-<p><em>"key range is split up into smaller SSTables... allows the compaction to proceed more incrementally"</em>  </p>
-</blockquote>
-<p>This is the genius of Leveled Compaction.  </p>
-<ol>
-<li><strong>Trigger:</strong> L1 fills up. We need to move data to L2.</li>
-<li><strong>Pick a Victim:</strong> We pick <strong>one</strong> file from L1 (e.g., File A: <code>apple</code>...<code>cat</code>).</li>
-<li><strong>Find Overlap:</strong> We look at L2. We don't need to merge all of L2. We only pick the specific files in L2 that overlap with <code>apple</code>...<code>cat</code>.  </li>
-<li><strong>Merge:</strong> We merge just those few files and write the result back to L2.  </li>
-</ol>
-<p>Because we only touch a small slice of the data, we don't need massive temporary disk space (addressing the <em>"use less disk space"</em> claim).  </p>
-<p><strong>Pros</strong><br />
-- <strong>Read Optimized:</strong> Best for user-facing apps. Since keys don't overlap in deeper levels, a read query hits <strong>exactly one file</strong> per level (excluding L0). <br />
--  <strong>Space Efficient:</strong> You don't need 2x disk space for compactions; you only need enough space for the small slice you are currently merging.   </p>
-<p><strong>Cons</strong>  <br />
-- <strong>High Write Amplification:</strong> The database is constantly moving data. A single piece of data might be read and re-written 10-20 times as it trickles down from L1 to L6. This burns CPU and SSD lifetime.   </p>
-<hr />
-<h3 id="summary-comparison-table"><strong>Summary Comparison Table</strong></h3>
-<table>
-<thead>
-<tr>
-<th></th>
-<th><strong>Size-Tiered (HBase/Cassandra)</strong></th>
-<th><strong>Leveled (RocksDB/LevelDB)</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Logic</strong></td>
-<td>Merge similar-sized files together.</td>
-<td>Merge files into strictly sorted levels.</td>
-</tr>
-<tr>
-<td><strong>Key Overlap</strong></td>
-<td><strong>High.</strong> Keys can exist in many files.</td>
-<td><strong>None</strong> (except L0). Keys are partitioned.</td>
-</tr>
-<tr>
-<td><strong>Read Speed</strong></td>
-<td><strong>Slower.</strong> Must check many files.</td>
-<td><strong>Fast.</strong> Checks very few files.</td>
-</tr>
-<tr>
-<td><strong>Write Speed</strong></td>
-<td><strong>Fast.</strong> Low write amplification.</td>
-<td><strong>Slower.</strong> High write amplification.</td>
-</tr>
-<tr>
-<td><strong>Disk Space</strong></td>
-<td><strong>High Overhead.</strong> Needs ~50% free space for big merges.</td>
-<td><strong>Low Overhead.</strong> Incremental merges use little space.</td>
-</tr>
-<tr>
-<td><strong>Best For</strong></td>
-<td>Logging, Time-Series, Write-Heavy.</td>
-<td>General Purpose, Read-Heavy, Low Latency.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<hr />
-<h2 id="references">References</h2>
-<ol>
-<li><a href="https://www.igvita.com/2012/02/06/sstable-and-log-structured-storage-leveldb">SSTable and Log Structured Storage: LevelDB - igvita.com</a></li>
-<li>Chapter 3, Designing Data Intensive Applications</li>
-<li><a href="https://samwho.dev/bloom-filters">Bloom Filters - samwho.dev</a> </li>
-</ol>
 
 
 
 
 
 
-
-  
-  
 
 
 
@@ -1808,7 +1631,7 @@ Image Credits: Google Gemini</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../1hash_indexes/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Log Based Storage + Hash Indexes">
+          <a href="../map_reduce/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Map reduce framework">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1818,20 +1641,20 @@ Image Credits: Google Gemini</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Log Based Storage + Hash Indexes
+                Map reduce framework
               </div>
             </div>
           </a>
         
         
           
-          <a href="../3btrees/" class="md-footer__link md-footer__link--next" aria-label="Next: B-Trees">
+          <a href="../../code/storage_engines/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage Engines">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                B-Trees
+                Storage Engines
               </div>
             </div>
             <div class="md-footer__button md-icon">

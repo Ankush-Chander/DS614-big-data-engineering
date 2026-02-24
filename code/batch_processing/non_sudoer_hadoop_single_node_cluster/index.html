@@ -16,6 +16,8 @@
         <link rel="prev" href="../hadoop%20single%20node%20cluster/">
       
       
+        <link rel="next" href="../non_sudoer_hadoop_multi_node_cluster/">
+      
       
         
       
@@ -868,6 +870,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lectures/spark_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spark Intro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1356,6 +1386,23 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whoami" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        whoami
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="whoami">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#yarn-sitexml" class="md-nav__link">
     <span class="md-ellipsis">
@@ -1597,6 +1644,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../non_sudoer_hadoop_multi_node_cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non Sudoer Hadoop Multi Node Cluster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1765,6 +1840,23 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whoami" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        whoami
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="whoami">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#yarn-sitexml" class="md-nav__link">
@@ -2125,7 +2217,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</s
 <div class="highlight"><pre><span></span><code>$HADOOP_HOME/etc/hadoop/hadoop-env.sh
 </code></pre></div>
 <p>Set:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/java-11-openjdk-amd64
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/java-11-openjdk-amd64<span class="w">  </span><span class="c1"># adjust to your path</span>
 </code></pre></div>
 <hr />
 <h3 id="core-sitexml">core-site.xml</h3>
@@ -2145,11 +2237,11 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</s
 <span class="nt">&lt;/configuration&gt;</span>
 </code></pre></div>
 <p>Replace <code>YOUR_USERNAME</code> with output of:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$HOME</span>
+<div class="highlight"><pre><span></span><code>whoami
 </code></pre></div>
 <hr />
 <h3 id="hdfs-sitexml">hdfs-site.xml</h3>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;configuration&gt;</span>
+<p><div class="highlight"><pre><span></span><code><span class="nt">&lt;configuration&gt;</span>
 
 <span class="nt">&lt;property&gt;</span>
 <span class="w">  </span><span class="nt">&lt;name&gt;</span>dfs.replication<span class="nt">&lt;/name&gt;</span>
@@ -2168,10 +2260,13 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</s
 
 <span class="nt">&lt;/configuration&gt;</span>
 </code></pre></div>
+Replace <code>YOUR_USERNAME</code> with output of:</p>
+<div class="highlight"><pre><span></span><code>whoami
+</code></pre></div>
 <hr />
 <h3 id="mapred-sitexml">mapred-site.xml</h3>
 <p>Edit:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;configuration&gt;</span>
+<p><div class="highlight"><pre><span></span><code><span class="nt">&lt;configuration&gt;</span>
 
 <span class="nt">&lt;property&gt;</span>
 <span class="w">  </span><span class="nt">&lt;name&gt;</span>mapreduce.framework.name<span class="nt">&lt;/name&gt;</span>
@@ -2191,7 +2286,9 @@ mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</s
 <span class="nt">&lt;/property&gt;</span>
 <span class="nt">&lt;/configuration&gt;</span>
 </code></pre></div>
-<hr />
+Replace <code>YOUR_USERNAME</code> with output of:</p>
+<h2 id="whoami"><div class="highlight"><pre><span></span><code>whoami
+</code></pre></div></h2>
 <h3 id="yarn-sitexml">yarn-site.xml</h3>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;configuration&gt;</span>
 
@@ -2488,6 +2585,22 @@ Sorted Output
             </div>
           </a>
         
+        
+          
+          <a href="../non_sudoer_hadoop_multi_node_cluster/" class="md-footer__link md-footer__link--next" aria-label="Next: Non Sudoer Hadoop Multi Node Cluster">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Non Sudoer Hadoop Multi Node Cluster
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
