@@ -5,7 +5,6 @@
 * **Node 2 → DataNode + NodeManager**
 * Replication factor = **2** (so blocks replicate across machines)
 
-This tutorial assumes  and suggest changes from there.
 
 ## Assumptions
 - You have single node cluster already set up on both nodes using [Single node cluster setup](../non_sudoer_hadoop_single_node_cluster)
