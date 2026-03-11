@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Interactive Database Normalization Demo</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:40px;
+background:#f5f5f5;
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+}
+
+.container{
+display:flex;
+gap:60px;
+}
+
+.left{
+width:35%;
+}
+
+.right{
+flex:1;
+}
+
+.rule{
+background:#fff3cd;
+padding:18px;
+border-left:6px solid #ff9800;
+font-size:18px;
+margin-bottom:20px;
+}
+
+button{
+padding:10px 16px;
+margin:6px;
+font-size:15px;
+cursor:pointer;
+}
+
+table{
+border-collapse:collapse;
+background:white;
+margin-bottom:30px;
+}
+
+th,td{
+border:1px solid #888;
+padding:10px 16px;
+text-align:center;
+font-size:16px;
+}
+
+th{
+background:#eeeeee;
+}
+
+.tableBox{
+display:inline-block;
+margin-right:40px;
+transition:all 0.6s ease;
+}
+
+.split{
+transform:translateY(40px);
+opacity:0;
+}
+
+.tableTitle{
+font-size:20px;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+.fd{
+background:#e3f2fd;
+padding:12px;
+margin-top:15px;
+display:none;
+}
+
+.pk{
+background:#d1c4e9;
+font-weight:bold;
+}
+
+.partial{
+background:#ffe0b2;
+}
+
+.transitive{
+background:#c8e6c9;
+}
+
+.legend{
+margin-top:20px;
+font-size:14px;
+}
+
+.legend span{
+padding:5px 10px;
+margin-right:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Interactive Database Normalization Demo</h1>
+
+<div class="container">
+
+<div class="left">
+
+<div class="rule" id="rulePanel"></div>
+
+<button onclick="apply1NF()">Apply 1NF</button>
+<button onclick="apply2NF()">Apply 2NF</button>
+<button onclick="apply3NF()">Apply 3NF</button>
+
+<br>
+
+<button onclick="showPK()">Show Primary Keys</button>
+<button onclick="showFD()">Show Functional Dependencies</button>
+<button onclick="showPartial()">Show Partial Dependencies</button>
+<button onclick="showTransitive()">Show Transitive Dependencies</button>
+
+<br>
+
+<button onclick="resetDemo()">Reset</button>
+
+<div id="fdPanel" class="fd"></div>
+
+<div class="legend">
+<span style="background:#d1c4e9">Primary Key</span>
+<span style="background:#ffe0b2">Partial Dependency</span>
+<span style="background:#c8e6c9">Transitive Dependency</span>
+</div>
+
+</div>
+
+<div class="right" id="tables"></div>
+
+</div>
+
+
+<script>
+
+let step=0
+
+const baseData=[
+{order:101,customer:"Alice",city:"Delhi",product:"Laptop,Mouse",qty:"1,2",price:"70000,500"},
+{order:102,customer:"Bob",city:"Mumbai",product:"Keyboard,Mouse",qty:"1,1",price:"1000,500"},
+{order:103,customer:"Alice",city:"Delhi",product:"Laptop",qty:"1",price:"70000"},
+{order:104,customer:"Charlie",city:"Pune",product:"Keyboard",qty:"2",price:"1000"},
+{order:105,customer:"Bob",city:"Mumbai",product:"Laptop",qty:"1",price:"70000"}
+]
+
+let data=JSON.parse(JSON.stringify(baseData))
+
+updateRule()
+
+function updateRule(){
+
+let text=""
+
+if(step===0){
+text=`<b>Next: First Normal Form (1NF)</b><br><br>
+• No repeating groups<br>
+• Atomic attribute values`
+}
+
+else if(step===1){
+text=`<b>Next: Second Normal Form (2NF)</b><br><br>
+• Must be in 1NF<br>
+• No partial dependency<br>
+• Attributes depend on full primary key`
+}
+
+else if(step===2){
+text=`<b>Next: Third Normal Form (3NF)</b><br><br>
+• Must be in 2NF<br>
+• No transitive dependency`
+}
+
+else{
+text=`<b>Database is now in 3NF</b>`
+}
+
+document.getElementById("rulePanel").innerHTML=text
+}
+
+
+function renderTable(title,headers,rows){
+
+let html=`<div class="tableBox">
+<div class="tableTitle">${title}</div>
+<table>
+<tr>`
+
+headers.forEach(h=>html+=`<th>${h}</th>`)
+
+html+="</tr>"
+
+rows.forEach(r=>{
+html+="<tr>"
+r.forEach(c=>html+=`<td>${c}</td>`)
+html+="</tr>"
+})
+
+html+="</table></div>"
+
+return html
+}
+
+
+function renderUnnormalized(){
+
+let rows=data.map(r=>[
+r.order,r.customer,r.city,r.product,r.qty,r.price
+])
+
+document.getElementById("tables").innerHTML=
+renderTable("Orders",
+["OrderID","CustomerName","City","Product","Qty","ProductPrice"],
+rows)
+
+}
+
+renderUnnormalized()
+
+
+function animateSplit(callback){
+
+document.querySelectorAll(".tableBox").forEach(t=>{
+t.classList.add("split")
+})
+
+setTimeout(()=>callback(),500)
+
+}
+
+
+function apply1NF(){
+
+if(step!==0)return
+
+animateSplit(()=>{
+
+let rows=[]
+
+data.forEach(r=>{
+
+let p=r.product.split(",")
+let q=r.qty.split(",")
+let pr=r.price.split(",")
+
+for(let i=0;i<p.length;i++){
+rows.push({
+order:r.order,
+customer:r.customer,
+city:r.city,
+product:p[i],
+qty:q[i],
+price:pr[i]
+})
+}
+
+})
+
+data=rows
+
+let tableRows=data.map(r=>[
+r.order,r.customer,r.city,r.product,r.qty,r.price
+])
+
+document.getElementById("tables").innerHTML=
+renderTable("Orders (1NF)",
+["OrderID","CustomerName","City","Product","Qty","ProductPrice"],
+tableRows)
+
+step=1
+updateRule()
+
+})
+
+}
+
+
+function apply2NF(){
+
+if(step!==1)return
+
+animateSplit(()=>{
+
+let orders={}
+let items=[]
+
+data.forEach(r=>{
+
+orders[r.order]=[r.order,r.customer,r.city]
+
+items.push([r.order,r.product,r.qty,r.price])
+
+})
+
+let html=""
+
+html+=renderTable("Orders",
+["OrderID","CustomerName","City"],
+Object.values(orders))
+
+html+=renderTable("OrderItems",
+["OrderID","Product","Qty","ProductPrice"],
+items)
+
+document.getElementById("tables").innerHTML=html
+
+step=2
+updateRule()
+
+})
+
+}
+
+
+function apply3NF(){
+
+if(step!==2)return
+
+animateSplit(()=>{
+
+let orders=[
+[101,"Alice","Delhi"],
+[102,"Bob","Mumbai"],
+[103,"Alice","Delhi"],
+[104,"Charlie","Pune"],
+[105,"Bob","Mumbai"]
+]
+
+let items=[]
+let products={}
+
+data.forEach(r=>{
+items.push([r.order,r.product,r.qty])
+products[r.product]=[r.product,r.price]
+})
+
+let html=""
+
+html+=renderTable("Orders",
+["OrderID","CustomerName","City"],orders)
+
+html+=renderTable("OrderItems",
+["OrderID","Product","Qty"],items)
+
+html+=renderTable("Products",
+["Product","Price"],Object.values(products))
+
+document.getElementById("tables").innerHTML=html
+
+step=3
+updateRule()
+
+})
+
+}
+
+
+function showPK(){
+
+document.querySelectorAll("th").forEach(c=>c.classList.remove("pk"))
+
+let headers=document.querySelectorAll("th")
+
+if(step<=1){
+
+headers.forEach(h=>{
+if(h.innerText==="OrderID"||h.innerText==="Product")
+h.classList.add("pk")
+})
+
+alert("Primary Key = (OrderID, Product)")
+}
+
+else if(step===2){
+
+headers.forEach(h=>{
+if(h.innerText==="OrderID")h.classList.add("pk")
+
+if(h.innerText==="Product" &&
+h.closest(".tableBox").innerText.includes("OrderItems"))
+h.classList.add("pk")
+})
+
+alert("Orders PK: OrderID\nOrderItems PK: (OrderID, Product)")
+}
+
+else{
+
+headers.forEach(h=>{
+if(h.innerText==="OrderID"||h.innerText==="Product")
+h.classList.add("pk")
+})
+
+alert("Orders PK: OrderID\nProducts PK: Product\nOrderItems PK: (OrderID, Product)")
+}
+
+}
+
+
+function showFD(){
+
+let text=`Functional Dependencies:<br><br>
+OrderID → CustomerName, City<br>
+(OrderID, Product) → Qty<br>
+Product → ProductPrice`
+
+let panel=document.getElementById("fdPanel")
+panel.innerHTML=text
+panel.style.display="block"
+
+}
+
+
+function showPartial(){
+
+if(step!==1){
+alert("Partial dependencies visible after 1NF.")
+return
+}
+
+document.querySelectorAll("td").forEach(c=>{
+
+if(c.innerText==="Alice"||
+c.innerText==="Bob"||
+c.innerText==="Charlie"||
+c.innerText==="Delhi"||
+c.innerText==="Mumbai"||
+c.innerText==="Pune")
+
+c.classList.add("partial")
+
+})
+
+}
+
+
+function showTransitive(){
+
+if(step!==2){
+alert("Transitive dependency visible after 2NF.")
+return
+}
+
+document.querySelectorAll("td").forEach(c=>{
+
+if(c.innerText==="70000"||
+c.innerText==="500"||
+c.innerText==="1000")
+
+c.classList.add("transitive")
+
+})
+
+}
+
+
+function resetDemo(){
+
+data=JSON.parse(JSON.stringify(baseData))
+step=0
+
+document.getElementById("fdPanel").style.display="none"
+
+renderUnnormalized()
+updateRule()
+
+}
+
+</script>
+
+</body>
+</html>
+
