@@ -1275,6 +1275,94 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Demos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../demo/db-normalization-demo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Normal forms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1324,6 +1412,17 @@
     <span class="md-ellipsis">
       
         Load Data into SQLite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset description
       
     </span>
   </a>
@@ -1932,48 +2031,27 @@ print('Rows loaded:', len(df))</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2d4f05e5-4316-4ddd-8ab1-790ef7a00cf3">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2d4f05e5-4316-4ddd-8ab1-790ef7a00cf3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-3">df.columns</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>Index(['VendorID', 'tpep_pickup_datetime', 'tpep_dropoff_datetime',
-       'passenger_count', 'trip_distance', 'RatecodeID', 'store_and_fwd_flag',
-       'PULocationID', 'DOLocationID', 'payment_type', 'fare_amount', 'extra',
-       'mta_tax', 'tip_amount', 'tolls_amount', 'improvement_surcharge',
-       'total_amount', 'congestion_surcharge', 'Airport_fee',
-       'cbd_congestion_fee'],
-      dtype='object')</pre>
-</div>
-</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="dataset-description">Dataset description<a class="anchor-link" href="#dataset-description">¶</a></h2><pre><code>(Who)        VendorID
+(When)       tpep_pickup_datetime → tpep_dropoff_datetime
+(Where)      PULocationID → DOLocationID
+(How far)    trip_distance
+(How many)   passenger_count
+(How paid)   payment_type
+(Rate type)  RatecodeID
+(Metadata)   store_and_fwd_flag
+(How much)   fare_amount + extra + mta_tax + tip_amount +
+             tolls_amount + improvement_surcharge +
+             congestion_surcharge + Airport_fee +
+             cbd_congestion_fee = total_amount
+
+</code></pre>
 </div>
 </div>
 </div>
@@ -1998,7 +2076,7 @@ print('Rows loaded:', len(df))</div>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2017,7 +2095,7 @@ print('Rows loaded:', len(df))</div>
 
 <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-4">query = '''
+<div class="clipboard-copy-txt" id="cell-3">query = '''
 SELECT tpep_pickup_datetime, fare_amount
 FROM trips
 WHERE fare_amount &gt; 50
@@ -2138,7 +2216,7 @@ pd.read_sql(query, conn)</div>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2149,6 +2227,7 @@ pd.read_sql(query, conn)</div>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># DDL example</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">autocommit</span>
 <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">'CREATE TABLE IF NOT EXISTS sample_table(id INT, value TEXT)'</span><span class="p">)</span>
 
 <span class="c1"># DML example</span>
@@ -2156,13 +2235,15 @@ pd.read_sql(query, conn)</div>
 
 <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s1">'SELECT * FROM sample_table'</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-5"># DDL example
+<div class="clipboard-copy-txt" id="cell-4"># DDL example
+conn.autocommit
 conn.execute('CREATE TABLE IF NOT EXISTS sample_table(id INT, value TEXT)')
 
 # DML example
 conn.execute("INSERT INTO sample_table VALUES (1, 'demo')")
 
-pd.read_sql('SELECT * FROM sample_table', conn)</div>
+pd.read_sql('SELECT * FROM sample_table', conn)
+</div>
 </div>
 </div>
 </div>
@@ -2233,7 +2314,7 @@ pd.read_sql('SELECT * FROM sample_table', conn)</div>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2252,7 +2333,7 @@ pd.read_sql('SELECT * FROM sample_table', conn)</div>
 
 <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-6">query = '''
+<div class="clipboard-copy-txt" id="cell-5">query = '''
 SELECT passenger_count, trip_distance
 FROM trips
 WHERE passenger_count &gt;= 3
@@ -2369,10 +2450,10 @@ pd.read_sql(query, conn)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-7">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2386,7 +2467,7 @@ pd.read_sql(query, conn)</div>
 
 <span class="n">plan</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-7">plan = conn.execute("EXPLAIN QUERY PLAN SELECT * FROM trips WHERE fare_amount &gt; 50").fetchall()
+<div class="clipboard-copy-txt" id="cell-6">plan = conn.execute("EXPLAIN QUERY PLAN SELECT * FROM trips WHERE fare_amount &gt; 50").fetchall()
 
 plan</div>
 </div>
@@ -2398,7 +2479,7 @@ plan</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>[(2, 0, 0, 'SCAN trips')]</pre>
 </div>
@@ -2412,10 +2493,10 @@ plan</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-7">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2427,7 +2508,7 @@ plan</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT count(*) FROM trips WHERE fare_amount &gt; 50"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-8">%timeit conn.execute("SELECT count(*) FROM trips WHERE fare_amount &gt; 50").fetchall()</div>
+<div class="clipboard-copy-txt" id="cell-7">%timeit conn.execute("SELECT count(*) FROM trips WHERE fare_amount &gt; 50").fetchall()</div>
 </div>
 </div>
 </div>
@@ -2439,7 +2520,7 @@ plan</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>276 ms ± 5.46 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<pre>552 ms ± 13.8 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre>
 </div>
 </div>
@@ -2463,7 +2544,46 @@ plan</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE INDEX IF NOT EXISTS idx_fare ON trips(fare_amount)"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-8">conn.execute("CREATE INDEX IF NOT EXISTS idx_fare ON trips(fare_amount)")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>&lt;sqlite3.Cursor at 0x7f7f06782240&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1d699b79-8429-471c-a9ac-4c40d3ed31d9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-9">
@@ -2476,48 +2596,9 @@ plan</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"CREATE INDEX IF NOT EXISTS idx_fare ON trips(fare_amount)"</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-9">conn.execute("CREATE INDEX IF NOT EXISTS idx_fare ON trips(fare_amount)")</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;sqlite3.Cursor at 0x77022c9fc1c0&gt;</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1d699b79-8429-471c-a9ac-4c40d3ed31d9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-10">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT count(*) FROM trips WHERE ROUND(fare_amount) = 50"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-10">%timeit conn.execute("SELECT count(*) FROM trips WHERE ROUND(fare_amount) = 50").fetchall()</div>
+<div class="clipboard-copy-txt" id="cell-9">%timeit conn.execute("SELECT count(*) FROM trips WHERE ROUND(fare_amount) = 50").fetchall()</div>
 </div>
 </div>
 </div>
@@ -2529,7 +2610,7 @@ plan</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>142 ms ± 754 μs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<pre>297 ms ± 6 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre>
 </div>
 </div>
@@ -2542,10 +2623,10 @@ plan</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-11">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-10">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2559,7 +2640,7 @@ plan</div>
 
 <span class="n">plan</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-11">plan = conn.execute("EXPLAIN QUERY PLAN SELECT * FROM trips WHERE ROUND(fare_amount) &gt; 50").fetchall()
+<div class="clipboard-copy-txt" id="cell-10">plan = conn.execute("EXPLAIN QUERY PLAN SELECT * FROM trips WHERE ROUND(fare_amount) &gt; 50").fetchall()
 
 plan</div>
 </div>
@@ -2571,7 +2652,7 @@ plan</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>[(2, 0, 0, 'SCAN trips')]</pre>
 </div>
@@ -2585,10 +2666,10 @@ plan</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-12">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-11">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2600,7 +2681,7 @@ plan</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT count(*) FROM trips WHERE fare_amount &gt; 50"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-12">%timeit conn.execute("SELECT count(*) FROM trips WHERE fare_amount &gt; 50").fetchall()</div>
+<div class="clipboard-copy-txt" id="cell-11">%timeit conn.execute("SELECT count(*) FROM trips WHERE fare_amount &gt; 50").fetchall()</div>
 </div>
 </div>
 </div>
@@ -2612,7 +2693,7 @@ plan</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>1.77 ms ± 10.4 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<pre>4.7 ms ± 354 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre>
 </div>
 </div>
@@ -2625,10 +2706,10 @@ plan</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-13">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-12">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2642,7 +2723,7 @@ plan</div>
 
 <span class="n">plan</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-13">plan = conn.execute("EXPLAIN QUERY PLAN SELECT * FROM trips WHERE fare_amount &gt; 50").fetchall()
+<div class="clipboard-copy-txt" id="cell-12">plan = conn.execute("EXPLAIN QUERY PLAN SELECT * FROM trips WHERE fare_amount &gt; 50").fetchall()
 
 plan</div>
 </div>
@@ -2654,7 +2735,7 @@ plan</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>[(3, 0, 0, 'SEARCH trips USING INDEX idx_fare (fare_amount&gt;?)')]</pre>
 </div>
@@ -2679,10 +2760,10 @@ plan</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-14">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-13">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2697,7 +2778,7 @@ plan</div>
 
 <span class="n">zones</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'zones'</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">'replace'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-14">zones = df[['PULocationID']].drop_duplicates()
+<div class="clipboard-copy-txt" id="cell-13">zones = df[['PULocationID']].drop_duplicates()
 zones['zone_name'] = 'zone_' + zones['PULocationID'].astype(str)
 
 zones.to_sql('zones', conn, if_exists='replace', index=False)</div>
@@ -2710,7 +2791,7 @@ zones.to_sql('zones', conn, if_exists='replace', index=False)</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>261</pre>
 </div>
@@ -2724,10 +2805,10 @@ zones.to_sql('zones', conn, if_exists='replace', index=False)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-15">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-14">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2741,7 +2822,7 @@ zones.to_sql('zones', conn, if_exists='replace', index=False)</div>
 
 <span class="n">plan</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-15">plan = conn.execute("EXPLAIN QUERY PLAN SELECT t.passenger_count, z.zone_name FROM trips t JOIN zones z ON t.PULocationID = z.PULocationID").fetchall()
+<div class="clipboard-copy-txt" id="cell-14">plan = conn.execute("EXPLAIN QUERY PLAN SELECT t.passenger_count, z.zone_name FROM trips t JOIN zones z ON t.PULocationID = z.PULocationID").fetchall()
 
 plan</div>
 </div>
@@ -2753,7 +2834,7 @@ plan</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>[(3, 0, 0, 'SCAN t'),
  (7, 0, 0, 'BLOOM FILTER ON z (PULocationID=?)'),
@@ -2769,10 +2850,10 @@ plan</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-16">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-15">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2786,7 +2867,7 @@ plan</div>
 
 <span class="n">plan</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-16">plan = conn.execute("EXPLAIN QUERY PLAN SELECT t.passenger_count, z.zone_name FROM zones z JOIN  trips t ON z.PULocationID = t.PULocationID").fetchall()
+<div class="clipboard-copy-txt" id="cell-15">plan = conn.execute("EXPLAIN QUERY PLAN SELECT t.passenger_count, z.zone_name FROM zones z JOIN  trips t ON z.PULocationID = t.PULocationID").fetchall()
 
 plan</div>
 </div>
@@ -2798,7 +2879,7 @@ plan</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>[(3, 0, 0, 'SCAN z'),
  (7, 0, 0, 'BLOOM FILTER ON t (PULocationID=?)'),
@@ -2814,10 +2895,10 @@ plan</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-17">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-16">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2837,7 +2918,7 @@ plan</div>
 
 <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-17">query = '''
+<div class="clipboard-copy-txt" id="cell-16">query = '''
 SELECT t.passenger_count, z.zone_name
 FROM trips t
 JOIN zones z
@@ -2855,7 +2936,7 @@ pd.read_sql(query, conn)</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -2955,10 +3036,10 @@ pd.read_sql(query, conn)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-18">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-17">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2970,7 +3051,7 @@ pd.read_sql(query, conn)</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s1">'TaxiQueryDemo'</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-18">spark = SparkSession.builder.appName('TaxiQueryDemo').getOrCreate()</div>
+<div class="clipboard-copy-txt" id="cell-17">spark = SparkSession.builder.appName('TaxiQueryDemo').getOrCreate()</div>
 </div>
 </div>
 </div>
@@ -2984,12 +3065,13 @@ pd.read_sql(query, conn)</div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>WARNING: Using incubator modules: jdk.incubator.vector
 Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
-26/03/09 18:27:34 WARN Utils: Your hostname, gamekeepers, resolves to a loopback address: 127.0.0.1; using 10.200.32.251 instead (on interface wlp4s0)
-26/03/09 18:27:34 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+26/03/10 10:48:31 WARN Utils: Your hostname, gamekeepers, resolves to a loopback address: 127.0.0.1; using 10.200.2.125 instead (on interface wlp4s0)
+26/03/10 10:48:31 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
 Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
 Setting default log level to "WARN".
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-26/03/09 18:27:34 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/03/10 10:48:32 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/03/10 10:48:33 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
 </pre>
 </div>
 </div>
@@ -3013,10 +3095,10 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-19">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-18">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3026,11 +3108,11 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">spark_df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">spark_df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">spark_df</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-19">spark_df = spark.read.csv(DATA_PATH, header=True, inferSchema=True)
+<div class="clipboard-copy-txt" id="cell-18">spark_df = spark.read.parquet(DATA_PATH, header=True, inferSchema=True)
 
 spark_df.show(5)</div>
 </div>
@@ -3043,16 +3125,22 @@ spark_df.show(5)</div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>                                                                                </pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>+---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|PAR1*L   (�/� \fa        \a    ����|���\a       (\a         (�/��� �T\b��Wj48��h�t�!�#�4�0�K0\t�*X\b�!4 �5�(E�D������I���Y6���7\t&amp;4\4�4��eX\v�$�4�VH�Ӱ\b|�3�4Xu�gb蚪�uEߨ\�����&lt;���G'�lQ����3���+�ຊ� \v%��&amp;�P�g]�[}�׉x�\jÖ{��U�͍��x� �&lt;��[����.#ѭ�Cd�k�a�{d�Ұ\f��"V&amp;�*�~:ؒ&amp;�\vl�X�-}2�0\f)�0��a|��X�W���&gt;XDO7��u1\fR|9���E���aH%�p�sd&gt;�d�F�B건��\W�m�{�:�s\vLí�_o���a�i��/�� )��� �9W.��4:[n��|\fb��W��-�a�4�խ�2&lt;��V@��l�$&amp;q��9E��D��������9���\aV+(;�}GUc��An{���D.G\f�d�[�Yĉ�^�\v[z�T��/��&lt;!zm�0Jb�� ���&amp;p��&gt;vk�Y�堳\b���a���6lYy�1ז�ft�4�U��\flb����t��f�5|
-+---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|                               ���6\v[j���ceJ+...|                                                                                                                                                                                                                                                                                                   NULL|                                                                                                NULL|                                                                                                                                                                                   NULL|
-|                                         x��y�(\f��|                                                                                                                                                                                                                                                                                                   NULL|                                                                                                NULL|                                                                                                                                                                                   NULL|
-|                               _�0\t��@�n�/wع�...|                                                                                                                                                                                                                                                                                                   NULL|                                                                                                NULL|                                                                                                                                                                                   NULL|
-|                               +��Q᪃M��ކo��Ŏ��{�...|                                                                                                                                                                                                                                                                                                   NULL|                                                                                                NULL|                                                                                                                                                                                   NULL|
-|                                  ���I��"�Ll"Mb˽�|                                                                                                                                                                                                                                                                                   ��7B�$�c��C�&amp;��...|                                                                                                NULL|                                                                                                                                                                                   NULL|
-+---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+<pre>+--------+--------------------+---------------------+---------------+-------------+----------+------------------+------------+------------+------------+-----------+-----+-------+----------+------------+---------------------+------------+--------------------+-----------+------------------+
+|VendorID|tpep_pickup_datetime|tpep_dropoff_datetime|passenger_count|trip_distance|RatecodeID|store_and_fwd_flag|PULocationID|DOLocationID|payment_type|fare_amount|extra|mta_tax|tip_amount|tolls_amount|improvement_surcharge|total_amount|congestion_surcharge|Airport_fee|cbd_congestion_fee|
++--------+--------------------+---------------------+---------------+-------------+----------+------------------+------------+------------+------------+-----------+-----+-------+----------+------------+---------------------+------------+--------------------+-----------+------------------+
+|       1| 2025-01-01 00:18:38|  2025-01-01 00:26:59|              1|          1.6|         1|                 N|         229|         237|           1|       10.0|  3.5|    0.5|       3.0|         0.0|                  1.0|        18.0|                 2.5|        0.0|               0.0|
+|       1| 2025-01-01 00:32:40|  2025-01-01 00:35:13|              1|          0.5|         1|                 N|         236|         237|           1|        5.1|  3.5|    0.5|      2.02|         0.0|                  1.0|       12.12|                 2.5|        0.0|               0.0|
+|       1| 2025-01-01 00:44:04|  2025-01-01 00:46:01|              1|          0.6|         1|                 N|         141|         141|           1|        5.1|  3.5|    0.5|       2.0|         0.0|                  1.0|        12.1|                 2.5|        0.0|               0.0|
+|       2| 2025-01-01 00:14:27|  2025-01-01 00:20:01|              3|         0.52|         1|                 N|         244|         244|           2|        7.2|  1.0|    0.5|       0.0|         0.0|                  1.0|         9.7|                 0.0|        0.0|               0.0|
+|       2| 2025-01-01 00:21:34|  2025-01-01 00:25:06|              3|         0.66|         1|                 N|         244|         116|           2|        5.8|  1.0|    0.5|       0.0|         0.0|                  1.0|         8.3|                 0.0|        0.0|               0.0|
++--------+--------------------+---------------------+---------------+-------------+----------+------------------+------------+------------+------------+-----------+-----+-------+----------+------------+---------------------+------------+--------------------+-----------+------------------+
 only showing top 5 rows
 </pre>
 </div>
@@ -3077,10 +3165,10 @@ only showing top 5 rows
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-20">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-19">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3092,7 +3180,7 @@ only showing top 5 rows
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">spark_df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">'fare_amount &gt; 50'</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'fare_amount'</span><span class="p">,</span><span class="s1">'trip_distance'</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-20">spark_df.filter('fare_amount &gt; 50').select('fare_amount','trip_distance').show(10)</div>
+<div class="clipboard-copy-txt" id="cell-19">spark_df.filter('fare_amount &gt; 50').select('fare_amount','trip_distance').show(10)</div>
 </div>
 </div>
 </div>
@@ -3103,50 +3191,22 @@ only showing top 5 rows
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>{"ts": "2026-03-09 18:27:40.317", "level": "ERROR", "logger": "SQLQueryContextLogger", "msg": "[UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `fare_amount` cannot be resolved. Did you mean one of the following? [`PAR1\u0015\u0004\u0015\u0018\u0015*L\u0015\u0006\u0015\u0000\u0012\u0000\u0000(�/� \fa\u0000\u0000\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0007\u0000\u0000\u0000\u0015\u0000\u0015��\u001d\u0015��\u000f`, `�\u0012�X�W���&gt;XDO7��u1\u001d\fR|9���E��\u001d�aH%�p�sd&gt;�d�F\u0016�B건��\\\u001bW�m�{�:�s\u000b\u0001Lí�_o���a�i��/�� )��� �9W.��4:[n��`, `\fb�\u0018�\u0013W��-�a�4�խ�2\u000e&lt;��V@��l�$&amp;q��9E��D��������9���\u0007V+(\u0013;�}GUc��An{���D.G\u000e\f�d�[�\u0017Y\u0018ĉ�^�\u000b[z�T��/\u001f��&lt;!zm\u001a�0Jb\u0010�� ���&amp;p��&gt;\u001bv\u001ck�Y\u0018�堳\b��\u0011\u001a�a\u000f�\u001d��6lYy�\u00141ז�ft�4�U�\u0015\u001d�\f\u0002lb�\u0005\u001f��\u0010�t�\u0006�f�5`, `\u0015���\u0001\u0015\u0010\u0015\u0006\u0015\u0006\u001c\u0018\u0004\u0007\u0000\u0000\u0000\u0018\u0004\u0001\u0000\u0000\u0000\u0016\u0000(\u0004\u0007\u0000\u0000\u0000\u0018\u0004\u0001\u0000\u0000\u0000\u0000\u0000\u0000(�/���\u0003\u0000�T\b��Wj48��h�t�!�#\u000e�4�0�K0\t\u0002\u0005\u0001\u0014�*X\b�!4\u0000�5�(E�D�����\u000f�I���Y6���7\t&amp;4\\4�4��eX\u000b�$�4�VH�Ӱ\b|�3�4\u0019Xu�\u0010gb\u0015蚪�uEߨ\\�����&lt;�\u001c�\u0012�G'�\u0001lQ����3���+�ຊ� \u000b%��&amp;�\u0015P�g\u0011]�[}�׉x�\\jÖ\u0011{\u0016��U�͍��\u001ex� �&lt;��[�\u0014���.#\u0002ѭ�Cd�k�a\u0010�{d�Ұ\f��\"V&amp;\u0006�*�\u0017~:ؒ&amp;�\u000bl\u0012�X�-}2�0\f)\u0013�0�\u001d�a`]. SQLSTATE: 42703", "context": {"errorClass": "UNRESOLVED_COLUMN.WITH_SUGGESTION"}, "exception": {"class": "Py4JJavaError", "msg": "An error occurred while calling o33.filter.\n: org.apache.spark.sql.AnalysisException: [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `fare_amount` cannot be resolved. Did you mean one of the following? [`PAR1\u0015\u0004\u0015\u0018\u0015*L\u0015\u0006\u0015\u0000\u0012\u0000\u0000(�/� \fa\u0000\u0000\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0007\u0000\u0000\u0000\u0015\u0000\u0015��\u001d\u0015��\u000f`, `�\u0012�X�W���&gt;XDO7��u1\u001d\fR|9���E��\u001d�aH%�p�sd&gt;�d�F\u0016�B건��\\\u001bW�m�{�:�s\u000b\u0001Lí�_o���a�i��/�� )��� �9W.��4:[n��`, `\fb�\u0018�\u0013W��-�a�4�խ�2\u000e&lt;��V@��l�$&amp;q��9E��D��������9���\u0007V+(\u0013;�}GUc��An{���D.G\u000e\f�d�[�\u0017Y\u0018ĉ�^�\u000b[z�T��/\u001f��&lt;!zm\u001a�0Jb\u0010�� ���&amp;p��&gt;\u001bv\u001ck�Y\u0018�堳\b��\u0011\u001a�a\u000f�\u001d��6lYy�\u00141ז�ft�4�U�\u0015\u001d�\f\u0002lb�\u0005\u001f��\u0010�t�\u0006�f�5`, `\u0015���\u0001\u0015\u0010\u0015\u0006\u0015\u0006\u001c\u0018\u0004\u0007\u0000\u0000\u0000\u0018\u0004\u0001\u0000\u0000\u0000\u0016\u0000(\u0004\u0007\u0000\u0000\u0000\u0018\u0004\u0001\u0000\u0000\u0000\u0000\u0000\u0000(�/���\u0003\u0000�T\b��Wj48��h�t�!�#\u000e�4�0�K0\t\u0002\u0005\u0001\u0014�*X\b�!4\u0000�5�(E�D�����\u000f�I���Y6���7\t&amp;4\\4�4��eX\u000b�$�4�VH�Ӱ\b|�3�4\u0019Xu�\u0010gb\u0015蚪�uEߨ\\�����&lt;�\u001c�\u0012�G'�\u0001lQ����3���+�ຊ� \u000b%��&amp;�\u0015P�g\u0011]�[}�׉x�\\jÖ\u0011{\u0016��U�͍��\u001ex� �&lt;��[�\u0014���.#\u0002ѭ�Cd�k�a\u0010�{d�Ұ\f��\"V&amp;\u0006�*�\u0017~:ؒ&amp;�\u000bl\u0012�X�-}2�0\f)\u0013�0�\u001d�a`]. SQLSTATE: 42703; line 1 pos 0;\n'Filter ('fare_amount &gt; 50)\n+- Relation [PAR1\u0015\u0004\u0015\u0018\u0015*L\u0015\u0006\u0015\u0000\u0012\u0000\u0000(�/� \fa\u0000\u0000\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0007\u0000\u0000\u0000\u0015\u0000\u0015��\u001d\u0015��\u000f#17,\u0015���\u0001\u0015\u0010\u0015\u0006\u0015\u0006\u001c\u0018\u0004\u0007\u0000\u0000\u0000\u0018\u0004\u0001\u0000\u0000\u0000\u0016\u0000(\u0004\u0007\u0000\u0000\u0000\u0018\u0004\u0001\u0000\u0000\u0000\u0000\u0000\u0000(�/���\u0003\u0000�T\b��Wj48��h�t�!�#\u000e�4�0�K0\t\u0002\u0005\u0001\u0014�*X\b�!4\u0000�5�(E�D�����\u000f�I���Y6���7\t&amp;4\\4�4��eX\u000b�$�4�VH�Ӱ\b|�3�4\u0019Xu�\u0010gb\u0015蚪�uEߨ\\�����&lt;�\u001c�\u0012�G'�\u0001lQ����3���+�ຊ� \u000b%��&amp;�\u0015P�g\u0011]�[}�׉x�\\jÖ\u0011{\u0016��U�͍��\u001ex� �&lt;��[�\u0014���.#\u0002ѭ�Cd�k�a\u0010�{d�Ұ\f��\"V&amp;\u0006�*�\u0017~:ؒ&amp;�\u000bl\u0012�X�-}2�0\f)\u0013�0�\u001d�a#18,�\u0012�X�W���&gt;XDO7��u1\u001d\fR|9���E��\u001d�aH%�p�sd&gt;�d�F\u0016�B건��\\\u001bW�m�{�:�s\u000b\u0001Lí�_o���a�i��/�� )��� �9W.��4:[n��#19,\fb�\u0018�\u0013W��-�a�4�խ�2\u000e&lt;��V@��l�$&amp;q��9E��D��������9���\u0007V+(\u0013;�}GUc��An{���D.G\u000e\f�d�[�\u0017Y\u0018ĉ�^�\u000b[z�T��/\u001f��&lt;!zm\u001a�0Jb\u0010�� ���&amp;p��&gt;\u001bv\u001ck�Y\u0018�堳\b��\u0011\u001a�a\u000f�\u001d��6lYy�\u00141ז�ft�4�U�\u0015\u001d�\f\u0002lb�\u0005\u001f��\u0010�t�\u0006�f�5#20] csv\n\n\tat org.apache.spark.sql.errors.QueryCompilationErrors$.unresolvedAttributeError(QueryCompilationErrors.scala:430)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.org$apache$spark$sql$catalyst$analysis$CheckAnalysis$$failUnresolvedAttribute(CheckAnalysis.scala:166)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$7(CheckAnalysis.scala:406)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$7$adapted(CheckAnalysis.scala:404)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:273)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$foreachUp$1(TreeNode.scala:272)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$foreachUp$1$adapted(TreeNode.scala:272)\n\tat scala.collection.immutable.Vector.foreach(Vector.scala:2125)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:272)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$6(CheckAnalysis.scala:404)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$6$adapted(CheckAnalysis.scala:404)\n\tat scala.collection.immutable.List.foreach(List.scala:323)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$2(CheckAnalysis.scala:404)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$2$adapted(CheckAnalysis.scala:281)\n\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:273)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.checkAnalysis0(CheckAnalysis.scala:281)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.checkAnalysis0$(CheckAnalysis.scala:252)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.checkAnalysis0(Analyzer.scala:289)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.checkAnalysis(CheckAnalysis.scala:241)\n\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.checkAnalysis$(CheckAnalysis.scala:228)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.checkAnalysis(Analyzer.scala:289)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.$anonfun$resolveInFixedPoint$1(HybridAnalyzer.scala:238)\n\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)\n\tat org.apache.spark.sql.catalyst.QueryPlanningTracker$.withTracker(QueryPlanningTracker.scala:89)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.resolveInFixedPoint(HybridAnalyzer.scala:238)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.$anonfun$apply$1(HybridAnalyzer.scala:91)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.withTrackedAnalyzerBridgeState(HybridAnalyzer.scala:122)\n\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.apply(HybridAnalyzer.scala:84)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.$anonfun$executeAndCheck$1(Analyzer.scala:322)\n\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper$.markInAnalyzer(AnalysisHelper.scala:423)\n\tat org.apache.spark.sql.catalyst.analysis.Analyzer.executeAndCheck(Analyzer.scala:322)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$lazyAnalyzed$2(QueryExecution.scala:139)\n\tat org.apache.spark.sql.catalyst.QueryPlanningTracker.measurePhase(QueryPlanningTracker.scala:148)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$executePhase$2(QueryExecution.scala:330)\n\tat org.apache.spark.sql.execution.QueryExecution$.withInternalError(QueryExecution.scala:717)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$executePhase$1(QueryExecution.scala:330)\n\tat org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:804)\n\tat org.apache.spark.sql.execution.QueryExecution.executePhase(QueryExecution.scala:329)\n\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$lazyAnalyzed$1(QueryExecution.scala:139)\n\tat scala.util.Try$.apply(Try.scala:217)\n\tat org.apache.spark.util.Utils$.doTryWithCallerStacktrace(Utils.scala:1392)\n\tat org.apache.spark.util.Utils$.getTryWithCallerStacktrace(Utils.scala:1453)\n\tat org.apache.spark.util.LazyTry.get(LazyTry.scala:58)\n\tat org.apache.spark.sql.execution.QueryExecution.analyzed(QueryExecution.scala:150)\n\tat org.apache.spark.sql.execution.QueryExecution.assertAnalyzed(QueryExecution.scala:90)\n\tat org.apache.spark.sql.classic.Dataset.&lt;init&gt;(Dataset.scala:249)\n\tat org.apache.spark.sql.classic.Dataset.&lt;init&gt;(Dataset.scala:261)\n\tat org.apache.spark.sql.classic.Dataset$.apply(Dataset.scala:98)\n\tat org.apache.spark.sql.classic.Dataset.withSameTypedPlan(Dataset.scala:2316)\n\tat org.apache.spark.sql.classic.Dataset.filter(Dataset.scala:946)\n\tat org.apache.spark.sql.classic.Dataset.filter(Dataset.scala:231)\n\tat org.apache.spark.sql.Dataset.filter(Dataset.scala:1232)\n\tat org.apache.spark.sql.classic.Dataset.filter(Dataset.scala:1928)\n\tat org.apache.spark.sql.classic.Dataset.filter(Dataset.scala:231)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:75)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:52)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)\n\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)\n\tat py4j.Gateway.invoke(Gateway.java:282)\n\tat py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)\n\tat py4j.commands.CallCommand.execute(CallCommand.java:79)\n\tat py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:184)\n\tat py4j.ClientServerConnection.run(ClientServerConnection.java:108)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)\n\tSuppressed: org.apache.spark.util.Utils$OriginalTryStackTraceException: Full stacktrace of original doTryWithCallerStacktrace caller\n\t\tat org.apache.spark.sql.errors.QueryCompilationErrors$.unresolvedAttributeError(QueryCompilationErrors.scala:430)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.org$apache$spark$sql$catalyst$analysis$CheckAnalysis$$failUnresolvedAttribute(CheckAnalysis.scala:166)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$7(CheckAnalysis.scala:406)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$7$adapted(CheckAnalysis.scala:404)\n\t\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:273)\n\t\tat org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$foreachUp$1(TreeNode.scala:272)\n\t\tat org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$foreachUp$1$adapted(TreeNode.scala:272)\n\t\tat scala.collection.immutable.Vector.foreach(Vector.scala:2125)\n\t\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:272)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$6(CheckAnalysis.scala:404)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$6$adapted(CheckAnalysis.scala:404)\n\t\tat scala.collection.immutable.List.foreach(List.scala:323)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$2(CheckAnalysis.scala:404)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.$anonfun$checkAnalysis0$2$adapted(CheckAnalysis.scala:281)\n\t\tat org.apache.spark.sql.catalyst.trees.TreeNode.foreachUp(TreeNode.scala:273)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.checkAnalysis0(CheckAnalysis.scala:281)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.checkAnalysis0$(CheckAnalysis.scala:252)\n\t\tat org.apache.spark.sql.catalyst.analysis.Analyzer.checkAnalysis0(Analyzer.scala:289)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.checkAnalysis(CheckAnalysis.scala:241)\n\t\tat org.apache.spark.sql.catalyst.analysis.CheckAnalysis.checkAnalysis$(CheckAnalysis.scala:228)\n\t\tat org.apache.spark.sql.catalyst.analysis.Analyzer.checkAnalysis(Analyzer.scala:289)\n\t\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.$anonfun$resolveInFixedPoint$1(HybridAnalyzer.scala:238)\n\t\tat scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)\n\t\tat org.apache.spark.sql.catalyst.QueryPlanningTracker$.withTracker(QueryPlanningTracker.scala:89)\n\t\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.resolveInFixedPoint(HybridAnalyzer.scala:238)\n\t\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.$anonfun$apply$1(HybridAnalyzer.scala:91)\n\t\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.withTrackedAnalyzerBridgeState(HybridAnalyzer.scala:122)\n\t\tat org.apache.spark.sql.catalyst.analysis.resolver.HybridAnalyzer.apply(HybridAnalyzer.scala:84)\n\t\tat org.apache.spark.sql.catalyst.analysis.Analyzer.$anonfun$executeAndCheck$1(Analyzer.scala:322)\n\t\tat org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper$.markInAnalyzer(AnalysisHelper.scala:423)\n\t\tat org.apache.spark.sql.catalyst.analysis.Analyzer.executeAndCheck(Analyzer.scala:322)\n\t\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$lazyAnalyzed$2(QueryExecution.scala:139)\n\t\tat org.apache.spark.sql.catalyst.QueryPlanningTracker.measurePhase(QueryPlanningTracker.scala:148)\n\t\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$executePhase$2(QueryExecution.scala:330)\n\t\tat org.apache.spark.sql.execution.QueryExecution$.withInternalError(QueryExecution.scala:717)\n\t\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$executePhase$1(QueryExecution.scala:330)\n\t\tat org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:804)\n\t\tat org.apache.spark.sql.execution.QueryExecution.executePhase(QueryExecution.scala:329)\n\t\tat org.apache.spark.sql.execution.QueryExecution.$anonfun$lazyAnalyzed$1(QueryExecution.scala:139)\n\t\tat scala.util.Try$.apply(Try.scala:217)\n\t\tat org.apache.spark.util.Utils$.doTryWithCallerStacktrace(Utils.scala:1392)\n\t\tat org.apache.spark.util.LazyTry.tryT$lzycompute(LazyTry.scala:46)\n\t\tat org.apache.spark.util.LazyTry.tryT(LazyTry.scala:46)\n\t\t... 24 more\n", "stacktrace": [{"class": null, "method": "deco", "file": "/home/ankush/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", "line": "263"}, {"class": null, "method": "get_return_value", "file": "/home/ankush/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/py4j/protocol.py", "line": "327"}]}}
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AnalysisException</span>                         Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[18]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-bg">spark_df</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">filter</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-fg ansi-yellow-bg">'</span><span class="ansi-yellow-fg ansi-yellow-bg">fare_amount &gt; 50</span><span class="ansi-yellow-fg ansi-yellow-bg">'</span><span class="ansi-yellow-bg">)</span>.select(<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">fare_amount</span><span class="ansi-yellow-fg">'</span>,<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">trip_distance</span><span class="ansi-yellow-fg">'</span>).show(<span class="ansi-green-fg">10</span>)
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/pyspark/sql/classic/dataframe.py:1034</span>, in <span class="ansi-cyan-fg">DataFrame.filter</span><span class="ansi-blue-fg">(self, condition)</span>
-<span class="ansi-green-fg">   1032</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">filter</span>(<span style="color: rgb(0,135,0)">self</span>, condition: Union[Column, <span style="color: rgb(0,135,0)">str</span>]) -&gt; ParentDataFrame:
-<span class="ansi-green-fg">   1033</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">isinstance</span>(condition, <span style="color: rgb(0,135,0)">str</span>):
-<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1034</span>         jdf = <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_jdf</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">filter</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">condition</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg">   1035</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">elif</span> <span style="color: rgb(0,135,0)">isinstance</span>(condition, Column):
-<span class="ansi-green-fg">   1036</span>         jdf = <span style="color: rgb(0,135,0)">self</span>._jdf.filter(condition._jc)
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/py4j/java_gateway.py:1362</span>, in <span class="ansi-cyan-fg">JavaMember.__call__</span><span class="ansi-blue-fg">(self, *args)</span>
-<span class="ansi-green-fg">   1356</span> command = proto.CALL_COMMAND_NAME +\
-<span class="ansi-green-fg">   1357</span>     <span style="color: rgb(0,135,0)">self</span>.command_header +\
-<span class="ansi-green-fg">   1358</span>     args_command +\
-<span class="ansi-green-fg">   1359</span>     proto.END_COMMAND_PART
-<span class="ansi-green-fg">   1361</span> answer = <span style="color: rgb(0,135,0)">self</span>.gateway_client.send_command(command)
-<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1362</span> return_value = <span class="ansi-yellow-bg">get_return_value</span><span class="ansi-yellow-bg">(</span>
-<span class="ansi-green-fg">   1363</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">answer</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">gateway_client</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">target_id</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">name</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg">   1365</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> temp_arg <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> temp_args:
-<span class="ansi-green-fg">   1366</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">hasattr</span>(temp_arg, <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">_detach</span><span class="ansi-yellow-fg">"</span>):
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py:269</span>, in <span class="ansi-cyan-fg">capture_sql_exception.&lt;locals&gt;.deco</span><span class="ansi-blue-fg">(*a, **kw)</span>
-<span class="ansi-green-fg">    265</span> converted = convert_exception(e.java_exception)
-<span class="ansi-green-fg">    266</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">isinstance</span>(converted, UnknownException):
-<span class="ansi-green-fg">    267</span>     <span style="color: rgb(95,135,135)"># Hide where the exception came from that shows a non-Pythonic</span>
-<span class="ansi-green-fg">    268</span>     <span style="color: rgb(95,135,135)"># JVM exception message.</span>
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">269</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> converted <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
-<span class="ansi-green-fg">    270</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
-<span class="ansi-green-fg">    271</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
-
-<span class="ansi-red-fg">AnalysisException</span>: [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `fare_amount` cannot be resolved. Did you mean one of the following? [`PAR1*L   (�/� a            ����`, `��X�W���&gt;XDO7��u1R|9���E���aH%�p�sd&gt;�d�F�B건��\W�m�{�:�sLí�_o���a�i��/�� )��� �9W.��4:[n��`, `b��W��-�a�4�խ�2&lt;��V@��l�$&amp;q��9E��D��������9���V+(;�}GUc��An{���D.G�d�[�Yĉ�^�[z�T��/��&lt;!zm�0Jb�� ���&amp;p��&gt;vk�Y�堳���a���6lYy�1ז�ft�4�U��lb����t��f�5`, `���       (         (�/��� �T��Wj48��h�t�!�#�4�0�K0	�*X�!4 �5�(E�D������I���Y6���7	&amp;4\4�4��eX�$�4�VH�Ӱ|�3�4Xu�gb蚪�uEߨ\�����&lt;���G'�lQ����3���+�ຊ� %��&amp;�P�g]�[}�׉x�\jÖ{��U�͍��x� �&lt;��[����.#ѭ�Cd�k�a�{d�Ұ��"V&amp;�*�~:ؒ&amp;�l�X�-}2�0)�0��a`]. SQLSTATE: 42703; line 1 pos 0;
-'Filter ('fare_amount &gt; 50)
-+- Relation [PAR1*L   (�/� a            ����#17,���       (         (�/��� �T��Wj48��h�t�!�#�4�0�K0	�*X�!4 �5�(E�D������I���Y6���7	&amp;4\4�4��eX�$�4�VH�Ӱ|�3�4Xu�gb蚪�uEߨ\�����&lt;���G'�lQ����3���+�ຊ� %��&amp;�P�g]�[}�׉x�\jÖ{��U�͍��x� �&lt;��[����.#ѭ�Cd�k�a�{d�Ұ��"V&amp;�*�~:ؒ&amp;�l�X�-}2�0)�0��a#18,��X�W���&gt;XDO7��u1R|9���E���aH%�p�sd&gt;�d�F�B건��\W�m�{�:�sLí�_o���a�i��/�� )��� �9W.��4:[n��#19,b��W��-�a�4�խ�2&lt;��V@��l�$&amp;q��9E��D��������9���V+(;�}GUc��An{���D.G�d�[�Yĉ�^�[z�T��/��&lt;!zm�0Jb�� ���&amp;p��&gt;vk�Y�堳���a���6lYy�1ז�ft�4�U��lb����t��f�5#20] csv
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>+-----------+-------------+
+|fare_amount|trip_distance|
++-----------+-------------+
+|       56.9|        10.42|
+|       59.0|        14.84|
+|       90.0|        31.97|
+|       80.0|        11.81|
+|       52.0|          6.4|
+|       59.7|        15.18|
+|       68.8|        18.57|
+|       80.7|         22.0|
+|       60.0|         5.69|
+|       70.0|        16.43|
++-----------+-------------+
+only showing top 10 rows
 </pre>
 </div>
 </div>
@@ -3164,16 +3224,16 @@ only showing top 5 rows
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20ada4c9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20ada4c9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-21">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-20">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3185,7 +3245,37 @@ only showing top 5 rows
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">spark_df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">'fare_amount &gt; 50'</span><span class="p">)</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-21">spark_df.filter('fare_amount &gt; 50').explain(True)</div>
+<div class="clipboard-copy-txt" id="cell-20">spark_df.filter('fare_amount &gt; 50').explain(True)</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>== Parsed Logical Plan ==
+'Filter ('fare_amount &gt; 50)
++- Relation [VendorID#0,tpep_pickup_datetime#1,tpep_dropoff_datetime#2,passenger_count#3L,trip_distance#4,RatecodeID#5L,store_and_fwd_flag#6,PULocationID#7,DOLocationID#8,payment_type#9L,fare_amount#10,extra#11,mta_tax#12,tip_amount#13,tolls_amount#14,improvement_surcharge#15,total_amount#16,congestion_surcharge#17,Airport_fee#18,cbd_congestion_fee#19] parquet
+
+== Analyzed Logical Plan ==
+VendorID: int, tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz, passenger_count: bigint, trip_distance: double, RatecodeID: bigint, store_and_fwd_flag: string, PULocationID: int, DOLocationID: int, payment_type: bigint, fare_amount: double, extra: double, mta_tax: double, tip_amount: double, tolls_amount: double, improvement_surcharge: double, total_amount: double, congestion_surcharge: double, Airport_fee: double, cbd_congestion_fee: double
+Filter (fare_amount#10 &gt; cast(50 as double))
++- Relation [VendorID#0,tpep_pickup_datetime#1,tpep_dropoff_datetime#2,passenger_count#3L,trip_distance#4,RatecodeID#5L,store_and_fwd_flag#6,PULocationID#7,DOLocationID#8,payment_type#9L,fare_amount#10,extra#11,mta_tax#12,tip_amount#13,tolls_amount#14,improvement_surcharge#15,total_amount#16,congestion_surcharge#17,Airport_fee#18,cbd_congestion_fee#19] parquet
+
+== Optimized Logical Plan ==
+Filter (isnotnull(fare_amount#10) AND (fare_amount#10 &gt; 50.0))
++- Relation [VendorID#0,tpep_pickup_datetime#1,tpep_dropoff_datetime#2,passenger_count#3L,trip_distance#4,RatecodeID#5L,store_and_fwd_flag#6,PULocationID#7,DOLocationID#8,payment_type#9L,fare_amount#10,extra#11,mta_tax#12,tip_amount#13,tolls_amount#14,improvement_surcharge#15,total_amount#16,congestion_surcharge#17,Airport_fee#18,cbd_congestion_fee#19] parquet
+
+== Physical Plan ==
+*(1) Filter (isnotnull(fare_amount#10) AND (fare_amount#10 &gt; 50.0))
++- *(1) ColumnarToRow
+   +- FileScan parquet [VendorID#0,tpep_pickup_datetime#1,tpep_dropoff_datetime#2,passenger_count#3L,trip_distance#4,RatecodeID#5L,store_and_fwd_flag#6,PULocationID#7,DOLocationID#8,payment_type#9L,fare_amount#10,extra#11,mta_tax#12,tip_amount#13,tolls_amount#14,improvement_surcharge#15,total_amount#16,congestion_surcharge#17,Airport_fee#18,cbd_congestion_fee#19] Batched: true, DataFilters: [isnotnull(fare_amount#10), (fare_amount#10 &gt; 50.0)], Format: Parquet, Location: InMemoryFileIndex(1 paths)[file:/home/ankush/workplace/da_colab/DS614/docs/notebooks/taxi_data/ye..., PartitionFilters: [], PushedFilters: [IsNotNull(fare_amount), GreaterThan(fare_amount,50.0)], ReadSchema: struct&lt;VendorID:int,tpep_pickup_datetime:timestamp_ntz,tpep_dropoff_datetime:timestamp_ntz,passen...
+
+</pre>
 </div>
 </div>
 </div>
@@ -3202,16 +3292,16 @@ only showing top 5 rows
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2441e541">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2441e541">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-22">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-21">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3223,7 +3313,36 @@ only showing top 5 rows
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">spark_df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">'fare_amount'</span><span class="p">)</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-22">spark_df.select('fare_amount').explain(True)</div>
+<div class="clipboard-copy-txt" id="cell-21">spark_df.select('fare_amount').explain(True)</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>== Parsed Logical Plan ==
+'Project ['fare_amount]
++- Relation [VendorID#0,tpep_pickup_datetime#1,tpep_dropoff_datetime#2,passenger_count#3L,trip_distance#4,RatecodeID#5L,store_and_fwd_flag#6,PULocationID#7,DOLocationID#8,payment_type#9L,fare_amount#10,extra#11,mta_tax#12,tip_amount#13,tolls_amount#14,improvement_surcharge#15,total_amount#16,congestion_surcharge#17,Airport_fee#18,cbd_congestion_fee#19] parquet
+
+== Analyzed Logical Plan ==
+fare_amount: double
+Project [fare_amount#10]
++- Relation [VendorID#0,tpep_pickup_datetime#1,tpep_dropoff_datetime#2,passenger_count#3L,trip_distance#4,RatecodeID#5L,store_and_fwd_flag#6,PULocationID#7,DOLocationID#8,payment_type#9L,fare_amount#10,extra#11,mta_tax#12,tip_amount#13,tolls_amount#14,improvement_surcharge#15,total_amount#16,congestion_surcharge#17,Airport_fee#18,cbd_congestion_fee#19] parquet
+
+== Optimized Logical Plan ==
+Project [fare_amount#10]
++- Relation [VendorID#0,tpep_pickup_datetime#1,tpep_dropoff_datetime#2,passenger_count#3L,trip_distance#4,RatecodeID#5L,store_and_fwd_flag#6,PULocationID#7,DOLocationID#8,payment_type#9L,fare_amount#10,extra#11,mta_tax#12,tip_amount#13,tolls_amount#14,improvement_surcharge#15,total_amount#16,congestion_surcharge#17,Airport_fee#18,cbd_congestion_fee#19] parquet
+
+== Physical Plan ==
+*(1) ColumnarToRow
++- FileScan parquet [fare_amount#10] Batched: true, DataFilters: [], Format: Parquet, Location: InMemoryFileIndex(1 paths)[file:/home/ankush/workplace/da_colab/DS614/docs/notebooks/taxi_data/ye..., PartitionFilters: [], PushedFilters: [], ReadSchema: struct&lt;fare_amount:double&gt;
+
+</pre>
 </div>
 </div>
 </div>
@@ -3240,16 +3359,16 @@ only showing top 5 rows
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ecd4a7cc">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ecd4a7cc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-23">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-22">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3265,7 +3384,7 @@ only showing top 5 rows
 
 <span class="n">joined</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-23">zones_spark = spark.createDataFrame(zones)
+<div class="clipboard-copy-txt" id="cell-22">zones_spark = spark.createDataFrame(zones)
 
 joined = spark_df.join(zones_spark, 'PULocationID')
 
@@ -3274,17 +3393,51 @@ joined.show(5)</div>
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a69e2b9e">
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>[Stage 6:=============================================&gt;           (12 + 3) / 15]</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>+------------+--------+--------------------+---------------------+---------------+-------------+----------+------------------+------------+------------+-----------+-----+-------+----------+------------+---------------------+------------+--------------------+-----------+------------------+---------+
+|PULocationID|VendorID|tpep_pickup_datetime|tpep_dropoff_datetime|passenger_count|trip_distance|RatecodeID|store_and_fwd_flag|DOLocationID|payment_type|fare_amount|extra|mta_tax|tip_amount|tolls_amount|improvement_surcharge|total_amount|congestion_surcharge|Airport_fee|cbd_congestion_fee|zone_name|
++------------+--------+--------------------+---------------------+---------------+-------------+----------+------------------+------------+------------+-----------+-----+-------+----------+------------+---------------------+------------+--------------------+-----------+------------------+---------+
+|          26|       1| 2025-01-01 00:48:26|  2025-01-01 00:58:26|              1|          1.9|         1|                 N|          21|           3|       10.7|  1.0|    0.5|       0.0|         0.0|                  1.0|        13.2|                 0.0|        0.0|               0.0|  zone_26|
+|          26|       2| 2025-01-01 06:15:05|  2025-01-01 06:15:35|              4|          0.0|         1|                 N|          26|           1|        3.0|  1.0|    0.5|      60.0|         0.0|                  1.0|        65.5|                 0.0|        0.0|               0.0|  zone_26|
+|          26|       2| 2025-01-01 06:13:44|  2025-01-01 06:14:00|              2|          0.0|         5|                 N|          89|           1|       65.0|  0.0|    0.0|       0.0|         0.0|                  1.0|        66.0|                 0.0|        0.0|               0.0|  zone_26|
+|          26|       2| 2025-01-02 02:03:43|  2025-01-02 02:03:52|              1|         0.05|         2|                 N|          26|           2|       70.0|  0.0|    0.5|       0.0|         0.0|                  1.0|        71.5|                 0.0|        0.0|               0.0|  zone_26|
+|          26|       1| 2025-01-02 05:27:14|  2025-01-02 05:57:55|              1|         11.2|        99|                 N|         161|           1|       42.5|  0.0|    0.5|       0.0|         0.0|                  0.0|        43.0|                 0.0|        0.0|               0.0|  zone_26|
++------------+--------+--------------------+---------------------+---------------+-------------+----------+------------------+------------+------------+-----------+-----+-------+----------+------------+---------------------+------------+--------------------+-----------+------------------+---------+
+only showing top 5 rows
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>                                                                                </pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a69e2b9e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-24">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-23">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3296,9 +3449,90 @@ joined.show(5)</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">joined</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-24">joined.explain(True)</div>
+<div class="clipboard-copy-txt" id="cell-23">joined.explain(True)</div>
 </div>
 </div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>== Parsed Logical Plan ==
+'Join UsingJoin(Inner, [PULocationID])
+:- Relation [VendorID#0,tpep_pickup_datetime#1,tpep_dropoff_datetime#2,passenger_count#3L,trip_distance#4,RatecodeID#5L,store_and_fwd_flag#6,PULocationID#7,DOLocationID#8,payment_type#9L,fare_amount#10,extra#11,mta_tax#12,tip_amount#13,tolls_amount#14,improvement_surcharge#15,total_amount#16,congestion_surcharge#17,Airport_fee#18,cbd_congestion_fee#19] parquet
++- LogicalRDD [PULocationID#89L, zone_name#90], false
+
+== Analyzed Logical Plan ==
+PULocationID: int, VendorID: int, tpep_pickup_datetime: timestamp_ntz, tpep_dropoff_datetime: timestamp_ntz, passenger_count: bigint, trip_distance: double, RatecodeID: bigint, store_and_fwd_flag: string, DOLocationID: int, payment_type: bigint, fare_amount: double, extra: double, mta_tax: double, tip_amount: double, tolls_amount: double, improvement_surcharge: double, total_amount: double, congestion_surcharge: double, Airport_fee: double, cbd_congestion_fee: double, zone_name: string
+Project [PULocationID#7, VendorID#0, tpep_pickup_datetime#1, tpep_dropoff_datetime#2, passenger_count#3L, trip_distance#4, RatecodeID#5L, store_and_fwd_flag#6, DOLocationID#8, payment_type#9L, fare_amount#10, extra#11, mta_tax#12, tip_amount#13, tolls_amount#14, improvement_surcharge#15, total_amount#16, congestion_surcharge#17, Airport_fee#18, cbd_congestion_fee#19, zone_name#90]
++- Join Inner, (cast(PULocationID#7 as bigint) = PULocationID#89L)
+   :- Relation [VendorID#0,tpep_pickup_datetime#1,tpep_dropoff_datetime#2,passenger_count#3L,trip_distance#4,RatecodeID#5L,store_and_fwd_flag#6,PULocationID#7,DOLocationID#8,payment_type#9L,fare_amount#10,extra#11,mta_tax#12,tip_amount#13,tolls_amount#14,improvement_surcharge#15,total_amount#16,congestion_surcharge#17,Airport_fee#18,cbd_congestion_fee#19] parquet
+   +- LogicalRDD [PULocationID#89L, zone_name#90], false
+
+== Optimized Logical Plan ==
+Project [PULocationID#7, VendorID#0, tpep_pickup_datetime#1, tpep_dropoff_datetime#2, passenger_count#3L, trip_distance#4, RatecodeID#5L, store_and_fwd_flag#6, DOLocationID#8, payment_type#9L, fare_amount#10, extra#11, mta_tax#12, tip_amount#13, tolls_amount#14, improvement_surcharge#15, total_amount#16, congestion_surcharge#17, Airport_fee#18, cbd_congestion_fee#19, zone_name#90]
++- Join Inner, (cast(PULocationID#7 as bigint) = PULocationID#89L)
+   :- Filter isnotnull(PULocationID#7)
+   :  +- Relation [VendorID#0,tpep_pickup_datetime#1,tpep_dropoff_datetime#2,passenger_count#3L,trip_distance#4,RatecodeID#5L,store_and_fwd_flag#6,PULocationID#7,DOLocationID#8,payment_type#9L,fare_amount#10,extra#11,mta_tax#12,tip_amount#13,tolls_amount#14,improvement_surcharge#15,total_amount#16,congestion_surcharge#17,Airport_fee#18,cbd_congestion_fee#19] parquet
+   +- Filter isnotnull(PULocationID#89L)
+      +- LogicalRDD [PULocationID#89L, zone_name#90], false
+
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=false
++- Project [PULocationID#7, VendorID#0, tpep_pickup_datetime#1, tpep_dropoff_datetime#2, passenger_count#3L, trip_distance#4, RatecodeID#5L, store_and_fwd_flag#6, DOLocationID#8, payment_type#9L, fare_amount#10, extra#11, mta_tax#12, tip_amount#13, tolls_amount#14, improvement_surcharge#15, total_amount#16, congestion_surcharge#17, Airport_fee#18, cbd_congestion_fee#19, zone_name#90]
+   +- SortMergeJoin [cast(PULocationID#7 as bigint)], [PULocationID#89L], Inner
+      :- Sort [cast(PULocationID#7 as bigint) ASC NULLS FIRST], false, 0
+      :  +- Exchange hashpartitioning(cast(PULocationID#7 as bigint), 200), ENSURE_REQUIREMENTS, [plan_id=221]
+      :     +- Filter isnotnull(PULocationID#7)
+      :        +- FileScan parquet [VendorID#0,tpep_pickup_datetime#1,tpep_dropoff_datetime#2,passenger_count#3L,trip_distance#4,RatecodeID#5L,store_and_fwd_flag#6,PULocationID#7,DOLocationID#8,payment_type#9L,fare_amount#10,extra#11,mta_tax#12,tip_amount#13,tolls_amount#14,improvement_surcharge#15,total_amount#16,congestion_surcharge#17,Airport_fee#18,cbd_congestion_fee#19] Batched: true, DataFilters: [isnotnull(PULocationID#7)], Format: Parquet, Location: InMemoryFileIndex(1 paths)[file:/home/ankush/workplace/da_colab/DS614/docs/notebooks/taxi_data/ye..., PartitionFilters: [], PushedFilters: [IsNotNull(PULocationID)], ReadSchema: struct&lt;VendorID:int,tpep_pickup_datetime:timestamp_ntz,tpep_dropoff_datetime:timestamp_ntz,passen...
+      +- Sort [PULocationID#89L ASC NULLS FIRST], false, 0
+         +- Exchange hashpartitioning(PULocationID#89L, 200), ENSURE_REQUIREMENTS, [plan_id=222]
+            +- Filter isnotnull(PULocationID#89L)
+               +- Scan ExistingRDD[PULocationID#89L,zone_name#90]
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=de6576ee-ace7-4223-9775-04faa45c1172">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<table>
+<thead>
+<tr>
+<th>Plan Level</th>
+<th>Question Answered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Parsed Logical Plan</td>
+<td>What did the user ask?</td>
+</tr>
+<tr>
+<td>Analyzed Logical Plan</td>
+<td>Do the columns/types exist?</td>
+</tr>
+<tr>
+<td>Optimized Logical Plan</td>
+<td>How can the query be simplified?</td>
+</tr>
+<tr>
+<td>Physical Plan</td>
+<td>How will Spark actually run it on the cluster?</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -3313,16 +3547,16 @@ joined.show(5)</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f4e97839">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f4e97839">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-25">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-24">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3332,13 +3566,42 @@ joined.show(5)</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">spark_df</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="n">spark_df</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">spark_df</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
 
-<span class="n">spark_df</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">spark_df</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-25">spark_df.cache()
+<div class="clipboard-copy-txt" id="cell-24">%timeit spark_df.count()
+spark_df.cache()
 
-spark_df.count()</div>
+%timeit spark_df.count()</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>187 ms ± 42.1 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>                                                                                </pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>The slowest run took 4.48 times longer than the fastest. This could mean that an intermediate result is being cached.
+172 ms ± 109 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre>
 </div>
 </div>
 </div>
