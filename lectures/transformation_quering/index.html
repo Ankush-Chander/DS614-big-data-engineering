@@ -10,9 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/lectures/5batch_processing/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/transformation_quering/">
       
       
+        <link rel="prev" href="../spark_intro/">
+      
+      
+        <link rel="next" href="../transformation_modelling/">
       
       
         
@@ -23,7 +27,7 @@
     
     
       
-        <title>5batch processing - DS614 - Big Data Engineering | DAU</title>
+        <title>Querying - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#online-vs-offline-systems" class="md-skip">
+        <a href="#transformation-layer-query-internals-and-performance-optimization" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5batch processing
+              Querying
             
           </span>
         </div>
@@ -156,6 +160,8 @@
   
   
   
+    
+  
   
     
     
@@ -163,6 +169,8 @@
   
   
   
+    
+  
   
     
     
@@ -170,10 +178,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../0storage_prerequisites/" class="md-tabs__link">
           
   
@@ -276,26 +286,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -313,7 +326,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -732,8 +745,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -742,13 +757,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
@@ -769,7 +782,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -784,8 +797,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -794,13 +809,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_1" checked>
         
           
           <label class="md-nav__link" for="__nav_2_2_1" id="__nav_2_2_1_label" tabindex="0">
@@ -821,7 +834,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -948,8 +961,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -958,13 +973,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_1_5" checked>
         
           
           <label class="md-nav__link" for="__nav_2_2_1_5" id="__nav_2_2_1_5_label" tabindex="0">
@@ -985,7 +998,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2_1_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1000,10 +1013,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../transformation_quering/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Querying
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1019,6 +1059,220 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-taxonomy-of-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Taxonomy of Queries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-life-of-a-query-from-sql-to-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Life of a Query: From SQL to Results
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-engineering-optimization-strategies-part-i-logic-joins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Engineering: Optimization Strategies (Part I - Logic &amp; Joins)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Engineering: Optimization Strategies (Part I - Logic &amp; Joins)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-row-explosion-phenomenon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The "Row Explosion" Phenomenon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-table-expressions-ctes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Table Expressions (CTEs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-engineering-optimization-strategies-part-ii-scans-pruning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Engineering: Optimization Strategies (Part II - Scans &amp; Pruning)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Engineering: Optimization Strategies (Part II - Scans &amp; Pruning)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pruning-and-clustering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pruning and Clustering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-level-view-commits-consistency-and-vacuuming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System-Level View: Commits, Consistency, and Vacuuming
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System-Level View: Commits, Consistency, and Vacuuming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consistency-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consistency Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintenance-and-optimizer-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance and "Optimizer Health"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1591,6 +1845,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1599,10 +1855,193 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#online-vs-offline-systems" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Online vs offline systems
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-taxonomy-of-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Taxonomy of Queries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-life-of-a-query-from-sql-to-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Life of a Query: From SQL to Results
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-engineering-optimization-strategies-part-i-logic-joins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Engineering: Optimization Strategies (Part I - Logic &amp; Joins)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Engineering: Optimization Strategies (Part I - Logic &amp; Joins)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-row-explosion-phenomenon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The "Row Explosion" Phenomenon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-table-expressions-ctes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Table Expressions (CTEs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-engineering-optimization-strategies-part-ii-scans-pruning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Engineering: Optimization Strategies (Part II - Scans &amp; Pruning)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Engineering: Optimization Strategies (Part II - Scans &amp; Pruning)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pruning-and-clustering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pruning and Clustering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-level-view-commits-consistency-and-vacuuming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System-Level View: Commits, Consistency, and Vacuuming
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System-Level View: Commits, Consistency, and Vacuuming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consistency-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consistency Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintenance-and-optimizer-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance and "Optimizer Health"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
       
     </span>
   </a>
@@ -1626,87 +2065,128 @@
 
 
 
-  <h1>5batch processing</h1>
-
-<h3 id="online-vs-offline-systems">Online vs offline systems</h3>
-<hr />
+<h1 id="transformation-layer-query-internals-and-performance-optimization">Transformation Layer: Query Internals and Performance Optimization</h1>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Proficiency in SQL (SELECT, Joins).</li>
+<li>Understanding of relational theory (Primary/Foreign Keys).</li>
+</ul>
+<h3 id="objectives">Objectives</h3>
 <ol>
-<li><strong>Services (Online Systems)</strong></li>
-<li>Wait for client requests.</li>
-<li>Process each request quickly and return a response.</li>
-<li><strong>Primary performance metric:</strong> Response time (latency).</li>
-<li><strong>Key requirement:</strong> High availability (must be reachable when needed).</li>
-<li>Example: Web servers, APIs, databases serving live queries.</li>
+<li><strong>Distinguish</strong> between the functional subsets of SQL: DDL, DML, DCL, and TCL.</li>
+<li><strong>Map</strong> the four-stage lifecycle of a SQL query from issuance to result return.</li>
+<li><strong>Evaluate</strong> join strategies and schema designs to mitigate "row explosion" and computational waste.</li>
+<li><strong>Implement</strong> pruning and clustering strategies to minimize resource consumption and cloud costs.</li>
+<li><strong>Compare</strong> consistency models (ACID vs. Snapshot vs. Variable) across major OLAP and NoSQL systems.</li>
 </ol>
+<p>To ground these abstract architectural concepts, we will anchor our discussion in a high-stakes, real-world scenario.</p>
 <hr />
-<ol>
-<li>
-<p><strong>Batch Processing Systems (Offline Systems)</strong></p>
+<h3 id="the-taxonomy-of-queries">The Taxonomy of Queries</h3>
+<p>To conceptualize the functional taxonomy of SQL, consider the <strong>Workshop Analogy</strong>. Query languages serve as the primary interface for "Read" and "Write" operations (CRUD), utilizing specific categories of tools:</p>
+<ul>
+<li><strong>DDL (Data Definition Language)</strong>: These are the architectural tools used to build the workshop’s shelves and workbenches. They define the state and structure of database objects.<ul>
+<li><em>Commands:</em> <code>CREATE</code>, <code>DROP</code>, <code>ALTER</code>.</li>
+<li><em>Example:</em> <code>CREATE TABLE product_catalog (id INT, name STRING);</code></li>
+</ul>
 </li>
-<li>
-<p>Process large volumes of data as jobs.</p>
+<li><strong>DML (Data Manipulation Language)</strong>: These tools are used to place items on the shelves or modify them. This is where we add, alter, or retrieve the actual data.<ul>
+<li><em>Commands:</em> <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>, <code>COPY</code>, <code>MERGE</code>.</li>
+<li><em>Example:</em> <code>SELECT * FROM click_events WHERE event_type = 'purchase';</code></li>
+</ul>
 </li>
-<li>Jobs run periodically (e.g., daily) and may take minutes to days.</li>
-<li>No user is waiting for immediate results.</li>
-<li><strong>Primary performance metric:</strong> Throughput (how much data can be processed in a given time).</li>
-<li>Example: Nightly analytics, report generation, large-scale data transformations.</li>
-</ol>
+<li><strong>DCL (Data Control Language)</strong>: These represent the security protocols, essentially locking the workshop doors and managing keys.<ul>
+<li><em>Example:</em> If Sarah, a new data scientist, joins the team, we issue <code>GRANT SELECT ON data_science_db TO user Sarah;</code>. If Sarah leaves the firm, we immediately execute <code>REVOKE SELECT ON data_science_db TO user Sarah;</code> to maintain architectural integrity.</li>
+</ul>
+</li>
+<li><strong>TCL (Transaction Control Language)</strong>: These ensure that complex projects are "saved" or reverted if a failure occurs, maintaining a consistent state.<ul>
+<li><em>Commands:</em> <code>COMMIT</code>, <code>ROLLBACK</code>.</li>
+</ul>
+</li>
+</ul>
 <hr />
+<h3 id="the-life-of-a-query-from-sql-to-results">The Life of a Query: From SQL to Results</h3>
+<p>Understanding the "under the hood" mechanics is essential for diagnosing why a query fails under production loads. The execution pipeline follows a rigorous four-step progression:</p>
 <ol>
-<li><strong>Stream Processing Systems (Near-Real-Time Systems)</strong></li>
-<li>Continuously consume events and produce outputs.</li>
-<li>Process data shortly after events occur (not waiting for full datasets).</li>
-<li>Lower latency than batch systems.</li>
-<li>Bridge between online and batch processing.</li>
-<li><strong>Primary focus:</strong> Low-latency processing of continuous data streams.</li>
-<li>Example: Real-time fraud detection, live metrics dashboards.</li>
+<li><strong>Parsing/Compilation</strong>: The engine validates syntax and verifies permissions against the system catalog.</li>
+<li><strong>Bytecode Conversion</strong>: The SQL is translated into a machine-readable format.</li>
+<li><strong>Query Optimization</strong>: This is the "Brain" stage. The <strong>Query Optimizer</strong> assesses the bytecode to find the "least expensive" path, evaluating join types, indexes, and data scan sizes.</li>
+<li><strong>Execution &amp; Result Return</strong>: The physical operations are carried out, and the data is served.</li>
 </ol>
 <hr />
-<p><strong>Core Differences at a Glance</strong></p>
-<table>
-<thead>
-<tr>
-<th>System Type</th>
-<th>Input Model</th>
-<th>User Waiting?</th>
-<th>Main Metric</th>
-<th>Latency</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Services</td>
-<td>Request-driven</td>
-<td>Yes</td>
-<td>Response time</td>
-<td>Very low</td>
-</tr>
-<tr>
-<td>Batch</td>
-<td>Fixed dataset</td>
-<td>No</td>
-<td>Throughput</td>
-<td>High</td>
-</tr>
-<tr>
-<td>Stream</td>
-<td>Continuous events</td>
-<td>Usually no</td>
-<td>Low latency + throughput</td>
-<td>Low</td>
-</tr>
-</tbody>
-</table>
+<h3 id="performance-engineering-optimization-strategies-part-i-logic-joins">Performance Engineering: Optimization Strategies (Part I - Logic &amp; Joins)</h3>
+<p>In Big Data, we face a constant trade-off between highly normalized schemas and the massive computational cost of frequent joins. One solution is "Pre-joining" data into wide tables to avoid repeating expensive logic.</p>
+<h4 id="the-row-explosion-phenomenon">The "Row Explosion" Phenomenon</h4>
+<p>Engineers must be vigilant against <strong>Row Explosion</strong>, which occurs during many-to-many joins where keys repeat across datasets.</p>
+<ul>
+<li><em>The Math:</em> If Table A (<code>users</code>) has a join key repeated 5 times and Table B (<code>click_events</code>) has the same key repeated 10 times, the result is a cross-product of <strong>50 rows</strong>. At a scale of millions of users and billions of events, this leads to immediate system exhaustion.</li>
+</ul>
+<h4 id="common-table-expressions-ctes">Common Table Expressions (CTEs)</h4>
+<p>I advocate for the use of CTEs over nested subqueries. They provide the readability required for complex debugging and often allow the optimizer to better understand the data flow.</p>
+<p><strong>Code Example (Spark SQL):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Identifying power users via CTE for join clarity</span>
+<span class="k">WITH</span><span class="w"> </span><span class="n">active_users</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">clicks</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">click_events</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">user_id</span>
+<span class="w">    </span><span class="k">HAVING</span><span class="w"> </span><span class="n">clicks</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1000</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">user_name</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">clicks</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="n">u</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">active_users</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">user_id</span><span class="p">;</span>
+</code></pre></div>
 <hr />
+<h3 id="performance-engineering-optimization-strategies-part-ii-scans-pruning">Performance Engineering: Optimization Strategies (Part II - Scans &amp; Pruning)</h3>
+<p>In modern cloud-billing models (e.g., BigQuery, Snowflake), "Full Table Scans" are a financial failure. If you run <code>SELECT *</code> on a 10TB <code>click_events</code> table when you only need <code>user_id</code>, you are incurring a massive, unnecessary cost.</p>
+<h4 id="pruning-and-clustering">Pruning and Clustering</h4>
+<ul>
+<li><strong>Columnar Pruning</strong>: In OLAP systems, query only the required columns.</li>
+<li><strong>Partitioning and Clustering</strong>: Use partitioning (e.g., by <code>event_date</code>) to skip irrelevant data. Furthermore, utilize <strong>Cluster Keys</strong> (in Snowflake or BigQuery) to order data physically, allowing the engine to access segments of massive datasets with surgical precision.</li>
+<li><strong>Explain Plans</strong>: Use the <code>EXPLAIN</code> command to audit the optimizer. If the plan shows a full scan of the 10TB table instead of a partition-level skip, your architecture is broken.</li>
+</ul>
+<h4 id="caching">Caching</h4>
+<p>Distinguish between a <strong>"Cold Query"</strong> (a fresh scan taking, for instance, 40 seconds) and a <strong>"Cached Result"</strong> (retrieved in 1 second). Leveraging cache is essential for maintaining both user experience and budget.</p>
+<hr />
+<h3 id="system-level-view-commits-consistency-and-vacuuming">System-Level View: Commits, Consistency, and Vacuuming</h3>
+<h4 id="consistency-models">Consistency Models</h4>
+<ul>
+<li><strong>ACID-Compliant (e.g., PostgreSQL)</strong>: Uses row-locking for absolute accuracy, but this can degrade performance during heavy analytical scans.</li>
+<li><strong>Snapshot-Based (e.g., BigQuery)</strong>: Queries read from a point-in-time snapshot. Note that BigQuery provides <strong>no write concurrency</strong>—it queues write operations to prevent inconsistent states. This ensures reads remain non-blocking.</li>
+<li><strong>Variable Consistency (e.g., MongoDB)</strong>: Offers high write performance but may silently discard writes if overwhelmed—appropriate for IoT clickstream counts where losing a few clicks is acceptable, but unacceptable for financial ledgers.</li>
+</ul>
+<h4 id="maintenance-and-optimizer-health">Maintenance and "Optimizer Health"</h4>
+<p>Updates and deletes leave "Dead Records." Removing these is the process of <strong>Vacuuming</strong>. This is not merely about storage; outdated records mislead the optimizer into generating suboptimal execution plans.</p>
+<ul>
+<li><strong>Snowflake</strong>: Automated via "Time-travel" settings.</li>
+<li><strong>BigQuery</strong>: Fixed 7-day history window.</li>
+<li><strong>Databricks</strong>: Requires manual vacuuming to control S3/ADLS storage costs.</li>
+</ul>
+<hr />
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+<ul>
+<li>Executing <code>SELECT *</code> on multi-terabyte columnar tables.</li>
+<li>Neglecting join keys that cause <strong>Row Explosion</strong>.</li>
+<li>Ignoring the "Optimizer Health" by failing to vacuum dead records.</li>
+</ul>
+<hr />
+<h2 id="summary">Summary</h2>
+<ul>
+<li><strong>Engineering Utility</strong>: Transformation is the phase where raw data is converted into a high-value business asset.</li>
+<li><strong>Functional Subsets</strong>: Master the distinction between DDL (structure), DML (data), DCL (security), and TCL (stability).</li>
+<li><strong>The Cost of Inefficiency</strong>: In cloud models, a "Full Table Scan" is a direct drain on company capital; use pruning, partitioning, and clustering to survive.</li>
+<li><strong>Optimizer Health</strong>: Vacuuming and caching are not optional maintenance—they are requirements for performance and accuracy.</li>
+<li><strong>Architectural Safety</strong>: Never query production systems for analytics. Use the Fast-Follower pattern to maintain system integrity.</li>
+</ul>
+<hr />
+<h2 id="references">References</h2>
+<ol>
+<li>Chapter 8 Fundamentals of Data Engineering</li>
+</ol>
 
 
 
 
 
 
-
-  
-  
 
 
 
@@ -1725,6 +2205,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../spark_intro/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Spark Intro">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Spark Intro
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../transformation_modelling/" class="md-footer__link md-footer__link--next" aria-label="Next: Modelling">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Modelling
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/lectures/map_reduce/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/transformation_joins/">
       
       
-        <link rel="prev" href="../6hdfs/">
+        <link rel="prev" href="../transformation_modelling/">
       
       
-        <link rel="next" href="../spark_intro/">
+        <link rel="next" href="../../code/storage_engines/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Map reduce framework - DS614 - Big Data Engineering | DAU</title>
+        <title>Joins - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#core-concepts" class="md-skip">
+        <a href="#transformation-layer-joins" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Map reduce framework
+              Joins
             
           </span>
         </div>
@@ -905,35 +905,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Map reduce framework
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../map_reduce/" class="md-nav__link">
         
   
   
@@ -949,463 +924,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core concepts
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Core concepts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-distributed-filesystems-dfs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Distributed Filesystems (DFS)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-data-locality" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Data Locality
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-shared-nothing-architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Shared-Nothing Architecture
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-fault-tolerance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Fault Tolerance
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#complete-mapreduce-execution-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Complete MapReduce Execution Pipeline
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Complete MapReduce Execution Pipeline">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#job-submission-planning-before-everything" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Job Submission &amp; Planning (Before Everything)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#input-splits" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Input Splits
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Input Splits">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#logical-view" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Logical View
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#formal-input-to-mapper" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Formal Input to Mapper
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#systems-perspective" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Systems Perspective
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#map-phase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Map Phase
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Map Phase">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#logical-view_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Logical View
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-wordcount" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example (WordCount)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#21-map-side-buffering-hidden-but-critical" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.1 Map-Side Buffering (Hidden but Critical)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-spill-phase-when-buffer-fills" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2 Spill Phase (When Buffer Fills)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-combiner-optional-optimization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 Combiner (Optional Optimization)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24-map-side-merge-phase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.4 Map-Side Merge Phase
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-shuffle-and-sort-phase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3 Shuffle and Sort Phase
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3 Shuffle and Sort Phase">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-partitioning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.1 Partitioning
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#32-copy-phase-network-transfer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.2 Copy Phase (Network Transfer)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33-reduce-side-buffering" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.3 Reduce-Side Buffering
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34-reduce-side-merge-phase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.4 Reduce-Side Merge Phase
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4reduce-phase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4️Reduce Phase
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4️Reduce Phase">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#logical-view_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Logical View
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#important-property" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Important Property
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-output-phase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5 Output Phase
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#failure-handling-cross-cutting-concern" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Failure Handling (Cross-Cutting Concern)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Failure Handling (Cross-Cutting Concern)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#if-map-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        If Map Fails:
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#if-reducer-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        If Reducer Fails:
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-it-works" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why It Works:
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#complete-expanded-version-compact-structured-form" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Complete Expanded Version (Compact Structured Form)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Complete Expanded Version (Compact Structured Form)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#hadoop-terminology" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hadoop Terminology
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Hadoop Terminology">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#daemons-services" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Daemons (Services)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#job-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Job Components
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1443,8 +961,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -1453,13 +973,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_1_5" checked>
         
           
           <label class="md-nav__link" for="__nav_2_2_1_5" id="__nav_2_2_1_5_label" tabindex="0">
@@ -1480,7 +998,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2_1_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1551,10 +1069,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../transformation_joins/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Joins
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1570,6 +1115,554 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#joins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Joins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Joins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-joins-single-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Joins (Single Machine)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Local Joins (Single Machine)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-local-join-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Local Join Algorithms
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Local Join Algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nested-loop-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Loop Join
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hash-join-most-common" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hash Join (most common)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-merge-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sort-Merge Join
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distributed-joins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Joins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distributed Joins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distributed-join-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Join Strategies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadcast-join-replicated-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Broadcast Join (Replicated Join)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partitioned-shuffle-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partitioned (Shuffle) Join
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partitioned (Shuffle) Join">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-shuffle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Shuffle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-local-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Local Join
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-partitioned-join-colocated-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-Partitioned Join (Colocated Join)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semi-join-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semi Join (Optimization)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-real-cost-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Real Cost Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Real Cost Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spark
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BigQuery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-trino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Presto / Trino
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mental Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transformation-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transformation patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transformation patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#big-idea-mutable-vs-immutable-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Big Idea: Mutable vs Immutable Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Update Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-place-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In-place Updates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#append-only-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Append-only Updates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upserts-merge-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upserts (Merge Updates)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slowly-changing-dimensions-important-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slowly Changing Dimensions (Important Pattern)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delete Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Delete Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hard-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hard Delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soft-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soft Delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tombstone-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tombstone Records
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-updates-schema-evolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Updates (Schema Evolution)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema Updates (Schema Evolution)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backward-vs-forward-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backward vs Forward Compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backward-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backward compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forward compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-evolution-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Evolution Strategies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additive-changes-safest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additive changes (safest)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deprecation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioned-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioned Schemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typical-data-engineering-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical Data Engineering Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mental-model_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mental Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2086,6 +2179,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2094,22 +2189,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-concepts" class="md-nav__link">
+  <a href="#joins" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core concepts
+        Joins
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Core concepts">
+    <nav class="md-nav" aria-label="Joins">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-distributed-filesystems-dfs" class="md-nav__link">
+  <a href="#local-joins-single-machine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Distributed Filesystems (DFS)
+        Local Joins (Single Machine)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Local Joins (Single Machine)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-local-join-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Local Join Algorithms
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Local Join Algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nested-loop-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Loop Join
       
     </span>
   </a>
@@ -2117,10 +2236,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-data-locality" class="md-nav__link">
+  <a href="#hash-join-most-common" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Data Locality
+        Hash Join (most common)
       
     </span>
   </a>
@@ -2128,10 +2247,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-shared-nothing-architecture" class="md-nav__link">
+  <a href="#sort-merge-join" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Shared-Nothing Architecture
+        Sort-Merge Join
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distributed-joins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Joins
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distributed Joins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distributed-join-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Join Strategies
       
     </span>
   </a>
@@ -2139,10 +2291,154 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-fault-tolerance" class="md-nav__link">
+  <a href="#broadcast-join-replicated-join" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Fault Tolerance
+        Broadcast Join (Replicated Join)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partitioned-shuffle-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partitioned (Shuffle) Join
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partitioned (Shuffle) Join">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-shuffle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Shuffle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-local-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Local Join
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-partitioned-join-colocated-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-Partitioned Join (Colocated Join)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semi-join-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semi Join (Optimization)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-real-cost-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Real Cost Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Real Cost Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spark
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BigQuery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-trino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Presto / Trino
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mental Model
       
     </span>
   </a>
@@ -2155,22 +2451,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#complete-mapreduce-execution-pipeline" class="md-nav__link">
+  <a href="#transformation-patterns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Complete MapReduce Execution Pipeline
+        Transformation patterns
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Complete MapReduce Execution Pipeline">
+    <nav class="md-nav" aria-label="Transformation patterns">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#job-submission-planning-before-everything" class="md-nav__link">
+  <a href="#big-idea-mutable-vs-immutable-data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Job Submission &amp; Planning (Before Everything)
+        Big Idea: Mutable vs Immutable Data
       
     </span>
   </a>
@@ -2178,22 +2474,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#input-splits" class="md-nav__link">
+  <a href="#update-patterns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Input Splits
+        Update Patterns
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Input Splits">
+    <nav class="md-nav" aria-label="Update Patterns">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#logical-view" class="md-nav__link">
+  <a href="#in-place-updates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Logical View
+        In-place Updates
       
     </span>
   </a>
@@ -2201,10 +2497,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#formal-input-to-mapper" class="md-nav__link">
+  <a href="#append-only-updates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Formal Input to Mapper
+        Append-only Updates
       
     </span>
   </a>
@@ -2212,10 +2508,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#systems-perspective" class="md-nav__link">
+  <a href="#upserts-merge-updates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Systems Perspective
+        Upserts (Merge Updates)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slowly-changing-dimensions-important-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slowly Changing Dimensions (Important Pattern)
       
     </span>
   </a>
@@ -2228,22 +2535,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#map-phase" class="md-nav__link">
+  <a href="#delete-patterns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Map Phase
+        Delete Patterns
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Map Phase">
+    <nav class="md-nav" aria-label="Delete Patterns">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#logical-view_1" class="md-nav__link">
+  <a href="#hard-delete" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Logical View
+        Hard Delete
       
     </span>
   </a>
@@ -2251,10 +2558,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#example-wordcount" class="md-nav__link">
+  <a href="#soft-delete" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example (WordCount)
+        Soft Delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tombstone-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tombstone Records
       
     </span>
   </a>
@@ -2267,66 +2585,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#21-map-side-buffering-hidden-but-critical" class="md-nav__link">
+  <a href="#schema-updates-schema-evolution" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1 Map-Side Buffering (Hidden but Critical)
+        Schema Updates (Schema Evolution)
       
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-spill-phase-when-buffer-fills" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2 Spill Phase (When Buffer Fills)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-combiner-optional-optimization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 Combiner (Optional Optimization)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24-map-side-merge-phase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.4 Map-Side Merge Phase
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-shuffle-and-sort-phase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3 Shuffle and Sort Phase
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3 Shuffle and Sort Phase">
+    <nav class="md-nav" aria-label="Schema Updates (Schema Evolution)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#31-partitioning" class="md-nav__link">
+  <a href="#backward-vs-forward-compatibility" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.1 Partitioning
+        Backward vs Forward Compatibility
       
     </span>
   </a>
@@ -2334,10 +2608,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-copy-phase-network-transfer" class="md-nav__link">
+  <a href="#backward-compatibility" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2 Copy Phase (Network Transfer)
+        Backward compatibility
       
     </span>
   </a>
@@ -2345,10 +2619,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#33-reduce-side-buffering" class="md-nav__link">
+  <a href="#forward-compatibility" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.3 Reduce-Side Buffering
+        Forward compatibility
       
     </span>
   </a>
@@ -2356,10 +2630,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#34-reduce-side-merge-phase" class="md-nav__link">
+  <a href="#schema-evolution-strategies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.4 Reduce-Side Merge Phase
+        Schema Evolution Strategies
       
     </span>
   </a>
@@ -2372,22 +2646,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4reduce-phase" class="md-nav__link">
+  <a href="#additive-changes-safest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4️Reduce Phase
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4️Reduce Phase">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#logical-view_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Logical View
+        Additive changes (safest)
       
     </span>
   </a>
@@ -2395,26 +2657,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#important-property" class="md-nav__link">
+  <a href="#deprecation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Important Property
+        Deprecation
       
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#versioned-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioned Schemas
+      
+    </span>
+  </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-output-phase" class="md-nav__link">
+  <a href="#typical-data-engineering-strategy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5 Output Phase
+        Typical Data Engineering Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mental-model_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mental Model
       
     </span>
   </a>
@@ -2427,108 +2706,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#failure-handling-cross-cutting-concern" class="md-nav__link">
+  <a href="#references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Failure Handling (Cross-Cutting Concern)
+        References
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Failure Handling (Cross-Cutting Concern)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#if-map-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        If Map Fails:
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#if-reducer-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        If Reducer Fails:
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-it-works" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why It Works:
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#complete-expanded-version-compact-structured-form" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Complete Expanded Version (Compact Structured Form)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Complete Expanded Version (Compact Structured Form)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#hadoop-terminology" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hadoop Terminology
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Hadoop Terminology">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#daemons-services" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Daemons (Services)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#job-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Job Components
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2549,264 +2733,738 @@
 
 
 
-<h3 id="core-concepts">Core concepts</h3>
-<h4 id="1-distributed-filesystems-dfs">1. Distributed Filesystems (DFS)</h4>
-<p>To process massive datasets with MapReduce, you first need a way to store them spanning multiple machines.<br />
-- <strong>Blocks</strong>: Files are split into large fixed-size chunks (e.g., 128MB).<br />
-- <strong>Replication</strong>: Each block is replicated (usually 3x) across different nodes for fault tolerance.<br />
-- <strong>NameNode/Master</strong>: Stores metadata (file directory tree and the mapping of file blocks to DataNodes).<br />
-- <strong>DataNode/Worker</strong>: Stores the actual data blocks.  </p>
-<h4 id="2-data-locality">2. Data Locality</h4>
-<p><em>Moving computation is cheaper than moving data.</em>
-Instead of pulling data to a central processing server, the MapReduce framework schedules the <strong>Map</strong> task on the node where the data already resides (or as close as possible).</p>
-<h4 id="3-shared-nothing-architecture">3. Shared-Nothing Architecture</h4>
+<h1 id="transformation-layer-joins">Transformation Layer: Joins</h1>
+<h2 id="joins">Joins</h2>
+<h3 id="local-joins-single-machine">Local Joins (Single Machine)</h3>
+<p>Local joins assume:</p>
+<p>both datasets exist on one machine</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="n">o</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="n">u</span>
+<span class="k">ON</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">id</span>
+</code></pre></div>
+<p>Example tables:</p>
+<p>Orders</p>
+<table>
+<thead>
+<tr>
+<th>order_id</th>
+<th>user_id</th>
+<th>price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>101</td>
+<td>50</td>
+</tr>
+<tr>
+<td>2</td>
+<td>102</td>
+<td>80</td>
+</tr>
+</tbody>
+</table>
+<p>Users</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>country</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>101</td>
+<td>India</td>
+</tr>
+<tr>
+<td>102</td>
+<td>USA</td>
+</tr>
+</tbody>
+</table>
+<p>Result</p>
+<table>
+<thead>
+<tr>
+<th>order_id</th>
+<th>user_id</th>
+<th>country</th>
+<th>price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>101</td>
+<td>India</td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="common-local-join-algorithms">Common Local Join Algorithms</h4>
+<h5 id="nested-loop-join">Nested Loop Join</h5>
+<p>For each row in A, scan B.</p>
+<div class="highlight"><pre><span></span><code>for a in A:
+   for b in B:
+       if a.key == b.key:
+           emit(a,b)
+</code></pre></div>
+<p>Cost:</p>
+<div class="highlight"><pre><span></span><code>What is the time complexity?
+</code></pre></div>
+<p>Slow but simple.</p>
+<hr />
+<h5 id="hash-join-most-common">Hash Join (most common)</h5>
+<p>Steps:
+- Build hash table for smaller table
+- Probe with larger table</p>
+<div class="highlight"><pre><span></span><code>Build phase
+users_hash[user_id] = row
+
+Probe phase
+for order in orders:
+    lookup user
+</code></pre></div>
+<p>Complexity:</p>
+<div class="highlight"><pre><span></span><code>What is the time complexity?
+</code></pre></div>
+<p>Used by most databases.</p>
+<hr />
+<h5 id="sort-merge-join">Sort-Merge Join</h5>
+<p>Steps:</p>
+<div class="highlight"><pre><span></span><code>sort(A)
+sort(B)
+merge
+</code></pre></div>
+<p>Works well when data already sorted.</p>
+<p>Used in:
+- column stores
+- large disk-based joins</p>
+<hr />
+<h3 id="distributed-joins">Distributed Joins</h3>
+<p>In distributed systems:</p>
+<div class="highlight"><pre><span></span><code>orders → machine 1
+users → machine 8
+</code></pre></div>
+<p>Matching keys might be on <strong>different machines</strong>.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>orders partition
+node1: user=1
+node2: user=2
+node3: user=3
+
+users partition
+node1: user=2
+node2: user=1
+node3: user=3
+</code></pre></div>
+<p>The system must <strong>move data across machines</strong>.</p>
+<p>Network is expensive.</p>
+<p>In distributed systems:</p>
+<div class="highlight"><pre><span></span><code>network cost &gt;&gt; compute cost
+</code></pre></div>
+<p>So the goal is:</p>
+<div class="highlight"><pre><span></span><code>minimize data movement
+</code></pre></div>
+<hr />
+<h4 id="distributed-join-strategies">Distributed Join Strategies</h4>
+<p>There are three main strategies:</p>
+<div class="highlight"><pre><span></span><code>Broadcast join
+Partitioned (shuffle) join
+Locality-aware joins (pre-partitioned)
+</code></pre></div>
+<hr />
+<h4 id="broadcast-join-replicated-join">Broadcast Join (Replicated Join)</h4>
+<p><img alt="" src="../../images/broadcast_join.png" />
+Idea:</p>
+<div class="highlight"><pre><span></span><code>small table → send to every node
+</code></pre></div>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>orders = 1TB
+users = 1MB
+</code></pre></div>
+<p>Broadcast users everywhere.</p>
+<div class="highlight"><pre><span></span><code>Node1: orders partition + users copy
+Node2: orders partition + users copy
+Node3: orders partition + users copy
+</code></pre></div>
+<p>Then perform <strong>local hash join</strong>.</p>
+<p>Diagram:</p>
+<div class="highlight"><pre><span></span><code>           users (small)
+             |
+   -------------------------
+   |          |            |
+Node1       Node2        Node3
+orders1     orders2      orders3
+</code></pre></div>
+<p>Advantages:</p>
 <ul>
-<li>Nodes do not share memory or disk storage.  </li>
-<li>They communicate only via the network.  </li>
-<li>This makes the system linearly scalable; adding more nodes adds more processing power and storage without complex locking mechanisms.</li>
-</ul>
-<h4 id="4-fault-tolerance">4. Fault Tolerance</h4>
-<p>In a cluster of thousands of machines, failure is the norm, not the exception.
-- <strong>Worker Failure</strong>: The Master detects a worker node is unresponsive (heartbeats stop). It re-schedules the tasks of that worker on other nodes that have a distinct replica of the data.      <br />
-- <strong>Stragglers</strong>: If a machine is slow (but not dead), the Master can launch a "Speculative Execution" (backup copy) of the task on another machine. The result from whoever finishes first is taken.     </p>
-<h2 id="complete-mapreduce-execution-pipeline">Complete MapReduce Execution Pipeline</h2>
-<h3 id="job-submission-planning-before-everything">Job Submission &amp; Planning (Before Everything)</h3>
-<ul>
-<li>Client submits job (jar + config).</li>
-<li>Framework:<ul>
-<li>Computes number of <strong>input splits</strong></li>
-<li>Determines number of <strong>map tasks</strong></li>
-<li>Determines number of <strong>reduce tasks</strong></li>
-<li>Initializes metadata structures</li>
-</ul>
+<li>
+<p>very fast</p>
 </li>
-<li>Schedules tasks close to data (data locality).</li>
+<li>
+<p>avoids shuffle of big table</p>
+</li>
 </ul>
-<hr />
-<h3 id="input-splits">Input Splits</h3>
-<h4 id="logical-view">Logical View</h4>
-<p>The input dataset is logically divided into splits.
-Each split generates one Map task.</p>
-<h4 id="formal-input-to-mapper">Formal Input to Mapper</h4>
-<p>[  <k_1, v_1>  ]</p>
+<p>Disadvantages:</p>
 <ul>
-<li>( k_1 ) = input key (e.g., byte offset)</li>
-<li>( v_1 ) = input value (e.g., line of text)</li>
+<li>only works when <strong>one table is small</strong></li>
 </ul>
-<h4 id="systems-perspective">Systems Perspective</h4>
+<p>Typical threshold:</p>
+<div class="highlight"><pre><span></span><code>&lt; 100MB or &lt; few GB
+</code></pre></div>
+<p>Systems that use this:</p>
 <ul>
-<li>Splits usually match HDFS block size (e.g., 128MB).</li>
-<li>Map tasks are scheduled on nodes that physically contain the data.</li>
-<li>Reading is sequential and streaming.</li>
+<li>
+<p>Spark</p>
+</li>
+<li>
+<p>Presto</p>
+</li>
+<li>
+<p>BigQuery</p>
+</li>
 </ul>
 <hr />
-<h3 id="map-phase">Map Phase</h3>
-<h4 id="logical-view_1">Logical View</h4>
-<p>User defines:
-map(k_1, v_1) =&gt; list(<k_2, v_2>)
-Mapper processes records independently.</p>
-<h4 id="example-wordcount">Example (WordCount)</h4>
-<p>map(offset, line) =&gt; (word, 1)</p>
+<h4 id="partitioned-shuffle-join">Partitioned (Shuffle) Join</h4>
+<p><img alt="" src="../../images/shuffle_hash_join.png" />
+Used when <strong>both tables are large</strong>.</p>
+<p>Idea:</p>
+<div class="highlight"><pre><span></span><code>partition both tables using join key
+</code></pre></div>
+<p>Example:</p>
+<p>Join key = <code>user_id</code></p>
+<p>Partition rule:</p>
+<div class="highlight"><pre><span></span><code>partition = hash(user_id) % N
+</code></pre></div>
+<h5 id="step-1-shuffle">Step 1: Shuffle</h5>
+<p>Repartition both tables.</p>
+<p>Before</p>
+<div class="highlight"><pre><span></span><code>orders
+node1: user1,user4
+node2: user2,user3
+
+users
+node1: user2,user4
+node2: user1,user3
+</code></pre></div>
+<p>After shuffle</p>
+<div class="highlight"><pre><span></span><code>node1: user1,user3
+node2: user2,user4
+</code></pre></div>
+<p>Now each node has <strong>matching keys locally</strong>.</p>
+<h5 id="step-2-local-join">Step 2: Local Join</h5>
+<p>Each node performs local hash join.</p>
+<p>Diagram</p>
+<div class="highlight"><pre><span></span><code>orders ----\
+            → shuffle → partition → join
+users -----/
+</code></pre></div>
+<p>Advantages:</p>
+<ul>
+<li>works for <strong>large tables</strong></li>
+</ul>
+<p>Disadvantages:</p>
+<ul>
+<li>
+<p>heavy network cost</p>
+</li>
+<li>
+<p>shuffle is often the <strong>most expensive step</strong> in Spark jobs</p>
+</li>
+</ul>
 <hr />
-<h3 id="21-map-side-buffering-hidden-but-critical">2.1 Map-Side Buffering (Hidden but Critical)</h3>
-<p>Mapper does <strong>NOT immediately write output to disk.</strong>
-Intermediate pairs are stored in an <strong>in-memory circular buffer</strong>.
-- Size controlled by:
-    <div class="highlight"><pre><span></span><code>mapreduce.task.io.sort.mb
+<h4 id="pre-partitioned-join-colocated-join">Pre-Partitioned Join (Colocated Join)</h4>
+<p>If datasets are <strong>already partitioned by the join key</strong>, no shuffle is needed.</p>
+<p>Example:</p>
+<p>Both tables partitioned by <code>user_id</code>.</p>
+<div class="highlight"><pre><span></span><code>Node1
+orders(user1,user4)
+users(user1,user4)
+
+Node2
+orders(user2,user3)
+users(user2,user3)
+</code></pre></div>
+<p>Join becomes <strong>purely local</strong>.</p>
+<p>Benefits:</p>
+<div class="highlight"><pre><span></span><code>no network
+</code></pre></div>
+<p>Used in:</p>
+<ul>
+<li>
+<p>distributed databases</p>
+</li>
+<li>
+<p>Kafka stream processing</p>
+</li>
+<li>
+<p>materialized views</p>
+</li>
+</ul>
+<hr />
+<h4 id="semi-join-optimization">Semi Join (Optimization)</h4>
+<p>Sometimes you don't need full rows.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>orders JOIN users
+</code></pre></div>
+<p>But only to check if user exists.</p>
+<p>Instead:</p>
+<div class="highlight"><pre><span></span><code>send only keys
+</code></pre></div>
+<p>Steps:</p>
+<div class="highlight"><pre><span></span><code>extract user_ids from users
+send keys to orders
+filter orders
+</code></pre></div>
+<p>Reduces network traffic.</p>
+<hr />
+<h3 id="the-real-cost-model">The Real Cost Model</h3>
+<p>Distributed systems try to minimize:</p>
+<div class="highlight"><pre><span></span><code>Network transfer
+Shuffle size
+Disk spill
+</code></pre></div>
+<p>Rough cost ranking:</p>
+<div class="highlight"><pre><span></span><code>local join        cheapest
+broadcast join
+shuffle join      most expensive
+</code></pre></div>
+<hr />
+<h4 id="real-systems">Real Systems</h4>
+<h5 id="spark">Spark</h5>
+<div class="highlight"><pre><span></span><code>Broadcast Hash Join
+Shuffle Hash Join
+Sort Merge Join
+</code></pre></div>
+<h5 id="bigquery">BigQuery</h5>
+<div class="highlight"><pre><span></span><code>broadcast joins
+distributed shuffle joins
+</code></pre></div>
+<h5 id="presto-trino">Presto / Trino</h5>
+<div class="highlight"><pre><span></span><code>replicated join
+partitioned join
+</code></pre></div>
+<hr />
+<h3 id="mental-model">Mental Model</h3>
+<div class="highlight"><pre><span></span><code>Local joins = algorithm problem
+Distributed joins = network problem
+</code></pre></div>
+<hr />
+<h2 id="transformation-patterns">Transformation patterns</h2>
+<ul>
+<li>How do we <strong>update existing records</strong>?</li>
+<li>How do we <strong>remove records</strong>?</li>
+<li>How do we <strong>change schema without breaking pipelines</strong>?</li>
+</ul>
+<hr />
+<h3 id="big-idea-mutable-vs-immutable-data">Big Idea: Mutable vs Immutable Data</h3>
+<p>Traditional databases assume:</p>
+<div class="highlight"><pre><span></span><code>records can be updated in-place
+</code></pre></div>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="n">users</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">country</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;India&#39;</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">101</span>
+</code></pre></div>
+<p>But many <strong>modern data systems prefer immutable data</strong>.</p>
+<p>Instead of changing rows:</p>
+<div class="highlight"><pre><span></span><code>append new records representing changes
+</code></pre></div>
+<p>Example log:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>country</th>
+<th>version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>101</td>
+<td>USA</td>
+<td>1</td>
+</tr>
+<tr>
+<td>101</td>
+<td>India</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Latest version wins.</p>
+<hr />
+<h3 id="update-patterns">Update Patterns</h3>
+<p>There are three common update strategies in data systems.</p>
+<div class="highlight"><pre><span></span><code>1. In-place updates
+2. Append-only updates
+3. Upserts / Merge updates
+</code></pre></div>
+<hr />
+<h4 id="in-place-updates">In-place Updates</h4>
+<p>This is the <strong>traditional database model</strong>.
+Example:
+<div class="highlight"><pre><span></span><code>old row overwritten
 </code></pre></div></p>
-<p>The buffer stores:
-- Serialized key-value data
-- Metadata (partition, offsets)</p>
-<hr />
-<h3 id="22-spill-phase-when-buffer-fills">2.2 Spill Phase (When Buffer Fills)</h3>
-<p>When buffer reaches threshold (~80% full):
-1. Records are <strong>sorted by key</strong>
-2. Partitioned by reducer
-3. Optionally passed through <strong>Combiner</strong>
-4. Written to local disk as a spill file</p>
-<p>This produces:</p>
-<div class="highlight"><pre><span></span><code>spill_1
-spill_2
-spill_3
-...
-</code></pre></div>
-<p>Each spill file is:</p>
+<p>Before</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>country</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>101</td>
+<td>USA</td>
+</tr>
+</tbody>
+</table>
+<p>After</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>country</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>101</td>
+<td>India</td>
+</tr>
+</tbody>
+</table>
+<p>Characteristics</p>
 <ul>
-<li>Sorted</li>
-<li>Partitioned</li>
+<li>simple</li>
+<li>efficient for OLTP systems</li>
+<li>harder to audit history</li>
+</ul>
+<p>Used in:
+- PostgreSQL
+- MySQL
+- transactional databases</p>
+<p>Problem for analytics:</p>
+<div class="highlight"><pre><span></span><code>history disappears
+</code></pre></div>
+<hr />
+<h4 id="append-only-updates">Append-only Updates</h4>
+<p>Modern data pipelines often use <strong>append-only logs</strong>.</p>
+<p>Instead of modifying data:</p>
+<div class="highlight"><pre><span></span><code>new version is appended
+</code></pre></div>
+<p>Example:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>country</th>
+<th>timestamp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>101</td>
+<td>USA</td>
+<td>10:00</td>
+</tr>
+<tr>
+<td>101</td>
+<td>India</td>
+<td>12:00</td>
+</tr>
+</tbody>
+</table>
+<p>Queries use:</p>
+<div class="highlight"><pre><span></span><code>latest record
+</code></pre></div>
+<p>Advantages
+- immutable
+- reproducible pipelines  <br />
+- easy lineage</p>
+<p>Disadvantages
+- more storage
+- requires compaction</p>
+<p>Used in:
+- event streams
+- data lakes
+- CDC pipelines</p>
+<hr />
+<h4 id="upserts-merge-updates">Upserts (Merge Updates)</h4>
+<p>Upsert means:</p>
+<div class="highlight"><pre><span></span><code>update if exists
+insert if not
+</code></pre></div>
+<p>Example SQL:</p>
+<div class="highlight"><pre><span></span><code><span class="n">MERGE</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="n">t</span>
+<span class="k">USING</span><span class="w"> </span><span class="n">updates</span><span class="w"> </span><span class="n">s</span>
+<span class="k">ON</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">id</span>
+<span class="k">WHEN</span><span class="w"> </span><span class="n">MATCHED</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="k">UPDATE</span>
+<span class="k">WHEN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">MATCHED</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="k">INSERT</span>
+</code></pre></div>
+<p>Common in data warehouses:</p>
+<ul>
+<li>Snowflake    </li>
+<li>BigQuery</li>
+<li>Delta Lake</li>
+</ul>
+<p>Used heavily in:</p>
+<div class="highlight"><pre><span></span><code>incremental transformations
+</code></pre></div>
+<p>Example pipeline:</p>
+<div class="highlight"><pre><span></span><code>new_orders → merge into fact_orders
+</code></pre></div>
+<hr />
+<h4 id="slowly-changing-dimensions-important-pattern">Slowly Changing Dimensions (Important Pattern)</h4>
+<p>In analytics, updates often follow <strong>SCD patterns</strong>.
+Common types:</p>
+<p><strong>Type 1</strong></p>
+<p>Overwrite value.</p>
+<div class="highlight"><pre><span></span><code>USA → India
+</code></pre></div>
+<p>History lost.</p>
+<hr />
+<p><strong>Type 2</strong></p>
+<p>Create new row with version.</p>
+<p>Example:</p>
+<table>
+<thead>
+<tr>
+<th>user</th>
+<th>country</th>
+<th>start</th>
+<th>end</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>101</td>
+<td>USA</td>
+<td>2022</td>
+<td>2024</td>
+</tr>
+<tr>
+<td>101</td>
+<td>India</td>
+<td>2024</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<p>History preserved.</p>
+<p>Very common in <strong>data warehouses</strong>.</p>
+<hr />
+<h3 id="delete-patterns">Delete Patterns</h3>
+<p>Deletes are also tricky in analytical systems.</p>
+<p>Three patterns are common.</p>
+<div class="highlight"><pre><span></span><code>1. Hard delete
+2. Soft delete
+3. Tombstone records
+</code></pre></div>
+<hr />
+<h4 id="hard-delete">Hard Delete</h4>
+<p>Record removed entirely.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">101</span>
+</code></pre></div>
+<p>Row disappears.</p>
+<p>Problems:</p>
+<ul>
+<li>
+<p>breaks reproducibility</p>
+</li>
+<li>
+<p>destroys history</p>
+</li>
+</ul>
+<p>Mostly used in OLTP systems.</p>
+<hr />
+<h4 id="soft-delete">Soft Delete</h4>
+<p>Instead of deleting, mark row as deleted.</p>
+<p>Example:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>deleted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>101</td>
+<td>Alice</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p>Queries filter:</p>
+<div class="highlight"><pre><span></span><code>WHERE deleted = false
+</code></pre></div>
+<p>Advantages</p>
+<ul>
+<li>
+<p>recoverable</p>
+</li>
+<li>
+<p>audit trail</p>
+</li>
 </ul>
 <hr />
-<h3 id="23-combiner-optional-optimization">2.3 Combiner (Optional Optimization)</h3>
-<p>If defined:</p>
-<p>combine(k_2, list(v_2)) =&gt; list(<k_2, v_2>)</p>
-<p>Executed:
-- During spill
-- Or during merge
-Constraints:
-- Must be associative
-- Must be commutative
-Purpose:
-- Reduce intermediate data size
-- Reduce network traffic</p>
+<h4 id="tombstone-records">Tombstone Records</h4>
+<p>Common in <strong>log-based systems</strong>.</p>
+<p>A delete is represented as a <strong>special event</strong>.</p>
+<p>Example log:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>101</td>
+<td>create</td>
+</tr>
+<tr>
+<td>101</td>
+<td>update</td>
+</tr>
+<tr>
+<td>101</td>
+<td>delete</td>
+</tr>
+</tbody>
+</table>
+<p>The "delete" record acts as a <strong>tombstone</strong>.</p>
+<p>Used in:</p>
+<ul>
+<li>
+<p>Kafka streams</p>
+</li>
+<li>
+<p>log compaction systems</p>
+</li>
+<li>
+<p>CDC pipelines</p>
+</li>
+</ul>
 <hr />
-<h3 id="24-map-side-merge-phase">2.4 Map-Side Merge Phase</h3>
-<p>If multiple spill files exist:
-- Framework performs multi-way external merge sort.
-- Produces ONE final map output file.</p>
-<p>This file is:
-- Sorted by key
-- Partitioned by reducer
-- Indexed (offsets for each partition)</p>
-<p>Now mapper is complete.</p>
-<hr />
-<h3 id="3-shuffle-and-sort-phase">3 Shuffle and Sort Phase</h3>
-<p>This is fully handled by the framework.</p>
-<p>But it is NOT “magic”.
-It has multiple sub-phases:</p>
-<hr />
-<h4 id="31-partitioning">3.1 Partitioning</h4>
-<p>Each intermediate key ( k_2 ) is assigned:</p>
-<p>partition = hash(k_2)\mod R  </p>
-<p>Where:
-- ( R ) = number of reducers</p>
-<p>Each reducer is responsible for one partition.</p>
-<hr />
-<h4 id="32-copy-phase-network-transfer">3.2 Copy Phase (Network Transfer)</h4>
-<p>Each reducer:
-- Contacts all mappers
-- Fetches its partition
-This is:
-- Parallel
-- Over network
-- Often compressed</p>
-<p>This stage is usually the biggest bottleneck.</p>
-<hr />
-<h4 id="33-reduce-side-buffering">3.3 Reduce-Side Buffering</h4>
-<p>Reducer receives segments:<br />
-- Small segments → memory<br />
-- Large segments → disk<br />
-If memory fills:<br />
-- Segments spill to disk  </p>
-<hr />
-<h4 id="34-reduce-side-merge-phase">3.4 Reduce-Side Merge Phase</h4>
-<p>Reducer performs multi-way external merge:</p>
-<div class="highlight"><pre><span></span><code>segment1
-segment2
-segment3
-...
+<h3 id="schema-updates-schema-evolution">Schema Updates (Schema Evolution)</h3>
+<p>Schema changes are inevitable.</p>
+<p>Example change:</p>
+<div class="highlight"><pre><span></span><code>users(id, name)
 </code></pre></div>
-<p>Merged into one sorted stream.  </p>
-<p>Now framework guarantees:</p>
-<p><k_2, list(v_2)></p>
-<p>Grouped and sorted by key.</p>
+<p>→</p>
+<div class="highlight"><pre><span></span><code>users(id, name, country)
+</code></pre></div>
+<p>The challenge is:</p>
+<div class="highlight"><pre><span></span><code>old data still exists
+</code></pre></div>
+<p>Systems must handle <strong>multiple schema versions simultaneously</strong>.</p>
 <hr />
-<h3 id="4reduce-phase">4️Reduce Phase</h3>
-<h4 id="logical-view_2">Logical View</h4>
-<p>User defines:
-reduce(k_2, list(v_2)) =&gt; list(<k_3, v_3>)</p>
-<p>Reducer processes one key at a time.</p>
-<h4 id="important-property">Important Property</h4>
-<p>Reducer sees values as an <strong>iterator</strong>, not full list in memory.
-Streaming execution:
-<div class="highlight"><pre><span></span><code>for key in sorted_keys:
-    process values
+<h4 id="backward-vs-forward-compatibility">Backward vs Forward Compatibility</h4>
+<h4 id="backward-compatibility">Backward compatibility</h4>
+<p>New system reads old data.</p>
+<p>Example</p>
+<p>Old record:</p>
+<div class="highlight"><pre><span></span><code>{id:101, name:&quot;Alice&quot;}
+</code></pre></div>
+<p>New schema:
+<div class="highlight"><pre><span></span><code>{id, name, country}
 </code></pre></div></p>
-<p>Memory-efficient.</p>
+<p>Country defaults to NULL.</p>
 <hr />
-<h3 id="5-output-phase">5 Output Phase</h3>
-<p>Reducer writes:
-<k_3, v_3></p>
-<p>to HDFS.</p>
-<p>Properties:
-- One output file per reducer
-- Written sequentially
-- Replicated (e.g., 3 copies)
-- Durable</p>
-<p>Unlike map output, reduce output survives failures.</p>
+<h4 id="forward-compatibility">Forward compatibility</h4>
+<p>Old system reads new data.</p>
+<p>Example:</p>
+<p>New record</p>
+<div class="highlight"><pre><span></span><code>{id:101, name:&quot;Alice&quot;, country:&quot;India&quot;}
+</code></pre></div>
+<p>Old system ignores <code>country</code>.</p>
 <hr />
-<h1 id="failure-handling-cross-cutting-concern">Failure Handling (Cross-Cutting Concern)</h1>
-<h4 id="if-map-fails">If Map Fails:</h4>
-<ul>
-<li>Task is re-executed.   </li>
-<li>Intermediate output recomputed.</li>
-</ul>
-<h4 id="if-reducer-fails">If Reducer Fails:</h4>
-<ul>
-<li>Restarted.</li>
-<li>Refetches partitions.</li>
-</ul>
-<h4 id="why-it-works">Why It Works:</h4>
-<ul>
-<li>Deterministic tasks</li>
-<li>Side-effect free user code</li>
-<li>Intermediate output recomputable    </li>
-</ul>
+<h4 id="schema-evolution-strategies">Schema Evolution Strategies</h4>
+<p>Common approaches.</p>
 <hr />
-<h1 id="complete-expanded-version-compact-structured-form">Complete Expanded Version (Compact Structured Form)</h1>
-<div class="highlight"><pre><span></span><code>#### The Phases
-
-0. Job Setup:
-   - Job submitted
-   - Input splits computed
-   - Tasks scheduled (data locality)
-
-1. Input Splits:
-   - Logical division of input into splits
-   - Each split → one Map task
-   - Mapper Input: &lt;k1, v1&gt;
-
-2. Map Phase:
-   - User function:
-       map(k1, v1) → list(&lt;k2, v2&gt;)
-   - Output written to in-memory buffer
-
-2.1 Buffering &amp; Spill:
-   - Buffer fills
-   - Records sorted by key
-   - Partitioned by reducer
-   - Optional Combiner applied
-   - Written to local disk as spill files
-
-2.2 Map-Side Merge:
-   - Multiple spills merged
-   - Final sorted, partitioned map output produced
-
-3. Shuffle and Sort:
-   - Partition: hash(k2) % R
-   - Reducers fetch partitions over network
-   - Reduce-side buffering
-   - External merge sort
-   - Framework groups values:
-       &lt;k2, list(v2)&gt;
-
-4. Reduce Phase:
-   - User function:
-       reduce(k2, list(v2)) → list(&lt;k3, v3&gt;)
-   - Streaming execution per key
-
-5. Output:
-   - Results written to HDFS
-   - One file per reducer
-   - Durable storage
+<h3 id="additive-changes-safest">Additive changes (safest)</h3>
+<p>Add new column.</p>
+<div class="highlight"><pre><span></span><code>ALTER TABLE users ADD country
+</code></pre></div>
+<p>Works well with compatibility.</p>
+<hr />
+<h3 id="deprecation">Deprecation</h3>
+<p>Columns marked unused before removal.</p>
+<p>Process:</p>
+<div class="highlight"><pre><span></span><code>add new column
+update pipelines
+remove old column
 </code></pre></div>
 <hr />
+<h3 id="versioned-schemas">Versioned Schemas</h3>
+<p>Store schema version.
+Example:</p>
+<table>
+<thead>
+<tr>
+<th>version</th>
+<th>schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>id,name</td>
+</tr>
+<tr>
+<td>2</td>
+<td>id,name,country</td>
+</tr>
+</tbody>
+</table>
+<p>Used in:
+- Avro
+- Protobuf <br />
+- Kafka schema registry</p>
 <hr />
-<h3 id="hadoop-terminology">Hadoop Terminology</h3>
-<h4 id="daemons-services">Daemons (Services)</h4>
+<h3 id="typical-data-engineering-strategy">Typical Data Engineering Strategy</h3>
+<p>Modern pipelines follow this philosophy:</p>
+<div class="highlight"><pre><span></span><code>raw data immutable
+transformations reproducible
+schemas evolve gradually
+</code></pre></div>
+<p>A typical pipeline might look like:</p>
+<div class="highlight"><pre><span></span><code>raw_events (append-only)
+     ↓
+clean_events
+     ↓
+modeled_tables
+     ↓
+analytics_tables
+</code></pre></div>
+<p>Updates and deletes are handled during <strong>transformation layers</strong>, not by mutating raw data.</p>
+<hr />
+<h3 id="mental-model_1">Mental Model</h3>
+<p>Think of modern data systems as:</p>
+<p><div class="highlight"><pre><span></span><code>history of changes
+</code></pre></div>
+instead of:
+<div class="highlight"><pre><span></span><code>current state only
+</code></pre></div></p>
+<p>Updates, deletes, and schema changes are just <strong>events in the history of the dataset</strong>.</p>
+<hr />
+<h2 id="references">References</h2>
 <ol>
-<li><strong>NameNode</strong>: Master of the filesystem (HDFS). Keeps the directory tree and knows where all blocks are.</li>
-<li><strong>DataNode</strong>: Worker of the filesystem. Stores the actual blocks on its HDD.</li>
-<li><strong>ResourceManager (YARN)</strong>: The master arbitrator of all cluster resources.</li>
-<li><strong>NodeManager (YARN)</strong>: The per-machine agent dealing with containers on a single node.</li>
+<li>Chapter 8 Fundamentals of Data Engineering</li>
 </ol>
-<h4 id="job-components">Job Components</h4>
-<ul>
-<li><strong>Job</strong>: A full execution unit (Mapper + Reducer + Config).</li>
-<li><strong>Task</strong>: An individual slice of work (Map Task or Reduce Task) running on one machine.</li>
-<li><strong>Driver</strong>: The code that submits the job and configures it.</li>
-<li><strong>Partitioner</strong>: Decides which Reducer gets which key (usually <code>hash(key) % num_reducers</code>).</li>
-<li><strong>Combiner</strong>: A "Mini-Reducer" running locally after the Map phase to reduce network traffic (e.g., pre-summing counts).</li>
-</ul>
 
 
 
@@ -2836,7 +3494,7 @@ Streaming execution:
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../6hdfs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Distributed Filesystem">
+          <a href="../transformation_modelling/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Modelling">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2846,20 +3504,20 @@ Streaming execution:
                 Previous
               </span>
               <div class="md-ellipsis">
-                Distributed Filesystem
+                Modelling
               </div>
             </div>
           </a>
         
         
           
-          <a href="../spark_intro/" class="md-footer__link md-footer__link--next" aria-label="Next: Spark Intro">
+          <a href="../../code/storage_engines/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage Engines">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Spark Intro
+                Storage Engines
               </div>
             </div>
             <div class="md-footer__button md-icon">

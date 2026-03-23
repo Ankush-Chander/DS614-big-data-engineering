@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/notebooks/profiling_examples/insertion_sort/">
+        <link rel="canonical" href="https://ankushchander.com/notebooks/resources/event_generator/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>Insertion sort - DS614 - Big Data Engineering | DAU</title>
+        <title>Event generator - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Insertion sort
+              Event generator
             
           </span>
         </div>
@@ -1602,7 +1602,7 @@
 
 
 
-  <h1>Insertion sort</h1>
+  <h1>Event generator</h1>
 
 <script>
 (function (global, factory) {
@@ -2041,7 +2041,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2db6617b">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a24554a0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2059,18 +2059,42 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="sd">"""</span>
+<span class="sd">event_generator.py</span>
+<span class="sd">Generates fake streaming events (taxi trip starts) and writes them</span>
+<span class="sd">to a specified sink: file | socket | redis | rabbitmq | sqs</span>
+
+<span class="sd">Usage examples:</span>
+<span class="sd">    python event_generator.py file --path /tmp/stream_events.jsonl --interval 1 --count 20</span>
+<span class="sd">    python event_generator.py socket --host localhost --port 9999 --interval 1 --count 20</span>
+<span class="sd">    python event_generator.py redis --channel taxi_events --interval 1 --count 20</span>
+<span class="sd">    python event_generator.py rabbitmq --queue taxi_events --interval 0.5 --count 20</span>
+<span class="sd">    python event_generator.py sqs --queue-url &lt;url&gt; --interval 1 --count 20</span>
+<span class="sd">"""</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">random</span><span class="o">,</span><span class="w"> </span><span class="nn">argparse</span><span class="o">,</span><span class="w"> </span><span class="nn">socket</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-1">import random
-import sys</div>
+<div class="clipboard-copy-txt" id="cell-1">"""
+event_generator.py
+Generates fake streaming events (taxi trip starts) and writes them
+to a specified sink: file | socket | redis | rabbitmq | sqs
+
+Usage examples:
+    python event_generator.py file --path /tmp/stream_events.jsonl --interval 1 --count 20
+    python event_generator.py socket --host localhost --port 9999 --interval 1 --count 20
+    python event_generator.py redis --channel taxi_events --interval 1 --count 20
+    python event_generator.py rabbitmq --queue taxi_events --interval 0.5 --count 20
+    python event_generator.py sqs --queue-url <url> --interval 1 --count 20
+"""
+import json, time, random, argparse, socket, os, sys
+from datetime import datetime</url></div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8a5d12b1">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=134324a6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2088,26 +2112,16 @@ import sys</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># # for line_profiler</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">profile</span>
-<span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">profile</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">func</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">ZONES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Manhattan"</span><span class="p">,</span> <span class="s2">"Brooklyn"</span><span class="p">,</span> <span class="s2">"Queens"</span><span class="p">,</span> <span class="s2">"Bronx"</span><span class="p">,</span> <span class="s2">"Staten Island"</span><span class="p">]</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-2"># # for line_profiler
-try:
-    profile
-except NameError:
-    def profile(func):
-        return func</div>
+<div class="clipboard-copy-txt" id="cell-2">ZONES = ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3e1577ed">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ad3282c6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2125,42 +2139,32 @@ except NameError:
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Function to do insertion sort</span>
-<span class="nd">@profile</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">insertion_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-    <span class="c1"># Traverse through 1 to len(arr)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="c1"># Move elements of arr[0..i-1], that are</span>
-        <span class="c1"># greater than key, to one position ahead</span>
-        <span class="c1"># of their current position</span>
-        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
-            <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_event</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Generate a single fake taxi trip-start event."""</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"event_id"</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">999999</span><span class="p">),</span>
+        <span class="s2">"timestamp"</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+        <span class="s2">"pickup_zone"</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">ZONES</span><span class="p">),</span>
+        <span class="s2">"passengers"</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+        <span class="s2">"fare_estimate"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">85.0</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="p">}</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-3"># Function to do insertion sort
-@profile
-def insertion_sort(arr):
-    # Traverse through 1 to len(arr)
-    for i in range(1, len(arr)):
-        key = arr[i]
-        # Move elements of arr[0..i-1], that are
-        # greater than key, to one position ahead
-        # of their current position
-        j = i - 1
-        while j &gt;= 0 and key &lt; arr[j]:
-            arr[j + 1] = arr[j]
-            j -= 1
-        arr[j + 1] = key</div>
+<div class="clipboard-copy-txt" id="cell-3">def make_event():
+    """Generate a single fake taxi trip-start event."""
+    return {
+        "event_id": random.randint(100000, 999999),
+        "timestamp": datetime.now().isoformat(),
+        "pickup_zone": random.choice(ZONES),
+        "passengers": random.randint(1, 6),
+        "fare_estimate": round(random.uniform(5.0, 85.0), 2),
+    }</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=bca6dc8a">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=997d6d33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2178,36 +2182,34 @@ def insertion_sort(arr):
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># sorting the array [12, 11, 13, 5, 6] using insertionSort</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">list_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-        <span class="n">list_size</span> <span class="o">=</span> <span class="mi">100</span>
-    <span class="n">randomlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">list_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">randomlist</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">randomlist</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">randomlist</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
-    <span class="n">sorted_list</span> <span class="o">=</span> <span class="n">insertion_sort</span><span class="p">(</span><span class="n">randomlist</span><span class="p">)</span>
-    <span class="c1"># print(randomlist)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># ── Sink: Append to file ──────────────────────────────────────────────────────</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sink_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Append JSON events line-by-line to a file (JSONL format)."""</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+            <span class="n">event</span> <span class="o">=</span> <span class="n">make_event</span><span class="p">()</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  [file] Wrote event </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-4"># sorting the array [12, 11, 13, 5, 6] using insertionSort
-if __name__ == '__main__':
-    try:
-        list_size = int(sys.argv[1])
-    except Exception as err:
-        list_size = 100
-    randomlist = list(range(list_size, 1, -1))
-    randomlist = sorted(randomlist, reverse=True)
-    print(randomlist[:10])
-    sorted_list = insertion_sort(randomlist)
-    # print(randomlist)</div>
+<div class="clipboard-copy-txt" id="cell-4"># ── Sink: Append to file ──────────────────────────────────────────────────────
+def sink_file(path: str, interval: float, count: int):
+    """Append JSON events line-by-line to a file (JSONL format)."""
+    with open(path, "a") as f:
+        for i in range(count):
+            event = make_event()
+            f.write(json.dumps(event) + "\n")
+            f.flush()
+            print(f"  [file] Wrote event {i+1}/{count}")
+            time.sleep(interval)</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4258bedd">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8cf529a3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2225,21 +2227,289 @@ if __name__ == '__main__':
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="sd">"""</span>
-<span class="sd">time python3 -u insertion_sort.py  10000</span>
-
-<span class="sd">real	0m5.237s</span>
-<span class="sd">user	0m5.220s</span>
-<span class="sd">sys	0m0.016s</span>
-<span class="sd">"""</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># ── Sink: Unix TCP socket ─────────────────────────────────────────────────────</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sink_socket</span><span class="p">(</span><span class="n">host</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">port</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Send JSON events over a TCP socket, one per line."""</span>
+    <span class="k">with</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+            <span class="n">event</span> <span class="o">=</span> <span class="n">make_event</span><span class="p">()</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">sendall</span><span class="p">((</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  [socket] Sent event </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-5">"""
-time python3 -u insertion_sort.py  10000
+<div class="clipboard-copy-txt" id="cell-5"># ── Sink: Unix TCP socket ─────────────────────────────────────────────────────
+def sink_socket(host: str, port: int, interval: float, count: int):
+    """Send JSON events over a TCP socket, one per line."""
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect((host, port))
+        for i in range(count):
+            event = make_event()
+            s.sendall((json.dumps(event) + "\n").encode())
+            print(f"  [socket] Sent event {i+1}/{count}")
+            time.sleep(interval)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=bd6f3e19">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># ── Sink: Redis Pub/Sub ───────────────────────────────────────────────────────</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sink_redis</span><span class="p">(</span><span class="n">channel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Publish JSON events to a Redis Pub/Sub channel."""</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">redis</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="n">Redis</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+        <span class="n">event</span> <span class="o">=</span> <span class="n">make_event</span><span class="p">()</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">event</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  [redis] Published event </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-6"># ── Sink: Redis Pub/Sub ───────────────────────────────────────────────────────
+def sink_redis(channel: str, interval: float, count: int):
+    """Publish JSON events to a Redis Pub/Sub channel."""
+    import redis
+    r = redis.Redis()
+    for i in range(count):
+        event = make_event()
+        r.publish(channel, json.dumps(event))
+        print(f"  [redis] Published event {i+1}/{count}")
+        time.sleep(interval)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=852f5790">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-7">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># ── Sink: RabbitMQ ────────────────────────────────────────────────────────────</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sink_rabbitmq</span><span class="p">(</span><span class="n">queue</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Publish JSON events to a RabbitMQ queue."""</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">pika</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">pika</span><span class="o">.</span><span class="n">BlockingConnection</span><span class="p">(</span><span class="n">pika</span><span class="o">.</span><span class="n">ConnectionParameters</span><span class="p">(</span><span class="s2">"localhost"</span><span class="p">))</span>
+    <span class="n">ch</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">channel</span><span class="p">()</span>
+    <span class="n">ch</span><span class="o">.</span><span class="n">queue_declare</span><span class="p">(</span><span class="n">queue</span><span class="o">=</span><span class="n">queue</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+        <span class="n">event</span> <span class="o">=</span> <span class="n">make_event</span><span class="p">()</span>
+        <span class="n">ch</span><span class="o">.</span><span class="n">basic_publish</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">routing_key</span><span class="o">=</span><span class="n">queue</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">event</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  [rabbitmq] Published event </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-7"># ── Sink: RabbitMQ ────────────────────────────────────────────────────────────
+def sink_rabbitmq(queue: str, interval: float, count: int):
+    """Publish JSON events to a RabbitMQ queue."""
+    import pika
+    conn = pika.BlockingConnection(pika.ConnectionParameters("localhost"))
+    ch = conn.channel()
+    ch.queue_declare(queue=queue)
+    for i in range(count):
+        event = make_event()
+        ch.basic_publish(exchange="", routing_key=queue, body=json.dumps(event))
+        print(f"  [rabbitmq] Published event {i+1}/{count}")
+        time.sleep(interval)
+    conn.close()</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2c299a7c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># ── Sink: Amazon SQS (LocalStack) ────────────────────────────────────────────</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sink_sqs</span><span class="p">(</span><span class="n">queue_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Send JSON events to an Amazon SQS queue (via LocalStack)."""</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+    <span class="n">sqs</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span>
+        <span class="s2">"sqs"</span><span class="p">,</span>
+        <span class="n">endpoint_url</span><span class="o">=</span><span class="s2">"http://localhost:4566"</span><span class="p">,</span>
+        <span class="n">region_name</span><span class="o">=</span><span class="s2">"us-east-1"</span><span class="p">,</span>
+        <span class="n">aws_access_key_id</span><span class="o">=</span><span class="s2">"test"</span><span class="p">,</span>
+        <span class="n">aws_secret_access_key</span><span class="o">=</span><span class="s2">"test"</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+        <span class="n">event</span> <span class="o">=</span> <span class="n">make_event</span><span class="p">()</span>
+        <span class="n">sqs</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">QueueUrl</span><span class="o">=</span><span class="n">queue_url</span><span class="p">,</span> <span class="n">MessageBody</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">event</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  [sqs] Sent event </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-8"># ── Sink: Amazon SQS (LocalStack) ────────────────────────────────────────────
+def sink_sqs(queue_url: str, interval: float, count: int):
+    """Send JSON events to an Amazon SQS queue (via LocalStack)."""
+    import boto3
+    sqs = boto3.client(
+        "sqs",
+        endpoint_url="http://localhost:4566",
+        region_name="us-east-1",
+        aws_access_key_id="test",
+        aws_secret_access_key="test",
+    )
+    for i in range(count):
+        event = make_event()
+        sqs.send_message(QueueUrl=queue_url, MessageBody=json.dumps(event))
+        print(f"  [sqs] Sent event {i+1}/{count}")
+        time.sleep(interval)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f5f167e0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-9">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Generate fake taxi-trip streaming events to various sinks."</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">"sink"</span><span class="p">,</span>
+        <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">"file"</span><span class="p">,</span> <span class="s2">"socket"</span><span class="p">,</span> <span class="s2">"redis"</span><span class="p">,</span> <span class="s2">"rabbitmq"</span><span class="p">,</span> <span class="s2">"sqs"</span><span class="p">],</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">"Where to send events"</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--path"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">"/tmp/stream_events.jsonl"</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">"File path (for 'file' sink)"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--host"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">"Host (for 'socket' sink)"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--port"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">9999</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">"Port (for 'socket' sink)"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--channel"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">"taxi_events"</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">"Redis channel (for 'redis' sink)"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--queue"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">"taxi_events"</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">"Queue name (for 'rabbitmq' sink)"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--queue-url"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">"SQS queue URL (for 'sqs' sink)"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--interval"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">"Seconds between events (default: 1.0)"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--count"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">"Number of events to generate (default: 20)"</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-real	0m5.237s
-user	0m5.220s
-sys	0m0.016s
-"""</div>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"🚀 Starting event generator: sink=</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">sink</span><span class="si">}</span><span class="s2">, "</span>
+          <span class="sa">f</span><span class="s2">"interval=</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">interval</span><span class="si">}</span><span class="s2">s, count=</span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">count</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">sink</span> <span class="o">==</span> <span class="s2">"file"</span><span class="p">:</span>
+        <span class="n">sink_file</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">interval</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">sink</span> <span class="o">==</span> <span class="s2">"socket"</span><span class="p">:</span>
+        <span class="n">sink_socket</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">port</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">interval</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">sink</span> <span class="o">==</span> <span class="s2">"redis"</span><span class="p">:</span>
+        <span class="n">sink_redis</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">channel</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">interval</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">sink</span> <span class="o">==</span> <span class="s2">"rabbitmq"</span><span class="p">:</span>
+        <span class="n">sink_rabbitmq</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">queue</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">interval</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">sink</span> <span class="o">==</span> <span class="s2">"sqs"</span><span class="p">:</span>
+        <span class="n">sink_sqs</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">queue_url</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">interval</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"✅ Event generator finished."</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-9">if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Generate fake taxi-trip streaming events to various sinks."
+    )
+    parser.add_argument(
+        "sink",
+        choices=["file", "socket", "redis", "rabbitmq", "sqs"],
+        help="Where to send events",
+    )
+    parser.add_argument("--path", default="/tmp/stream_events.jsonl",
+                        help="File path (for 'file' sink)")
+    parser.add_argument("--host", default="localhost",
+                        help="Host (for 'socket' sink)")
+    parser.add_argument("--port", type=int, default=9999,
+                        help="Port (for 'socket' sink)")
+    parser.add_argument("--channel", default="taxi_events",
+                        help="Redis channel (for 'redis' sink)")
+    parser.add_argument("--queue", default="taxi_events",
+                        help="Queue name (for 'rabbitmq' sink)")
+    parser.add_argument("--queue-url", default="",
+                        help="SQS queue URL (for 'sqs' sink)")
+    parser.add_argument("--interval", type=float, default=1.0,
+                        help="Seconds between events (default: 1.0)")
+    parser.add_argument("--count", type=int, default=20,
+                        help="Number of events to generate (default: 20)")
+    args = parser.parse_args()
+
+    print(f"🚀 Starting event generator: sink={args.sink}, "
+          f"interval={args.interval}s, count={args.count}")
+
+    if args.sink == "file":
+        sink_file(args.path, args.interval, args.count)
+    elif args.sink == "socket":
+        sink_socket(args.host, args.port, args.interval, args.count)
+    elif args.sink == "redis":
+        sink_redis(args.channel, args.interval, args.count)
+    elif args.sink == "rabbitmq":
+        sink_rabbitmq(args.queue, args.interval, args.count)
+    elif args.sink == "sqs":
+        sink_sqs(args.queue_url, args.interval, args.count)
+
+    print("✅ Event generator finished.")</div>
 </div>
 </div>
 </div>
