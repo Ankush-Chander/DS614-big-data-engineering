@@ -26,6 +26,6 @@ Welcome to the course on Big Data Engineering.
             - [Querying](lectures/transformation_quering.md)
             - [Modelling](lectures/transformation_modelling.md)
             - [Joins](lectures/transformation_joins.md)
-    <!-- - Stream Processing -->
-        <!-- - [Introduction](notebooks/stream_processing.ipynb) -->
+    - Stream Processing
+        - [Introduction](lectures/streaming_introduction.md)
 ---
