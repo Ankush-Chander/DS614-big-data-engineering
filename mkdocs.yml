@@ -32,7 +32,8 @@ nav:
             - Querying: 'lectures/transformation_quering.md'
             - Modelling: 'lectures/transformation_modelling.md'
             - Joins: 'lectures/transformation_joins.md'
-      # - Stream Processing: 'notebooks/stream_processing.ipynb' -->
+      - Stream Processing: 
+        - Introduction: 'lectures/streaming_introduction.md'
         
   - Code:
       - Storage Engines: 'code/storage_engines/README.md'
@@ -46,7 +47,8 @@ nav:
         - "Spark Single Node Cluster": 'notebooks/spark_demo.ipynb'
       - Demos:
         - "Normal forms": 'demo/db-normalization-demo.html'
-
+      - Stream Processing:
+        - "Introduction": 'notebooks/stream_processing.ipynb'
 ## Configuration
 theme:
   name: material
