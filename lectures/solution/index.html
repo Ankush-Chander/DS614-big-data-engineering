@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/code/storage_engines/tests/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/solution/">
       
       
       
@@ -18,19 +18,19 @@
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Concurrent writes - DS614 - Big Data Engineering | DAU</title>
+        <title>Big Data Engineering - Solution Paper - DS614 - Big Data Engineering | DAU</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -49,7 +49,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#concurrent-writes" class="md-skip">
+        <a href="#big-data-engineering-solution-paper" class="md-skip">
           Skip to content
         </a>
       
@@ -86,7 +86,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="DS614 - Big Data Engineering | DAU" class="md-header__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+    <a href="../.." title="DS614 - Big Data Engineering | DAU" class="md-header__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Concurrent writes
+              Big Data Engineering - Solution Paper
             
           </span>
         </div>
@@ -139,7 +139,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -174,7 +174,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../lectures/0storage_prerequisites/" class="md-tabs__link">
+        <a href="../0storage_prerequisites/" class="md-tabs__link">
           
   
   
@@ -200,7 +200,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../" class="md-tabs__link">
+        <a href="../../code/storage_engines/" class="md-tabs__link">
           
   
   
@@ -234,7 +234,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="DS614 - Big Data Engineering | DAU" class="md-nav__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+    <a href="../.." title="DS614 - Big Data Engineering | DAU" class="md-nav__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -252,7 +252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -435,7 +435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lectures/0storage_prerequisites/" class="md-nav__link">
+      <a href="../0storage_prerequisites/" class="md-nav__link">
         
   
   
@@ -463,7 +463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/concurrency_prerequisites/" class="md-nav__link">
+      <a href="../../notebooks/concurrency_prerequisites/" class="md-nav__link">
         
   
   
@@ -491,7 +491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/python_profiling/" class="md-nav__link">
+      <a href="../../notebooks/python_profiling/" class="md-nav__link">
         
   
   
@@ -527,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lectures/1hash_indexes/" class="md-nav__link">
+      <a href="../1hash_indexes/" class="md-nav__link">
         
   
   
@@ -555,7 +555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lectures/2ssts_lsm_trees/" class="md-nav__link">
+      <a href="../2ssts_lsm_trees/" class="md-nav__link">
         
   
   
@@ -583,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lectures/3btrees/" class="md-nav__link">
+      <a href="../3btrees/" class="md-nav__link">
         
   
   
@@ -663,7 +663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lectures/4columnar_storage/" class="md-nav__link">
+      <a href="../4columnar_storage/" class="md-nav__link">
         
   
   
@@ -691,14 +691,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/pandas_parquet/" class="md-nav__link">
+      <a href="../../notebooks/pandas_parquet.ipynb" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Pandas parquet
+    None
   
 
     
@@ -839,7 +839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/batch_processing/" class="md-nav__link">
+      <a href="../../notebooks/batch_processing/" class="md-nav__link">
         
   
   
@@ -867,7 +867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lectures/6hdfs/" class="md-nav__link">
+      <a href="../6hdfs/" class="md-nav__link">
         
   
   
@@ -895,7 +895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lectures/map_reduce/" class="md-nav__link">
+      <a href="../map_reduce/" class="md-nav__link">
         
   
   
@@ -923,7 +923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lectures/spark_intro/" class="md-nav__link">
+      <a href="../spark_intro/" class="md-nav__link">
         
   
   
@@ -1003,7 +1003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lectures/transformation_quering/" class="md-nav__link">
+      <a href="../transformation_quering/" class="md-nav__link">
         
   
   
@@ -1031,7 +1031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lectures/transformation_modelling/" class="md-nav__link">
+      <a href="../transformation_modelling/" class="md-nav__link">
         
   
   
@@ -1059,7 +1059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lectures/transformation_joins/" class="md-nav__link">
+      <a href="../transformation_joins/" class="md-nav__link">
         
   
   
@@ -1091,6 +1091,94 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stream Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../streaming_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1170,7 +1258,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../code/storage_engines/" class="md-nav__link">
         
   
   
@@ -1278,7 +1366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/sql_demo/" class="md-nav__link">
+      <a href="../../notebooks/sql_demo/" class="md-nav__link">
         
   
   
@@ -1366,7 +1454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../batch_processing/hadoop%20single%20node%20cluster/" class="md-nav__link">
+      <a href="../../code/batch_processing/hadoop%20single%20node%20cluster/" class="md-nav__link">
         
   
   
@@ -1394,7 +1482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../batch_processing/non_sudoer_hadoop_single_node_cluster/" class="md-nav__link">
+      <a href="../../code/batch_processing/non_sudoer_hadoop_single_node_cluster/" class="md-nav__link">
         
   
   
@@ -1422,7 +1510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../batch_processing/non_sudoer_hadoop_multi_node_cluster/" class="md-nav__link">
+      <a href="../../code/batch_processing/non_sudoer_hadoop_multi_node_cluster/" class="md-nav__link">
         
   
   
@@ -1450,7 +1538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/spark_demo/" class="md-nav__link">
+      <a href="../../notebooks/spark_demo/" class="md-nav__link">
         
   
   
@@ -1538,7 +1626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../demo/db-normalization-demo.html" class="md-nav__link">
+      <a href="../../demo/db-normalization-demo.html" class="md-nav__link">
         
   
   
@@ -1546,6 +1634,94 @@
     
   
     Normal forms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stream Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/stream_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Processing — Four Ways to Consume a Data Stream
   
 
     
@@ -1594,6 +1770,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#section-a-multiple-choice-questions-20-marks-1-mark-each" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section A: Multiple Choice Questions (20 marks, 1 mark each)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-b-truefalse-questions-6-marks-1-mark-each" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section B: True/False Questions (6 marks, 1 mark each)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-c-short-answer-questions-24-marks-2-marks-each" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section C: Short Answer Questions (24 marks, 2 marks each)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1609,8 +1826,162 @@
 
 
 
-<h1 id="concurrent-writes">Concurrent writes</h1>
-<p>ab -n 1000 -c 1000 -p payload.json -T application/json <a href="http://127.0.0.1:8000/set_db">http://127.0.0.1:8000/set_db</a></p>
+<h1 id="big-data-engineering-solution-paper">Big Data Engineering - Solution Paper</h1>
+<h2 id="section-a-multiple-choice-questions-20-marks-1-mark-each">Section A: Multiple Choice Questions (20 marks, 1 mark each)</h2>
+<ol>
+<li>
+<p>What is the primary characteristic of a B-tree that makes it suitable for disk-based storage?
+   <strong>Answer: b) It has high fan-out and fat nodes</strong></p>
+</li>
+<li>
+<p>Which of the following is NOT a component of HDFS architecture?
+   <strong>Answer: d) MasterNode</strong></p>
+</li>
+<li>
+<p>In MapReduce, what happens during the shuffle and sort phase?
+   <strong>Answer: b) Keys are partitioned and copied to reducers</strong></p>
+</li>
+<li>
+<p>What is the main advantage of columnar storage over row storage for analytical queries?
+   <strong>Answer: c) Reduced I/O bandwidth usage</strong></p>
+</li>
+<li>
+<p>In a B-tree with degree 1000, how many disk seeks would be required to find a key in a dataset of 10 billion items?
+   <strong>Answer: b) 3</strong></p>
+</li>
+<li>
+<p>What is the key difference between Size-Tiered Compaction and Leveled Compaction in LSM trees?
+   <strong>Answer: a) Size-Tiered is write-optimized, Leveled is read-optimized</strong></p>
+</li>
+<li>
+<p>What is the primary purpose of a Bloom filter in LSM trees?
+   <strong>Answer: b) To quickly determine if a key may be present in a segment</strong></p>
+</li>
+<li>
+<p>In the MySQL InnoDB storage engine, what does a secondary index store as its 'value' in the leaf nodes?
+   <strong>Answer: d) The primary key of the associated row</strong></p>
+</li>
+<li>
+<p>What is the main performance bottleneck in MapReduce?
+   <strong>Answer: b) Network transfer during shuffle phase</strong></p>
+</li>
+<li>
+<p>What is the key concept behind data locality in MapReduce?
+    <strong>Answer: b) Moving computation to the data</strong></p>
+</li>
+<li>
+<p>What is the primary benefit of using a log-structured storage engine?
+    <strong>Answer: b) Sequential writes are faster</strong></p>
+</li>
+<li>
+<p>Which of these is NOT a characteristic of a good hash function for distributed systems?
+    <strong>Answer: d) Random distribution</strong></p>
+</li>
+<li>
+<p>What is the main difference between OLTP and OLAP systems?
+    <strong>Answer: a) OLTP is for real-time processing, OLAP is for analytical processing</strong></p>
+</li>
+<li>
+<p>How does the size of the primary key affect the performance of a B+tree index?
+    <strong>Answer: b) Smaller keys allow more entries per node, leading to a shallower tree</strong></p>
+</li>
+<li>
+<p>What does the "X" represent in the formula partition = hash(k_2) mod X in MapReduce?
+    <strong>Answer: a) Number of reducers</strong></p>
+</li>
+<li>
+<p>What is the primary purpose of a Combiner in MapReduce?
+    <strong>Answer: b) To reduce network traffic by pre-aggregating intermediate results</strong></p>
+</li>
+<li>
+<p>What is the main benefit of using a columnar storage format?
+    <strong>Answer: c) Reduced I/O for analytical queries</strong></p>
+</li>
+<li>
+<p>What is the role of the ResourceManager in YARN?
+    <strong>Answer: b) Manages cluster resources and scheduling</strong></p>
+</li>
+<li>
+<p>What is the main characteristic of a narrow transformation in Spark?
+    <strong>Answer: b) It doesn't require data movement between nodes</strong></p>
+</li>
+<li>
+<p>What is the main purpose of the NameNode in HDFS?
+    <strong>Answer: b) Manages the filesystem namespace and metadata</strong></p>
+</li>
+</ol>
+<h2 id="section-b-truefalse-questions-6-marks-1-mark-each">Section B: True/False Questions (6 marks, 1 mark each)</h2>
+<ol>
+<li>
+<p>HDFS blocks are replicated by default 3 times for fault tolerance. <strong>Answer: True</strong></p>
+</li>
+<li>
+<p>MapReduce is primarily used for real-time processing. <strong>Answer: False</strong></p>
+</li>
+<li>
+<p>In Spark, narrow transformations are faster than wide transformations because they don't require shuffling. <strong>Answer: True</strong></p>
+</li>
+<li>
+<p>The main performance bottleneck in MapReduce is usually the network transfer during the shuffle phase. <strong>Answer: True</strong></p>
+</li>
+<li>
+<p>The primary benefit of using a log-structured storage engine is that it provides better read performance than traditional storage. <strong>Answer: False</strong></p>
+</li>
+<li>
+<p>In a B-tree, each node can have at most the degree number of children. <strong>Answer: True</strong></p>
+</li>
+</ol>
+<h2 id="section-c-short-answer-questions-24-marks-2-marks-each">Section C: Short Answer Questions (24 marks, 2 marks each)</h2>
+<ol>
+<li>
+<p>What is the key difference between a hash index and a B-tree index?
+    <strong>Answer: A hash index provides O(1) lookup time but doesn't support range queries, while a B-tree index supports both point and range queries with O(log n) time complexity.</strong></p>
+</li>
+<li>
+<p>Define data locality in the context of distributed systems.
+    <strong>Answer: Data locality refers to the principle of processing data where it resides, minimizing network transfer by scheduling computation on nodes that contain the data to be processed.</strong></p>
+</li>
+<li>
+<p>Explain the role of the NameNode in HDFS architecture.
+    <strong>Answer: The NameNode manages the filesystem namespace, stores metadata about files and directories, tracks which DataNodes store which blocks, and maintains the mapping of file blocks to DataNodes.</strong></p>
+</li>
+<li>
+<p>What is lazy evaluation in Spark and why is it beneficial?
+    <strong>Answer: Lazy evaluation means Spark delays execution until a result is actually needed. It's beneficial because it allows Spark to optimize the entire computation pipeline into a single efficient execution plan rather than executing operations one by one.</strong></p>
+</li>
+<li>
+<p>Describe the process of compaction in LSM trees.
+    <strong>Answer: Compaction is the process where multiple smaller sorted segments are merged into larger sorted segments. This process removes duplicate keys, handles deletions (tombstones), and reduces the number of segments that need to be searched during reads.</strong></p>
+</li>
+<li>
+<p>What are the main challenges in implementing fault tolerance in distributed systems?
+    <strong>Answer: The main challenges include detecting failures, recovering from failures without data loss, maintaining consistency across nodes, and ensuring availability while dealing with network partitions and node failures.</strong></p>
+</li>
+<li>
+<p>What is the main advantage of columnar storage over row storage for analytical queries?
+    <strong>Answer: Columnar storage allows for better compression and faster query performance for analytical workloads since queries typically access only a subset of columns, reducing I/O bandwidth usage.</strong></p>
+</li>
+<li>
+<p>Explain the difference between Map and Reduce phases in MapReduce.
+    <strong>Answer: The Map phase processes input data and generates intermediate key-value pairs, while the Reduce phase receives the intermediate key-value pairs from multiple mappers, groups them by key, and produces the final output.</strong></p>
+</li>
+<li>
+<p>What is the purpose of a partitioner in MapReduce?
+    <strong>Answer: The partitioner determines which reducer a particular intermediate key-value pair should be sent to, ensuring that related data is processed by the same reducer.</strong></p>
+</li>
+<li>
+<p>Why are B-tree nodes often sized to match the size of a disk block (e.g., 16k)?
+    <strong>Answer: B-tree nodes are sized to match disk block size to minimize disk I/O operations. When a node is read from disk, it reads an entire block, so matching the node size to the block size maximizes I/O efficiency.</strong></p>
+</li>
+<li>
+<p>What is the primary performance drawback of using a completely random 128-bit UUIDv4 as a primary key in a B+tree?
+    <strong>Answer: The primary drawback is that random UUIDs cause poor write performance due to index fragmentation, as new records are inserted at random locations in the index, leading to many page splits and poor cache locality.</strong></p>
+</li>
+<li>
+<p>List down any 2 applications of Bloom filter in storage systems?
+    <strong>Answer: 1) To quickly check if a key may exist in a segment before doing expensive disk lookups, 2) To track which keys have been deleted (tombstones) in LSM trees to avoid unnecessary disk reads.</strong></p>
+</li>
+</ol>
 
 
 
@@ -1666,10 +2037,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.expand", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.expand", "navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/lectures/3btrees/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/streaming_introduction/">
       
       
-        <link rel="prev" href="../2ssts_lsm_trees/">
+        <link rel="prev" href="../transformation_joins/">
       
       
-        <link rel="next" href="../4columnar_storage/">
+        <link rel="next" href="../../code/storage_engines/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>B-Trees - DS614 - Big Data Engineering | DAU</title>
+        <title>Introduction - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#in-memory-vs-disk-based-data-structures" class="md-skip">
+        <a href="#foundations-of-stream-processing-and-event-driven-architectures" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              B-Trees
+              Introduction
             
           </span>
         </div>
@@ -341,8 +341,6 @@
                 
   
   
-    
-  
   
   
     
@@ -353,11 +351,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
         
           
           <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
@@ -378,7 +378,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -593,35 +593,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B-Trees
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../3btrees/" class="md-nav__link">
         
   
   
@@ -637,113 +612,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#in-memory-vs-disk-based-data-structures" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In-Memory vs. Disk-Based Data Structures
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="In-Memory vs. Disk-Based Data Structures">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#in-memory-ram" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In-Memory (RAM)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#disk-based-hddssd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Disk-Based (HDD/SSD)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-the-solution-the-b-tree" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. The Solution: The B-Tree
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. The Solution: The B-Tree">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#key-characteristics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Characteristics
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-it-optimizes-for-disk" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it optimizes for Disk
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        References
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1253,8 +1121,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -1263,13 +1133,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
@@ -1290,7 +1158,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1305,10 +1173,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../streaming_introduction/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1324,6 +1219,242 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batch-vs-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch vs streams
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-anatomy-of-an-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Anatomy of an Event
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#messaging-paradigms-direct-vs-broker-mediated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messaging Paradigms: Direct vs. Broker-Mediated
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Messaging Paradigms: Direct vs. Broker-Mediated">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-messaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Messaging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-brokers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Brokers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparative-analysis-database-vs-message-broker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparative Analysis: Database vs. Message Broker
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consumer-patterns-load-balancing-and-fan-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consumer Patterns: Load Balancing and Fan-out
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consumer Patterns: Load Balancing and Fan-out">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-reliability-trap-acknowledgments-and-redelivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Reliability Trap: Acknowledgments and Redelivery
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deep-dive-log-based-message-brokers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deep Dive: Log-Based Message Brokers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deep Dive: Log-Based Message Brokers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partitioning-mechanics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partitioning Mechanics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offset-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offset Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#head-of-line-blocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Head-of-Line Blocking
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-engineering-insights-the-globalshop-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance &amp; Engineering Insights: The GlobalShop Scenario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1912,6 +2043,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1920,22 +2053,66 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#in-memory-vs-disk-based-data-structures" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        In-Memory vs. Disk-Based Data Structures
+        Prerequisites
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="In-Memory vs. Disk-Based Data Structures">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batch-vs-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch vs streams
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-anatomy-of-an-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Anatomy of an Event
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#messaging-paradigms-direct-vs-broker-mediated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messaging Paradigms: Direct vs. Broker-Mediated
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Messaging Paradigms: Direct vs. Broker-Mediated">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#in-memory-ram" class="md-nav__link">
+  <a href="#direct-messaging" class="md-nav__link">
     <span class="md-ellipsis">
       
-        In-Memory (RAM)
+        Direct Messaging
       
     </span>
   </a>
@@ -1943,10 +2120,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#disk-based-hddssd" class="md-nav__link">
+  <a href="#message-brokers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Disk-Based (HDD/SSD)
+        Message Brokers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparative-analysis-database-vs-message-broker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparative Analysis: Database vs. Message Broker
       
     </span>
   </a>
@@ -1959,33 +2147,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-the-solution-the-b-tree" class="md-nav__link">
+  <a href="#consumer-patterns-load-balancing-and-fan-out" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. The Solution: The B-Tree
+        Consumer Patterns: Load Balancing and Fan-out
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. The Solution: The B-Tree">
+    <nav class="md-nav" aria-label="Consumer Patterns: Load Balancing and Fan-out">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#key-characteristics" class="md-nav__link">
+  <a href="#the-reliability-trap-acknowledgments-and-redelivery" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Characteristics
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-it-optimizes-for-disk" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it optimizes for Disk
+        The Reliability Trap: Acknowledgments and Redelivery
       
     </span>
   </a>
@@ -1994,6 +2171,89 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deep-dive-log-based-message-brokers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deep Dive: Log-Based Message Brokers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deep Dive: Log-Based Message Brokers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partitioning-mechanics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partitioning Mechanics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offset-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offset Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#head-of-line-blocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Head-of-Line Blocking
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-engineering-insights-the-globalshop-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance &amp; Engineering Insights: The GlobalShop Scenario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2025,49 +2285,190 @@
 
 
 
-  <h1>B-Trees</h1>
-
-<h3 id="in-memory-vs-disk-based-data-structures">In-Memory vs. Disk-Based Data Structures</h3>
-<h4 id="in-memory-ram">In-Memory (RAM)</h4>
+<h1 id="foundations-of-stream-processing-and-event-driven-architectures">Foundations of Stream Processing and Event-Driven Architectures</h1>
+<h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li><strong>Access Model:</strong> Byte-addressable. You can read/write any specific byte directly.</li>
-<li><strong>Speed:</strong> Extremely fast (nanoseconds).</li>
-<li><strong>Constraint:</strong> The main constraint is <strong>computational complexity</strong> (Big-O of CPU operations). We worry about how many comparisons we make.</li>
-<li><strong>Typical Structures:</strong> Binary Search Trees (BST), AVL Trees, Red-Black Trees.<ul>
-<li><em>Why they work here:</em> These trees are "tall" and "thin." A node usually contains just one key and two pointers. Following a pointer to a child node is effectively free because it's just a memory address jump.</li>
+<li>Familiarity with Batch Processing/MapReduce mechanics.</li>
+<li>Understanding of basic networking protocols (TCP/UDP) and flow control.</li>
+<li>Knowledge of disk I/O performance (sequential throughput vs. capacity).</li>
 </ul>
-</li>
-</ul>
-<h4 id="disk-based-hddssd">Disk-Based (HDD/SSD)</h4>
-<ul>
-<li><strong>Access Model:</strong> Block-addressable. You cannot read a single byte; you must fetch an entire "page" or "block" (typically 4KB, 8KB, or 16KB) into memory to read even one bit of it.</li>
-<li><strong>Speed:</strong> Slow (milliseconds or microseconds). A disk seek is roughly 100,000x slower than a RAM access.</li>
-<li><strong>Constraint:</strong> The main constraint is <strong>I/O Operations</strong> (Disk Seeks). We don't care if we do 100 extra CPU comparisons if it saves us <em>one</em> trip to the disk.</li>
-<li><strong>The Problem with BSTs:</strong> If you store a Red-Black Tree on a disk, every time you follow a pointer to a child, you might need to fetch a new disk block. Since binary trees are deep (height = <span class="arithmatex"><span class="MathJax_Preview">\log_2 N</span><script type="math/tex">\log_2 N</script></span>), searching for a key could require dozens of disk seeks. This is unacceptably slow.</li>
-</ul>
-<hr />
-<h3 id="2-the-solution-the-b-tree">2. The Solution: The B-Tree</h3>
-<p>To solve the disk constraint, we need a tree that is <strong>wide</strong> and <strong>shallow</strong> rather than tall and thin.</p>
-<p>A B-tree is a self-balancing tree designed specifically to maintain sorted data and allow searches, sequential access, insertions, and deletions in logarithmic time, <em>while minimizing disk I/O</em>.</p>
-<h4 id="key-characteristics">Key Characteristics</h4>
+<h2 id="objectives">Objectives</h2>
 <ol>
-<li><strong>High Fan-out:</strong> Unlike a binary tree (which has 2 children), a B-tree node can have hundreds or thousands of children. This dramatically reduces the height of the tree.  </li>
-<li><strong>Fat Nodes:</strong> Each node is designed to fit exactly inside one disk page (e.g., 4KB).  </li>
-<li><strong>Multiple Keys per Node:</strong> Instead of 1 key, a node contains an ordered array of keys (e.g., 100 keys).  </li>
+<li><strong>Distinguish between bounded and unbounded data</strong>, identifying why the latter requires moving away from traditional sort-based batching.</li>
+<li><strong>Evaluate the trade-offs between direct and broker-based messaging</strong>, specifically regarding latency, durability, and the "online requirement."</li>
+<li><strong>Analyze how load balancing across multiple consumers</strong> can inadvertently compromise message ordering and break causal dependencies.</li>
+<li><strong>Explain the mechanics of log-based partitioning and offsets</strong>, contrasting them with the destructive read patterns of traditional message brokers.</li>
+<li><strong>Calculate disk-based buffering capacities</strong> to determine the retention window of a production stream under peak load.</li>
 </ol>
-<h4 id="how-it-optimizes-for-disk">How it optimizes for Disk</h4>
-<p>Imagine you want to find a number in a dataset of 1 billion items.<br />
-- <strong>Binary Tree:</strong> Height is <span class="arithmatex"><span class="MathJax_Preview">\approx 30</span><script type="math/tex">\approx 30</script></span>. You might need <strong>30 disk seeks</strong>.<br />
-- <strong>B-Tree (Degree 1000):</strong> Height is <span class="arithmatex"><span class="MathJax_Preview">\approx 3</span><script type="math/tex">\approx 3</script></span>. You only need <strong>3 disk seeks</strong>.  </p>
-<p>When you load a B-Tree node, you get hundreds of keys in a single I/O operation. Once that node is in RAM, you can binary search those keys instantly (nanoseconds) to decide which child pointer to follow next.</p>
 <hr />
-<p><strong>Mandatory reading(aligned with lecture)</strong>:  <a href="https://planetscale.com/blog/btrees-and-database-indexes">B-trees and database indexes — PlanetScale</a> </p>
+<h2 id="batch-vs-streams">Batch vs streams</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Batch Processing</th>
+<th>Stream Processing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input Nature</strong></td>
+<td><strong>Bounded</strong> (finite, known dataset)</td>
+<td><strong>Unbounded</strong> (continuous, never-ending data)</td>
+</tr>
+<tr>
+<td><strong>Data Arrival</strong></td>
+<td>Collected first, processed later</td>
+<td>Processed as it arrives</td>
+</tr>
+<tr>
+<td><strong>Processing Trigger</strong></td>
+<td>Runs on complete dataset (e.g., daily/hourly jobs)</td>
+<td>Runs continuously (event-by-event or micro-batches)</td>
+</tr>
+<tr>
+<td><strong>Latency</strong></td>
+<td>High (minutes → hours → days)</td>
+<td>Low (milliseconds → seconds)</td>
+</tr>
+<tr>
+<td><strong>Output Timing</strong></td>
+<td>Produced after full input is processed</td>
+<td>Produced incrementally in real-time</td>
+</tr>
+<tr>
+<td><strong>Completeness Assumption</strong></td>
+<td>Assumes dataset is complete</td>
+<td>No notion of “complete” dataset</td>
+</tr>
+<tr>
+<td><strong>Example Constraint</strong></td>
+<td>Sorting requires full data before output</td>
+<td>Can process partial/incremental results</td>
+</tr>
+<tr>
+<td><strong>Freshness of Results</strong></td>
+<td>Delayed (e.g., yesterday’s data today)</td>
+<td>Near real-time updates</td>
+</tr>
+<tr>
+<td><strong>Use Cases</strong></td>
+<td>Analytics, reports, indexing, ML training</td>
+<td>Monitoring, fraud detection, real-time dashboards</td>
+</tr>
+<tr>
+<td><strong>Failure Recovery</strong></td>
+<td>Re-run entire job (recomputable)</td>
+<td>Requires state management + checkpointing</td>
+</tr>
+<tr>
+<td><strong>Time Handling</strong></td>
+<td>Artificial time slicing (daily/hourly batches)</td>
+<td>Native time-aware (event time, processing time)</td>
+</tr>
+</tbody>
+</table>
 <hr />
+<p>We move now from the theoretical definition of "unbounded streams" to the practical engineering unit of information: the <strong>Event</strong>.</p>
+<h2 id="the-anatomy-of-an-event">The Anatomy of an Event</h2>
+<p>In distributed systems, reliability is built upon the foundation of <strong>immutability</strong>. Unlike a traditional database record that is frequently updated or overwritten, an event is a permanent, immutable record of an action. This immutability ensures that once data enters the stream, it remains a stable reference point for all downstream systems, greatly simplifying recovery and auditing.</p>
+<p>Technically, an <strong>Event</strong> is a small, self-contained, immutable object. It must contain:</p>
+<ul>
+<li><strong>A Timestamp:</strong> Indicating exactly when the event occurred (ideally using a time-of-day clock).</li>
+<li><strong>Encoding:</strong> The data structure, which may be text-based (JSON) or a more efficient binary form.</li>
+</ul>
+<p>Why prioritize immutability? In a system where data is mutable, you only see the "current state." If a value is corrupted, the history of how you arrived there is lost. With immutable events, you have a perfect audit trail. If a bug is discovered in your processing logic, you can "replay" the immutable events from the beginning to recreate the correct state.</p>
+<hr />
+<h2 id="messaging-paradigms-direct-vs-broker-mediated">Messaging Paradigms: Direct vs. Broker-Mediated</h2>
+<p>Architects must choose how to transport events from producers (GlobalShop web servers) to consumers (inventory or fraud services). This is a strategic trade-off between latency and reliability.</p>
+<h3 id="direct-messaging">Direct Messaging</h3>
+<p>Systems like UDP Multicast, ZeroMQ, or Webhooks allow for fast, point-to-point communication.</p>
+<ul>
+<li><strong>The Industry Warning:</strong> The primary limitation here is the <strong>Online Requirement</strong>. In direct messaging, both the producer and consumer must be online simultaneously. I must warn you: relying on direct messaging for critical business logic (like GlobalShop's "checkout" events) is incredibly fragile. If the consumer service crashes, the events are lost unless the producer implements complex manual retry logic—which usually fails under pressure.</li>
+</ul>
+<h3 id="message-brokers">Message Brokers</h3>
+<p>A Message Broker acts as a "database optimized for streams." It is a centralized server where producers write and consumers read. This asynchronicity allows the system to tolerate consumer downtime by buffering messages.</p>
+<ul>
+<li><strong>Database Parity:</strong> Some brokers even support <strong>Two-Phase Commit protocols (XA/JTA)</strong>. This allows a broker to participate in a distributed transaction, ensuring that a message is only acknowledged if a corresponding database write also succeeds—bringing brokers closer to the consistency guarantees of a database.</li>
+</ul>
+<h3 id="comparative-analysis-database-vs-message-broker">Comparative Analysis: Database vs. Message Broker</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feature</td>
+<td>Database</td>
+<td>Message Broker</td>
+</tr>
+<tr>
+<td><strong>Data Retention</strong></td>
+<td>Kept until explicitly deleted.</td>
+<td>Traditionally deleted after delivery.</td>
+</tr>
+<tr>
+<td><strong>Working Set</strong></td>
+<td>Can be massive (terabytes).</td>
+<td>Assumed to be small (short queues).</td>
+</tr>
+<tr>
+<td><strong>Query Pattern</strong></td>
+<td>Point-in-time snapshots.</td>
+<td>Notifications of new data (Pub/Sub).</td>
+</tr>
+<tr>
+<td><strong>Transactions</strong></td>
+<td>Standard (ACID).</td>
+<td>Supported via XA/JTA in some systems.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="consumer-patterns-load-balancing-and-fan-out">Consumer Patterns: Load Balancing and Fan-out</h2>
+<p>When multiple consumers interact with GlobalShop’s "Orders" topic, we see two primary patterns:</p>
+<ol>
+<li><strong>Load Balancing:</strong> Each message is delivered to exactly one consumer in a group. This is ideal for parallelizing expensive tasks like payment processing.</li>
+<li><strong>Fan-out:</strong> Every message is delivered to all consumers. This allows the shipping service and the analytics service to both "tune in" to the same stream independently.</li>
+</ol>
+<h3 id="the-reliability-trap-acknowledgments-and-redelivery">The Reliability Trap: Acknowledgments and Redelivery</h3>
+<p>Brokers use <strong>acknowledgments (ACKs)</strong> to ensure no event is lost. If a consumer crashes, the broker redelivers the unacknowledged message to another consumer.</p>
+<ul>
+<li><strong>The "So What?" Layer (Causal Dependencies):</strong> Consider Figure 11-2. Producer 1 sends m3 and m4. Consumer 2 takes m3 but crashes before acknowledging. Meanwhile, Consumer 1 is processing m4. The broker redelivers m3 to Consumer 1. Now, Consumer 1 processes m4 <em>then</em> m3.</li>
+<li><strong>The Result:</strong> If m3 was "Payment Successful" and m4 was "Ship Item," the system just tried to ship an item before the payment was confirmed. This reordering breaks <strong>causal dependencies</strong> and can lead to massive operational failures.</li>
+</ul>
+<hr />
+<h2 id="deep-dive-log-based-message-brokers">Deep Dive: Log-Based Message Brokers</h2>
+<p>Log-based brokers (Kafka, Kinesis) bridge the gap between databases and messaging by using an <strong>append-only sequence of records on disk</strong>.</p>
+<h3 id="partitioning-mechanics">Partitioning Mechanics</h3>
+<p>To scale, a Topic is split into <strong>Partitions</strong>. Each partition is a separate file that can be hosted on a different machine. At GlobalShop, we partition by UserID; all events for User 123 go to Partition 0, ensuring they stay in strict chronological order.</p>
+<h3 id="offset-management">Offset Management</h3>
+<p>Every message in a partition has a unique <strong>Offset</strong> (a sequence number). The consumer acts as a <strong>database follower</strong>, keeping track of the last offset it read. If it crashes, it restarts from the last recorded offset.</p>
+<h3 id="head-of-line-blocking">Head-of-Line Blocking</h3>
+<p>In a log-based system, we encounter <strong>Head-of-Line Blocking</strong>. Because a partition is read sequentially, if a single "poison pill" message is slow or fails to process, it blocks <em>all</em> subsequent messages in that partition. This is the trade-off for maintaining order; unlike traditional brokers where other consumers can "jump the queue," the log requires you to clear the pipe in order.</p>
+<hr />
+<h2 id="performance-engineering-insights-the-globalshop-scenario">Performance &amp; Engineering Insights: The GlobalShop Scenario</h2>
+<p>Data engineering is dictated by the "physics" of hardware. Let's apply this to GlobalShop’s infrastructure.</p>
+<h2 id="common-pitfalls">Common Pitfalls</h2>
+<ol>
+<li><strong>Event Time vs. Broker Time:</strong> Never use the time the broker received the message for business logic. Always use the timestamp generated at the source.</li>
+<li><strong>Global Order Assumption:</strong> Remember, ordering is only guaranteed <strong>within a partition</strong>, not across the entire topic.</li>
+<li><strong>Destructive Reads:</strong> Don't assume all brokers act like AMQP. In log-based systems, reading is a non-destructive, repeatable operation.</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><strong>Unbounded Data:</strong> Real-world data is a continuous flow; stream processing treats it as such without artificial batch delays.</li>
+<li><strong>Immutability:</strong> Events are facts. By keeping them immutable, we create a repeatable, recoverable system.</li>
+<li><strong>Log-Based Storage:</strong> Partitioning and offsets allow us to scale throughput while maintaining a "replayable" history of events.</li>
+<li><strong>Operational Safety:</strong> The large disk-based buffers of log-based brokers provide a safety net for slow consumers, allowing human intervention before data loss occurs.</li>
+</ul>
 <h2 id="references">References</h2>
 <ol>
-<li><a href="https://planetscale.com/blog/btrees-and-database-indexes">B-trees and database indexes — PlanetScale</a> </li>
-<li><a href="https://www.databass.dev/">Database Internals, Chapter 2</a></li>
-<li><a href="">Designing Data Intensive Applications, Chapter 3</a></li>
+<li>Chapter 11, Stream Processing: Designing Data Intensive Applications</li>
 </ol>
 
 
@@ -2075,9 +2476,6 @@
 
 
 
-
-  
-  
 
 
 
@@ -2101,7 +2499,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../2ssts_lsm_trees/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SSTables + LSM Trees">
+          <a href="../transformation_joins/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Joins">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2111,20 +2509,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                SSTables + LSM Trees
+                Joins
               </div>
             </div>
           </a>
         
         
           
-          <a href="../4columnar_storage/" class="md-footer__link md-footer__link--next" aria-label="Next: OLTP vs OLAP">
+          <a href="../../code/storage_engines/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage Engines">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                OLTP vs OLAP
+                Storage Engines
               </div>
             </div>
             <div class="md-footer__button md-icon">

@@ -10,13 +10,9 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/lectures/3btrees/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/question_paper/">
       
       
-        <link rel="prev" href="../2ssts_lsm_trees/">
-      
-      
-        <link rel="next" href="../4columnar_storage/">
       
       
         
@@ -27,7 +23,7 @@
     
     
       
-        <title>B-Trees - DS614 - Big Data Engineering | DAU</title>
+        <title>Big Data Engineering - 50 Marks Question Paper - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -76,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#in-memory-vs-disk-based-data-structures" class="md-skip">
+        <a href="#big-data-engineering-50-marks-question-paper" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              B-Trees
+              Big Data Engineering - 50 Marks Question Paper
             
           </span>
         </div>
@@ -160,7 +156,12 @@
   
   
   
+  
     
+    
+      
+  
+  
   
   
     
@@ -169,21 +170,10 @@
   
   
   
-    
-  
   
     
     
-      
-  
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../0storage_prerequisites/" class="md-tabs__link">
           
   
@@ -286,29 +276,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -326,7 +313,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -341,8 +328,6 @@
                 
   
   
-    
-  
   
   
     
@@ -353,11 +338,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
         
           
           <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
@@ -378,7 +365,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -593,35 +580,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    B-Trees
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../3btrees/" class="md-nav__link">
         
   
   
@@ -637,113 +599,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#in-memory-vs-disk-based-data-structures" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In-Memory vs. Disk-Based Data Structures
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="In-Memory vs. Disk-Based Data Structures">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#in-memory-ram" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In-Memory (RAM)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#disk-based-hddssd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Disk-Based (HDD/SSD)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-the-solution-the-b-tree" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. The Solution: The B-Tree
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. The Solution: The B-Tree">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#key-characteristics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Characteristics
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-it-optimizes-for-disk" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it optimizes for Disk
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        References
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1912,6 +1767,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1920,88 +1777,32 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#in-memory-vs-disk-based-data-structures" class="md-nav__link">
+  <a href="#section-a-multiple-choice-questions-20-marks-1-mark-each" class="md-nav__link">
     <span class="md-ellipsis">
       
-        In-Memory vs. Disk-Based Data Structures
+        Section A: Multiple Choice Questions (20 marks, 1 mark each)
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="In-Memory vs. Disk-Based Data Structures">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#in-memory-ram" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In-Memory (RAM)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#disk-based-hddssd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Disk-Based (HDD/SSD)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-the-solution-the-b-tree" class="md-nav__link">
+  <a href="#section-b-truefalse-questions-6-marks-1-mark-each" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. The Solution: The B-Tree
+        Section B: True/False Questions (6 marks, 1 mark each)
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="2. The Solution: The B-Tree">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#key-characteristics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Characteristics
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-it-optimizes-for-disk" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it optimizes for Disk
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
+  <a href="#section-c-short-answer-questions-24-marks-2-marks-each" class="md-nav__link">
     <span class="md-ellipsis">
       
-        References
+        Section C: Short Answer Questions (24 marks, 2 marks each)
       
     </span>
   </a>
@@ -2025,49 +1826,212 @@
 
 
 
-  <h1>B-Trees</h1>
-
-<h3 id="in-memory-vs-disk-based-data-structures">In-Memory vs. Disk-Based Data Structures</h3>
-<h4 id="in-memory-ram">In-Memory (RAM)</h4>
-<ul>
-<li><strong>Access Model:</strong> Byte-addressable. You can read/write any specific byte directly.</li>
-<li><strong>Speed:</strong> Extremely fast (nanoseconds).</li>
-<li><strong>Constraint:</strong> The main constraint is <strong>computational complexity</strong> (Big-O of CPU operations). We worry about how many comparisons we make.</li>
-<li><strong>Typical Structures:</strong> Binary Search Trees (BST), AVL Trees, Red-Black Trees.<ul>
-<li><em>Why they work here:</em> These trees are "tall" and "thin." A node usually contains just one key and two pointers. Following a pointer to a child node is effectively free because it's just a memory address jump.</li>
-</ul>
+<h1 id="big-data-engineering-50-marks-question-paper">Big Data Engineering - 50 Marks Question Paper</h1>
+<h2 id="section-a-multiple-choice-questions-20-marks-1-mark-each">Section A: Multiple Choice Questions (20 marks, 1 mark each)</h2>
+<p><strong>Instructions</strong>: Choose the correct answer for each question.</p>
+<ol>
+<li>
+<p>What is the primary characteristic of a B-tree that makes it suitable for disk-based storage?
+   a) It's a binary tree
+   b) It has high fan-out and fat nodes
+   c) It's optimized for memory access
+   d) It uses only one key per node</p>
 </li>
-</ul>
-<h4 id="disk-based-hddssd">Disk-Based (HDD/SSD)</h4>
-<ul>
-<li><strong>Access Model:</strong> Block-addressable. You cannot read a single byte; you must fetch an entire "page" or "block" (typically 4KB, 8KB, or 16KB) into memory to read even one bit of it.</li>
-<li><strong>Speed:</strong> Slow (milliseconds or microseconds). A disk seek is roughly 100,000x slower than a RAM access.</li>
-<li><strong>Constraint:</strong> The main constraint is <strong>I/O Operations</strong> (Disk Seeks). We don't care if we do 100 extra CPU comparisons if it saves us <em>one</em> trip to the disk.</li>
-<li><strong>The Problem with BSTs:</strong> If you store a Red-Black Tree on a disk, every time you follow a pointer to a child, you might need to fetch a new disk block. Since binary trees are deep (height = <span class="arithmatex"><span class="MathJax_Preview">\log_2 N</span><script type="math/tex">\log_2 N</script></span>), searching for a key could require dozens of disk seeks. This is unacceptably slow.</li>
-</ul>
-<hr />
-<h3 id="2-the-solution-the-b-tree">2. The Solution: The B-Tree</h3>
-<p>To solve the disk constraint, we need a tree that is <strong>wide</strong> and <strong>shallow</strong> rather than tall and thin.</p>
-<p>A B-tree is a self-balancing tree designed specifically to maintain sorted data and allow searches, sequential access, insertions, and deletions in logarithmic time, <em>while minimizing disk I/O</em>.</p>
-<h4 id="key-characteristics">Key Characteristics</h4>
-<ol>
-<li><strong>High Fan-out:</strong> Unlike a binary tree (which has 2 children), a B-tree node can have hundreds or thousands of children. This dramatically reduces the height of the tree.  </li>
-<li><strong>Fat Nodes:</strong> Each node is designed to fit exactly inside one disk page (e.g., 4KB).  </li>
-<li><strong>Multiple Keys per Node:</strong> Instead of 1 key, a node contains an ordered array of keys (e.g., 100 keys).  </li>
+<li>
+<p>Which of the following is NOT a component of HDFS architecture?
+   a) NameNode
+   b) DataNode
+   c) ResourceManager
+   d) MasterNode</p>
+</li>
+<li>
+<p>In MapReduce, what happens during the shuffle and sort phase?
+   a) Data is written to disk
+   b) Keys are partitioned and copied to reducers
+   c) Combiners are applied
+   d) Mapper outputs are sorted locally</p>
+</li>
+<li>
+<p>What is the main advantage of columnar storage over row storage for analytical queries?
+   a) Better compression
+   b) Faster writes
+   c) Reduced I/O bandwidth usage
+   d) Better indexing</p>
+</li>
+<li>
+<p>In a B-tree with degree 1000, how many disk seeks would be required to find a key in a dataset of 10 billion items?
+   a) 4
+   b) 3
+   c) 1000
+   d) 100</p>
+</li>
+<li>
+<p>What is the key difference between Size-Tiered Compaction and Leveled Compaction in LSM trees?
+   a) Size-Tiered is write-optimized, Leveled is read-optimized
+   b) Size-Tiered is read-optimized, Leveled is write-optimized
+   c) Size-Tiered uses bloom filters, Leveled doesn't
+   d) They're the same approach</p>
+</li>
+<li>
+<p>What is the primary purpose of a Bloom filter in LSM trees?
+   a) To store data values
+   b) To quickly determine if a key may be present in a segment
+   c) To provide encryption
+   d) To track memory usage</p>
+</li>
+<li>
+<p>In the MySQL InnoDB storage engine, what does a secondary index store as its 'value' in the leaf nodes?
+    a) Only the column(s) specified in the WHERE clause.
+    b) A direct pointer to the physical disk offset of the row.
+    c) The entire row of data for faster retrieval.
+    d) The primary key of the associated row.</p>
+</li>
+<li>
+<p>What is the main performance bottleneck in MapReduce?
+   a) Disk I/O
+   b) Network transfer during shuffle phase
+   c) CPU processing
+   d) Memory allocation</p>
+</li>
+<li>
+<p>What is the key concept behind data locality in MapReduce?
+    a) Moving data to the computation
+    b) Moving computation to the data
+    c) Using multiple cores
+    d) Parallel processing</p>
+</li>
+<li>
+<p>What is the primary benefit of using a log-structured storage engine?
+    a) Faster reads
+    b) Sequential writes are faster
+    c) Better indexing
+    d) Reduced memory usage</p>
+</li>
+<li>
+<p>Which of these is NOT a characteristic of a good hash function for distributed systems?
+    a) Uniform distribution
+    b) Deterministic
+    c) Collisions should be minimized
+    d) Random distribution</p>
+</li>
+<li>
+<p>What is the main difference between OLTP and OLAP systems?
+    a) OLTP is for real-time processing, OLAP is for analytical processing
+    b) OLTP is for batch processing, OLAP is for real-time processing
+    c) OLTP is for data warehousing, OLAP is for transaction processing
+    d) They're the same thing</p>
+</li>
+<li>
+<p>How does the size of the primary key affect the performance of a B+tree index?
+    a) Key size has no impact as long as the total data fits on the disk.
+    b) Smaller keys allow more entries per node, leading to a shallower tree.
+    c) Larger keys are processed faster by modern 64-bit CPUs.
+    d) Smaller keys increase the likelihood of hashing collisions.</p>
+</li>
+<li>
+<p>What does the "X" represent in the formula partition = hash(k_2) mod X in MapReduce?
+    a) Number of reducers
+    b) Number of mappers
+    c) Number of blocks
+    d) Number of nodes</p>
+</li>
+<li>
+<p>What is the primary purpose of a Combiner in MapReduce?
+    a) To perform final aggregation
+    b) To reduce network traffic by pre-aggregating intermediate results
+    c) To encrypt data
+    d) To compress output files</p>
+</li>
+<li>
+<p>What is the main benefit of using a columnar storage format?
+    a) Better compression
+    b) Faster random access
+    c) Reduced I/O for analytical queries
+    d) Better indexing</p>
+</li>
+<li>
+<p>What is the role of the ResourceManager in YARN?
+    a) Stores data blocks
+    b) Manages cluster resources and scheduling
+    c) Handles data locality
+    d) Provides fault tolerance</p>
+</li>
+<li>
+<p>What is the main characteristic of a narrow transformation in Spark?
+    a) It requires shuffling
+    b) It doesn't require data movement between nodes
+    c) It's a data source operation
+    d) It's a transformation that combines data from multiple partitions</p>
+</li>
+<li>
+<p>What is the main purpose of the NameNode in HDFS?
+    a) Stores data blocks
+    b) Manages the filesystem namespace and metadata
+    c) Provides data locality
+    d) Handles client requests</p>
+</li>
 </ol>
-<h4 id="how-it-optimizes-for-disk">How it optimizes for Disk</h4>
-<p>Imagine you want to find a number in a dataset of 1 billion items.<br />
-- <strong>Binary Tree:</strong> Height is <span class="arithmatex"><span class="MathJax_Preview">\approx 30</span><script type="math/tex">\approx 30</script></span>. You might need <strong>30 disk seeks</strong>.<br />
-- <strong>B-Tree (Degree 1000):</strong> Height is <span class="arithmatex"><span class="MathJax_Preview">\approx 3</span><script type="math/tex">\approx 3</script></span>. You only need <strong>3 disk seeks</strong>.  </p>
-<p>When you load a B-Tree node, you get hundreds of keys in a single I/O operation. Once that node is in RAM, you can binary search those keys instantly (nanoseconds) to decide which child pointer to follow next.</p>
-<hr />
-<p><strong>Mandatory reading(aligned with lecture)</strong>:  <a href="https://planetscale.com/blog/btrees-and-database-indexes">B-trees and database indexes — PlanetScale</a> </p>
-<hr />
-<h2 id="references">References</h2>
+<h2 id="section-b-truefalse-questions-6-marks-1-mark-each">Section B: True/False Questions (6 marks, 1 mark each)</h2>
+<p><strong>Instructions</strong>: Write "True" or "False" for each statement.</p>
 <ol>
-<li><a href="https://planetscale.com/blog/btrees-and-database-indexes">B-trees and database indexes — PlanetScale</a> </li>
-<li><a href="https://www.databass.dev/">Database Internals, Chapter 2</a></li>
-<li><a href="">Designing Data Intensive Applications, Chapter 3</a></li>
+<li>
+<p>HDFS blocks are replicated by default 3 times for fault tolerance. ______</p>
+</li>
+<li>
+<p>MapReduce is primarily used for real-time processing. ______</p>
+</li>
+<li>
+<p>In Spark, narrow transformations are faster than wide transformations because they don't require shuffling. ______</p>
+</li>
+<li>
+<p>The main performance bottleneck in MapReduce is usually the network transfer during the shuffle phase. ______</p>
+</li>
+<li>
+<p>The primary benefit of using a log-structured storage engine is that it provides better read performance than traditional storage. ______</p>
+</li>
+<li>
+<p>In a B-tree, each node can have at most the degree number of children. ______</p>
+</li>
+</ol>
+<h2 id="section-c-short-answer-questions-24-marks-2-marks-each">Section C: Short Answer Questions (24 marks, 2 marks each)</h2>
+<p><strong>Instructions</strong>: Answer each question in 1-2 sentences.</p>
+<ol>
+<li>
+<p>What is the key difference between a hash index and a B-tree index?</p>
+</li>
+<li>
+<p>Define data locality in the context of distributed systems.</p>
+</li>
+<li>
+<p>Explain the role of the NameNode in HDFS architecture.</p>
+</li>
+<li>
+<p>What is lazy evaluation in Spark and why is it beneficial?</p>
+</li>
+<li>
+<p>Describe the process of compaction in LSM trees.</p>
+</li>
+<li>
+<p>What are the main challenges in implementing fault tolerance in distributed systems?</p>
+</li>
+<li>
+<p>What is the main advantage of columnar storage over row storage for analytical queries?</p>
+</li>
+<li>
+<p>Explain the difference between Map and Reduce phases in MapReduce.</p>
+</li>
+<li>
+<p>What is the purpose of a partitioner in MapReduce?</p>
+</li>
+<li>
+<p>Why are B-tree nodes often sized to match the size of a disk block (e.g., 16k)?</p>
+</li>
+<li>
+<p>What is the primary performance drawback of using a completely random 128-bit UUIDv4 as a primary key in a B+tree?</p>
+</li>
+<li>
+<p>List down any 2 applications of Bloom filter in storage systems? </p>
+</li>
 </ol>
 
 
@@ -2075,9 +2039,6 @@
 
 
 
-
-  
-  
 
 
 
@@ -2096,44 +2057,6 @@
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../2ssts_lsm_trees/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SSTables + LSM Trees">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                SSTables + LSM Trees
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../4columnar_storage/" class="md-footer__link md-footer__link--next" aria-label="Next: OLTP vs OLAP">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                OLTP vs OLAP
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
