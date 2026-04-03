@@ -28,4 +28,6 @@ Welcome to the course on Big Data Engineering.
             - [Joins](lectures/transformation_joins.md)
     - Stream Processing
         - [Introduction](lectures/streaming_introduction.md)
+    - Data Ingestion
+        - [Introduction](lectures/data_ingestion.md)
 ---
