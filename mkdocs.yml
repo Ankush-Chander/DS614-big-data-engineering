@@ -34,6 +34,7 @@ nav:
             - Joins: 'lectures/transformation_joins.md'
       - Stream Processing: 
         - Introduction: 'lectures/streaming_introduction.md'
+        - "AWS examples": 'lectures/streaming_examples_with_aws.md'
       - Data Ingestion: 
         - Introduction: 'lectures/data_ingestion.md'
   - Code:
@@ -50,7 +51,7 @@ nav:
         - "Normal forms": 'demo/db-normalization-demo.html'
       - Stream Processing:
         - "Introduction": 'notebooks/stream_processing.ipynb'
-        - "AWS examples": 'lectures/streaming_examples_with_aws.md'
+        
 ## Configuration
 theme:
   name: material
