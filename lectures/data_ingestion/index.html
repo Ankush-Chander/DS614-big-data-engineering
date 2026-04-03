@@ -10,9 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/lectures/question_paper/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/data_ingestion/">
       
       
+        <link rel="prev" href="../streaming_introduction/">
+      
+      
+        <link rel="next" href="../../code/storage_engines/">
       
       
         
@@ -23,7 +27,7 @@
     
     
       
-        <title>Big Data Engineering - 50 Marks Question Paper - DS614 - Big Data Engineering | DAU</title>
+        <title>Introduction - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#big-data-engineering-50-marks-question-paper" class="md-skip">
+        <a href="#key-considerations" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Big Data Engineering - 50 Marks Question Paper
+              Introduction
             
           </span>
         </div>
@@ -156,6 +160,8 @@
   
   
   
+    
+  
   
     
     
@@ -163,6 +169,8 @@
   
   
   
+    
+  
   
     
     
@@ -170,10 +178,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../0storage_prerequisites/" class="md-tabs__link">
           
   
@@ -276,26 +286,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -313,7 +326,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1196,8 +1209,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -1206,13 +1221,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
         
           
           <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
@@ -1233,7 +1246,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1248,10 +1261,35 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../data_ingestion/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1267,6 +1305,201 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#key-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-whats-the-use-case-for-the-data-im-ingesting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What’s the use case for the data I’m ingesting?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-can-i-reuse-data-instead-of-ingesting-duplicates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Can I reuse data instead of ingesting duplicates?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-where-is-the-data-going-destination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Where is the data going? (Destination)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-how-often-should-data-be-updated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. How often should data be updated?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lets-use-kafka-for-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        &gt; “Let’s use Kafka for everything” ❌
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&gt; “Let’s use Kafka for everything” ❌">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-what-is-the-expected-data-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. What is the expected data volume?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-what-format-is-the-data-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. What format is the data in?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-is-data-clean-what-are-data-quality-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Is data clean? What are data quality risks?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-do-we-need-in-flight-processing-streaming-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Do we need in-flight processing? (Streaming case)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-food-delivery-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario: Food Delivery App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etl-vs-elt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ETL vs. ELT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-data-capture-the-delta-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Data Capture: The "Delta" Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-from-tables-to-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bridge: From Tables to Events
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1883,8 +2116,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1893,10 +2124,143 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#section-a-multiple-choice-questions-20-marks-1-mark-each" class="md-nav__link">
+  <a href="#key-considerations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Section A: Multiple Choice Questions (20 marks, 1 mark each)
+        Key considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-whats-the-use-case-for-the-data-im-ingesting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What’s the use case for the data I’m ingesting?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-can-i-reuse-data-instead-of-ingesting-duplicates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Can I reuse data instead of ingesting duplicates?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-where-is-the-data-going-destination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Where is the data going? (Destination)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-how-often-should-data-be-updated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. How often should data be updated?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lets-use-kafka-for-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        &gt; “Let’s use Kafka for everything” ❌
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&gt; “Let’s use Kafka for everything” ❌">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-what-is-the-expected-data-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. What is the expected data volume?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-what-format-is-the-data-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. What format is the data in?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-is-data-clean-what-are-data-quality-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Is data clean? What are data quality risks?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-do-we-need-in-flight-processing-streaming-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Do we need in-flight processing? (Streaming case)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-food-delivery-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario: Food Delivery App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etl-vs-elt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ETL vs. ELT
       
     </span>
   </a>
@@ -1904,10 +2268,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#section-b-truefalse-questions-6-marks-1-mark-each" class="md-nav__link">
+  <a href="#change-data-capture-the-delta-strategy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Section B: True/False Questions (6 marks, 1 mark each)
+        Change Data Capture: The "Delta" Strategy
       
     </span>
   </a>
@@ -1915,10 +2279,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#section-c-short-answer-questions-24-marks-2-marks-each" class="md-nav__link">
+  <a href="#bridge-from-tables-to-events" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Section C: Short Answer Questions (24 marks, 2 marks each)
+        Bridge: From Tables to Events
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
       
     </span>
   </a>
@@ -1942,212 +2317,335 @@
 
 
 
-<h1 id="big-data-engineering-50-marks-question-paper">Big Data Engineering - 50 Marks Question Paper</h1>
-<h2 id="section-a-multiple-choice-questions-20-marks-1-mark-each">Section A: Multiple Choice Questions (20 marks, 1 mark each)</h2>
-<p><strong>Instructions</strong>: Choose the correct answer for each question.</p>
-<ol>
-<li>
-<p>What is the primary characteristic of a B-tree that makes it suitable for disk-based storage?
-   a) It's a binary tree
-   b) It has high fan-out and fat nodes
-   c) It's optimized for memory access
-   d) It uses only one key per node</p>
+  <h1>Introduction</h1>
+
+<p><img alt="" src="../../images/ingestion/ingestion_in_pipeline.png" /><br />
+Image credit: Fundamentals of Data Engineering  </p>
+<p>Data ingestion implies data movement from source systems into storage in the data engineering lifecycle, with ingestion as an intermediate step.  </p>
+<h2 id="key-considerations">Key considerations</h2>
+<h3 id="1-whats-the-use-case-for-the-data-im-ingesting">1. What’s the use case for the data I’m ingesting?</h3>
+<p>The <strong>same data</strong> is ingested very differently depending on the use case.<br />
+<strong>Examples</strong><br />
+1. Case A: Analytics dashboard<br />
+    - Data: Orders<br />
+    - Need: Daily revenue<br />
+    - Approach:<br />
+        - Batch ingestion (hourly/daily)<br />
+        - ELT is fine<br />
+2. Case B: Fraud detection<br />
+    - Data: Transactions<br />
+    - Need: Detect fraud in seconds<br />
+    - Approach:<br />
+        - Streaming + CDC<br />
+        - Low latency (&lt; seconds)  </p>
+<hr />
+<h3 id="2-can-i-reuse-data-instead-of-ingesting-duplicates">2. Can I reuse data instead of ingesting duplicates?</h3>
+<p>Teams often create <strong>multiple pipelines for same data</strong>  </p>
+<p><strong>Example:</strong><br />
+<strong>Bad architecture ❌</strong><br />
+<div class="highlight"><pre><span></span><code>DB → Pipeline A → Warehouse  
+DB → Pipeline B → Dashboard DB  
+DB → Pipeline C → ML system  
+</code></pre></div></p>
+<ul>
+<li>Same data ingested 3 times  </li>
+<li>Inconsistent versions 😱<br />
+<strong>Good architecture ✅</strong><br />
+<div class="highlight"><pre><span></span><code>DB → CDC → Central Stream → Multiple consumers  
+</code></pre></div>
+<strong>Note</strong>  <blockquote>
+<p>“Ingestion should happen once. Distribution happens downstream.”  </p>
+</blockquote>
 </li>
-<li>
-<p>Which of the following is NOT a component of HDFS architecture?
-   a) NameNode
-   b) DataNode
-   c) ResourceManager
-   d) MasterNode</p>
-</li>
-<li>
-<p>In MapReduce, what happens during the shuffle and sort phase?
-   a) Data is written to disk
-   b) Keys are partitioned and copied to reducers
-   c) Combiners are applied
-   d) Mapper outputs are sorted locally</p>
-</li>
-<li>
-<p>What is the main advantage of columnar storage over row storage for analytical queries?
-   a) Better compression
-   b) Faster writes
-   c) Reduced I/O bandwidth usage
-   d) Better indexing</p>
-</li>
-<li>
-<p>In a B-tree with degree 1000, how many disk seeks would be required to find a key in a dataset of 10 billion items?
-   a) 4
-   b) 3
-   c) 1000
-   d) 100</p>
-</li>
-<li>
-<p>What is the key difference between Size-Tiered Compaction and Leveled Compaction in LSM trees?
-   a) Size-Tiered is write-optimized, Leveled is read-optimized
-   b) Size-Tiered is read-optimized, Leveled is write-optimized
-   c) Size-Tiered uses bloom filters, Leveled doesn't
-   d) They're the same approach</p>
-</li>
-<li>
-<p>What is the primary purpose of a Bloom filter in LSM trees?
-   a) To store data values
-   b) To quickly determine if a key may be present in a segment
-   c) To provide encryption
-   d) To track memory usage</p>
-</li>
-<li>
-<p>In the MySQL InnoDB storage engine, what does a secondary index store as its 'value' in the leaf nodes?
-    a) Only the column(s) specified in the WHERE clause.
-    b) A direct pointer to the physical disk offset of the row.
-    c) The entire row of data for faster retrieval.
-    d) The primary key of the associated row.</p>
-</li>
-<li>
-<p>What is the main performance bottleneck in MapReduce?
-   a) Disk I/O
-   b) Network transfer during shuffle phase
-   c) CPU processing
-   d) Memory allocation</p>
-</li>
-<li>
-<p>What is the key concept behind data locality in MapReduce?
-    a) Moving data to the computation
-    b) Moving computation to the data
-    c) Using multiple cores
-    d) Parallel processing</p>
-</li>
-<li>
-<p>What is the primary benefit of using a log-structured storage engine?
-    a) Faster reads
-    b) Sequential writes are faster
-    c) Better indexing
-    d) Reduced memory usage</p>
-</li>
-<li>
-<p>Which of these is NOT a characteristic of a good hash function for distributed systems?
-    a) Uniform distribution
-    b) Deterministic
-    c) Collisions should be minimized
-    d) Random distribution</p>
-</li>
-<li>
-<p>What is the main difference between OLTP and OLAP systems?
-    a) OLTP is for real-time processing, OLAP is for analytical processing
-    b) OLTP is for batch processing, OLAP is for real-time processing
-    c) OLTP is for data warehousing, OLAP is for transaction processing
-    d) They're the same thing</p>
-</li>
-<li>
-<p>How does the size of the primary key affect the performance of a B+tree index?
-    a) Key size has no impact as long as the total data fits on the disk.
-    b) Smaller keys allow more entries per node, leading to a shallower tree.
-    c) Larger keys are processed faster by modern 64-bit CPUs.
-    d) Smaller keys increase the likelihood of hashing collisions.</p>
-</li>
-<li>
-<p>What does the "X" represent in the formula partition = hash(k_2) mod X in MapReduce?
-    a) Number of reducers
-    b) Number of mappers
-    c) Number of blocks
-    d) Number of nodes</p>
-</li>
-<li>
-<p>What is the primary purpose of a Combiner in MapReduce?
-    a) To perform final aggregation
-    b) To reduce network traffic by pre-aggregating intermediate results
-    c) To encrypt data
-    d) To compress output files</p>
-</li>
-<li>
-<p>What is the main benefit of using a columnar storage format?
-    a) Better compression
-    b) Faster random access
-    c) Reduced I/O for analytical queries
-    d) Better indexing</p>
-</li>
-<li>
-<p>What is the role of the ResourceManager in YARN?
-    a) Stores data blocks
-    b) Manages cluster resources and scheduling
-    c) Handles data locality
-    d) Provides fault tolerance</p>
-</li>
-<li>
-<p>What is the main characteristic of a narrow transformation in Spark?
-    a) It requires shuffling
-    b) It doesn't require data movement between nodes
-    c) It's a data source operation
-    d) It's a transformation that combines data from multiple partitions</p>
-</li>
-<li>
-<p>What is the main purpose of the NameNode in HDFS?
-    a) Stores data blocks
-    b) Manages the filesystem namespace and metadata
-    c) Provides data locality
-    d) Handles client requests</p>
-</li>
+</ul>
+<p><strong>Real-world failure</strong><br />
+- Metrics mismatch between teams<br />
+- “Why is revenue different in dashboard vs ML model?”  </p>
+<hr />
+<h3 id="3-where-is-the-data-going-destination">3. Where is the data going? (Destination)</h3>
+<p><strong>Why this matters:</strong>  </p>
+<p>Destination determines:<br />
+- Schema<br />
+- Format<br />
+- Latency<br />
+- Transformations<br />
+<strong>Examples:</strong>  </p>
+<table>
+<thead>
+<tr>
+<th>Destination</th>
+<th>Ingestion Style</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data warehouse</td>
+<td>Batch / ELT</td>
+<td>Structured</td>
+</tr>
+<tr>
+<td>Search engine</td>
+<td>Stream</td>
+<td>Needs indexing</td>
+</tr>
+<tr>
+<td>ML feature store</td>
+<td>Both</td>
+<td>Needs freshness</td>
+</tr>
+<tr>
+<td>Dashboard</td>
+<td>Pre-aggregated</td>
+<td>Fast queries</td>
+</tr>
+</tbody>
+</table>
+<p>Same data (orders):<br />
+- Warehouse → raw + SQL transforms<br />
+- Dashboard → aggregated table    <br />
+- Kafka → event stream<br />
+<strong>Note</strong>  </p>
+<blockquote>
+<p>“Design ingestion backwards from the destination.”  </p>
+</blockquote>
+<hr />
+<h3 id="4-how-often-should-data-be-updated">4. How often should data be updated?</h3>
+<p><strong>Tradeoff:</strong><br />
+Freshness vs Cost  </p>
+<p><strong>Examples:</strong><br />
+Low frequency (batch)  <br />
+- HR data → daily  <br />
+- Reports → hourly  <br />
+High frequency (streaming)    <br />
+- Payments → real-time  <br />
+- Notifications → instant    </p>
+<p><strong>Note</strong>  </p>
+<blockquote>
+<p>“Not all data needs to be real-time.”  </p>
+</blockquote>
+<p><strong>Anti-pattern</strong>  </p>
+<h2 id="lets-use-kafka-for-everything">&gt; “Let’s use Kafka for everything” ❌</h2>
+<h3 id="5-what-is-the-expected-data-volume">5. What is the expected data volume?</h3>
+<p><strong>Why this matters</strong><br />
+Volume determines:<br />
+- Tooling (Kafka vs cron job)<br />
+- Storage cost<br />
+- Partitioning strategy  </p>
+<p><strong>Examples:</strong><br />
+<strong>Small scale</strong><br />
+- 10K rows/day<br />
+- Use simple cron + SQL<br />
+<strong>Large scale</strong><br />
+- 1M events/sec<br />
+- Need:<br />
+    - Kafka<br />
+    - Partitioning<br />
+    - Distributed systems  </p>
+<p><strong>Note</strong>  </p>
+<blockquote>
+<p>“Scale changes architecture—not just hardware.”  </p>
+</blockquote>
+<p><strong>Failure case</strong><br />
+- Pipeline works in testing    <br />
+- Crashes in production due to volume spike  </p>
+<hr />
+<h3 id="6-what-format-is-the-data-in">6. What format is the data in?</h3>
+<p><strong>Why this matters:</strong>  </p>
+<p>Format affects:<br />
+- Speed<br />
+- Compatibility<br />
+- Schema evolution<br />
+Examples  </p>
+<p><em>JSON</em>  </p>
+<p><div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="w"> </span><span class="p">}</span><span class="w">  </span>
+</code></pre></div>
+    - Easy<br />
+    - Human-readable<br />
+    - Large size  </p>
+<p><em>Protobuf / Avro</em><br />
+- Compact<br />
+- Faster<br />
+- Needs schema  </p>
+<p>Scenario  </p>
+<p>API ingestion<br />
+- JSON → easy<br />
+ High-throughput streaming<br />
+- Protobuf → efficient  </p>
+<p><strong>Note</strong>  </p>
+<blockquote>
+<p>“Format is a contract between producers and consumers.”  </p>
+</blockquote>
+<p><strong>Failure</strong><br />
+- Schema mismatch → pipeline breaks  </p>
+<hr />
+<h3 id="7-is-data-clean-what-are-data-quality-risks">7. Is data clean? What are data quality risks?</h3>
+<p>Reality  </p>
+<blockquote>
+<p>Raw data is <em>always messy</em>  </p>
+</blockquote>
+<p><strong>Examples</strong><br />
+<strong>Example:</strong> 1: Bot traffic<br />
+- Website logs inflated<br />
+- Fake clicks  </p>
+<p><strong>Example:</strong> 2: Missing values  </p>
+<div class="highlight"><pre><span></span><code>user_id = NULL  
+</code></pre></div>
+<p><strong>Example:</strong> 3: Duplicates<br />
+- Same event ingested twice  </p>
+<p><strong>Solutions</strong><br />
+- Deduplication<br />
+- Validation rules<br />
+- Filtering bots<br />
+<strong>Note</strong>  </p>
+<blockquote>
+<p>“Garbage in → garbage everywhere.”  </p>
+</blockquote>
+<p>Real-world impact<br />
+- Wrong business decisions<br />
+- Misleading dashboards  </p>
+<hr />
+<h3 id="8-do-we-need-in-flight-processing-streaming-case">8. Do we need in-flight processing? (Streaming case)</h3>
+<p>Meaning<br />
+Processing data <strong>while it is moving</strong>  </p>
+<hr />
+<p><strong>Example:</strong>  </p>
+<p><strong>Example:</strong> 1: Fraud detection<br />
+<div class="highlight"><pre><span></span><code>Transaction → check rules → flag immediately  
+</code></pre></div></p>
+<hr />
+<p><strong>Example:</strong> 2: Notifications  </p>
+<p><div class="highlight"><pre><span></span><code>Order placed → send notification instantly  
+</code></pre></div>
+<strong>Example:</strong> 3: Aggregations<br />
+<div class="highlight"><pre><span></span><code>Clicks → count per minute → dashboard  
+</code></pre></div></p>
+<p><strong>Without in-flight processing</strong>  </p>
+<p><div class="highlight"><pre><span></span><code>Store → later process → too late ❌  
+</code></pre></div>
+<strong>With in-flight processing</strong><br />
+<div class="highlight"><pre><span></span><code>Stream → process → act immediately ✅  
+</code></pre></div>
+<strong>Note</strong>  </p>
+<blockquote>
+<p>“Streaming is about reacting, not storing.”  </p>
+</blockquote>
+<h3 id="scenario-food-delivery-app">Scenario: Food Delivery App</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use case</td>
+<td>Real-time tracking + analytics</td>
+</tr>
+<tr>
+<td>Reuse</td>
+<td>CDC → Kafka → multiple consumers</td>
+</tr>
+<tr>
+<td>Destination</td>
+<td>Warehouse + Notifications</td>
+</tr>
+<tr>
+<td>Frequency</td>
+<td>Real-time + hourly batch</td>
+</tr>
+<tr>
+<td>Volume</td>
+<td>High (orders, clicks)</td>
+</tr>
+<tr>
+<td>Format</td>
+<td>JSON → Protobuf later</td>
+</tr>
+<tr>
+<td>Quality</td>
+<td>Remove bots, deduplicate</td>
+</tr>
+<tr>
+<td>In-flight</td>
+<td>Yes (notifications, ETA updates)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="etl-vs-elt">ETL vs. ELT</h2>
+<p><img alt="" src="../../images/ingestion/etl_elt.png" /><br />
+Image credit: ChatGPT<br />
+<strong>The Core Concept:</strong> The difference is not just the order of operations, but <strong>where the compute happens.</strong>  </p>
+<p>A. ETL (Extract, Transform, Load) - <em>The Traditional Way</em><br />
+- <strong>Workflow:</strong> Data is extracted <span class="arithmatex"><span class="MathJax_Preview">\rightarrow</span><script type="math/tex">\rightarrow</script></span> transformed in a separate <strong>staging server</strong> (using Spark, Informatica, etc.) <span class="arithmatex"><span class="MathJax_Preview">\rightarrow</span><script type="math/tex">\rightarrow</script></span> loaded into the Data Warehouse.<br />
+- <strong>Why use it?</strong> When the target system is slow/expensive or when sensitive data (PII) must be masked <em>before</em> it lands.<br />
+- <strong>Downside:</strong> The transformation layer is a bottleneck. If the business requirements change, you have to re-ingest the raw data.  </p>
+<p>B. ELT (Extract, Load, Transform) - <em>The Modern Way</em><br />
+- <strong>Workflow:</strong> Raw data is loaded directly into the Data Warehouse/Lake <span class="arithmatex"><span class="MathJax_Preview">\rightarrow</span><script type="math/tex">\rightarrow</script></span> transformed using the <strong>target’s own compute</strong> (e.g., SQL in Snowflake or BigQuery).<br />
+- <strong>Why use it?</strong> Storage is cheap; Cloud Data Warehouse compute is massively parallel.<br />
+- <strong>The "dbt" Factor:</strong> Mention that ELT is the foundation of the "Analytics Engineer" role.  </p>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>ETL</strong></th>
+<th><strong>ELT</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Compute</strong></td>
+<td>External Engine</td>
+<td>Target Warehouse</td>
+</tr>
+<tr>
+<td><strong>Flexibility</strong></td>
+<td>Rigid (Fixed Schema)</td>
+<td>High (Schema-on-read)</td>
+</tr>
+<tr>
+<td><strong>Data Volume</strong></td>
+<td>Better for small/medium</td>
+<td>Built for Big Data</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="change-data-capture-the-delta-strategy">Change Data Capture: The "Delta" Strategy</h2>
+<p><img alt="" src="../../images/ingestion/cdc.png" /><br />
+Image credit: <a href="https://airbyte.com/blog/change-data-capture-definition-methods-and-benefits">Change Data Capture (CDC): Definition, Methods, and Benefits</a><br />
+<strong>The Problem:</strong> We cannot do a "SELECT *" on a 10TB production database every hour. It would crash the DB and waste bandwidth.  </p>
+<p>A. How CDC Works<br />
+CDC identifies and captures insertions, updates, and deletions in source tables so that only the <strong>changes</strong> are moved.  </p>
+<p>B. Two Primary Approaches:<br />
+1. <strong>Query-based (Poll):</strong> Checking a <code>last_updated</code> timestamp column.<br />
+    - <em>Flaw:</em> It misses hard deletes and adds load to the source DB.<br />
+2. <strong>Log-based (Push):</strong> Reading the Database <strong>Transaction Log</strong> (e.g., MySQL Binlog, Postgres WAL).<br />
+    - <em>Benefit:</em> Zero impact on DB performance; captures every single intermediate state of a row.<br />
+C. The CDC-to-Warehouse Pipeline<br />
+- <strong>Tooling Example:</strong> Debezium is the industry standard for turning DB logs into event streams.  </p>
+<hr />
+<h2 id="bridge-from-tables-to-events">Bridge: From Tables to Events</h2>
+<p><strong>The Shift:</strong> Moving from "State" to "History."  </p>
+<ul>
+<li><strong>The Table view (State):</strong> "User X lives in Gandhinagar." (This is what you see in a DB).  </li>
+<li><strong>The Event view (Log):</strong>  <ol>
+<li>User X created account.  </li>
+<li>User X added address: Ahmedabad.  </li>
+<li>User X updated address: Gandhinagar.  </li>
 </ol>
-<h2 id="section-b-truefalse-questions-6-marks-1-mark-each">Section B: True/False Questions (6 marks, 1 mark each)</h2>
-<p><strong>Instructions</strong>: Write "True" or "False" for each statement.</p>
+</li>
+</ul>
+<p>Key Conceptual Takeaway:<br />
+- <strong>A Table is a snapshot of the Log at a point in time.</strong><br />
+- <strong>A Log is the source of truth.</strong><br />
+- <strong>Introduction to Message Queues:</strong> If CDC turns a database into a stream of events, we need a "buffer" to hold those events before they are processed. This is where <strong>Kafka</strong> enters.  </p>
+<h2 id="references">References</h2>
 <ol>
-<li>
-<p>HDFS blocks are replicated by default 3 times for fault tolerance. ______</p>
-</li>
-<li>
-<p>MapReduce is primarily used for real-time processing. ______</p>
-</li>
-<li>
-<p>In Spark, narrow transformations are faster than wide transformations because they don't require shuffling. ______</p>
-</li>
-<li>
-<p>The main performance bottleneck in MapReduce is usually the network transfer during the shuffle phase. ______</p>
-</li>
-<li>
-<p>The primary benefit of using a log-structured storage engine is that it provides better read performance than traditional storage. ______</p>
-</li>
-<li>
-<p>In a B-tree, each node can have at most the degree number of children. ______</p>
-</li>
-</ol>
-<h2 id="section-c-short-answer-questions-24-marks-2-marks-each">Section C: Short Answer Questions (24 marks, 2 marks each)</h2>
-<p><strong>Instructions</strong>: Answer each question in 1-2 sentences.</p>
-<ol>
-<li>
-<p>What is the key difference between a hash index and a B-tree index?</p>
-</li>
-<li>
-<p>Define data locality in the context of distributed systems.</p>
-</li>
-<li>
-<p>Explain the role of the NameNode in HDFS architecture.</p>
-</li>
-<li>
-<p>What is lazy evaluation in Spark and why is it beneficial?</p>
-</li>
-<li>
-<p>Describe the process of compaction in LSM trees.</p>
-</li>
-<li>
-<p>What are the main challenges in implementing fault tolerance in distributed systems?</p>
-</li>
-<li>
-<p>What is the main advantage of columnar storage over row storage for analytical queries?</p>
-</li>
-<li>
-<p>Explain the difference between Map and Reduce phases in MapReduce.</p>
-</li>
-<li>
-<p>What is the purpose of a partitioner in MapReduce?</p>
-</li>
-<li>
-<p>Why are B-tree nodes often sized to match the size of a disk block (e.g., 16k)?</p>
-</li>
-<li>
-<p>What is the primary performance drawback of using a completely random 128-bit UUIDv4 as a primary key in a B+tree?</p>
-</li>
-<li>
-<p>List down any 2 applications of Bloom filter in storage systems? </p>
-</li>
+<li>Chapter 7 Fundamentals of Data Engineering   </li>
+<li><a href="https://airbyte.com/blog/change-data-capture-definition-methods-and-benefits">Change Data Capture (CDC): Definition, Methods, and Benefits</a>  </li>
 </ol>
 
 
@@ -2173,6 +2671,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../streaming_introduction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Introduction
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../code/storage_engines/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage Engines">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Storage Engines
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

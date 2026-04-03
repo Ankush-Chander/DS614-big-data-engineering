@@ -10,8 +10,10 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/lectures/question_paper/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/streaming_examples_with_aws/">
       
+      
+        <link rel="prev" href="../../notebooks/stream_processing/">
       
       
       
@@ -23,7 +25,7 @@
     
     
       
-        <title>Big Data Engineering - 50 Marks Question Paper - DS614 - Big Data Engineering | DAU</title>
+        <title>AWS examples - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -72,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#big-data-engineering-50-marks-question-paper" class="md-skip">
+        <a href="#key-aws-services" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Big Data Engineering - 50 Marks Question Paper
+              AWS examples
             
           </span>
         </div>
@@ -196,10 +198,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../code/storage_engines/" class="md-tabs__link">
           
   
@@ -1291,26 +1295,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -1328,7 +1335,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1747,8 +1754,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -1757,13 +1766,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" checked>
         
           
           <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
@@ -1784,7 +1791,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1827,10 +1834,35 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../streaming_examples_with_aws/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS examples
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1846,6 +1878,274 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#key-aws-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key AWS services
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key AWS services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compute-the-brains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compute (The Brains)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-the-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage (The Memory)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databases-the-ledger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Databases (The Ledger)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#networking-content-the-roads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Networking &amp; Content (The Roads)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-monitoring-the-guards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security &amp; Monitoring (The Guards)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Webhooks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-queue-service-sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple Queue Service (SQS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple Queue Service (SQS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-standard-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Standard Queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-fifo-queue-first-in-first-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. FIFO Queue (First-In-First-Out)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#side-by-side-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Side-by-Side Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-rule-of-thumb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Rule of Thumb
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dead-letter-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dead letter queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-balancing-using-sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load balancing using SQS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Load balancing using SQS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sqs-cloudwatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQS + cloudwatch
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQS + cloudwatch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-scaling-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Scaling Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqs-serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQS + serverless
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQS + serverless">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Details:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1883,8 +2183,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1893,10 +2191,82 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#section-a-multiple-choice-questions-20-marks-1-mark-each" class="md-nav__link">
+  <a href="#key-aws-services" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Section A: Multiple Choice Questions (20 marks, 1 mark each)
+        Key AWS services
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key AWS services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compute-the-brains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compute (The Brains)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-the-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage (The Memory)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databases-the-ledger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Databases (The Ledger)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#networking-content-the-roads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Networking &amp; Content (The Roads)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-monitoring-the-guards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security &amp; Monitoring (The Guards)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Webhooks
       
     </span>
   </a>
@@ -1904,24 +2274,169 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#section-b-truefalse-questions-6-marks-1-mark-each" class="md-nav__link">
+  <a href="#simple-queue-service-sqs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Section B: True/False Questions (6 marks, 1 mark each)
+        Simple Queue Service (SQS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple Queue Service (SQS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-standard-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Standard Queue
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#section-c-short-answer-questions-24-marks-2-marks-each" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-fifo-queue-first-in-first-out" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Section C: Short Answer Questions (24 marks, 2 marks each)
+        2. FIFO Queue (First-In-First-Out)
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#side-by-side-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Side-by-Side Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-rule-of-thumb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Rule of Thumb
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dead-letter-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dead letter queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-balancing-using-sqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load balancing using SQS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Load balancing using SQS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sqs-cloudwatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQS + cloudwatch
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQS + cloudwatch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-scaling-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Scaling Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqs-serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQS + serverless
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQS + serverless">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Details:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1942,213 +2457,167 @@
 
 
 
-<h1 id="big-data-engineering-50-marks-question-paper">Big Data Engineering - 50 Marks Question Paper</h1>
-<h2 id="section-a-multiple-choice-questions-20-marks-1-mark-each">Section A: Multiple Choice Questions (20 marks, 1 mark each)</h2>
-<p><strong>Instructions</strong>: Choose the correct answer for each question.</p>
+  <h1>AWS examples</h1>
+
+<h2 id="key-aws-services">Key AWS services</h2>
+<p><img alt="" src="../../images/stream_processing/aws_intro.png" /></p>
+<h3 id="compute-the-brains">Compute (The Brains)</h3>
+<ul>
+<li><strong>EC2 (Elastic Compute Cloud):</strong> Virtual servers where you have full control over the OS and software.</li>
+<li><strong>Lambda:</strong> A "serverless" service that runs your code only when triggered, so you don't manage any servers.</li>
+<li><strong>Elastic Beanstalk:</strong> The "easy button" for deploying web apps; you upload code, and AWS handles the infrastructure.</li>
+</ul>
+<h3 id="storage-the-memory">Storage (The Memory)</h3>
+<ul>
+<li><strong>S3 (Simple Storage Service):</strong> Unlimited "buckets" to store files like images, videos, or backups.</li>
+<li><strong>EBS (Elastic Block Store):</strong> Hard drives for your EC2 instances that persist even if the server is stopped.</li>
+<li><strong>Glacier:</strong> Low-cost storage for long-term archiving (data you rarely need to look at).</li>
+</ul>
+<h3 id="databases-the-ledger">Databases (The Ledger)</h3>
+<ul>
+<li><strong>RDS (Relational Database Service):</strong> Managed SQL databases (MySQL, PostgreSQL) that handle their own patching and backups.</li>
+<li><strong>DynamoDB:</strong> A super-fast NoSQL database designed for massive scale and simple key-value lookups.</li>
+</ul>
+<h3 id="networking-content-the-roads">Networking &amp; Content (The Roads)</h3>
+<ul>
+<li><strong>VPC (Virtual Private Cloud):</strong> Your own private, isolated section of the AWS network to launch resources.</li>
+<li><strong>CloudFront:</strong> A Global Content Delivery Network (CDN) that makes your website load fast by caching it near your users.</li>
+<li><strong>Route 53:</strong> A highly available Domain Name System (DNS) service that connects URLs to your resources.</li>
+</ul>
+<h3 id="security-monitoring-the-guards">Security &amp; Monitoring (The Guards)</h3>
+<ul>
+<li><strong>IAM (Identity and Access Management):</strong> The central hub where you define <strong>who</strong> can access <strong>which</strong> AWS resources.</li>
+<li><strong>CloudWatch:</strong> A monitoring dashboard that tracks performance metrics and sends alerts if things break.</li>
+</ul>
+<hr />
+<h2 id="webhooks">Webhooks</h2>
+<p>A <strong>webhook</strong> is a method of augmenting or altering the behavior of a <a href="https://en.wikipedia.org/wiki/Web_page" title="Web page">web page</a> or <a href="https://en.wikipedia.org/wiki/Web_application" title="Web application">web application</a> with custom <a href="https://en.wikipedia.org/wiki/Callback_computer_programmingcomputer_programming" title="Callback (computer programming)">callbacks</a>. These callbacks may be maintained, modified, and managed by third-party users who need not be affiliated with the originating website or application.
+Example: Mail tracking service</p>
+<p><img alt="" src="../../images/stream_processing/sqs_webhooks.png" /></p>
+<h2 id="simple-queue-service-sqs">Simple Queue Service (SQS)</h2>
+<p><strong>Amazon SQS</strong> is a fully managed message queuing service that lets you send, store, and receive messages between software components at any volume, without losing messages or requiring other services to be available
+<img alt="" src="../../images/stream_processing/sqs_fifo_standard.png" /></p>
+<hr />
+<h3 id="1-standard-queue">1. Standard Queue</h3>
+<p>The <strong>default</strong> queue type — built for maximum throughput.<br />
+<strong>Key characteristics:</strong><br />
+- <strong>Unlimited throughput</strong> — supports a nearly unlimited number of transactions per second<br />
+- <strong>At-least-once delivery</strong> — a message may be delivered more than once (duplicates possible)<br />
+- <strong>Best-effort ordering</strong> — messages are generally delivered in order, but not guaranteed<br />
+- <strong>Use when:</strong> order doesn't matter and your application can handle duplicate messages (e.g., sending notifications, log ingestion, background jobs)  </p>
+<hr />
+<h3 id="2-fifo-queue-first-in-first-out">2. FIFO Queue (First-In-First-Out)</h3>
+<p>Built for scenarios where <strong>order and exactly-once processing</strong> matter.<br />
+<strong>Key characteristics:</strong><br />
+- <strong>Limited throughput</strong> — up to 3,000 messages/sec with batching, or 300 messages/sec without<br />
+- <strong>Exactly-once processing</strong> — duplicates are eliminated via deduplication IDs<br />
+- <strong>Strict ordering</strong> — messages are delivered and processed in the exact order they were sent<br />
+- <strong>Message groups</strong> — supports <code>MessageGroupId</code> to allow parallel processing of independent message streams within the same queue<br />
+- <strong>Use when:</strong> order is critical — e.g., financial transactions, order processing, inventory updates  </p>
+<hr />
+<h3 id="side-by-side-comparison">Side-by-Side Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Standard Queue</th>
+<th>FIFO Queue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Throughput</td>
+<td>Unlimited</td>
+<td>Up to 3,000 msg/sec</td>
+</tr>
+<tr>
+<td>Message ordering</td>
+<td>Best-effort</td>
+<td>Strict (guaranteed)</td>
+</tr>
+<tr>
+<td>Delivery</td>
+<td>At-least-once</td>
+<td>Exactly-once</td>
+</tr>
+<tr>
+<td>Duplicate handling</td>
+<td>Possible</td>
+<td>Prevented</td>
+</tr>
+<tr>
+<td>Naming</td>
+<td>Any name</td>
+<td>Must end in <code>.fifo</code></td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Lower</td>
+<td>Slightly higher</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="quick-rule-of-thumb">Quick Rule of Thumb</h3>
+<blockquote>
+<p>Use <strong>Standard</strong> when you need <strong>speed and scale</strong>. Use <strong>FIFO</strong> when you need <strong>accuracy and order</strong>.</p>
+</blockquote>
+<h3 id="dead-letter-queue">Dead letter queue</h3>
+<p>A <strong>Amazon SQS Dead Letter Queue (DLQ)</strong> is an Amazon Simple Queue Service feature that captures messages that could not be successfully processed by a consuming application.  </p>
+<p><img alt="" src="../../images/stream_processing/sqs_deadletterqueue.png" /></p>
+<hr />
+<h2 id="load-balancing-using-sqs">Load balancing using SQS</h2>
+<h3 id="sqs-cloudwatch">SQS + cloudwatch</h3>
+<p><img alt="" src="../../images/stream_processing/sqs_loadbalancer.png" /></p>
+<p>Think of Amazon SQS as:</p>
+<blockquote>
+<p>A pressure gauge <br />
+- Few messages → low pressure → fewer workers<br />
+- Many messages → high pressure → spawn more workers  </p>
+</blockquote>
+<p>Use:<br />
+- Amazon EC2 Auto Scaling<br />
+- CloudWatch metric: <br />
+    👉 <code>ApproximateNumberOfMessagesVisible</code>  </p>
+<hr />
+<h4 id="how-it-works">How it works:</h4>
 <ol>
-<li>
-<p>What is the primary characteristic of a B-tree that makes it suitable for disk-based storage?
-   a) It's a binary tree
-   b) It has high fan-out and fat nodes
-   c) It's optimized for memory access
-   d) It uses only one key per node</p>
-</li>
-<li>
-<p>Which of the following is NOT a component of HDFS architecture?
-   a) NameNode
-   b) DataNode
-   c) ResourceManager
-   d) MasterNode</p>
-</li>
-<li>
-<p>In MapReduce, what happens during the shuffle and sort phase?
-   a) Data is written to disk
-   b) Keys are partitioned and copied to reducers
-   c) Combiners are applied
-   d) Mapper outputs are sorted locally</p>
-</li>
-<li>
-<p>What is the main advantage of columnar storage over row storage for analytical queries?
-   a) Better compression
-   b) Faster writes
-   c) Reduced I/O bandwidth usage
-   d) Better indexing</p>
-</li>
-<li>
-<p>In a B-tree with degree 1000, how many disk seeks would be required to find a key in a dataset of 10 billion items?
-   a) 4
-   b) 3
-   c) 1000
-   d) 100</p>
-</li>
-<li>
-<p>What is the key difference between Size-Tiered Compaction and Leveled Compaction in LSM trees?
-   a) Size-Tiered is write-optimized, Leveled is read-optimized
-   b) Size-Tiered is read-optimized, Leveled is write-optimized
-   c) Size-Tiered uses bloom filters, Leveled doesn't
-   d) They're the same approach</p>
-</li>
-<li>
-<p>What is the primary purpose of a Bloom filter in LSM trees?
-   a) To store data values
-   b) To quickly determine if a key may be present in a segment
-   c) To provide encryption
-   d) To track memory usage</p>
-</li>
-<li>
-<p>In the MySQL InnoDB storage engine, what does a secondary index store as its 'value' in the leaf nodes?
-    a) Only the column(s) specified in the WHERE clause.
-    b) A direct pointer to the physical disk offset of the row.
-    c) The entire row of data for faster retrieval.
-    d) The primary key of the associated row.</p>
-</li>
-<li>
-<p>What is the main performance bottleneck in MapReduce?
-   a) Disk I/O
-   b) Network transfer during shuffle phase
-   c) CPU processing
-   d) Memory allocation</p>
-</li>
-<li>
-<p>What is the key concept behind data locality in MapReduce?
-    a) Moving data to the computation
-    b) Moving computation to the data
-    c) Using multiple cores
-    d) Parallel processing</p>
-</li>
-<li>
-<p>What is the primary benefit of using a log-structured storage engine?
-    a) Faster reads
-    b) Sequential writes are faster
-    c) Better indexing
-    d) Reduced memory usage</p>
-</li>
-<li>
-<p>Which of these is NOT a characteristic of a good hash function for distributed systems?
-    a) Uniform distribution
-    b) Deterministic
-    c) Collisions should be minimized
-    d) Random distribution</p>
-</li>
-<li>
-<p>What is the main difference between OLTP and OLAP systems?
-    a) OLTP is for real-time processing, OLAP is for analytical processing
-    b) OLTP is for batch processing, OLAP is for real-time processing
-    c) OLTP is for data warehousing, OLAP is for transaction processing
-    d) They're the same thing</p>
-</li>
-<li>
-<p>How does the size of the primary key affect the performance of a B+tree index?
-    a) Key size has no impact as long as the total data fits on the disk.
-    b) Smaller keys allow more entries per node, leading to a shallower tree.
-    c) Larger keys are processed faster by modern 64-bit CPUs.
-    d) Smaller keys increase the likelihood of hashing collisions.</p>
-</li>
-<li>
-<p>What does the "X" represent in the formula partition = hash(k_2) mod X in MapReduce?
-    a) Number of reducers
-    b) Number of mappers
-    c) Number of blocks
-    d) Number of nodes</p>
-</li>
-<li>
-<p>What is the primary purpose of a Combiner in MapReduce?
-    a) To perform final aggregation
-    b) To reduce network traffic by pre-aggregating intermediate results
-    c) To encrypt data
-    d) To compress output files</p>
-</li>
-<li>
-<p>What is the main benefit of using a columnar storage format?
-    a) Better compression
-    b) Faster random access
-    c) Reduced I/O for analytical queries
-    d) Better indexing</p>
-</li>
-<li>
-<p>What is the role of the ResourceManager in YARN?
-    a) Stores data blocks
-    b) Manages cluster resources and scheduling
-    c) Handles data locality
-    d) Provides fault tolerance</p>
-</li>
-<li>
-<p>What is the main characteristic of a narrow transformation in Spark?
-    a) It requires shuffling
-    b) It doesn't require data movement between nodes
-    c) It's a data source operation
-    d) It's a transformation that combines data from multiple partitions</p>
-</li>
-<li>
-<p>What is the main purpose of the NameNode in HDFS?
-    a) Stores data blocks
-    b) Manages the filesystem namespace and metadata
-    c) Provides data locality
-    d) Handles client requests</p>
-</li>
+<li>Messages pile up in SQS  </li>
+<li>Metric increases  </li>
+<li>Auto Scaling policy triggers  </li>
+<li>More EC2 instances (consumers) launch  </li>
+<li>They start polling SQS  </li>
 </ol>
-<h2 id="section-b-truefalse-questions-6-marks-1-mark-each">Section B: True/False Questions (6 marks, 1 mark each)</h2>
-<p><strong>Instructions</strong>: Write "True" or "False" for each statement.</p>
-<ol>
-<li>
-<p>HDFS blocks are replicated by default 3 times for fault tolerance. ______</p>
+<hr />
+<h4 id="example-scaling-rule">Example Scaling Rule</h4>
+<ul>
+<li>If messages &gt; 1000 → add 5 instances  </li>
+<li>If messages &lt; 100 → remove instances  </li>
+</ul>
+<hr />
+<h3 id="sqs-serverless">SQS + serverless</h3>
+<p><img alt="" src="../../images/stream_processing/sqs_lambda_architecture.png" />
+Use:
+- AWS Lambda + SQS trigger</p>
+<hr />
+<h4 id="how-it-works_1">How it works:</h4>
+<ul>
+<li>SQS automatically invokes Lambda  </li>
+<li>AWS handles scaling <strong>for you</strong>  </li>
+<li>Concurrency increases as queue grows  </li>
+</ul>
+<hr />
+<h4 id="key-details">Key Details:</h4>
+<ul>
+<li>Each batch of messages → one Lambda invocation  </li>
+<li>Scaling is near real-time  </li>
+<li>You can control:  <ul>
+<li>Batch size  </li>
+<li>Max concurrency  </li>
+</ul>
 </li>
-<li>
-<p>MapReduce is primarily used for real-time processing. ______</p>
-</li>
-<li>
-<p>In Spark, narrow transformations are faster than wide transformations because they don't require shuffling. ______</p>
-</li>
-<li>
-<p>The main performance bottleneck in MapReduce is usually the network transfer during the shuffle phase. ______</p>
-</li>
-<li>
-<p>The primary benefit of using a log-structured storage engine is that it provides better read performance than traditional storage. ______</p>
-</li>
-<li>
-<p>In a B-tree, each node can have at most the degree number of children. ______</p>
-</li>
-</ol>
-<h2 id="section-c-short-answer-questions-24-marks-2-marks-each">Section C: Short Answer Questions (24 marks, 2 marks each)</h2>
-<p><strong>Instructions</strong>: Answer each question in 1-2 sentences.</p>
-<ol>
-<li>
-<p>What is the key difference between a hash index and a B-tree index?</p>
-</li>
-<li>
-<p>Define data locality in the context of distributed systems.</p>
-</li>
-<li>
-<p>Explain the role of the NameNode in HDFS architecture.</p>
-</li>
-<li>
-<p>What is lazy evaluation in Spark and why is it beneficial?</p>
-</li>
-<li>
-<p>Describe the process of compaction in LSM trees.</p>
-</li>
-<li>
-<p>What are the main challenges in implementing fault tolerance in distributed systems?</p>
-</li>
-<li>
-<p>What is the main advantage of columnar storage over row storage for analytical queries?</p>
-</li>
-<li>
-<p>Explain the difference between Map and Reduce phases in MapReduce.</p>
-</li>
-<li>
-<p>What is the purpose of a partitioner in MapReduce?</p>
-</li>
-<li>
-<p>Why are B-tree nodes often sized to match the size of a disk block (e.g., 16k)?</p>
-</li>
-<li>
-<p>What is the primary performance drawback of using a completely random 128-bit UUIDv4 as a primary key in a B+tree?</p>
-</li>
-<li>
-<p>List down any 2 applications of Bloom filter in storage systems? </p>
-</li>
-</ol>
+</ul>
+<hr />
 
 
 
@@ -2173,6 +2642,28 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../notebooks/stream_processing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Stream Processing — Four Ways to Consume a Data Stream">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Stream Processing — Four Ways to Consume a Data Stream
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
