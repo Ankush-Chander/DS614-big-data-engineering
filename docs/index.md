@@ -31,4 +31,5 @@ Welcome to the course on Big Data Engineering.
         - [AWS Examples](lectures/streaming_examples_with_aws.md)
     - Data Ingestion
         - [Introduction](lectures/data_ingestion.md)
+        - [Stream Ingestion](lectures/stream_ingestion.md)
 ---
