@@ -1,0 +1,3422 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Home of DS614 - Big Data Engineering, DAU">
+      
+      
+      
+        <link rel="canonical" href="https://ankushchander.com/lectures/stream_ingestion/">
+      
+      
+        <link rel="prev" href="../data_ingestion/">
+      
+      
+        <link rel="next" href="../../code/storage_engines/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Stream Ingestion - DS614 - Big Data Engineering | DAU</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-migration-basics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DS614 - Big Data Engineering | DAU" class="md-header__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DS614 - Big Data Engineering | DAU
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Stream Ingestion
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../0storage_prerequisites/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../code/storage_engines/" class="md-tabs__link">
+          
+  
+  
+  Code
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DS614 - Big Data Engineering | DAU" class="md-nav__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DS614 - Big Data Engineering | DAU
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lectures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lectures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Storage
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Storage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prerequisites
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0storage_prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/concurrency_prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concurrency Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/python_profiling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python profiling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1hash_indexes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Log Based Storage + Hash Indexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2ssts_lsm_trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSTables + LSM Trees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3btrees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B-Trees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_5" id="__nav_2_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Columnar Storage
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Columnar Storage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4columnar_storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OLTP vs OLAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/pandas_parquet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pandas parquet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Transformation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Transformation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1" id="__nav_2_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Batch Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/batch_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch processing: Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6hdfs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed Filesystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../map_reduce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Map reduce framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spark_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spark Intro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_5" id="__nav_2_2_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformation layer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Transformation layer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformation_quering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Querying
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformation_modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformation_joins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Joins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stream Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../streaming_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../streaming_examples_with_aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Ingestion
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Ingestion
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_ingestion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Ingestion
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Ingestion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-migration-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Migration Basics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streaming-ingestion-core-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Streaming Ingestion: Core Challenges
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Streaming Ingestion: Core Challenges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-evolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Evolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#late-arriving-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Late-Arriving Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordering-and-multiple-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordering and Multiple Delivery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replay
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-to-live-ttl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time to Live (TTL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-size-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Size Constraints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling-and-dead-letter-queues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling and Dead-Letter Queues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-vs-pull-consumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push vs Pull Consumption
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location-and-latency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location and Latency
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ways-to-ingest-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ways to Ingest Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ways to Ingest Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-database-connections-jdbcodbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Database Connections (JDBC/ODBC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-data-capture-cdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Data Capture (CDC)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Change Data Capture (CDC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-cdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch CDC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-cdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continuous CDC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cdc-vs-replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CDC vs Replication
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apis-as-data-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APIs as Data Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-queues-vs-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Queues vs Streams
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed-data-connectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managed Data Connectors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-storage-as-ingestion-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Storage as Ingestion Layer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Formats
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Formats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csv-problematic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSV (Problematic)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modern-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modern Formats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy-and-practical-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy and Practical Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Legacy and Practical Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edi-email-flash-drives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EDI (Email, Flash Drives)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shell-and-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shell and CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh-scp-sftp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH, SCP, SFTP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhooks-reverse-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Webhooks (Reverse APIs)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-scraping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Scraping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#large-scale-data-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Large-Scale Data Transfer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Sharing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/storage_engines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Engines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Ankush-Chander/sorted-string-table-101" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSTable
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B-Tree
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    B-Tree
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/sql_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQLite Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Batch Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/batch_processing/hadoop%20single%20node%20cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hadoop Single Node Cluster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/batch_processing/non_sudoer_hadoop_single_node_cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non Sudoer Hadoop Single Node Cluster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/batch_processing/non_sudoer_hadoop_multi_node_cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non Sudoer Hadoop Multi Node Cluster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/spark_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PySpark Demo: NYC Taxi Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Demos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../demo/db-normalization-demo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Normal forms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stream Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/stream_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Processing — Four Ways to Consume a Data Stream
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-migration-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Migration Basics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streaming-ingestion-core-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Streaming Ingestion: Core Challenges
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Streaming Ingestion: Core Challenges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-evolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Evolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#late-arriving-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Late-Arriving Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordering-and-multiple-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordering and Multiple Delivery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replay
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-to-live-ttl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time to Live (TTL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-size-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Size Constraints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling-and-dead-letter-queues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling and Dead-Letter Queues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-vs-pull-consumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push vs Pull Consumption
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location-and-latency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location and Latency
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ways-to-ingest-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ways to Ingest Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ways to Ingest Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-database-connections-jdbcodbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Database Connections (JDBC/ODBC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-data-capture-cdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change Data Capture (CDC)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Change Data Capture (CDC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-cdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch CDC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-cdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continuous CDC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cdc-vs-replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CDC vs Replication
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apis-as-data-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APIs as Data Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-queues-vs-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Queues vs Streams
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed-data-connectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managed Data Connectors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-storage-as-ingestion-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Storage as Ingestion Layer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Formats
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Formats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csv-problematic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSV (Problematic)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modern-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modern Formats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy-and-practical-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy and Practical Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Legacy and Practical Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edi-email-flash-drives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EDI (Email, Flash Drives)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shell-and-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shell and CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh-scp-sftp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH, SCP, SFTP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhooks-reverse-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Webhooks (Reverse APIs)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-scraping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web Scraping
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#large-scale-data-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Large-Scale Data Transfer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Sharing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Stream Ingestion</h1>
+
+<h2 id="data-migration-basics">Data Migration Basics</h2>
+<ul>
+<li>
+<p>Moving data between systems (e.g., SQL Server → Snowflake) is rarely seamless</p>
+</li>
+<li>
+<p>Schema differences almost always exist</p>
+</li>
+<li>
+<p>Best practice:</p>
+</li>
+<li>
+<p>Test with <strong>sample data first</strong></p>
+</li>
+<li>
+<p>Validate schema compatibility before full migration</p>
+</li>
+<li>
+<p>Bulk transfer is preferred over row-by-row transfer</p>
+</li>
+<li>
+<p>Use <strong>object storage (S3, GCS)</strong> as an intermediate layer</p>
+</li>
+<li>
+<p>Biggest challenge is often <strong>pipeline migration</strong>, not just data movement</p>
+</li>
+<li>
+<p>Use automated tools whenever possible</p>
+</li>
+</ul>
+<p><strong>Example</strong>
+Migrating a user table:</p>
+<ul>
+<li>Source: <code>VARCHAR(255)</code></li>
+<li>Target: <code>TEXT</code></li>
+<li>Edge case: encoding differences → corrupted strings if not tested</li>
+</ul>
+<hr />
+<h2 id="streaming-ingestion-core-challenges">Streaming Ingestion: Core Challenges</h2>
+<h3 id="schema-evolution">Schema Evolution</h3>
+<ul>
+<li>
+<p>Event schemas change over time:</p>
+</li>
+<li>
+<p>New fields added</p>
+</li>
+<li>Fields removed</li>
+<li>
+<p>Data types changed</p>
+</li>
+<li>
+<p>Risks:</p>
+</li>
+<li>
+<p>Downstream pipeline failures</p>
+</li>
+<li>Silent data corruption</li>
+</ul>
+<p><strong>Mitigation</strong></p>
+<ul>
+<li>Use schema registry with versioning</li>
+<li>Maintain communication with upstream teams</li>
+<li>Use dead-letter queues for failures</li>
+</ul>
+<p><strong>Example</strong>
+IoT event:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;temp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>After firmware update:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;temp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;humidity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Older consumers may break if not handled</p>
+<hr />
+<h3 id="late-arriving-data">Late-Arriving Data</h3>
+<ul>
+<li>
+<p>Event time ≠ ingestion time</p>
+</li>
+<li>
+<p>Causes:</p>
+</li>
+<li>
+<p>Network delays</p>
+</li>
+<li>
+<p>Device offline periods</p>
+</li>
+<li>
+<p>Problem:</p>
+</li>
+<li>
+<p>Incorrect analytics if using ingestion time</p>
+</li>
+</ul>
+<p><strong>Solution</strong></p>
+<ul>
+<li>Define cutoff window (e.g., accept events within 10 minutes delay)</li>
+</ul>
+<p><strong>Example</strong></p>
+<ul>
+<li>Sensor sends reading at 10:00</li>
+<li>Arrives at 10:05</li>
+<li>Without correction → wrong time-series analysis</li>
+</ul>
+<hr />
+<h3 id="ordering-and-multiple-delivery">Ordering and Multiple Delivery</h3>
+<ul>
+<li>
+<p>Distributed systems →</p>
+</li>
+<li>
+<p>Messages may arrive out of order</p>
+</li>
+<li>
+<p>Messages may be duplicated</p>
+</li>
+<li>
+<p>Delivery semantics:</p>
+</li>
+<li>
+<p>At-least-once (duplicates possible)</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<ul>
+<li>Payment event processed twice → double charge if not idempotent</li>
+</ul>
+<hr />
+<h3 id="replay">Replay</h3>
+<ul>
+<li>
+<p>Ability to reprocess historical data</p>
+</li>
+<li>
+<p>Supported by systems like Kafka, Kinesis</p>
+</li>
+</ul>
+<p><strong>Use case</strong></p>
+<ul>
+<li>Bug fix → reprocess last 24 hours of events</li>
+</ul>
+<hr />
+<h3 id="time-to-live-ttl">Time to Live (TTL)</h3>
+<ul>
+<li>Defines how long events are retained</li>
+</ul>
+<p>Trade-offs:</p>
+<ul>
+<li>Too short → data loss</li>
+<li>Too long → backlog and latency</li>
+</ul>
+<p><strong>Examples</strong></p>
+<ul>
+<li>Pub/Sub: up to 7 days</li>
+<li>Kinesis: up to 365 days</li>
+<li>Kafka: configurable (even indefinite) </li>
+</ul>
+<hr />
+<h3 id="message-size-constraints">Message Size Constraints</h3>
+<ul>
+<li>Systems limit event size</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>Kinesis: 1 MB</li>
+<li>Kafka: default 1 MB (configurable higher) </li>
+</ul>
+<p><strong>Design implication</strong></p>
+<ul>
+<li>Large payloads → store in object storage, send reference</li>
+</ul>
+<hr />
+<h3 id="error-handling-and-dead-letter-queues">Error Handling and Dead-Letter Queues</h3>
+<ul>
+<li>
+<p>Failed events must not block pipeline</p>
+</li>
+<li>
+<p>Solution: <strong>Dead-letter queue (DLQ)</strong></p>
+</li>
+<li>
+<p>Store problematic events separately</p>
+</li>
+<li>
+<p>“Good” events → consumer</p>
+</li>
+<li>“Bad” events → DLQ 
+<img alt="" src="../../images/ingestion/dlq.jpg" />
+<em>Src: blog.algomaster.io</em></li>
+</ul>
+<p><strong>Example</strong></p>
+<ul>
+<li>Invalid JSON → routed to DLQ</li>
+<li>Later fixed and reprocessed</li>
+</ul>
+<hr />
+<h3 id="push-vs-pull-consumption">Push vs Pull Consumption</h3>
+<ul>
+<li>
+<p>Pull:</p>
+</li>
+<li>
+<p>Consumer fetches data (Kafka, Kinesis)</p>
+</li>
+<li>
+<p>Push:</p>
+</li>
+<li>
+<p>System sends data to consumer (Pub/Sub, RabbitMQ)</p>
+</li>
+</ul>
+<p><strong>Trade-off</strong></p>
+<ul>
+<li>Pull = more control</li>
+<li>Push = simpler integration</li>
+</ul>
+<hr />
+<h3 id="location-and-latency">Location and Latency</h3>
+<ul>
+<li>Ingest close to data source → lower latency</li>
+</ul>
+<p>Trade-off:</p>
+<ul>
+<li>Cross-region data transfer cost</li>
+</ul>
+<p><strong>Example</strong></p>
+<ul>
+<li>IoT data processed in same region vs sent globally</li>
+</ul>
+<hr />
+<h2 id="ways-to-ingest-data">Ways to Ingest Data</h2>
+<h3 id="direct-database-connections-jdbcodbc">Direct Database Connections (JDBC/ODBC)</h3>
+<p><img alt="" src="../../images/ingestion/JDBC.jpg" />
+<em>Src: networkencyclopedia.com</em></p>
+<p>Key ideas:</p>
+<ul>
+<li>JDBC → JVM-based portability</li>
+<li>ODBC → OS-dependent drivers</li>
+</ul>
+<p>Limitations:</p>
+<ul>
+<li>Poor support for nested data</li>
+<li>Row-based transfer inefficient</li>
+</ul>
+<p><strong>Optimization</strong></p>
+<ul>
+<li>Parallel queries (but increases DB load)</li>
+</ul>
+<hr />
+<h3 id="change-data-capture-cdc">Change Data Capture (CDC)</h3>
+<hr />
+<h4 id="batch-cdc">Batch CDC</h4>
+<ul>
+<li>Uses timestamps (e.g., <code>updated_at</code>)</li>
+</ul>
+<p>Limitation:</p>
+<ul>
+<li>Only captures latest state</li>
+</ul>
+<p><strong>Example</strong></p>
+<ul>
+<li>Bank account updated 5 times → only final balance captured</li>
+</ul>
+<hr />
+<h4 id="continuous-cdc">Continuous CDC</h4>
+<ul>
+<li>
+<p>Captures every change as an event</p>
+</li>
+<li>
+<p>Uses database logs</p>
+</li>
+</ul>
+<p><strong>Example</strong></p>
+<ul>
+<li>PostgreSQL WAL → streamed to Kafka</li>
+</ul>
+<hr />
+<h4 id="cdc-vs-replication">CDC vs Replication</h4>
+<ul>
+<li>
+<p>Synchronous replication:</p>
+</li>
+<li>
+<p>Strong consistency</p>
+</li>
+<li>
+<p>Used for read replicas</p>
+</li>
+<li>
+<p>Asynchronous CDC:</p>
+</li>
+<li>
+<p>Flexible</p>
+</li>
+<li>Supports analytics pipelines</li>
+</ul>
+<hr />
+<h2 id="apis-as-data-sources">APIs as Data Sources</h2>
+<ul>
+<li>No standardization → high engineering effort</li>
+</ul>
+<p>Trends:</p>
+<ul>
+<li>API client libraries</li>
+<li>Managed connectors</li>
+<li>Data sharing platforms</li>
+</ul>
+<p><strong>Advice</strong></p>
+<ul>
+<li>Avoid building connectors from scratch unless necessary</li>
+</ul>
+<hr />
+<h2 id="message-queues-vs-streams">Message Queues vs Streams</h2>
+<ul>
+<li>
+<p>Message queue:</p>
+</li>
+<li>
+<p>Transient</p>
+</li>
+<li>
+<p>Event disappears after consumption</p>
+</li>
+<li>
+<p>Stream:</p>
+</li>
+<li>
+<p>Persistent log</p>
+</li>
+<li>
+<p>Supports replay</p>
+</li>
+<li>
+<p>As seen in <em>diagram on page 12</em>:</p>
+</li>
+<li>
+<p>Multiple producers → consumers → recombined → new stream </p>
+</li>
+</ul>
+<hr />
+<h2 id="managed-data-connectors">Managed Data Connectors</h2>
+<ul>
+<li>Prebuilt connectors (SaaS or OSS)</li>
+</ul>
+<p>Capabilities:</p>
+<ul>
+<li>CDC</li>
+<li>Scheduling</li>
+<li>Monitoring</li>
+</ul>
+<p><strong>Key idea</strong></p>
+<ul>
+<li>Avoid reinventing ingestion plumbing</li>
+</ul>
+<hr />
+<h2 id="object-storage-as-ingestion-layer">Object Storage as Ingestion Layer</h2>
+<ul>
+<li>Highly scalable</li>
+<li>Secure</li>
+<li>Supports any file type</li>
+</ul>
+<p><strong>Use cases</strong></p>
+<ul>
+<li>Intermediate storage</li>
+<li>Cross-team sharing</li>
+</ul>
+<hr />
+<h2 id="file-formats">File Formats</h2>
+<hr />
+<h3 id="csv-problematic">CSV (Problematic)</h3>
+<ul>
+<li>No schema</li>
+<li>Ambiguous delimiters</li>
+<li>No support for nested data</li>
+</ul>
+<hr />
+<h3 id="modern-formats">Modern Formats</h3>
+<ul>
+<li>Parquet, Avro, ORC, Arrow</li>
+</ul>
+<p>Advantages:</p>
+<ul>
+<li>Schema included</li>
+<li>Efficient</li>
+<li>Supports nested data</li>
+</ul>
+<p><strong>Example</strong></p>
+<ul>
+<li>JSON stored as nested structure in Parquet</li>
+</ul>
+<hr />
+<h2 id="legacy-and-practical-methods">Legacy and Practical Methods</h2>
+<hr />
+<h3 id="edi-email-flash-drives">EDI (Email, Flash Drives)</h3>
+<ul>
+<li>Still used in real-world systems</li>
+</ul>
+<p><strong>Improvement</strong></p>
+<ul>
+<li>Automate ingestion from email → object storage</li>
+</ul>
+<hr />
+<h3 id="shell-and-cli">Shell and CLI</h3>
+<ul>
+<li>Used for scripting ingestion workflows</li>
+</ul>
+<hr />
+<h3 id="ssh-scp-sftp">SSH, SCP, SFTP</h3>
+<ul>
+<li>
+<p>Secure data transfer methods</p>
+</li>
+<li>
+<p>Common in enterprise pipelines</p>
+</li>
+</ul>
+<hr />
+<h2 id="webhooks-reverse-apis">Webhooks (Reverse APIs)</h2>
+<p><img alt="" src="../../images/ingestion/webhook.png" /><br />
+<em>Src: bannerbear.com</em></p>
+<ul>
+<li>
+<p>Data provider sends events</p>
+</li>
+<li>
+<p>Consumer must expose endpoint</p>
+</li>
+<li>
+<p>Webhook → serverless → stream → storage </p>
+</li>
+</ul>
+<p>Challenges:</p>
+<ul>
+<li>Hard to maintain</li>
+<li>Requires robust architecture</li>
+</ul>
+<hr />
+<h2 id="web-scraping">Web Scraping</h2>
+<ul>
+<li>Extract data from websites</li>
+</ul>
+<p>Challenges:</p>
+<ul>
+<li>Legal risks</li>
+<li>Fragile HTML structure</li>
+<li>Maintenance overhead</li>
+</ul>
+<hr />
+<h2 id="large-scale-data-transfer">Large-Scale Data Transfer</h2>
+<ul>
+<li>
+<p>For 100TB+:</p>
+</li>
+<li>
+<p>Use physical devices (Snowball, Snowmobile)</p>
+</li>
+</ul>
+<p><strong>Insight</strong></p>
+<ul>
+<li>“Truck &gt; Internet” at massive scale</li>
+</ul>
+<hr />
+<h2 id="data-sharing">Data Sharing</h2>
+<ul>
+<li>
+<p>Access data without copying</p>
+</li>
+<li>
+<p>Read-only datasets from providers</p>
+</li>
+</ul>
+<p>Trade-off:</p>
+<ul>
+<li>No ownership</li>
+<li>Access can be revoked</li>
+</ul>
+<hr />
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>
+<p>Ingestion is not just data movement—it impacts:  </p>
+<ul>
+<li>Schema  </li>
+<li>Storage  </li>
+<li>Processing  </li>
+</ul>
+</li>
+<li>
+<p>Trade-offs exist everywhere:  </p>
+<ul>
+<li>Latency vs cost  </li>
+<li>Flexibility vs complexity  </li>
+</ul>
+</li>
+<li>
+<p>Prefer:  </p>
+<ul>
+<li>Managed solutions  </li>
+<li>Object storage  </li>
+<li>Streaming systems with replay  </li>
+</ul>
+</li>
+<li>
+<p>Always design for:  </p>
+<ul>
+<li>Failures  </li>
+<li>Schema changes  </li>
+<li>Scalability  </li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="references">References</h2>
+<ol>
+<li>Chapter 7 Fundamentals of Data Engineering   </li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../data_ingestion/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Introduction
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../code/storage_engines/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage Engines">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Storage Engines
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Ankush Chander
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.expand", "navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

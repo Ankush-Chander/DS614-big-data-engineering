@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://ankushchander.com/lectures/solution/">
+        <link rel="canonical" href="https://ankushchander.com/lectures/data%20ingestion/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>Big Data Engineering - Solution Paper - DS614 - Big Data Engineering | DAU</title>
+        <title>Data ingestion - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#big-data-engineering-solution-paper" class="md-skip">
+        <a href="#key-considerations" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Big Data Engineering - Solution Paper
+              Data ingestion
             
           </span>
         </div>
@@ -691,14 +691,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../notebooks/pandas_parquet.ipynb" class="md-nav__link">
+      <a href="../../notebooks/pandas_parquet/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    Pandas parquet
   
 
     
@@ -1300,6 +1300,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stream_ingestion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Ingestion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1883,8 +1911,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1893,10 +1919,143 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#section-a-multiple-choice-questions-20-marks-1-mark-each" class="md-nav__link">
+  <a href="#key-considerations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Section A: Multiple Choice Questions (20 marks, 1 mark each)
+        Key considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-whats-the-use-case-for-the-data-im-ingesting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What’s the use case for the data I’m ingesting?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-can-i-reuse-data-instead-of-ingesting-duplicates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Can I reuse data instead of ingesting duplicates?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-where-is-the-data-going-destination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Where is the data going? (Destination)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-how-often-should-data-be-updated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. How often should data be updated?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lets-use-kafka-for-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        &gt; “Let’s use Kafka for everything” ❌
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&gt; “Let’s use Kafka for everything” ❌">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-what-is-the-expected-data-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. What is the expected data volume?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-what-format-is-the-data-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. What format is the data in?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-is-data-clean-what-are-data-quality-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Is data clean? What are data quality risks?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-do-we-need-in-flight-processing-streaming-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Do we need in-flight processing? (Streaming case)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-food-delivery-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario: Food Delivery App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etl-vs-elt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ETL vs. ELT
       
     </span>
   </a>
@@ -1904,10 +2063,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#section-b-truefalse-questions-6-marks-1-mark-each" class="md-nav__link">
+  <a href="#change-data-capture-the-delta-strategy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Section B: True/False Questions (6 marks, 1 mark each)
+        Change Data Capture: The "Delta" Strategy
       
     </span>
   </a>
@@ -1915,10 +2074,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#section-c-short-answer-questions-24-marks-2-marks-each" class="md-nav__link">
+  <a href="#bridge-from-tables-to-events" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Section C: Short Answer Questions (24 marks, 2 marks each)
+        Bridge: From Tables to Events
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
       
     </span>
   </a>
@@ -1942,161 +2112,329 @@
 
 
 
-<h1 id="big-data-engineering-solution-paper">Big Data Engineering - Solution Paper</h1>
-<h2 id="section-a-multiple-choice-questions-20-marks-1-mark-each">Section A: Multiple Choice Questions (20 marks, 1 mark each)</h2>
-<ol>
-<li>
-<p>What is the primary characteristic of a B-tree that makes it suitable for disk-based storage?
-   <strong>Answer: b) It has high fan-out and fat nodes</strong></p>
+  <h1>Data ingestion</h1>
+
+<p>![[ingestion_in_pipeline.png]]</p>
+<p>Data ingestion implies data movement from source systems into storage in the data engineering lifecycle, with ingestion as an intermediate step.</p>
+<h2 id="key-considerations">Key considerations</h2>
+<h3 id="1-whats-the-use-case-for-the-data-im-ingesting">1. What’s the use case for the data I’m ingesting?</h3>
+<p>The <strong>same data</strong> is ingested very differently depending on the use case.
+<strong>Examples</strong>
+1. Case A: Analytics dashboard
+    - Data: Orders
+    - Need: Daily revenue
+    - Approach:
+        - Batch ingestion (hourly/daily)
+        - ELT is fine
+2. Case B: Fraud detection
+    - Data: Transactions
+    - Need: Detect fraud in seconds
+    - Approach:
+        - Streaming + CDC
+        - Low latency (&lt; seconds)</p>
+<hr />
+<h3 id="2-can-i-reuse-data-instead-of-ingesting-duplicates">2. Can I reuse data instead of ingesting duplicates?</h3>
+<p>Teams often create <strong>multiple pipelines for same data</strong></p>
+<p><strong>Example:</strong>
+<strong>Bad architecture ❌</strong>
+<div class="highlight"><pre><span></span><code>DB → Pipeline A → Warehouse
+DB → Pipeline B → Dashboard DB
+DB → Pipeline C → ML system
+</code></pre></div></p>
+<ul>
+<li>Same data ingested 3 times</li>
+<li>Inconsistent versions 😱
+<strong>Good architecture ✅</strong>
+<div class="highlight"><pre><span></span><code>DB → CDC → Central Stream → Multiple consumers
+</code></pre></div>
+<strong>Note</strong><blockquote>
+<p>“Ingestion should happen once. Distribution happens downstream.”</p>
+</blockquote>
 </li>
-<li>
-<p>Which of the following is NOT a component of HDFS architecture?
-   <strong>Answer: d) MasterNode</strong></p>
-</li>
-<li>
-<p>In MapReduce, what happens during the shuffle and sort phase?
-   <strong>Answer: b) Keys are partitioned and copied to reducers</strong></p>
-</li>
-<li>
-<p>What is the main advantage of columnar storage over row storage for analytical queries?
-   <strong>Answer: c) Reduced I/O bandwidth usage</strong></p>
-</li>
-<li>
-<p>In a B-tree with degree 1000, how many disk seeks would be required to find a key in a dataset of 10 billion items?
-   <strong>Answer: b) 3</strong></p>
-</li>
-<li>
-<p>What is the key difference between Size-Tiered Compaction and Leveled Compaction in LSM trees?
-   <strong>Answer: a) Size-Tiered is write-optimized, Leveled is read-optimized</strong></p>
-</li>
-<li>
-<p>What is the primary purpose of a Bloom filter in LSM trees?
-   <strong>Answer: b) To quickly determine if a key may be present in a segment</strong></p>
-</li>
-<li>
-<p>In the MySQL InnoDB storage engine, what does a secondary index store as its 'value' in the leaf nodes?
-   <strong>Answer: d) The primary key of the associated row</strong></p>
-</li>
-<li>
-<p>What is the main performance bottleneck in MapReduce?
-   <strong>Answer: b) Network transfer during shuffle phase</strong></p>
-</li>
-<li>
-<p>What is the key concept behind data locality in MapReduce?
-    <strong>Answer: b) Moving computation to the data</strong></p>
-</li>
-<li>
-<p>What is the primary benefit of using a log-structured storage engine?
-    <strong>Answer: b) Sequential writes are faster</strong></p>
-</li>
-<li>
-<p>Which of these is NOT a characteristic of a good hash function for distributed systems?
-    <strong>Answer: d) Random distribution</strong></p>
-</li>
-<li>
-<p>What is the main difference between OLTP and OLAP systems?
-    <strong>Answer: a) OLTP is for real-time processing, OLAP is for analytical processing</strong></p>
-</li>
-<li>
-<p>How does the size of the primary key affect the performance of a B+tree index?
-    <strong>Answer: b) Smaller keys allow more entries per node, leading to a shallower tree</strong></p>
-</li>
-<li>
-<p>What does the "X" represent in the formula partition = hash(k_2) mod X in MapReduce?
-    <strong>Answer: a) Number of reducers</strong></p>
-</li>
-<li>
-<p>What is the primary purpose of a Combiner in MapReduce?
-    <strong>Answer: b) To reduce network traffic by pre-aggregating intermediate results</strong></p>
-</li>
-<li>
-<p>What is the main benefit of using a columnar storage format?
-    <strong>Answer: c) Reduced I/O for analytical queries</strong></p>
-</li>
-<li>
-<p>What is the role of the ResourceManager in YARN?
-    <strong>Answer: b) Manages cluster resources and scheduling</strong></p>
-</li>
-<li>
-<p>What is the main characteristic of a narrow transformation in Spark?
-    <strong>Answer: b) It doesn't require data movement between nodes</strong></p>
-</li>
-<li>
-<p>What is the main purpose of the NameNode in HDFS?
-    <strong>Answer: b) Manages the filesystem namespace and metadata</strong></p>
-</li>
+</ul>
+<p><strong>Real-world failure</strong>
+- Metrics mismatch between teams
+- “Why is revenue different in dashboard vs ML model?”</p>
+<hr />
+<h3 id="3-where-is-the-data-going-destination">3. Where is the data going? (Destination)</h3>
+<p><strong>Why this matters:</strong></p>
+<p>Destination determines:
+- Schema
+- Format
+- Latency
+- Transformations
+<strong>Examples:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Destination</th>
+<th>Ingestion Style</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data warehouse</td>
+<td>Batch / ELT</td>
+<td>Structured</td>
+</tr>
+<tr>
+<td>Search engine</td>
+<td>Stream</td>
+<td>Needs indexing</td>
+</tr>
+<tr>
+<td>ML feature store</td>
+<td>Both</td>
+<td>Needs freshness</td>
+</tr>
+<tr>
+<td>Dashboard</td>
+<td>Pre-aggregated</td>
+<td>Fast queries</td>
+</tr>
+</tbody>
+</table>
+<p>Same data (orders):
+- Warehouse → raw + SQL transforms
+- Dashboard → aggregated table  <br />
+- Kafka → event stream
+<strong>Note</strong></p>
+<blockquote>
+<p>“Design ingestion backwards from the destination.”</p>
+</blockquote>
+<hr />
+<h3 id="4-how-often-should-data-be-updated">4. How often should data be updated?</h3>
+<p><strong>Tradeoff:</strong>
+Freshness vs Cost</p>
+<p><strong>Examples:</strong>
+Low frequency (batch)<br />
+- HR data → daily<br />
+- Reports → hourly<br />
+High frequency (streaming)  <br />
+- Payments → real-time<br />
+- Notifications → instant  </p>
+<p><strong>Note</strong></p>
+<blockquote>
+<p>“Not all data needs to be real-time.”</p>
+</blockquote>
+<p><strong>Anti-pattern</strong></p>
+<h2 id="lets-use-kafka-for-everything">&gt; “Let’s use Kafka for everything” ❌</h2>
+<h3 id="5-what-is-the-expected-data-volume">5. What is the expected data volume?</h3>
+<p><strong>Why this matters</strong>
+Volume determines:
+- Tooling (Kafka vs cron job)
+- Storage cost
+- Partitioning strategy</p>
+<p><strong>Examples:</strong>
+ <strong>Small scale</strong>
+- 10K rows/day
+- Use simple cron + SQL
+ <strong>Large scale</strong>
+- 1M events/sec
+- Need:
+    - Kafka
+    - Partitioning
+    - Distributed systems</p>
+<p><strong>Note</strong></p>
+<blockquote>
+<p>“Scale changes architecture—not just hardware.”</p>
+</blockquote>
+<p><strong>Failure case</strong>
+- Pipeline works in testing  <br />
+- Crashes in production due to volume spike</p>
+<hr />
+<h3 id="6-what-format-is-the-data-in">6. What format is the data in?</h3>
+<p><strong>Why this matters:</strong></p>
+<p>Format affects:
+- Speed
+- Compatibility
+- Schema evolution
+Examples</p>
+<p><em>JSON</em></p>
+<p><div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+    - Easy
+    - Human-readable
+    - Large size</p>
+<p><em>Protobuf / Avro</em>
+- Compact
+- Faster
+- Needs schema</p>
+<p>Scenario</p>
+<p>API ingestion
+- JSON → easy
+ High-throughput streaming
+- Protobuf → efficient</p>
+<p><strong>Note</strong></p>
+<blockquote>
+<p>“Format is a contract between producers and consumers.”</p>
+</blockquote>
+<p><strong>Failure</strong>
+- Schema mismatch → pipeline breaks</p>
+<hr />
+<h3 id="7-is-data-clean-what-are-data-quality-risks">7. Is data clean? What are data quality risks?</h3>
+<p>Reality</p>
+<blockquote>
+<p>Raw data is <em>always messy</em></p>
+</blockquote>
+<p><strong>Examples</strong>
+<strong>Example:</strong> 1: Bot traffic
+- Website logs inflated
+- Fake clicks</p>
+<p><strong>Example:</strong> 2: Missing values</p>
+<div class="highlight"><pre><span></span><code>user_id = NULL
+</code></pre></div>
+<p><strong>Example:</strong> 3: Duplicates
+- Same event ingested twice</p>
+<p><strong>Solutions</strong>
+- Deduplication
+- Validation rules
+- Filtering bots
+ <strong>Note</strong></p>
+<blockquote>
+<p>“Garbage in → garbage everywhere.”</p>
+</blockquote>
+<p>Real-world impact
+- Wrong business decisions
+- Misleading dashboards</p>
+<hr />
+<h3 id="8-do-we-need-in-flight-processing-streaming-case">8. Do we need in-flight processing? (Streaming case)</h3>
+<p>Meaning
+Processing data <strong>while it is moving</strong></p>
+<hr />
+<p><strong>Example:</strong></p>
+<p><strong>Example:</strong> 1: Fraud detection
+<div class="highlight"><pre><span></span><code>Transaction → check rules → flag immediately
+</code></pre></div></p>
+<hr />
+<p><strong>Example:</strong> 2: Notifications</p>
+<p><div class="highlight"><pre><span></span><code>Order placed → send notification instantly
+</code></pre></div>
+<strong>Example:</strong> 3: Aggregations
+<div class="highlight"><pre><span></span><code>Clicks → count per minute → dashboard
+</code></pre></div></p>
+<p><strong>Without in-flight processing</strong></p>
+<p><div class="highlight"><pre><span></span><code>Store → later process → too late ❌
+</code></pre></div>
+<strong>With in-flight processing</strong>
+<div class="highlight"><pre><span></span><code>Stream → process → act immediately ✅
+</code></pre></div>
+<strong>Note</strong></p>
+<blockquote>
+<p>“Streaming is about reacting, not storing.”</p>
+</blockquote>
+<h3 id="scenario-food-delivery-app">Scenario: Food Delivery App</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use case</td>
+<td>Real-time tracking + analytics</td>
+</tr>
+<tr>
+<td>Reuse</td>
+<td>CDC → Kafka → multiple consumers</td>
+</tr>
+<tr>
+<td>Destination</td>
+<td>Warehouse + Notifications</td>
+</tr>
+<tr>
+<td>Frequency</td>
+<td>Real-time + hourly batch</td>
+</tr>
+<tr>
+<td>Volume</td>
+<td>High (orders, clicks)</td>
+</tr>
+<tr>
+<td>Format</td>
+<td>JSON → Protobuf later</td>
+</tr>
+<tr>
+<td>Quality</td>
+<td>Remove bots, deduplicate</td>
+</tr>
+<tr>
+<td>In-flight</td>
+<td>Yes (notifications, ETA updates)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="etl-vs-elt">ETL vs. ELT</h2>
+<p><strong>The Core Concept:</strong> The difference is not just the order of operations, but <strong>where the compute happens.</strong></p>
+<p>A. ETL (Extract, Transform, Load) - <em>The Traditional Way</em>
+- <strong>Workflow:</strong> Data is extracted <span class="arithmatex"><span class="MathJax_Preview">\rightarrow</span><script type="math/tex">\rightarrow</script></span> transformed in a separate <strong>staging server</strong> (using Spark, Informatica, etc.) <span class="arithmatex"><span class="MathJax_Preview">\rightarrow</span><script type="math/tex">\rightarrow</script></span> loaded into the Data Warehouse.
+- <strong>Why use it?</strong> When the target system is slow/expensive or when sensitive data (PII) must be masked <em>before</em> it lands.
+- <strong>Downside:</strong> The transformation layer is a bottleneck. If the business requirements change, you have to re-ingest the raw data.</p>
+<p>B. ELT (Extract, Load, Transform) - <em>The Modern Way</em>
+- <strong>Workflow:</strong> Raw data is loaded directly into the Data Warehouse/Lake <span class="arithmatex"><span class="MathJax_Preview">\rightarrow</span><script type="math/tex">\rightarrow</script></span> transformed using the <strong>target’s own compute</strong> (e.g., SQL in Snowflake or BigQuery).
+- <strong>Why use it?</strong> Storage is cheap; Cloud Data Warehouse compute is massively parallel.
+- <strong>The "dbt" Factor:</strong> Mention that ELT is the foundation of the "Analytics Engineer" role.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>ETL</strong></th>
+<th><strong>ELT</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Compute</strong></td>
+<td>External Engine</td>
+<td>Target Warehouse</td>
+</tr>
+<tr>
+<td><strong>Flexibility</strong></td>
+<td>Rigid (Fixed Schema)</td>
+<td>High (Schema-on-read)</td>
+</tr>
+<tr>
+<td><strong>Data Volume</strong></td>
+<td>Better for small/medium</td>
+<td>Built for Big Data</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="change-data-capture-the-delta-strategy">Change Data Capture: The "Delta" Strategy</h2>
+<p><strong>The Problem:</strong> We cannot do a "SELECT *" on a 10TB production database every hour. It would crash the DB and waste bandwidth.</p>
+<p>A. How CDC Works
+CDC identifies and captures insertions, updates, and deletions in source tables so that only the <strong>changes</strong> are moved.</p>
+<p>B. Two Primary Approaches:
+1. <strong>Query-based (Poll):</strong> Checking a <code>last_updated</code> timestamp column.
+    - <em>Flaw:</em> It misses hard deletes and adds load to the source DB.
+2. <strong>Log-based (Push):</strong> Reading the Database <strong>Transaction Log</strong> (e.g., MySQL Binlog, Postgres WAL).
+    - <em>Benefit:</em> Zero impact on DB performance; captures every single intermediate state of a row.
+C. The CDC-to-Warehouse Pipeline
+- <strong>Tooling Example:</strong> Debezium is the industry standard for turning DB logs into event streams.</p>
+<hr />
+<h2 id="bridge-from-tables-to-events">Bridge: From Tables to Events</h2>
+<p><strong>The Shift:</strong> Moving from "State" to "History."</p>
+<ul>
+<li><strong>The Table view (State):</strong> "User X lives in Gandhinagar." (This is what you see in a DB).</li>
+<li><strong>The Event view (Log):</strong><ol>
+<li>User X created account.</li>
+<li>User X added address: Ahmedabad.</li>
+<li>User X updated address: Gandhinagar.</li>
 </ol>
-<h2 id="section-b-truefalse-questions-6-marks-1-mark-each">Section B: True/False Questions (6 marks, 1 mark each)</h2>
+</li>
+</ul>
+<p>Key Conceptual Takeaway:
+- <strong>A Table is a snapshot of the Log at a point in time.</strong>
+- <strong>A Log is the source of truth.</strong>
+- <strong>Introduction to Message Queues:</strong> If CDC turns a database into a stream of events, we need a "buffer" to hold those events before they are processed. This is where <strong>Kafka</strong> enters.</p>
+<h2 id="references">References</h2>
 <ol>
-<li>
-<p>HDFS blocks are replicated by default 3 times for fault tolerance. <strong>Answer: True</strong></p>
-</li>
-<li>
-<p>MapReduce is primarily used for real-time processing. <strong>Answer: False</strong></p>
-</li>
-<li>
-<p>In Spark, narrow transformations are faster than wide transformations because they don't require shuffling. <strong>Answer: True</strong></p>
-</li>
-<li>
-<p>The main performance bottleneck in MapReduce is usually the network transfer during the shuffle phase. <strong>Answer: True</strong></p>
-</li>
-<li>
-<p>The primary benefit of using a log-structured storage engine is that it provides better read performance than traditional storage. <strong>Answer: False</strong></p>
-</li>
-<li>
-<p>In a B-tree, each node can have at most the degree number of children. <strong>Answer: True</strong></p>
-</li>
-</ol>
-<h2 id="section-c-short-answer-questions-24-marks-2-marks-each">Section C: Short Answer Questions (24 marks, 2 marks each)</h2>
-<ol>
-<li>
-<p>What is the key difference between a hash index and a B-tree index?
-    <strong>Answer: A hash index provides O(1) lookup time but doesn't support range queries, while a B-tree index supports both point and range queries with O(log n) time complexity.</strong></p>
-</li>
-<li>
-<p>Define data locality in the context of distributed systems.
-    <strong>Answer: Data locality refers to the principle of processing data where it resides, minimizing network transfer by scheduling computation on nodes that contain the data to be processed.</strong></p>
-</li>
-<li>
-<p>Explain the role of the NameNode in HDFS architecture.
-    <strong>Answer: The NameNode manages the filesystem namespace, stores metadata about files and directories, tracks which DataNodes store which blocks, and maintains the mapping of file blocks to DataNodes.</strong></p>
-</li>
-<li>
-<p>What is lazy evaluation in Spark and why is it beneficial?
-    <strong>Answer: Lazy evaluation means Spark delays execution until a result is actually needed. It's beneficial because it allows Spark to optimize the entire computation pipeline into a single efficient execution plan rather than executing operations one by one.</strong></p>
-</li>
-<li>
-<p>Describe the process of compaction in LSM trees.
-    <strong>Answer: Compaction is the process where multiple smaller sorted segments are merged into larger sorted segments. This process removes duplicate keys, handles deletions (tombstones), and reduces the number of segments that need to be searched during reads.</strong></p>
-</li>
-<li>
-<p>What are the main challenges in implementing fault tolerance in distributed systems?
-    <strong>Answer: The main challenges include detecting failures, recovering from failures without data loss, maintaining consistency across nodes, and ensuring availability while dealing with network partitions and node failures.</strong></p>
-</li>
-<li>
-<p>What is the main advantage of columnar storage over row storage for analytical queries?
-    <strong>Answer: Columnar storage allows for better compression and faster query performance for analytical workloads since queries typically access only a subset of columns, reducing I/O bandwidth usage.</strong></p>
-</li>
-<li>
-<p>Explain the difference between Map and Reduce phases in MapReduce.
-    <strong>Answer: The Map phase processes input data and generates intermediate key-value pairs, while the Reduce phase receives the intermediate key-value pairs from multiple mappers, groups them by key, and produces the final output.</strong></p>
-</li>
-<li>
-<p>What is the purpose of a partitioner in MapReduce?
-    <strong>Answer: The partitioner determines which reducer a particular intermediate key-value pair should be sent to, ensuring that related data is processed by the same reducer.</strong></p>
-</li>
-<li>
-<p>Why are B-tree nodes often sized to match the size of a disk block (e.g., 16k)?
-    <strong>Answer: B-tree nodes are sized to match disk block size to minimize disk I/O operations. When a node is read from disk, it reads an entire block, so matching the node size to the block size maximizes I/O efficiency.</strong></p>
-</li>
-<li>
-<p>What is the primary performance drawback of using a completely random 128-bit UUIDv4 as a primary key in a B+tree?
-    <strong>Answer: The primary drawback is that random UUIDs cause poor write performance due to index fragmentation, as new records are inserted at random locations in the index, leading to many page splits and poor cache locality.</strong></p>
-</li>
-<li>
-<p>List down any 2 applications of Bloom filter in storage systems?
-    <strong>Answer: 1) To quickly check if a key may exist in a segment before doing expensive disk lookups, 2) To track which keys have been deleted (tombstones) in LSM trees to avoid unnecessary disk reads.</strong></p>
-</li>
+<li>Chapter 7 Fundamentals of Data Engineering </li>
 </ol>
 
 
