@@ -16,6 +16,8 @@
         <link rel="prev" href="../../demo/db-normalization-demo.html">
       
       
+        <link rel="next" href="../cdc/">
+      
       
         
       
@@ -2415,6 +2417,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cdc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Change Data Capture (CDC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3684,46 +3714,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="stream-processing-four-ways-to-consume-a-data-stream">Stream Processing — Four Ways to Consume a Data Stream<a class="anchor-link" href="#stream-processing-four-ways-to-consume-a-data-stream">¶</a></h1><p><a href="https://colab.research.google.com/github/Ankush-Chander/DS614-big-data-engineering/blob/main/docs/notebooks/stream_processing.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/></a></p>
 <blockquote>
-<p><em>"Batch processing is answering questions about the past; stream processing is answering questions about the present."</em> — Jay Kreps</p>
+<p><em>"Batch processing is answering questions about the past; stream processing is answering questions about the present."</em> — Jay Kreps
+In this notebook we'll build and observe <strong>four different streaming consumers</strong>, progressing from the simplest (polling a file) to cloud-managed queues (SQS).
+Each approach solves the same problem — reading a continuous flow of <strong>taxi-trip events</strong> — but makes different trade-offs in latency, reliability, and complexity.
+| # | Technique | Key Concept | Real-world Analogy |
+|---|-----------|------------|-------------------|
+| 1 | <strong>Polling</strong> | Pull-based; consumer asks "anything new?" | Refreshing your email inbox |
+| 2 | <strong>Unix Pipes &amp; Sockets</strong> | OS-level push; kernel notifies consumer | <code>tail -f</code> on a log file |
+| 3 | <strong>Redis Pub/Sub &amp; RabbitMQ</strong> | Broker-mediated messaging | Post office / bulletin board |
+| 4 | <strong>Amazon SQS</strong> | Managed cloud queue | Cloud-native microservices |</p>
 </blockquote>
-<p>In this notebook we'll build and observe <strong>four different streaming consumers</strong>, progressing from the simplest (polling a file) to cloud-managed queues (SQS).
-Each approach solves the same problem — reading a continuous flow of <strong>taxi-trip events</strong> — but makes different trade-offs in latency, reliability, and complexity.</p>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>Technique</th>
-<th>Key Concept</th>
-<th>Real-world Analogy</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td><strong>Polling</strong></td>
-<td>Pull-based; consumer asks "anything new?"</td>
-<td>Refreshing your email inbox</td>
-</tr>
-<tr>
-<td>2</td>
-<td><strong>Unix Pipes &amp; Sockets</strong></td>
-<td>OS-level push; kernel notifies consumer</td>
-<td><code>tail -f</code> on a log file</td>
-</tr>
-<tr>
-<td>3</td>
-<td><strong>Redis Pub/Sub &amp; RabbitMQ</strong></td>
-<td>Broker-mediated messaging</td>
-<td>Post office / bulletin board</td>
-</tr>
-<tr>
-<td>4</td>
-<td><strong>Amazon SQS</strong></td>
-<td>Managed cloud queue</td>
-<td>Cloud-native microservices</td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>
@@ -6045,6 +6045,22 @@ print("\n✅ Cleanup complete!")</div>
             </div>
           </a>
         
+        
+          
+          <a href="../cdc/" class="md-footer__link md-footer__link--next" aria-label="Next: Change Data Capture (CDC)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Change Data Capture (CDC)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
