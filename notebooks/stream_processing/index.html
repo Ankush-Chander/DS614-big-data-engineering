@@ -695,14 +695,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../pandas_parquet/" class="md-nav__link">
+      <a href="../pandas_parquet.ipynb" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Pandas parquet
+    None
   
 
     
@@ -3213,7 +3213,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     if (!diagrams.length) {
       return;
     }
-    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.esm.min.mjs")).default;
+    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.0/mermaid.esm.min.mjs")).default;
+    const elkUrl = "https://cdnjs.cloudflare.com/ajax/libs/mermaid-layout-elk/0.1.9/mermaid-layout-elk.esm.min.mjs";
+    if(elkUrl) {
+      const elkLayouts = (await import(elkUrl)).default;
+      mermaid.registerLayoutLoaders(elkLayouts);
+    }
     const parser = new DOMParser();
 
     mermaid.initialize({
@@ -3310,7 +3315,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
      * Post-process to ensure mermaid diagrams contain only valid SVG and XHTML.
      */
     function cleanMermaidSvg(svg) {
-      return svg.replace(RE_VOID_ELEMENT, replaceVoidElement);
+      svg = svg.replace(RE_VOID_ELEMENT, replaceVoidElement);
+      return `${SVG_XML_HEADER}${svg}`;
     }
 
 
@@ -3336,6 +3342,285 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
       }
       return `<${tag} ${rest}>`;
     }
+
+
+  /**
+   * Named HTML entities with their decimal equivalent codes.
+   *
+   * @see https://www.w3.org/TR/WD-html40-970708/sgml/entities.html
+   * */
+  const HTML_ENTITIES = `<!ENTITY Aacute "&#193;">
+<!ENTITY aacute "&#225;">
+<!ENTITY Acirc "&#194;">
+<!ENTITY acirc "&#226;">
+<!ENTITY acute "&#180;">
+<!ENTITY AElig "&#198;">
+<!ENTITY aelig "&#230;">
+<!ENTITY Agrave "&#192;">
+<!ENTITY agrave "&#224;">
+<!ENTITY alefsym "&#8501;">
+<!ENTITY Alpha "&#913;">
+<!ENTITY alpha "&#945;">
+<!ENTITY amp "&#38;">
+<!ENTITY and "&#8869;">
+<!ENTITY ang "&#8736;">
+<!ENTITY Aring "&#197;">
+<!ENTITY aring "&#229;">
+<!ENTITY asymp "&#8776;">
+<!ENTITY Atilde "&#195;">
+<!ENTITY atilde "&#227;">
+<!ENTITY Auml "&#196;">
+<!ENTITY auml "&#228;">
+<!ENTITY bdquo "&#8222;">
+<!ENTITY Beta "&#914;">
+<!ENTITY beta "&#946;">
+<!ENTITY brvbar "&#166;">
+<!ENTITY bull "&#8226;">
+<!ENTITY cap "&#8745;">
+<!ENTITY Ccedil "&#199;">
+<!ENTITY ccedil "&#231;">
+<!ENTITY cedil "&#184;">
+<!ENTITY cent "&#162;">
+<!ENTITY Chi "&#935;">
+<!ENTITY chi "&#967;">
+<!ENTITY circ "&#710;">
+<!ENTITY clubs "&#9827;">
+<!ENTITY cong "&#8773;">
+<!ENTITY copy "&#169;">
+<!ENTITY crarr "&#8629;">
+<!ENTITY cup "&#8746;">
+<!ENTITY curren "&#164;">
+<!ENTITY dagger "&#8224;">
+<!ENTITY Dagger "&#8225;">
+<!ENTITY darr "&#8595;">
+<!ENTITY dArr "&#8659;">
+<!ENTITY deg "&#176;">
+<!ENTITY Delta "&#916;">
+<!ENTITY delta "&#948;">
+<!ENTITY diams "&#9830;">
+<!ENTITY divide "&#247;">
+<!ENTITY Eacute "&#201;">
+<!ENTITY eacute "&#233;">
+<!ENTITY Ecirc "&#202;">
+<!ENTITY ecirc "&#234;">
+<!ENTITY Egrave "&#200;">
+<!ENTITY egrave "&#232;">
+<!ENTITY empty "&#8709;">
+<!ENTITY emsp "&#8195;">
+<!ENTITY ensp "&#8194;">
+<!ENTITY epsilon "&#949;">
+<!ENTITY Epsilon "&#917;">
+<!ENTITY equiv "&#8801;">
+<!ENTITY Eta "&#919;">
+<!ENTITY eta "&#951;">
+<!ENTITY ETH "&#208;">
+<!ENTITY eth "&#240;">
+<!ENTITY Euml "&#203;">
+<!ENTITY euml "&#235;">
+<!ENTITY exist "&#8707;">
+<!ENTITY fnof "&#402;">
+<!ENTITY forall "&#8704;">
+<!ENTITY frac12 "&#189;">
+<!ENTITY frac14 "&#188;">
+<!ENTITY frac34 "&#190;">
+<!ENTITY frasl "&#8260;">
+<!ENTITY Gamma "&#915;">
+<!ENTITY gamma "&#947;">
+<!ENTITY ge "&#8805;">
+<!ENTITY gt "&#62;">
+<!ENTITY harr "&#8596;">
+<!ENTITY hArr "&#8660;">
+<!ENTITY hearts "&#9829;">
+<!ENTITY hellip "&#8230;">
+<!ENTITY Iacute "&#205;">
+<!ENTITY iacute "&#237;">
+<!ENTITY Icirc "&#206;">
+<!ENTITY icirc "&#238;">
+<!ENTITY iexcl "&#161;">
+<!ENTITY Igrave "&#204;">
+<!ENTITY igrave "&#236;">
+<!ENTITY image "&#8465;">
+<!ENTITY infin "&#8734;">
+<!ENTITY int "&#8747;">
+<!ENTITY Iota "&#921;">
+<!ENTITY iota "&#953;">
+<!ENTITY iquest "&#191;">
+<!ENTITY isin "&#8712;">
+<!ENTITY Iuml "&#207;">
+<!ENTITY iuml "&#239;">
+<!ENTITY Kappa "&#922;">
+<!ENTITY kappa "&#954;">
+<!ENTITY Lambda "&#923;">
+<!ENTITY lambda "&#955;">
+<!ENTITY lang "&#9001;">
+<!ENTITY laquo "&#171;">
+<!ENTITY larr "&#8592;">
+<!ENTITY lArr "&#8656;">
+<!ENTITY lceil "&#8968;">
+<!ENTITY ldquo "&#8220;">
+<!ENTITY le "&#8804;">
+<!ENTITY lfloor "&#8970;">
+<!ENTITY lowast "&#8727;">
+<!ENTITY loz "&#9674;">
+<!ENTITY lrm "&#8206;">
+<!ENTITY lsaquo "&#8249;">
+<!ENTITY lsquo "&#8216;">
+<!ENTITY lt "&#60;">
+<!ENTITY macr "&#175;">
+<!ENTITY mdash "&#8212;">
+<!ENTITY micro "&#181;">
+<!ENTITY middot "&#183;">
+<!ENTITY minus "&#8722;">
+<!ENTITY Mu "&#924;">
+<!ENTITY mu "&#956;">
+<!ENTITY nabla "&#8711;">
+<!ENTITY nbsp "&#160;">
+<!ENTITY ndash "&#8211;">
+<!ENTITY ne "&#8800;">
+<!ENTITY ni "&#8715;">
+<!ENTITY not "&#172;">
+<!ENTITY notin "&#8713;">
+<!ENTITY nsub "&#8836;">
+<!ENTITY Ntilde "&#209;">
+<!ENTITY ntilde "&#241;">
+<!ENTITY Nu "&#925;">
+<!ENTITY nu "&#957;">
+<!ENTITY Oacute "&#211;">
+<!ENTITY oacute "&#243;">
+<!ENTITY Ocirc "&#212;">
+<!ENTITY ocirc "&#244;">
+<!ENTITY OElig "&#338;">
+<!ENTITY oelig "&#339;">
+<!ENTITY Ograve "&#210;">
+<!ENTITY ograve "&#242;">
+<!ENTITY oline "&#8254;">
+<!ENTITY Omega "&#937;">
+<!ENTITY omega "&#969;">
+<!ENTITY Omicron "&#927;">
+<!ENTITY omicron "&#959;">
+<!ENTITY oplus "&#8853;">
+<!ENTITY or "&#8870;">
+<!ENTITY ordf "&#170;">
+<!ENTITY ordm "&#186;">
+<!ENTITY Oslash "&#216;">
+<!ENTITY oslash "&#248;">
+<!ENTITY Otilde "&#213;">
+<!ENTITY otilde "&#245;">
+<!ENTITY otimes "&#8855;">
+<!ENTITY Ouml "&#214;">
+<!ENTITY ouml "&#246;">
+<!ENTITY para "&#182;">
+<!ENTITY part "&#8706;">
+<!ENTITY permil "&#8240;">
+<!ENTITY perp "&#8869;">
+<!ENTITY Phi "&#934;">
+<!ENTITY phi "&#966;">
+<!ENTITY Pi "&#928;">
+<!ENTITY pi "&#960;">
+<!ENTITY piv "&#982;">
+<!ENTITY plusmn "&#177;">
+<!ENTITY pound "&#163;">
+<!ENTITY prime "&#8242;">
+<!ENTITY Prime "&#8243;">
+<!ENTITY prod "&#8719;">
+<!ENTITY prop "&#8733;">
+<!ENTITY Psi "&#936;">
+<!ENTITY psi "&#968;">
+<!ENTITY quot "&#34;">
+<!ENTITY radic "&#8730;">
+<!ENTITY rang "&#9002;">
+<!ENTITY raquo "&#187;">
+<!ENTITY rarr "&#8594;">
+<!ENTITY rArr "&#8658;">
+<!ENTITY rceil "&#8969;">
+<!ENTITY rdquo "&#8221;">
+<!ENTITY real "&#8476;">
+<!ENTITY reg "&#174;">
+<!ENTITY rfloor "&#8971;">
+<!ENTITY Rho "&#929;">
+<!ENTITY rho "&#961;">
+<!ENTITY rlm "&#8207;">
+<!ENTITY rsaquo "&#8250;">
+<!ENTITY rsquo "&#8217;">
+<!ENTITY sbquo "&#8218;">
+<!ENTITY Scaron "&#352;">
+<!ENTITY scaron "&#353;">
+<!ENTITY sdot "&#8901;">
+<!ENTITY sect "&#167;">
+<!ENTITY shy "&#173;">
+<!ENTITY Sigma "&#931;">
+<!ENTITY sigma "&#963;">
+<!ENTITY sigmaf "&#962;">
+<!ENTITY sim "&#8764;">
+<!ENTITY spades "&#9824;">
+<!ENTITY sub "&#8834;">
+<!ENTITY sube "&#8838;">
+<!ENTITY sum "&#8721;">
+<!ENTITY sup "&#8835;">
+<!ENTITY sup1 "&#185;">
+<!ENTITY sup2 "&#178;">
+<!ENTITY sup3 "&#179;">
+<!ENTITY supe "&#8839;">
+<!ENTITY szlig "&#223;">
+<!ENTITY Tau "&#932;">
+<!ENTITY tau "&#964;">
+<!ENTITY there4 "&#8756;">
+<!ENTITY Theta "&#920;">
+<!ENTITY theta "&#952;">
+<!ENTITY thetasym "&#977;">
+<!ENTITY thinsp "&#8201;">
+<!ENTITY THORN "&#222;">
+<!ENTITY thorn "&#254;">
+<!ENTITY tilde "&#732;">
+<!ENTITY times "&#215;">
+<!ENTITY trade "&#8482;">
+<!ENTITY Uacute "&#218;">
+<!ENTITY uacute "&#250;">
+<!ENTITY uarr "&#8593;">
+<!ENTITY uArr "&#8657;">
+<!ENTITY Ucirc "&#219;">
+<!ENTITY ucirc "&#251;">
+<!ENTITY Ugrave "&#217;">
+<!ENTITY ugrave "&#249;">
+<!ENTITY uml "&#168;">
+<!ENTITY upsih "&#978;">
+<!ENTITY Upsilon "&#933;">
+<!ENTITY upsilon "&#965;">
+<!ENTITY Uuml "&#220;">
+<!ENTITY uuml "&#252;">
+<!ENTITY weierp "&#8472;">
+<!ENTITY Xi "&#926;">
+<!ENTITY xi "&#958;">
+<!ENTITY Yacute "&#221;">
+<!ENTITY yacute "&#253;">
+<!ENTITY yen "&#165;">
+<!ENTITY Yuml "&#376;">
+<!ENTITY yuml "&#255;">
+<!ENTITY Zeta "&#918;">
+<!ENTITY zeta "&#950;">
+<!ENTITY zwj "&#8205;">
+<!ENTITY zwnj "&#8204;">`.replace(/\n/g, ' ');
+
+  /**
+   * A reasonably strict xml declaration.
+   */
+  const XML_DECL = '<?xml version="1.0" standalone="no"?>';
+
+  /**
+   * The beginning of the XML doctype declaration.
+   */
+  const DOCTYPE_START = `<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [`;
+
+  /**
+   * The end of the XML docype declaration.
+   */
+  const DOCTYPE_END = ']>';
+
+  /**
+   * A full header for an SVG XML document.
+   */
+  const SVG_XML_HEADER = `${XML_DECL}
+    ${DOCTYPE_START}${HTML_ENTITIES}${DOCTYPE_END}`;
 
     void Promise.all([...diagrams].map(renderOneMarmaid));
   });
@@ -3401,8 +3686,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <blockquote>
 <p><em>"Batch processing is answering questions about the past; stream processing is answering questions about the present."</em> — Jay Kreps</p>
 </blockquote>
-<p>In this notebook we'll build and observe <strong>four different streaming consumers</strong>, progressing from the simplest (polling a file) to cloud-managed queues (SQS).</p>
-<p>Each approach solves the same problem — reading a continuous flow of <strong>taxi-trip events</strong> — but makes different trade-offs in latency, reliability, and complexity.</p>
+<p>In this notebook we'll build and observe <strong>four different streaming consumers</strong>, progressing from the simplest (polling a file) to cloud-managed queues (SQS).
+Each approach solves the same problem — reading a continuous flow of <strong>taxi-trip events</strong> — but makes different trade-offs in latency, reliability, and complexity.</p>
 <table>
 <thead>
 <tr>
@@ -3449,14 +3734,20 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="prerequisites">Prerequisites<a class="anchor-link" href="#prerequisites">¶</a></h2><h3 id="python-packages">Python packages<a class="anchor-link" href="#python-packages">¶</a></h3><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>redis<span class="w"> </span>pika<span class="w"> </span>boto3
+<h2 id="prerequisites">Prerequisites<a class="anchor-link" href="#prerequisites">¶</a></h2><h3 id="python-packages">Python packages<a class="anchor-link" href="#python-packages">¶</a></h3><div class="highlight"><pre><span></span><span class="c1"># Install packages in user-space to avoid needing root access</span>
+<span class="w">    </span>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>redis<span class="w"> </span>pika<span class="w"> </span>boto3
 </pre></div>
-<h3 id="external-services-via-docker">External services (via Docker)<a class="anchor-link" href="#external-services-via-docker">¶</a></h3><div class="highlight"><pre><span></span><span class="c1"># Redis</span>
+<h3 id="external-services-via-docker">External services (via Docker)<a class="anchor-link" href="#external-services-via-docker">¶</a></h3><div class="highlight"><pre><span></span><span class="c1"># Note: If 'docker' requires sudo, you can try running these as:</span>
+<span class="w">    </span><span class="c1"># 1. Rootless Docker (if installed: dockerd-rootless-setuptool.sh install)</span>
+<span class="w">    </span><span class="c1"># 2. Check if your sysadmin has provided these as shared services on specific IPs/ports.</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># If Docker is available without sudo, these commands work as-is because</span>
+<span class="w">    </span><span class="c1"># the ports (6379, 5672, 4566) are &gt; 1024 and don't require root to bind.</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1"># Redis</span>
 docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>redis-demo<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span>:6379<span class="w"> </span>redis:7
-
 <span class="c1"># RabbitMQ (with management UI at http://localhost:15672, guest/guest)</span>
 docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>rabbitmq-demo<span class="w"> </span>-p<span class="w"> </span><span class="m">5672</span>:5672<span class="w"> </span>-p<span class="w"> </span><span class="m">15672</span>:15672<span class="w"> </span>rabbitmq:3-management
-
 <span class="c1"># LocalStack (AWS SQS emulator)</span>
 docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>localstack<span class="w"> </span>-p<span class="w"> </span><span class="m">4566</span>:4566<span class="w"> </span>localstack/localstack
 </pre></div>
@@ -3472,8 +3763,8 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <hr/>
-<h2 id="polling">Polling<a class="anchor-link" href="#polling">¶</a></h2><h3 id="what-is-polling">What is Polling?<a class="anchor-link" href="#what-is-polling">¶</a></h3><p>The consumer <strong>periodically checks</strong> a data source for new records.</p>
-<p><strong>Analogy:</strong> Checking your physical mailbox every 5 minutes.</p>
+<h2 id="polling">Polling<a class="anchor-link" href="#polling">¶</a></h2><h3 id="what-is-polling">What is Polling?<a class="anchor-link" href="#what-is-polling">¶</a></h3><p>The consumer <strong>periodically checks</strong> a data source for new records.
+<strong>Analogy:</strong> Checking your physical mailbox every 5 minutes.</p>
 <h3 id="architecture">Architecture<a class="anchor-link" href="#architecture">¶</a></h3><pre><code>┌──────────┐      writes       ┌──────────────────┐
 │ Producer  │ ───────────────▶  │ File / Database   │
 └──────────┘                   └────────┬─────────┘
@@ -3498,7 +3789,7 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-1">
@@ -3512,30 +3803,30 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
-
 <span class="c1"># Clean slate</span>
-<span class="nb">open</span><span class="p">(</span><span class="s2">"/tmp/stream_events.jsonl"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
+<span class="n">event_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">"~/stream_events.jsonl"</span><span class="p">)</span>
+<span class="c1"># Clean slate</span>
+<span class="nb">open</span><span class="p">(</span><span class="n">event_file</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="c1"># Start producer in background: writes 30 events, 1 per second</span>
 <span class="n">producer</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
     <span class="p">[</span><span class="s2">"python"</span><span class="p">,</span> <span class="s2">"resources/event_generator.py"</span><span class="p">,</span> <span class="s2">"file"</span><span class="p">,</span>
-     <span class="s2">"--path"</span><span class="p">,</span> <span class="s2">"/tmp/stream_events.jsonl"</span><span class="p">,</span>
+     <span class="s2">"--path"</span><span class="p">,</span> <span class="n">event_file</span><span class="p">,</span>
      <span class="s2">"--interval"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">,</span> <span class="s2">"--count"</span><span class="p">,</span> <span class="s2">"30"</span><span class="p">],</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✅ Producer started (PID=</span><span class="si">{</span><span class="n">producer</span><span class="o">.</span><span class="n">pid</span><span class="si">}</span><span class="s2">), writing events to /tmp/stream_events.jsonl"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✅ Producer started (PID=</span><span class="si">{</span><span class="n">producer</span><span class="o">.</span><span class="n">pid</span><span class="si">}</span><span class="s2">), writing events to </span><span class="si">{</span><span class="n">event_file</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-1">import subprocess, os
-
 # Clean slate
-open("/tmp/stream_events.jsonl", "w").close()
-
+event_file = os.path.expanduser("~/stream_events.jsonl")
+# Clean slate
+open(event_file, "w").close()
 # Start producer in background: writes 30 events, 1 per second
 producer = subprocess.Popen(
     ["python", "resources/event_generator.py", "file",
-     "--path", "/tmp/stream_events.jsonl",
+     "--path", event_file,
      "--interval", "1", "--count", "30"],
 )
-print(f"✅ Producer started (PID={producer.pid}), writing events to /tmp/stream_events.jsonl")</div>
+print(f"✅ Producer started (PID={producer.pid}), writing events to {event_file}")</div>
 </div>
 </div>
 </div>
@@ -3547,7 +3838,7 @@ print(f"✅ Producer started (PID={producer.pid}), writing events to /tmp/stream
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>✅ Producer started (PID=8859), writing events to /tmp/stream_events.jsonl
+<pre>✅ Producer started (PID=18464), writing events to /home/ankush/stream_events.jsonl
 </pre>
 </div>
 </div>
@@ -3560,7 +3851,7 @@ print(f"✅ Producer started (PID={producer.pid}), writing events to /tmp/stream
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-2">
@@ -3574,7 +3865,6 @@ print(f"✅ Producer started (PID={producer.pid}), writing events to /tmp/stream
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span>
-
 <span class="k">def</span><span class="w"> </span><span class="nf">polling_consumer</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">poll_interval</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_polls</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Reads new lines from a file by tracking the byte offset.</span>
@@ -3601,11 +3891,10 @@ print(f"✅ Producer started (PID={producer.pid}), writing events to /tmp/stream
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">poll_interval</span><span class="p">)</span>    <span class="c1"># ⏳ wait before next poll</span>
     
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ Polling complete. Total events consumed: </span><span class="si">{</span><span class="n">events_seen</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="n">polling_consumer</span><span class="p">(</span><span class="s2">"/tmp/stream_events.jsonl"</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">polling_consumer</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">"~/stream_events.jsonl"</span><span class="p">))</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-2">import json, time
-
 def polling_consumer(filepath, poll_interval=2, max_polls=10):
     """
     Reads new lines from a file by tracking the byte offset.
@@ -3632,8 +3921,8 @@ def polling_consumer(filepath, poll_interval=2, max_polls=10):
         time.sleep(poll_interval)    # ⏳ wait before next poll
     
     print(f"\n✅ Polling complete. Total events consumed: {events_seen}")
-
-polling_consumer("/tmp/stream_events.jsonl")</div>
+import os
+polling_consumer(os.path.expanduser("~/stream_events.jsonl"))</div>
 </div>
 </div>
 </div>
@@ -3645,71 +3934,30 @@ polling_consumer("/tmp/stream_events.jsonl")</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>  [Poll #1] Event 1: Staten Island | $18.4
-  [Poll #1] Event 2: Brooklyn | $46.83
-  [Poll #1] Event 3: Manhattan | $34.05
-  [Poll #1] Event 4: Queens | $77.82
-  [Poll #1] Event 5: Staten Island | $49.0
-  [Poll #1] Event 6: Staten Island | $16.81
-  [Poll #1] Event 7: Manhattan | $19.7
-  [Poll #1] Event 8: Manhattan | $26.37
-  [Poll #1] Event 9: Brooklyn | $18.72
-  [Poll #1] Event 10: Bronx | $32.54
-  [Poll #1] Event 11: Bronx | $73.39
-  [Poll #1] Event 12: Queens | $32.92
-  [Poll #1] Event 13: Manhattan | $28.14
-  [Poll #1] Event 14: Brooklyn | $61.4
-  [Poll #1] Event 15: Manhattan | $81.79
-  [Poll #2] Event 16: Manhattan | $82.09
-  [Poll #2] Event 17: Queens | $83.0
-  [Poll #3] Event 18: Brooklyn | $39.77
-  [Poll #3] Event 19: Queens | $6.14
-  [Poll #4] Event 20: Queens | $28.94
-  [Poll #4] Event 21: Queens | $53.08
-  [Poll #5] Event 22: Brooklyn | $73.01
-  [Poll #5] Event 23: Brooklyn | $78.35
-  [Poll #6] Event 24: Staten Island | $49.65
-  [Poll #6] Event 25: Brooklyn | $15.85
-  [Poll #7] Event 26: Bronx | $55.89
-  [Poll #7] Event 27: Bronx | $29.39
-  [Poll #8] Event 28: Manhattan | $58.05
-  [Poll #8] Event 29: Staten Island | $23.88
-🚀 Starting event generator: sink=file, interval=1.0s, count=30
-  [file] Wrote event 1/30
-  [file] Wrote event 2/30
-  [file] Wrote event 3/30
-  [file] Wrote event 4/30
-  [file] Wrote event 5/30
-  [file] Wrote event 6/30
-  [file] Wrote event 7/30
-  [file] Wrote event 8/30
-  [file] Wrote event 9/30
-  [file] Wrote event 10/30
-  [file] Wrote event 11/30
-  [file] Wrote event 12/30
-  [file] Wrote event 13/30
-  [file] Wrote event 14/30
-  [file] Wrote event 15/30
-  [file] Wrote event 16/30
-  [file] Wrote event 17/30
-  [file] Wrote event 18/30
-  [file] Wrote event 19/30
-  [file] Wrote event 20/30
-  [file] Wrote event 21/30
-  [file] Wrote event 22/30
-  [file] Wrote event 23/30
-  [file] Wrote event 24/30
-  [file] Wrote event 25/30
-  [file] Wrote event 26/30
-  [file] Wrote event 27/30
-  [file] Wrote event 28/30
-  [file] Wrote event 29/30
-  [file] Wrote event 30/30
-✅ Event generator finished.
-  [Poll #9] Event 30: Brooklyn | $60.48
-  [Poll #10] No new events.
+<pre>  [Poll #1] Event 1: Bronx | $55.34
+  [Poll #1] Event 2: Manhattan | $50.61
+  [Poll #1] Event 3: Staten Island | $41.54
+  [Poll #1] Event 4: Bronx | $84.35
+  [Poll #2] Event 5: Staten Island | $57.05
+  [Poll #2] Event 6: Staten Island | $64.77
+  [Poll #3] Event 7: Queens | $60.0
+  [Poll #3] Event 8: Bronx | $71.39
+  [Poll #4] Event 9: Bronx | $11.2
+  [Poll #4] Event 10: Bronx | $75.76
+  [Poll #5] Event 11: Brooklyn | $8.88
+  [Poll #5] Event 12: Staten Island | $11.94
+  [Poll #6] Event 13: Bronx | $20.11
+  [Poll #6] Event 14: Queens | $57.12
+  [Poll #7] Event 15: Brooklyn | $46.93
+  [Poll #7] Event 16: Brooklyn | $50.58
+  [Poll #8] Event 17: Brooklyn | $47.92
+  [Poll #8] Event 18: Brooklyn | $67.23
+  [Poll #9] Event 19: Bronx | $8.19
+  [Poll #9] Event 20: Bronx | $41.9
+  [Poll #10] Event 21: Brooklyn | $20.62
+  [Poll #10] Event 22: Queens | $41.71
 
-✅ Polling complete. Total events consumed: 30
+✅ Polling complete. Total events consumed: 22
 </pre>
 </div>
 </div>
@@ -3722,7 +3970,7 @@ polling_consumer("/tmp/stream_events.jsonl")</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
@@ -3817,8 +4065,8 @@ print("🧹 Producer stopped.")</div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <hr/>
-<h2 id="unix-pipes-sockets">Unix Pipes &amp; Sockets<a class="anchor-link" href="#unix-pipes-sockets">¶</a></h2><h3 id="watching-with-the-os">Watching with the OS<a class="anchor-link" href="#watching-with-the-os">¶</a></h3><p>Instead of asking "is there anything new?", we let the <strong>operating system tell us</strong> when data arrives. This is <strong>event-driven / push-based</strong> at the OS level.</p>
-<p>We'll explore two sub-approaches:</p>
+<h2 id="unix-pipes-sockets">Unix Pipes &amp; Sockets<a class="anchor-link" href="#unix-pipes-sockets">¶</a></h2><h3 id="watching-with-the-os">Watching with the OS<a class="anchor-link" href="#watching-with-the-os">¶</a></h3><p>Instead of asking "is there anything new?", we let the <strong>operating system tell us</strong> when data arrives. This is <strong>event-driven / push-based</strong> at the OS level.
+We'll explore two sub-approaches:</p>
 <table>
 <thead>
 <tr>
@@ -3853,8 +4101,8 @@ print("🧹 Producer stopped.")</div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="demo-a-tail-f-via-subprocess">Demo A: <code>tail -f</code> via subprocess<a class="anchor-link" href="#demo-a-tail-f-via-subprocess">¶</a></h3><p>The <code>tail -f</code> command follows a file and outputs new lines as they are appended.<br/>
-We pipe its stdout into Python — the OS handles the "waiting" for us.</p>
-<p>On Linux, tail -F uses inotify (kernel event system).</p>
+We pipe its stdout into Python — the OS handles the "waiting" for us.
+On Linux, tail -F uses inotify (kernel event system).</p>
 <h3 id="what-is-inotify">What is inotify?<a class="anchor-link" href="#what-is-inotify">¶</a></h3><p>A Linux API that lets programs subscribe to filesystem events.
 Instead of polling:<br/>
 Kernel notifies when something changes</p>
@@ -3877,7 +4125,7 @@ b. Continue tailing</li>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
@@ -3890,28 +4138,26 @@ b. Continue tailing</li>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span>
-
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
 <span class="c1"># Ensure fresh file</span>
-<span class="nb">open</span><span class="p">(</span><span class="s2">"/tmp/stream_events.jsonl"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
+<span class="n">event_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">"~/stream_events.jsonl"</span><span class="p">)</span>
+<span class="c1"># Clean slate</span>
+<span class="nb">open</span><span class="p">(</span><span class="n">event_file</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="c1"># Start producer: writes 15 events at 1/sec</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">"python"</span><span class="p">,</span> <span class="s2">"resources/event_generator.py"</span><span class="p">,</span> <span class="s2">"file"</span><span class="p">,</span> <span class="s2">"--path"</span><span class="p">,</span> <span class="s2">"/tmp/stream_events.jsonl"</span><span class="p">,</span> <span class="s2">"--interval"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">,</span> <span class="s2">"--count"</span><span class="p">,</span> <span class="s2">"15"</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">"python"</span><span class="p">,</span> <span class="s2">"resources/event_generator.py"</span><span class="p">,</span> <span class="s2">"file"</span><span class="p">,</span> <span class="s2">"--path"</span><span class="p">,</span> <span class="n">event_file</span><span class="p">,</span> <span class="s2">"--interval"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">,</span> <span class="s2">"--count"</span><span class="p">,</span> <span class="s2">"15"</span><span class="p">]))</span>
 <span class="n">producer</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
     <span class="p">[</span><span class="s2">"python"</span><span class="p">,</span> <span class="s2">"resources/event_generator.py"</span><span class="p">,</span> <span class="s2">"file"</span><span class="p">,</span>
-     <span class="s2">"--path"</span><span class="p">,</span> <span class="s2">"/tmp/stream_events.jsonl"</span><span class="p">,</span>
+     <span class="s2">"--path"</span><span class="p">,</span> <span class="n">event_file</span><span class="p">,</span>
      <span class="s2">"--interval"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">,</span> <span class="s2">"--count"</span><span class="p">,</span> <span class="s2">"15"</span><span class="p">],</span>
 <span class="p">)</span>
-
 <span class="c1"># Consumer: tail -f piped into our Python process</span>
-<span class="c1"># tail -f /tmp/stream_events.jsonl</span>
+<span class="c1"># tail -f ~/stream_events.jsonl</span>
 <span class="n">tail_proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
-    <span class="p">[</span><span class="s2">"tail"</span><span class="p">,</span> <span class="s2">"-f"</span><span class="p">,</span> <span class="s2">"/tmp/stream_events.jsonl"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"tail"</span><span class="p">,</span> <span class="s2">"-f"</span><span class="p">,</span> <span class="n">event_file</span><span class="p">],</span>
     <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
     <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
     <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-
 <span class="n">events_seen</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">tail_proc</span><span class="o">.</span><span class="n">stdout</span><span class="p">:</span>
@@ -3927,31 +4173,28 @@ b. Continue tailing</li>
 <span class="k">finally</span><span class="p">:</span>
     <span class="n">tail_proc</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
     <span class="n">producer</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ tail -f complete. Events consumed: </span><span class="si">{</span><span class="n">events_seen</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-4">import subprocess, json, time
-
+<div class="clipboard-copy-txt" id="cell-4">import subprocess, json, time, os
 # Ensure fresh file
-open("/tmp/stream_events.jsonl", "w").close()
-
+event_file = os.path.expanduser("~/stream_events.jsonl")
+# Clean slate
+open(event_file, "w").close()
 # Start producer: writes 15 events at 1/sec
-print(" ".join(["python", "resources/event_generator.py", "file", "--path", "/tmp/stream_events.jsonl", "--interval", "1", "--count", "15"]))
+print(" ".join(["python", "resources/event_generator.py", "file", "--path", event_file, "--interval", "1", "--count", "15"]))
 producer = subprocess.Popen(
     ["python", "resources/event_generator.py", "file",
-     "--path", "/tmp/stream_events.jsonl",
+     "--path", event_file,
      "--interval", "1", "--count", "15"],
 )
-
 # Consumer: tail -f piped into our Python process
-# tail -f /tmp/stream_events.jsonl
+# tail -f ~/stream_events.jsonl
 tail_proc = subprocess.Popen(
-    ["tail", "-f", "/tmp/stream_events.jsonl"],
+    ["tail", "-f", event_file],
     stdout=subprocess.PIPE,
     stderr=subprocess.PIPE,
     text=True,
 )
-
 events_seen = 0
 try:
     for line in tail_proc.stdout:
@@ -3967,7 +4210,6 @@ try:
 finally:
     tail_proc.terminate()
     producer.wait()
-
 print(f"\n✅ tail -f complete. Events consumed: {events_seen}")</div>
 </div>
 </div>
@@ -3980,22 +4222,22 @@ print(f"\n✅ tail -f complete. Events consumed: {events_seen}")</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>python resources/event_generator.py file --path /tmp/stream_events.jsonl --interval 1 --count 15
-  [tail -f] Event 1: Manhattan | $22.77
-  [tail -f] Event 2: Staten Island | $36.23
-  [tail -f] Event 3: Staten Island | $23.73
-  [tail -f] Event 4: Staten Island | $72.67
-  [tail -f] Event 5: Staten Island | $31.18
-  [tail -f] Event 6: Staten Island | $65.14
-  [tail -f] Event 7: Bronx | $58.53
-  [tail -f] Event 8: Queens | $33.9
-  [tail -f] Event 9: Bronx | $51.43
-  [tail -f] Event 10: Bronx | $53.85
-  [tail -f] Event 11: Staten Island | $58.91
-  [tail -f] Event 12: Manhattan | $28.75
-  [tail -f] Event 13: Brooklyn | $83.01
-  [tail -f] Event 14: Staten Island | $55.74
-  [tail -f] Event 15: Queens | $5.78
+<pre>python resources/event_generator.py file --path /home/ankush/stream_events.jsonl --interval 1 --count 15
+  [tail -f] Event 1: Queens | $7.98
+  [tail -f] Event 2: Bronx | $65.09
+  [tail -f] Event 3: Manhattan | $26.89
+  [tail -f] Event 4: Bronx | $61.79
+  [tail -f] Event 5: Bronx | $75.19
+  [tail -f] Event 6: Manhattan | $28.66
+  [tail -f] Event 7: Staten Island | $17.11
+  [tail -f] Event 8: Staten Island | $38.72
+  [tail -f] Event 9: Manhattan | $58.34
+  [tail -f] Event 10: Staten Island | $10.85
+  [tail -f] Event 11: Manhattan | $75.51
+  [tail -f] Event 12: Staten Island | $48.22
+  [tail -f] Event 13: Bronx | $72.31
+  [tail -f] Event 14: Queens | $8.9
+  [tail -f] Event 15: Manhattan | $44.52
 🚀 Starting event generator: sink=file, interval=1.0s, count=15
   [file] Wrote event 1/15
   [file] Wrote event 2/15
@@ -4032,13 +4274,13 @@ print(f"\n✅ tail -f complete. Events consumed: {events_seen}")</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
@@ -4052,7 +4294,6 @@ print(f"\n✅ tail -f complete. Events consumed: {events_seen}")</div>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span><span class="o">,</span><span class="w"> </span><span class="nn">threading</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">subprocess</span>
-
 <span class="k">def</span><span class="w"> </span><span class="nf">start_socket_server</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">9999</span><span class="p">,</span> <span class="n">max_events</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Listens on a TCP socket and prints events as they arrive.</span>
@@ -4090,25 +4331,20 @@ print(f"\n✅ tail -f complete. Events consumed: {events_seen}")</div>
         <span class="n">server</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ Socket consumer done. Events: </span><span class="si">{</span><span class="n">events_seen</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-
 <span class="c1"># Run server in a thread so the notebook doesn't block</span>
 <span class="n">server_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">start_socket_server</span><span class="p">)</span>
 <span class="n">server_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># give server a moment to bind</span>
-
 <span class="c1"># Start producer targeting the socket</span>
 <span class="n">producer</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
     <span class="p">[</span><span class="s2">"python"</span><span class="p">,</span> <span class="s2">"resources/event_generator.py"</span><span class="p">,</span> <span class="s2">"socket"</span><span class="p">,</span>
      <span class="s2">"--host"</span><span class="p">,</span> <span class="s2">"localhost"</span><span class="p">,</span> <span class="s2">"--port"</span><span class="p">,</span> <span class="s2">"9999"</span><span class="p">,</span>
      <span class="s2">"--interval"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">,</span> <span class="s2">"--count"</span><span class="p">,</span> <span class="s2">"15"</span><span class="p">],</span>
 <span class="p">)</span>
-
 <span class="n">server_thread</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="n">producer</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-5">import socket, threading, json, time, subprocess
-
 def start_socket_server(host="localhost", port=9999, max_events=15):
     """
     Listens on a TCP socket and prints events as they arrive.
@@ -4146,22 +4382,72 @@ def start_socket_server(host="localhost", port=9999, max_events=15):
         server.close()
     
     print(f"\n✅ Socket consumer done. Events: {events_seen}")
-
-
 # Run server in a thread so the notebook doesn't block
 server_thread = threading.Thread(target=start_socket_server)
 server_thread.start()
 time.sleep(1)  # give server a moment to bind
-
 # Start producer targeting the socket
 producer = subprocess.Popen(
     ["python", "resources/event_generator.py", "socket",
      "--host", "localhost", "--port", "9999",
      "--interval", "1", "--count", "15"],
 )
-
 server_thread.join(timeout=30)
 producer.wait()</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>🔌 Socket server listening on localhost:9999
+   Connected by ('127.0.0.1', 39942)
+  [Socket] Event 1: Bronx | $22.17
+  [Socket] Event 2: Bronx | $65.79
+  [Socket] Event 3: Staten Island | $13.46
+  [Socket] Event 4: Queens | $22.91
+  [Socket] Event 5: Staten Island | $70.76
+  [Socket] Event 6: Queens | $68.05
+  [Socket] Event 7: Queens | $68.5
+  [Socket] Event 8: Queens | $23.96
+  [Socket] Event 9: Brooklyn | $24.25
+  [Socket] Event 10: Queens | $17.9
+  [Socket] Event 11: Queens | $79.38
+  [Socket] Event 12: Manhattan | $25.9
+  [Socket] Event 13: Queens | $11.23
+  [Socket] Event 14: Brooklyn | $16.69
+  [Socket] Event 15: Queens | $45.79
+
+✅ Socket consumer done. Events: 15
+🚀 Starting event generator: sink=socket, interval=1.0s, count=15
+  [socket] Sent event 1/15
+  [socket] Sent event 2/15
+  [socket] Sent event 3/15
+  [socket] Sent event 4/15
+  [socket] Sent event 5/15
+  [socket] Sent event 6/15
+  [socket] Sent event 7/15
+  [socket] Sent event 8/15
+  [socket] Sent event 9/15
+  [socket] Sent event 10/15
+  [socket] Sent event 11/15
+  [socket] Sent event 12/15
+  [socket] Sent event 13/15
+  [socket] Sent event 14/15
+  [socket] Sent event 15/15
+✅ Event generator finished.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>0</pre>
 </div>
 </div>
 </div>
@@ -4232,33 +4518,13 @@ This is where <strong>message brokers</strong> come in…</p>
 <ul>
 <li><strong>Decoupling</strong> — producer doesn't need to know who consumes</li>
 <li><strong>Buffering</strong> — messages are held if consumers are slow</li>
-<li><strong>Fan-out</strong> — one message can reach many consumers</li>
+<li><strong>Fan-out</strong> — one message can reach many consumers
+We'll demo two popular brokers with very different philosophies:
+| Broker | Model | Durability | Best For |
+|--------|-------|-----------|----------|
+| <strong>Redis Pub/Sub</strong> | Fire-and-forget broadcast | ❌ Messages lost if no subscriber | Real-time notifications, caches |
+| <strong>RabbitMQ</strong> | Durable queue with acks | ✅ Messages persist until consumed | Task queues, reliable delivery |</li>
 </ul>
-<p>We'll demo two popular brokers with very different philosophies:</p>
-<table>
-<thead>
-<tr>
-<th>Broker</th>
-<th>Model</th>
-<th>Durability</th>
-<th>Best For</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Redis Pub/Sub</strong></td>
-<td>Fire-and-forget broadcast</td>
-<td>❌ Messages lost if no subscriber</td>
-<td>Real-time notifications, caches</td>
-</tr>
-<tr>
-<td><strong>RabbitMQ</strong></td>
-<td>Durable queue with acks</td>
-<td>✅ Messages persist until consumed</td>
-<td>Task queues, reliable delivery</td>
-</tr>
-</tbody>
-</table>
 <h3 id="architecture">Architecture<a class="anchor-link" href="#architecture">¶</a></h3><pre><code>                          ┌───────────┐
                      ┌──▶ │Consumer A │
 ┌──────────┐   pub  │    └───────────┘
@@ -4303,7 +4569,6 @@ But if <strong>no one is listening, the message is gone forever</strong>.</p>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">redis</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">threading</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">subprocess</span>
-
 <span class="k">def</span><span class="w"> </span><span class="nf">redis_consumer</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">"taxi_events"</span><span class="p">,</span> <span class="n">max_events</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Subscribe to a Redis channel and print events as they arrive."""</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="n">Redis</span><span class="p">()</span>
@@ -4323,26 +4588,21 @@ But if <strong>no one is listening, the message is gone forever</strong>.</p>
     
     <span class="n">pubsub</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ Redis consumer done. Events: </span><span class="si">{</span><span class="n">events_seen</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-
 <span class="c1"># Start consumer in a thread (must subscribe BEFORE producer publishes)</span>
 <span class="n">consumer_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">redis_consumer</span><span class="p">)</span>
 <span class="n">consumer_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># ensure subscription is active</span>
-
 <span class="c1"># Start producer</span>
 <span class="n">producer</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
     <span class="p">[</span><span class="s2">"python"</span><span class="p">,</span> <span class="s2">"resources/event_generator.py"</span><span class="p">,</span> <span class="s2">"redis"</span><span class="p">,</span>
      <span class="s2">"--channel"</span><span class="p">,</span> <span class="s2">"taxi_events"</span><span class="p">,</span>
      <span class="s2">"--interval"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">,</span> <span class="s2">"--count"</span><span class="p">,</span> <span class="s2">"15"</span><span class="p">],</span>
 <span class="p">)</span>
-
 <span class="n">consumer_thread</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="n">producer</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-6">import redis
 import json, threading, time, subprocess
-
 def redis_consumer(channel="taxi_events", max_events=15):
     """Subscribe to a Redis channel and print events as they arrive."""
     r = redis.Redis()
@@ -4362,20 +4622,16 @@ def redis_consumer(channel="taxi_events", max_events=15):
     
     pubsub.unsubscribe()
     print(f"\n✅ Redis consumer done. Events: {events_seen}")
-
-
 # Start consumer in a thread (must subscribe BEFORE producer publishes)
 consumer_thread = threading.Thread(target=redis_consumer)
 consumer_thread.start()
 time.sleep(1)  # ensure subscription is active
-
 # Start producer
 producer = subprocess.Popen(
     ["python", "resources/event_generator.py", "redis",
      "--channel", "taxi_events",
      "--interval", "1", "--count", "15"],
 )
-
 consumer_thread.join(timeout=30)
 producer.wait()</div>
 </div>
@@ -4390,21 +4646,21 @@ producer.wait()</div>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>📡 Subscribed to Redis channel: 'taxi_events'
-  [Redis] Event 1: Queens | $72.74
-  [Redis] Event 2: Bronx | $55.72
-  [Redis] Event 3: Manhattan | $74.38
-  [Redis] Event 4: Manhattan | $72.08
-  [Redis] Event 5: Manhattan | $57.07
-  [Redis] Event 6: Staten Island | $38.26
-  [Redis] Event 7: Bronx | $30.44
-  [Redis] Event 8: Staten Island | $8.39
-  [Redis] Event 9: Bronx | $59.88
-  [Redis] Event 10: Staten Island | $75.14
-  [Redis] Event 11: Queens | $80.07
-  [Redis] Event 12: Staten Island | $57.42
-  [Redis] Event 13: Staten Island | $82.53
-  [Redis] Event 14: Brooklyn | $43.4
-  [Redis] Event 15: Staten Island | $22.23
+  [Redis] Event 1: Bronx | $58.42
+  [Redis] Event 2: Staten Island | $47.53
+  [Redis] Event 3: Bronx | $83.29
+  [Redis] Event 4: Manhattan | $61.78
+  [Redis] Event 5: Bronx | $10.57
+  [Redis] Event 6: Brooklyn | $12.13
+  [Redis] Event 7: Manhattan | $61.43
+  [Redis] Event 8: Queens | $24.25
+  [Redis] Event 9: Brooklyn | $54.01
+  [Redis] Event 10: Queens | $10.85
+  [Redis] Event 11: Brooklyn | $38.97
+  [Redis] Event 12: Staten Island | $8.65
+  [Redis] Event 13: Bronx | $13.73
+  [Redis] Event 14: Staten Island | $27.65
+  [Redis] Event 15: Manhattan | $83.45
 
 ✅ Redis consumer done. Events: 15
 🚀 Starting event generator: sink=redis, interval=1.0s, count=15
@@ -4447,13 +4703,13 @@ producer.wait()</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-7">
@@ -4467,58 +4723,71 @@ producer.wait()</div>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">redis</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
-
 <span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="n">Redis</span><span class="p">()</span>
-
 <span class="c1"># ── Step 1: Publish 5 events with NO subscriber listening ─────────</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Publishing 5 events with NO subscriber active..."</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
     <span class="n">event</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"event_id"</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s2">"note"</span><span class="p">:</span> <span class="s2">"nobody is listening"</span><span class="p">}</span>
     <span class="n">r</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">"taxi_events"</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">event</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Published event </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
 <span class="c1"># ── Step 2: NOW subscribe ────────────────────────────────────────</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Now subscribing..."</span><span class="p">)</span>
 <span class="n">pubsub</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">pubsub</span><span class="p">()</span>
 <span class="n">pubsub</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s2">"taxi_events"</span><span class="p">)</span>
-
 <span class="c1"># ── Step 3: Try to read — only get the subscription confirmation ─</span>
 <span class="n">msg</span> <span class="o">=</span> <span class="n">pubsub</span><span class="o">.</span><span class="n">get_message</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"First message type: '</span><span class="si">{</span><span class="n">msg</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>  <span class="c1"># 'subscribe', NOT 'message'</span>
-
 <span class="n">msg</span> <span class="o">=</span> <span class="n">pubsub</span><span class="o">.</span><span class="n">get_message</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Next message: </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>  <span class="c1"># None — the 5 events are gone forever!</span>
-
 <span class="n">pubsub</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">⚠️  All 5 events were LOST because no subscriber was active!"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"   This is the 'fire-and-forget' nature of Redis Pub/Sub."</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-7">import redis, json
-
 r = redis.Redis()
-
 # ── Step 1: Publish 5 events with NO subscriber listening ─────────
 print("Publishing 5 events with NO subscriber active...")
 for i in range(5):
     event = {"event_id": i, "note": "nobody is listening"}
     r.publish("taxi_events", json.dumps(event))
     print(f"  Published event {i}")
-
 # ── Step 2: NOW subscribe ────────────────────────────────────────
 print("\nNow subscribing...")
 pubsub = r.pubsub()
 pubsub.subscribe("taxi_events")
-
 # ── Step 3: Try to read — only get the subscription confirmation ─
 msg = pubsub.get_message(timeout=2)
 print(f"First message type: '{msg['type']}'")  # 'subscribe', NOT 'message'
-
 msg = pubsub.get_message(timeout=2)
 print(f"Next message: {msg}")  # None — the 5 events are gone forever!
-
 pubsub.unsubscribe()
 print("\n⚠️  All 5 events were LOST because no subscriber was active!")
 print("   This is the 'fire-and-forget' nature of Redis Pub/Sub.")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Publishing 5 events with NO subscriber active...
+  Published event 0
+  Published event 1
+  Published event 2
+  Published event 3
+  Published event 4
+
+Now subscribing...
+First message type: 'subscribe'
+Next message: None
+
+⚠️  All 5 events were LOST because no subscriber was active!
+   This is the 'fire-and-forget' nature of Redis Pub/Sub.
+</pre>
 </div>
 </div>
 </div>
@@ -4531,18 +4800,18 @@ print("   This is the 'fire-and-forget' nature of Redis Pub/Sub.")</div>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="3b-rabbitmq">3b. RabbitMQ<a class="anchor-link" href="#3b-rabbitmq">¶</a></h3><p>RabbitMQ is a <strong>durable queue</strong>: messages persist until a consumer explicitly <strong>acknowledges</strong> them.</p>
-<p>To prove durability, we'll start the producer <strong>first</strong>, let messages pile up, and <strong>then</strong> start the consumer 5 seconds later.</p>
+<h3 id="3b-rabbitmq">3b. RabbitMQ<a class="anchor-link" href="#3b-rabbitmq">¶</a></h3><p>RabbitMQ is a <strong>durable queue</strong>: messages persist until a consumer explicitly <strong>acknowledges</strong> them.<br/>
+To prove durability, we'll start the producer <strong>first</strong>, let messages pile up, and <strong>then</strong> start the consumer 5 seconds later.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
@@ -4557,7 +4826,6 @@ print("   This is the 'fire-and-forget' nature of Redis Pub/Sub.")</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pika</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">subprocess</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span>
-
 <span class="k">def</span><span class="w"> </span><span class="nf">rabbitmq_consumer</span><span class="p">(</span><span class="n">queue</span><span class="o">=</span><span class="s2">"taxi_events"</span><span class="p">,</span> <span class="n">max_events</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Consume from a RabbitMQ queue with manual acknowledgment."""</span>
     <span class="n">connection</span> <span class="o">=</span> <span class="n">pika</span><span class="o">.</span><span class="n">BlockingConnection</span><span class="p">(</span>
@@ -4589,17 +4857,13 @@ print("   This is the 'fire-and-forget' nature of Redis Pub/Sub.")</div>
         <span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ RabbitMQ consumer done. Events: </span><span class="si">{</span><span class="n">events_seen</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-
 <span class="c1"># ── Start producer FIRST — messages will QUEUE (unlike Redis!) ────</span>
 <span class="n">producer</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
     <span class="p">[</span><span class="s2">"python"</span><span class="p">,</span> <span class="s2">"resources/event_generator.py"</span><span class="p">,</span> <span class="s2">"rabbitmq"</span><span class="p">,</span>
      <span class="s2">"--queue"</span><span class="p">,</span> <span class="s2">"taxi_events"</span><span class="p">,</span>
      <span class="s2">"--interval"</span><span class="p">,</span> <span class="s2">"0.5"</span><span class="p">,</span> <span class="s2">"--count"</span><span class="p">,</span> <span class="s2">"15"</span><span class="p">],</span>
 <span class="p">)</span>
-
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># Let messages accumulate in the queue</span>
-
 <span class="c1"># ── Start consumer — it picks up the BUFFERED messages! ──────────</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"⏳ Consumer starting 5 seconds AFTER producer..."</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"   Messages should already be waiting in the queue!</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
@@ -4608,7 +4872,6 @@ print("   This is the 'fire-and-forget' nature of Redis Pub/Sub.")</div>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-8">import pika
 import json, subprocess, time
-
 def rabbitmq_consumer(queue="taxi_events", max_events=15):
     """Consume from a RabbitMQ queue with manual acknowledgment."""
     connection = pika.BlockingConnection(
@@ -4640,22 +4903,74 @@ def rabbitmq_consumer(queue="taxi_events", max_events=15):
         connection.close()
     
     print(f"\n✅ RabbitMQ consumer done. Events: {events_seen}")
-
-
 # ── Start producer FIRST — messages will QUEUE (unlike Redis!) ────
 producer = subprocess.Popen(
     ["python", "resources/event_generator.py", "rabbitmq",
      "--queue", "taxi_events",
      "--interval", "0.5", "--count", "15"],
 )
-
 time.sleep(5)  # Let messages accumulate in the queue
-
 # ── Start consumer — it picks up the BUFFERED messages! ──────────
 print("⏳ Consumer starting 5 seconds AFTER producer...")
 print("   Messages should already be waiting in the queue!\n")
 rabbitmq_consumer(max_events=15)
 producer.wait()</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>⏳ Consumer starting 5 seconds AFTER producer...
+   Messages should already be waiting in the queue!
+
+🐇 Listening on RabbitMQ queue: 'taxi_events'
+  [RabbitMQ] Event 1: Staten Island | $47.31
+  [RabbitMQ] Event 2: Manhattan | $71.13
+  [RabbitMQ] Event 3: Bronx | $57.71
+  [RabbitMQ] Event 4: Manhattan | $74.16
+  [RabbitMQ] Event 5: Manhattan | $58.85
+  [RabbitMQ] Event 6: Queens | $68.51
+  [RabbitMQ] Event 7: Staten Island | $56.48
+  [RabbitMQ] Event 8: Manhattan | $35.32
+  [RabbitMQ] Event 9: Manhattan | $60.63
+  [RabbitMQ] Event 10: Manhattan | $14.38
+  [RabbitMQ] Event 11: Manhattan | $52.83
+  [RabbitMQ] Event 12: Bronx | $42.57
+  [RabbitMQ] Event 13: Staten Island | $72.14
+  [RabbitMQ] Event 14: Queens | $63.88
+  [RabbitMQ] Event 15: Manhattan | $26.43
+
+✅ RabbitMQ consumer done. Events: 15
+🚀 Starting event generator: sink=rabbitmq, interval=0.5s, count=15
+  [rabbitmq] Published event 1/15
+  [rabbitmq] Published event 2/15
+  [rabbitmq] Published event 3/15
+  [rabbitmq] Published event 4/15
+  [rabbitmq] Published event 5/15
+  [rabbitmq] Published event 6/15
+  [rabbitmq] Published event 7/15
+  [rabbitmq] Published event 8/15
+  [rabbitmq] Published event 9/15
+  [rabbitmq] Published event 10/15
+  [rabbitmq] Published event 11/15
+  [rabbitmq] Published event 12/15
+  [rabbitmq] Published event 13/15
+  [rabbitmq] Published event 14/15
+  [rabbitmq] Published event 15/15
+✅ Event generator finished.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>0</pre>
 </div>
 </div>
 </div>
@@ -4730,8 +5045,8 @@ producer.wait()</div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <hr/>
-<h2 id="amazon-sqs-simple-queue-service">Amazon SQS (Simple Queue Service)<a class="anchor-link" href="#amazon-sqs-simple-queue-service">¶</a></h2><h3 id="managed-cloud-queues">Managed Cloud Queues<a class="anchor-link" href="#managed-cloud-queues">¶</a></h3><p>SQS removes the burden of <strong>operating your own broker infrastructure</strong>.</p>
-<p>Key properties:</p>
+<h2 id="amazon-sqs-simple-queue-service">Amazon SQS (Simple Queue Service)<a class="anchor-link" href="#amazon-sqs-simple-queue-service">¶</a></h2><h3 id="managed-cloud-queues">Managed Cloud Queues<a class="anchor-link" href="#managed-cloud-queues">¶</a></h3><p>SQS removes the burden of <strong>operating your own broker infrastructure</strong>.
+Key properties:</p>
 <ul>
 <li><strong>Fully managed</strong> — no servers to provision</li>
 <li><strong>At-least-once delivery</strong> — messages are delivered at least once</li>
@@ -4762,13 +5077,13 @@ No AWS account or charges required!</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-9">
@@ -4782,7 +5097,6 @@ No AWS account or charges required!</p>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
-
 <span class="c1"># Connect to LocalStack's SQS emulator</span>
 <span class="n">sqs</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span>
     <span class="s2">"sqs"</span><span class="p">,</span>
@@ -4791,7 +5105,6 @@ No AWS account or charges required!</p>
     <span class="n">aws_access_key_id</span><span class="o">=</span><span class="s2">"test"</span><span class="p">,</span>
     <span class="n">aws_secret_access_key</span><span class="o">=</span><span class="s2">"test"</span><span class="p">,</span>
 <span class="p">)</span>
-
 <span class="c1"># Create the queue</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">create_queue</span><span class="p">(</span>
     <span class="n">QueueName</span><span class="o">=</span><span class="s2">"taxi-events"</span><span class="p">,</span>
@@ -4804,7 +5117,6 @@ No AWS account or charges required!</p>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"📬 Queue created: </span><span class="si">{</span><span class="n">queue_url</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-9">import boto3, json
-
 # Connect to LocalStack's SQS emulator
 sqs = boto3.client(
     "sqs",
@@ -4813,7 +5125,6 @@ sqs = boto3.client(
     aws_access_key_id="test",
     aws_secret_access_key="test",
 )
-
 # Create the queue
 response = sqs.create_queue(
     QueueName="taxi-events",
@@ -4824,6 +5135,354 @@ response = sqs.create_queue(
 )
 queue_url = response["QueueUrl"]
 print(f"📬 Queue created: {queue_url}")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ConnectionRefusedError</span>                    Traceback (most recent call last)
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/urllib3/connection.py:204</span>, in <span class="ansi-cyan-fg">HTTPConnection._new_conn</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg">    203</span> <span class="ansi-bold" style="color: rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">204</span>     sock = <span class="ansi-yellow-bg">connection</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">create_connection</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    205</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_dns_host</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">port</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    206</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">timeout</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    207</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">source_address</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">source_address</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    208</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">socket_options</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">socket_options</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    209</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    210</span> <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> socket.gaierror <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> e:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/urllib3/util/connection.py:85</span>, in <span class="ansi-cyan-fg">create_connection</span><span class="ansi-blue-fg">(address, timeout, source_address, socket_options)</span>
+<span class="ansi-green-fg">     84</span> <span class="ansi-bold" style="color: rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">85</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> err
+<span class="ansi-green-fg">     86</span> <span class="ansi-bold" style="color: rgb(0,135,0)">finally</span>:
+<span class="ansi-green-fg">     87</span>     <span style="color: rgb(95,135,135)"># Break explicitly a reference cycle</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/urllib3/util/connection.py:73</span>, in <span class="ansi-cyan-fg">create_connection</span><span class="ansi-blue-fg">(address, timeout, source_address, socket_options)</span>
+<span class="ansi-green-fg">     72</span>     sock.bind(source_address)
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">73</span> <span class="ansi-yellow-bg">sock</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">connect</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">sa</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">     74</span> <span style="color: rgb(95,135,135)"># Break explicitly a reference cycle</span>
+
+<span class="ansi-red-fg">ConnectionRefusedError</span>: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+<span class="ansi-red-fg">NewConnectionError</span>                        Traceback (most recent call last)
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/httpsession.py:477</span>, in <span class="ansi-cyan-fg">URLLib3Session.send</span><span class="ansi-blue-fg">(self, request)</span>
+<span class="ansi-green-fg">    476</span> request_target = <span style="color: rgb(0,135,0)">self</span>._get_request_target(request.url, proxy_url)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">477</span> urllib_response = <span class="ansi-yellow-bg">conn</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">urlopen</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    478</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">method</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">request</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">method</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    479</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">url</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">request_target</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    480</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">body</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">request</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">body</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    481</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">headers</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">request</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">headers</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    482</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">retries</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">Retry</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">False</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    483</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">assert_same_host</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">False</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    484</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">preload_content</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">False</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    485</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">decode_content</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">False</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    486</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">chunked</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_chunked</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">request</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">headers</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    487</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    489</span> http_response = botocore.awsrequest.AWSResponse(
+<span class="ansi-green-fg">    490</span>     request.url,
+<span class="ansi-green-fg">    491</span>     urllib_response.status,
+<span class="ansi-green-fg">    492</span>     urllib_response.headers,
+<span class="ansi-green-fg">    493</span>     urllib_response,
+<span class="ansi-green-fg">    494</span> )
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/urllib3/connectionpool.py:841</span>, in <span class="ansi-cyan-fg">HTTPConnectionPool.urlopen</span><span class="ansi-blue-fg">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
+<span class="ansi-green-fg">    839</span>     new_e = ProtocolError(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Connection aborted.</span><span class="ansi-yellow-fg">"</span>, new_e)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">841</span> retries = <span class="ansi-yellow-bg">retries</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">increment</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    842</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">method</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">url</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">error</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">new_e</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">_pool</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">_stacktrace</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">sys</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">exc_info</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">2</span><span class="ansi-yellow-bg">]</span>
+<span class="ansi-green-fg">    843</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    844</span> retries.sleep()
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/urllib3/util/retry.py:465</span>, in <span class="ansi-cyan-fg">Retry.increment</span><span class="ansi-blue-fg">(self, method, url, response, error, _pool, _stacktrace)</span>
+<span class="ansi-green-fg">    463</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span>.total <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(0,135,0)">False</span> <span class="ansi-bold" style="color: rgb(175,0,255)">and</span> error:
+<span class="ansi-green-fg">    464</span>     <span style="color: rgb(95,135,135)"># Disabled, indicate to re-raise the error.</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">465</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-yellow-bg">reraise</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">type</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">error</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">error</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">_stacktrace</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    467</span> total = <span style="color: rgb(0,135,0)">self</span>.total
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/urllib3/util/util.py:39</span>, in <span class="ansi-cyan-fg">reraise</span><span class="ansi-blue-fg">(tp, value, tb)</span>
+<span class="ansi-green-fg">     38</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> value.with_traceback(tb)
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">39</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> value
+<span class="ansi-green-fg">     40</span> <span class="ansi-bold" style="color: rgb(0,135,0)">finally</span>:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/urllib3/connectionpool.py:787</span>, in <span class="ansi-cyan-fg">HTTPConnectionPool.urlopen</span><span class="ansi-blue-fg">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
+<span class="ansi-green-fg">    786</span> <span style="color: rgb(95,135,135)"># Make the request on the HTTPConnection object</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">787</span> response = <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_make_request</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    788</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">conn</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    789</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">method</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    790</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">url</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    791</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">timeout</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">timeout_obj</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    792</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">body</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">body</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    793</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">headers</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">headers</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    794</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">chunked</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">chunked</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    795</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">retries</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">retries</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    796</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">response_conn</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">response_conn</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    797</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">preload_content</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">preload_content</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    798</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">decode_content</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">decode_content</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    799</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">response_kw</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    800</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    802</span> <span style="color: rgb(95,135,135)"># Everything went great!</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/urllib3/connectionpool.py:493</span>, in <span class="ansi-cyan-fg">HTTPConnectionPool._make_request</span><span class="ansi-blue-fg">(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)</span>
+<span class="ansi-green-fg">    492</span> <span class="ansi-bold" style="color: rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">493</span>     <span class="ansi-yellow-bg">conn</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">request</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    494</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">method</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    495</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">url</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    496</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">body</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">body</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    497</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">headers</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">headers</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    498</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">chunked</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">chunked</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    499</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">preload_content</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">preload_content</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    500</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">decode_content</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">decode_content</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    501</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">enforce_content_length</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">enforce_content_length</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    502</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    504</span> <span style="color: rgb(95,135,135)"># We are swallowing BrokenPipeError (errno.EPIPE) since the server is</span>
+<span class="ansi-green-fg">    505</span> <span style="color: rgb(95,135,135)"># legitimately able to close the connection after sending a valid response.</span>
+<span class="ansi-green-fg">    506</span> <span style="color: rgb(95,135,135)"># With this behaviour, the received response is still readable.</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/awsrequest.py:96</span>, in <span class="ansi-cyan-fg">AWSConnection.request</span><span class="ansi-blue-fg">(self, method, url, body, headers, *args, **kwargs)</span>
+<span class="ansi-green-fg">     95</span>     <span style="color: rgb(0,135,0)">self</span>.response_class = <span style="color: rgb(0,135,0)">self</span>._original_response_cls
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">96</span> rval = <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">super</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">request</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">method</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">url</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">body</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">headers</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">     97</span> <span style="color: rgb(0,135,0)">self</span>._expect_header_set = <span class="ansi-bold" style="color: rgb(0,135,0)">False</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/urllib3/connection.py:500</span>, in <span class="ansi-cyan-fg">HTTPConnection.request</span><span class="ansi-blue-fg">(self, method, url, body, headers, chunked, preload_content, decode_content, enforce_content_length)</span>
+<span class="ansi-green-fg">    499</span>     <span style="color: rgb(0,135,0)">self</span>.putheader(header, value)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">500</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">endheaders</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    502</span> <span style="color: rgb(95,135,135)"># If we're given a body we start sending that in chunks.</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/usr/lib/python3.12/http/client.py:1351</span>, in <span class="ansi-cyan-fg">HTTPConnection.endheaders</span><span class="ansi-blue-fg">(self, message_body, encode_chunked)</span>
+<span class="ansi-green-fg">   1350</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> CannotSendHeader()
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1351</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_send_output</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">message_body</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">encode_chunked</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">encode_chunked</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/awsrequest.py:123</span>, in <span class="ansi-cyan-fg">AWSConnection._send_output</span><span class="ansi-blue-fg">(self, message_body, *args, **kwargs)</span>
+<span class="ansi-green-fg">    122</span>     message_body = <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">123</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">send</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">msg</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    124</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span>._expect_header_set:
+<span class="ansi-green-fg">    125</span>     <span style="color: rgb(95,135,135)"># This is our custom behavior.  If the Expect header was</span>
+<span class="ansi-green-fg">    126</span>     <span style="color: rgb(95,135,135)"># set, it will trigger this custom behavior.</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/awsrequest.py:223</span>, in <span class="ansi-cyan-fg">AWSConnection.send</span><span class="ansi-blue-fg">(self, str)</span>
+<span class="ansi-green-fg">    222</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">223</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">super</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">send</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">str</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/usr/lib/python3.12/http/client.py:1055</span>, in <span class="ansi-cyan-fg">HTTPConnection.send</span><span class="ansi-blue-fg">(self, data)</span>
+<span class="ansi-green-fg">   1054</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span>.auto_open:
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1055</span>     <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">connect</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1056</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/urllib3/connection.py:331</span>, in <span class="ansi-cyan-fg">HTTPConnection.connect</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg">    330</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">connect</span>(<span style="color: rgb(0,135,0)">self</span>) -&gt; <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">331</span>     <span style="color: rgb(0,135,0)">self</span>.sock = <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_new_conn</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    332</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span>._tunnel_host:
+<span class="ansi-green-fg">    333</span>         <span style="color: rgb(95,135,135)"># If we're tunneling it means we're connected to our proxy.</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/urllib3/connection.py:219</span>, in <span class="ansi-cyan-fg">HTTPConnection._new_conn</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg">    218</span> <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> <span class="ansi-bold" style="color: rgb(215,95,95)">OSError</span> <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> e:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">219</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> NewConnectionError(
+<span class="ansi-green-fg">    220</span>         <span style="color: rgb(0,135,0)">self</span>, <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Failed to establish a new connection: </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>e<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">    221</span>     ) <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">e</span>
+<span class="ansi-green-fg">    223</span> sys.audit(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">http.client.connect</span><span class="ansi-yellow-fg">"</span>, <span style="color: rgb(0,135,0)">self</span>, <span style="color: rgb(0,135,0)">self</span>.host, <span style="color: rgb(0,135,0)">self</span>.port)
+
+<span class="ansi-red-fg">NewConnectionError</span>: AWSHTTPConnection(host='localhost', port=4566): Failed to establish a new connection: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+<span class="ansi-red-fg">EndpointConnectionError</span>                   Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 11</span>
+<span class="ansi-green-fg">      3</span> sqs = boto3.client(
+<span class="ansi-green-fg">      4</span>     <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">sqs</span><span class="ansi-yellow-fg">"</span>,
+<span class="ansi-green-fg">      5</span>     endpoint_url=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">http://localhost:4566</span><span class="ansi-yellow-fg">"</span>,
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">      8</span>     aws_secret_access_key=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">test</span><span class="ansi-yellow-fg">"</span>,
+<span class="ansi-green-fg">      9</span> )
+<span class="ansi-green-fg">     10</span> <span style="color: rgb(95,135,135)"># Create the queue</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">11</span> response = <span class="ansi-yellow-bg">sqs</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">create_queue</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">     12</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">QueueName</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">taxi-events</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     13</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">Attributes</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">{</span>
+<span class="ansi-green-fg">     14</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">VisibilityTimeout</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">:</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">30</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">          </span><span class="ansi-yellow-bg" style="color: rgb(95,135,135)"># seconds a message is hidden after receive</span>
+<span class="ansi-green-fg">     15</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">MessageRetentionPeriod</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">:</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">86400</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">  </span><span class="ansi-yellow-bg" style="color: rgb(95,135,135)"># keep messages for 1 day</span>
+<span class="ansi-green-fg">     16</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">}</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     17</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">     18</span> queue_url = response[<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">QueueUrl</span><span class="ansi-yellow-fg">"</span>]
+<span class="ansi-green-fg">     19</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">📬 Queue created: </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>queue_url<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/client.py:602</span>, in <span class="ansi-cyan-fg">ClientCreator._create_api_method.&lt;locals&gt;._api_call</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
+<span class="ansi-green-fg">    598</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">TypeError</span>(
+<span class="ansi-green-fg">    599</span>         <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>py_operation_name<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">() only accepts keyword arguments.</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">    600</span>     )
+<span class="ansi-green-fg">    601</span> <span style="color: rgb(95,135,135)"># The "self" in this scope is referring to the BaseClient.</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">602</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_make_api_call</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">operation_name</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/context.py:123</span>, in <span class="ansi-cyan-fg">with_current_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    121</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> hook:
+<span class="ansi-green-fg">    122</span>     hook()
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">123</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">func</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/client.py:1060</span>, in <span class="ansi-cyan-fg">BaseClient._make_api_call</span><span class="ansi-blue-fg">(self, operation_name, api_params)</span>
+<span class="ansi-green-fg">   1056</span>     maybe_compress_request(
+<span class="ansi-green-fg">   1057</span>         <span style="color: rgb(0,135,0)">self</span>.meta.config, request_dict, operation_model
+<span class="ansi-green-fg">   1058</span>     )
+<span class="ansi-green-fg">   1059</span>     apply_request_checksum(request_dict)
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1060</span>     http, parsed_response = <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_make_request</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">   1061</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">operation_model</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">request_dict</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">request_context</span>
+<span class="ansi-green-fg">   1062</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1064</span> <span style="color: rgb(0,135,0)">self</span>.meta.events.emit(
+<span class="ansi-green-fg">   1065</span>     <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">after-call.</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>service_id<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>operation_name<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">'</span>,
+<span class="ansi-green-fg">   1066</span>     http_response=http,
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">   1069</span>     context=request_context,
+<span class="ansi-green-fg">   1070</span> )
+<span class="ansi-green-fg">   1072</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> http.status_code &gt;= <span class="ansi-green-fg">300</span>:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/client.py:1084</span>, in <span class="ansi-cyan-fg">BaseClient._make_request</span><span class="ansi-blue-fg">(self, operation_model, request_dict, request_context)</span>
+<span class="ansi-green-fg">   1082</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">_make_request</span>(<span style="color: rgb(0,135,0)">self</span>, operation_model, request_dict, request_context):
+<span class="ansi-green-fg">   1083</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1084</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_endpoint</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">make_request</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">operation_model</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">request_dict</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1085</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> <span class="ansi-bold" style="color: rgb(215,95,95)">Exception</span> <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> e:
+<span class="ansi-green-fg">   1086</span>         <span style="color: rgb(0,135,0)">self</span>.meta.events.emit(
+<span class="ansi-green-fg">   1087</span>             <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">after-call-error.</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span><span style="color: rgb(0,135,0)">self</span>._service_model.service_id.hyphenize()<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>operation_model.name<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">'</span>,
+<span class="ansi-green-fg">   1088</span>             exception=e,
+<span class="ansi-green-fg">   1089</span>             context=request_context,
+<span class="ansi-green-fg">   1090</span>         )
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/endpoint.py:119</span>, in <span class="ansi-cyan-fg">Endpoint.make_request</span><span class="ansi-blue-fg">(self, operation_model, request_dict)</span>
+<span class="ansi-green-fg">    113</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">make_request</span>(<span style="color: rgb(0,135,0)">self</span>, operation_model, request_dict):
+<span class="ansi-green-fg">    114</span>     logger.debug(
+<span class="ansi-green-fg">    115</span>         <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Making request for </span><span class="ansi-bold" style="color: rgb(175,95,135)">%s</span><span class="ansi-yellow-fg"> with params: </span><span class="ansi-bold" style="color: rgb(175,95,135)">%s</span><span class="ansi-yellow-fg">"</span>,
+<span class="ansi-green-fg">    116</span>         operation_model,
+<span class="ansi-green-fg">    117</span>         request_dict,
+<span class="ansi-green-fg">    118</span>     )
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">119</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_send_request</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">request_dict</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">operation_model</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/endpoint.py:200</span>, in <span class="ansi-cyan-fg">Endpoint._send_request</span><span class="ansi-blue-fg">(self, request_dict, operation_model)</span>
+<span class="ansi-green-fg">    196</span> request = <span style="color: rgb(0,135,0)">self</span>.create_request(request_dict, operation_model)
+<span class="ansi-green-fg">    197</span> success_response, exception = <span style="color: rgb(0,135,0)">self</span>._get_response(
+<span class="ansi-green-fg">    198</span>     request, operation_model, context
+<span class="ansi-green-fg">    199</span> )
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">200</span> <span class="ansi-bold" style="color: rgb(0,135,0)">while</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_needs_retry</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    201</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">attempts</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    202</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">operation_model</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    203</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">request_dict</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    204</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">success_response</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    205</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">exception</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    206</span> <span class="ansi-yellow-bg">)</span>:
+<span class="ansi-green-fg">    207</span>     attempts += <span class="ansi-green-fg">1</span>
+<span class="ansi-green-fg">    208</span>     <span style="color: rgb(0,135,0)">self</span>._update_retries_context(context, attempts, success_response)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/endpoint.py:360</span>, in <span class="ansi-cyan-fg">Endpoint._needs_retry</span><span class="ansi-blue-fg">(self, attempts, operation_model, request_dict, response, caught_exception)</span>
+<span class="ansi-green-fg">    358</span> service_id = operation_model.service_model.service_id.hyphenize()
+<span class="ansi-green-fg">    359</span> event_name = <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">needs-retry.</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>service_id<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>operation_model.name<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">360</span> responses = <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_event_emitter</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">emit</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    361</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">event_name</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    362</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">response</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">response</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    363</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">endpoint</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    364</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">operation</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">operation_model</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    365</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">attempts</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">attempts</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    366</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">caught_exception</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">caught_exception</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    367</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">request_dict</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">request_dict</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    368</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    369</span> handler_response = first_non_none_response(responses)
+<span class="ansi-green-fg">    370</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> handler_response <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/hooks.py:412</span>, in <span class="ansi-cyan-fg">EventAliaser.emit</span><span class="ansi-blue-fg">(self, event_name, **kwargs)</span>
+<span class="ansi-green-fg">    410</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">emit</span>(<span style="color: rgb(0,135,0)">self</span>, event_name, **kwargs):
+<span class="ansi-green-fg">    411</span>     aliased_event_name = <span style="color: rgb(0,135,0)">self</span>._alias_event_name(event_name)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">412</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_emitter</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">emit</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">aliased_event_name</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/hooks.py:256</span>, in <span class="ansi-cyan-fg">HierarchicalEmitter.emit</span><span class="ansi-blue-fg">(self, event_name, **kwargs)</span>
+<span class="ansi-green-fg">    245</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">emit</span>(<span style="color: rgb(0,135,0)">self</span>, event_name, **kwargs):
+<span class="ansi-green-fg">    246</span> <span style="color: rgb(188,188,188)">    </span><span class="ansi-yellow-fg">"""</span>
+<span class="ansi-green-fg">    247</span> <span class="ansi-yellow-fg">    Emit an event by name with arguments passed as keyword args.</span>
+<span class="ansi-green-fg">    248</span> 
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">    254</span> <span class="ansi-yellow-fg">             handlers.</span>
+<span class="ansi-green-fg">    255</span> <span class="ansi-yellow-fg">    """</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">256</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_emit</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">event_name</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/hooks.py:239</span>, in <span class="ansi-cyan-fg">HierarchicalEmitter._emit</span><span class="ansi-blue-fg">(self, event_name, kwargs, stop_on_response)</span>
+<span class="ansi-green-fg">    237</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> handler <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> handlers_to_call:
+<span class="ansi-green-fg">    238</span>     logger.debug(<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">Event </span><span class="ansi-bold" style="color: rgb(175,95,135)">%s</span><span class="ansi-yellow-fg">: calling handler </span><span class="ansi-bold" style="color: rgb(175,95,135)">%s</span><span class="ansi-yellow-fg">'</span>, event_name, handler)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">239</span>     response = <span class="ansi-yellow-bg">handler</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    240</span>     responses.append((handler, response))
+<span class="ansi-green-fg">    241</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> stop_on_response <span class="ansi-bold" style="color: rgb(175,0,255)">and</span> response <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/retryhandler.py:207</span>, in <span class="ansi-cyan-fg">RetryHandler.__call__</span><span class="ansi-blue-fg">(self, attempts, response, caught_exception, **kwargs)</span>
+<span class="ansi-green-fg">    204</span>     retries_context = kwargs[<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">request_dict</span><span class="ansi-yellow-fg">'</span>][<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">context</span><span class="ansi-yellow-fg">'</span>].get(<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">retries</span><span class="ansi-yellow-fg">'</span>)
+<span class="ansi-green-fg">    205</span>     checker_kwargs.update({<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">retries_context</span><span class="ansi-yellow-fg">'</span>: retries_context})
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">207</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_checker</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">checker_kwargs</span><span class="ansi-yellow-bg">)</span>:
+<span class="ansi-green-fg">    208</span>     result = <span style="color: rgb(0,135,0)">self</span>._action(attempts=attempts)
+<span class="ansi-green-fg">    209</span>     logger.debug(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Retry needed, action of: </span><span class="ansi-bold" style="color: rgb(175,95,135)">%s</span><span class="ansi-yellow-fg">"</span>, result)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/retryhandler.py:284</span>, in <span class="ansi-cyan-fg">MaxAttemptsDecorator.__call__</span><span class="ansi-blue-fg">(self, attempt_number, response, caught_exception, retries_context)</span>
+<span class="ansi-green-fg">    279</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> retries_context:
+<span class="ansi-green-fg">    280</span>     retries_context[<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">max</span><span class="ansi-yellow-fg">'</span>] = <span style="color: rgb(0,135,0)">max</span>(
+<span class="ansi-green-fg">    281</span>         retries_context.get(<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">max</span><span class="ansi-yellow-fg">'</span>, <span class="ansi-green-fg">0</span>), <span style="color: rgb(0,135,0)">self</span>._max_attempts
+<span class="ansi-green-fg">    282</span>     )
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">284</span> should_retry = <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_should_retry</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    285</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">attempt_number</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">response</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">caught_exception</span>
+<span class="ansi-green-fg">    286</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    287</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> should_retry:
+<span class="ansi-green-fg">    288</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> attempt_number &gt;= <span style="color: rgb(0,135,0)">self</span>._max_attempts:
+<span class="ansi-green-fg">    289</span>         <span style="color: rgb(95,135,135)"># explicitly set MaxAttemptsReached</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/retryhandler.py:320</span>, in <span class="ansi-cyan-fg">MaxAttemptsDecorator._should_retry</span><span class="ansi-blue-fg">(self, attempt_number, response, caught_exception)</span>
+<span class="ansi-green-fg">    316</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>
+<span class="ansi-green-fg">    317</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">    318</span>     <span style="color: rgb(95,135,135)"># If we've exceeded the max attempts we just let the exception</span>
+<span class="ansi-green-fg">    319</span>     <span style="color: rgb(95,135,135)"># propagate if one has occurred.</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">320</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_checker</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">attempt_number</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">response</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">caught_exception</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/retryhandler.py:363</span>, in <span class="ansi-cyan-fg">MultiChecker.__call__</span><span class="ansi-blue-fg">(self, attempt_number, response, caught_exception)</span>
+<span class="ansi-green-fg">    361</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">__call__</span>(<span style="color: rgb(0,135,0)">self</span>, attempt_number, response, caught_exception):
+<span class="ansi-green-fg">    362</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> checker <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">self</span>._checkers:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">363</span>         checker_response = <span class="ansi-yellow-bg">checker</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    364</span> <span class="ansi-yellow-bg">            </span><span class="ansi-yellow-bg">attempt_number</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">response</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">caught_exception</span>
+<span class="ansi-green-fg">    365</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    366</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> checker_response:
+<span class="ansi-green-fg">    367</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> checker_response
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/retryhandler.py:247</span>, in <span class="ansi-cyan-fg">BaseChecker.__call__</span><span class="ansi-blue-fg">(self, attempt_number, response, caught_exception)</span>
+<span class="ansi-green-fg">    245</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">self</span>._check_response(attempt_number, response)
+<span class="ansi-green-fg">    246</span> <span class="ansi-bold" style="color: rgb(0,135,0)">elif</span> caught_exception <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">247</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_check_caught_exception</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    248</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">attempt_number</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">caught_exception</span>
+<span class="ansi-green-fg">    249</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    250</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">    251</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">ValueError</span>(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Both response and caught_exception are None.</span><span class="ansi-yellow-fg">"</span>)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/retryhandler.py:416</span>, in <span class="ansi-cyan-fg">ExceptionRaiser._check_caught_exception</span><span class="ansi-blue-fg">(self, attempt_number, caught_exception)</span>
+<span class="ansi-green-fg">    408</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">_check_caught_exception</span>(<span style="color: rgb(0,135,0)">self</span>, attempt_number, caught_exception):
+<span class="ansi-green-fg">    409</span>     <span style="color: rgb(95,135,135)"># This is implementation specific, but this class is useful by</span>
+<span class="ansi-green-fg">    410</span>     <span style="color: rgb(95,135,135)"># coordinating with the MaxAttemptsDecorator.</span>
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">    414</span>     <span style="color: rgb(95,135,135)"># the MaxAttemptsDecorator is not interested in retrying the exception</span>
+<span class="ansi-green-fg">    415</span>     <span style="color: rgb(95,135,135)"># then this exception just propagates out past the retry code.</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">416</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> caught_exception
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/endpoint.py:279</span>, in <span class="ansi-cyan-fg">Endpoint._do_get_response</span><span class="ansi-blue-fg">(self, request, operation_model, context)</span>
+<span class="ansi-green-fg">    277</span>     http_response = first_non_none_response(responses)
+<span class="ansi-green-fg">    278</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> http_response <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">279</span>         http_response = <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_send</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">request</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    280</span> <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> HTTPClientError <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> e:
+<span class="ansi-green-fg">    281</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> (<span class="ansi-bold" style="color: rgb(0,135,0)">None</span>, e)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/endpoint.py:383</span>, in <span class="ansi-cyan-fg">Endpoint._send</span><span class="ansi-blue-fg">(self, request)</span>
+<span class="ansi-green-fg">    382</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">_send</span>(<span style="color: rgb(0,135,0)">self</span>, request):
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">383</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">http_session</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">send</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">request</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/workplace/da_colab/DS614/.venv/lib/python3.12/site-packages/botocore/httpsession.py:506</span>, in <span class="ansi-cyan-fg">URLLib3Session.send</span><span class="ansi-blue-fg">(self, request)</span>
+<span class="ansi-green-fg">    504</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> SSLError(endpoint_url=request.url, error=e)
+<span class="ansi-green-fg">    505</span> <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> (NewConnectionError, socket.gaierror) <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> e:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">506</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> EndpointConnectionError(endpoint_url=request.url, error=e)
+<span class="ansi-green-fg">    507</span> <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> ProxyError <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> e:
+<span class="ansi-green-fg">    508</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> ProxyConnectionError(
+<span class="ansi-green-fg">    509</span>         proxy_url=mask_proxy_url(proxy_url), error=e
+<span class="ansi-green-fg">    510</span>     )
+
+<span class="ansi-red-fg">EndpointConnectionError</span>: Could not connect to the endpoint URL: "http://localhost:4566/"</pre>
 </div>
 </div>
 </div>
@@ -4861,9 +5520,7 @@ print(f"📬 Queue created: {queue_url}")</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">random</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
-
 <span class="n">ZONES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Manhattan"</span><span class="p">,</span> <span class="s2">"Brooklyn"</span><span class="p">,</span> <span class="s2">"Queens"</span><span class="p">,</span> <span class="s2">"Bronx"</span><span class="p">,</span> <span class="s2">"Staten Island"</span><span class="p">]</span>
-
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span>
     <span class="n">event</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">"event_id"</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">999999</span><span class="p">),</span>
@@ -4884,14 +5541,11 @@ print(f"📬 Queue created: {queue_url}")</div>
     <span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  📤 Sent event </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">event</span><span class="p">[</span><span class="s1">'pickup_zone'</span><span class="p">]</span><span class="si">}</span><span class="s2"> | $</span><span class="si">{</span><span class="n">event</span><span class="p">[</span><span class="s1">'fare_estimate'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ All 15 messages sent to SQS."</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-10">import time, random
 from datetime import datetime
-
 ZONES = ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]
-
 for i in range(15):
     event = {
         "event_id": random.randint(100000, 999999),
@@ -4912,7 +5566,6 @@ for i in range(15):
     )
     print(f"  📤 Sent event {i+1}: {event['pickup_zone']} | ${event['fare_estimate']}")
     time.sleep(0.5)
-
 print(f"\n✅ All 15 messages sent to SQS.")</div>
 </div>
 </div>
@@ -4953,9 +5606,7 @@ print(f"\n✅ All 15 messages sent to SQS.")</div>
 <span class="n">max_events</span> <span class="o">=</span> <span class="mi">15</span>
 <span class="n">max_retries</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">empty_count</span> <span class="o">=</span> <span class="mi">0</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"📥 Starting SQS consumer (long polling)...</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
-
 <span class="k">while</span> <span class="n">events_processed</span> <span class="o">&lt;</span> <span class="n">max_events</span> <span class="ow">and</span> <span class="n">empty_count</span> <span class="o">&lt;</span> <span class="n">max_retries</span><span class="p">:</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">receive_message</span><span class="p">(</span>
         <span class="n">QueueUrl</span><span class="o">=</span><span class="n">queue_url</span><span class="p">,</span>
@@ -4984,16 +5635,13 @@ print(f"\n✅ All 15 messages sent to SQS.")</div>
             <span class="n">QueueUrl</span><span class="o">=</span><span class="n">queue_url</span><span class="p">,</span>
             <span class="n">ReceiptHandle</span><span class="o">=</span><span class="n">msg</span><span class="p">[</span><span class="s2">"ReceiptHandle"</span><span class="p">],</span>
         <span class="p">)</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ SQS consumer done. Events processed: </span><span class="si">{</span><span class="n">events_processed</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-11">events_processed = 0
 max_events = 15
 max_retries = 5
 empty_count = 0
-
 print(f"📥 Starting SQS consumer (long polling)...\n")
-
 while events_processed &lt; max_events and empty_count &lt; max_retries:
     response = sqs.receive_message(
         QueueUrl=queue_url,
@@ -5022,7 +5670,6 @@ while events_processed &lt; max_events and empty_count &lt; max_retries:
             QueueUrl=queue_url,
             ReceiptHandle=msg["ReceiptHandle"],
         )
-
 print(f"\n✅ SQS consumer done. Events processed: {events_processed}")</div>
 </div>
 </div>
@@ -5061,14 +5708,12 @@ If the consumer doesn't delete it in time (e.g., it crashes), the message <stron
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># ── Demonstrate the "visibility timeout" concept ──────────────────</span>
-
 <span class="c1"># 1. Send one test message</span>
 <span class="n">sqs</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span>
     <span class="n">QueueUrl</span><span class="o">=</span><span class="n">queue_url</span><span class="p">,</span>
     <span class="n">MessageBody</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">"test"</span><span class="p">:</span> <span class="s2">"visibility_timeout_demo"</span><span class="p">}),</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"1️⃣  Sent a test message."</span><span class="p">)</span>
-
 <span class="c1"># 2. Receive it (starts the visibility timeout)</span>
 <span class="n">resp</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">receive_message</span><span class="p">(</span>
     <span class="n">QueueUrl</span><span class="o">=</span><span class="n">queue_url</span><span class="p">,</span> <span class="n">MaxNumberOfMessages</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">WaitTimeSeconds</span><span class="o">=</span><span class="mi">5</span>
@@ -5076,35 +5721,29 @@ If the consumer doesn't delete it in time (e.g., it crashes), the message <stron
 <span class="n">msg</span> <span class="o">=</span> <span class="n">resp</span><span class="p">[</span><span class="s2">"Messages"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"2️⃣  Received: </span><span class="si">{</span><span class="n">msg</span><span class="p">[</span><span class="s1">'Body'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"   Receipt handle: </span><span class="si">{</span><span class="n">msg</span><span class="p">[</span><span class="s1">'ReceiptHandle'</span><span class="p">][:</span><span class="mi">40</span><span class="p">]</span><span class="si">}</span><span class="s2">..."</span><span class="p">)</span>
-
 <span class="c1"># 3. DON'T delete it — simulate a consumer crash</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"3️⃣  Simulating consumer crash (NOT deleting the message)..."</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"   Message is now INVISIBLE for 30 seconds (VisibilityTimeout)."</span><span class="p">)</span>
-
 <span class="c1"># 4. Try to receive again immediately — nothing available!</span>
 <span class="n">resp2</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">receive_message</span><span class="p">(</span>
     <span class="n">QueueUrl</span><span class="o">=</span><span class="n">queue_url</span><span class="p">,</span> <span class="n">MaxNumberOfMessages</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">WaitTimeSeconds</span><span class="o">=</span><span class="mi">2</span>
 <span class="p">)</span>
 <span class="n">available</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">resp2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Messages"</span><span class="p">,</span> <span class="p">[]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"4️⃣  Immediate re-read: </span><span class="si">{</span><span class="n">available</span><span class="si">}</span><span class="s2"> messages available (invisible!)"</span><span class="p">)</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">💡 After the VisibilityTimeout expires, the message becomes visible again"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"   and can be picked up by another consumer."</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"   This is how SQS ensures AT-LEAST-ONCE delivery!"</span><span class="p">)</span>
-
 <span class="c1"># Clean up</span>
 <span class="n">sqs</span><span class="o">.</span><span class="n">delete_message</span><span class="p">(</span><span class="n">QueueUrl</span><span class="o">=</span><span class="n">queue_url</span><span class="p">,</span> <span class="n">ReceiptHandle</span><span class="o">=</span><span class="n">msg</span><span class="p">[</span><span class="s2">"ReceiptHandle"</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">🧹 Test message cleaned up."</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-12"># ── Demonstrate the "visibility timeout" concept ──────────────────
-
 # 1. Send one test message
 sqs.send_message(
     QueueUrl=queue_url,
     MessageBody=json.dumps({"test": "visibility_timeout_demo"}),
 )
 print("1️⃣  Sent a test message.")
-
 # 2. Receive it (starts the visibility timeout)
 resp = sqs.receive_message(
     QueueUrl=queue_url, MaxNumberOfMessages=1, WaitTimeSeconds=5
@@ -5112,22 +5751,18 @@ resp = sqs.receive_message(
 msg = resp["Messages"][0]
 print(f"2️⃣  Received: {msg['Body']}")
 print(f"   Receipt handle: {msg['ReceiptHandle'][:40]}...")
-
 # 3. DON'T delete it — simulate a consumer crash
 print("3️⃣  Simulating consumer crash (NOT deleting the message)...")
 print(f"   Message is now INVISIBLE for 30 seconds (VisibilityTimeout).")
-
 # 4. Try to receive again immediately — nothing available!
 resp2 = sqs.receive_message(
     QueueUrl=queue_url, MaxNumberOfMessages=1, WaitTimeSeconds=2
 )
 available = len(resp2.get("Messages", []))
 print(f"4️⃣  Immediate re-read: {available} messages available (invisible!)")
-
 print("\n💡 After the VisibilityTimeout expires, the message becomes visible again")
 print("   and can be picked up by another consumer.")
 print("   This is how SQS ensures AT-LEAST-ONCE delivery!")
-
 # Clean up
 sqs.delete_message(QueueUrl=queue_url, ReceiptHandle=msg["ReceiptHandle"])
 print("\n🧹 Test message cleaned up.")</div>
@@ -5323,12 +5958,11 @@ print("\n🧹 Test message cleaned up.")</div>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
-
 <span class="c1"># Remove temp files</span>
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">"/tmp/stream_events.jsonl"</span><span class="p">):</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">"/tmp/stream_events.jsonl"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"🗑️  Removed /tmp/stream_events.jsonl"</span><span class="p">)</span>
-
+<span class="n">event_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">"~/stream_events.jsonl"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">event_file</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">event_file</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"🗑️  Removed </span><span class="si">{</span><span class="n">event_file</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="c1"># Stop Docker containers (if running)</span>
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"redis-demo"</span><span class="p">,</span> <span class="s2">"rabbitmq-demo"</span><span class="p">,</span> <span class="s2">"localstack"</span><span class="p">]:</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">"docker"</span><span class="p">,</span> <span class="s2">"stop"</span><span class="p">,</span> <span class="n">name</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -5337,16 +5971,14 @@ print("\n🧹 Test message cleaned up.")</div>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"🗑️  Stopped &amp; removed container: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"⏭️  Container '</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">' was not running."</span><span class="p">)</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ Cleanup complete!"</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-13">import subprocess, os
-
 # Remove temp files
-if os.path.exists("/tmp/stream_events.jsonl"):
-    os.remove("/tmp/stream_events.jsonl")
-    print("🗑️  Removed /tmp/stream_events.jsonl")
-
+event_file = os.path.expanduser("~/stream_events.jsonl")
+if os.path.exists(event_file):
+    os.remove(event_file)
+    print(f"🗑️  Removed {event_file}")
 # Stop Docker containers (if running)
 for name in ["redis-demo", "rabbitmq-demo", "localstack"]:
     result = subprocess.run(["docker", "stop", name], capture_output=True, text=True)
@@ -5355,7 +5987,6 @@ for name in ["redis-demo", "rabbitmq-demo", "localstack"]:
         print(f"🗑️  Stopped &amp; removed container: {name}")
     else:
         print(f"⏭️  Container '{name}' was not running.")
-
 print("\n✅ Cleanup complete!")</div>
 </div>
 </div>
