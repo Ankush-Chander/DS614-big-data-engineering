@@ -1,0 +1,24 @@
+[2026-04-11T05:25:22.256+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sales_pipeline_demo.fetch scheduled__2026-04-10T00:00:00+00:00 [queued]>
+[2026-04-11T05:25:22.266+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sales_pipeline_demo.fetch scheduled__2026-04-10T00:00:00+00:00 [queued]>
+[2026-04-11T05:25:22.266+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2026-04-11T05:25:22.280+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch> on 2026-04-10 00:00:00+00:00
+[2026-04-11T05:25:22.290+0000] {standard_task_runner.py:60} INFO - Started process 82 to run task
+[2026-04-11T05:25:22.294+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'sales_pipeline_demo', 'fetch', 'scheduled__2026-04-10T00:00:00+00:00', '--job-id', '220', '--raw', '--subdir', 'DAGS_FOLDER/sales_pipeline.py', '--cfg-path', '/tmp/tmpi9jz72qr']
+[2026-04-11T05:25:22.297+0000] {standard_task_runner.py:88} INFO - Job 220: Subtask fetch
+[2026-04-11T05:25:22.356+0000] {task_command.py:423} INFO - Running <TaskInstance: sales_pipeline_demo.fetch scheduled__2026-04-10T00:00:00+00:00 [running]> on host deb302c47533
+[2026-04-11T05:25:22.443+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='sales_pipeline_demo' AIRFLOW_CTX_TASK_ID='fetch' AIRFLOW_CTX_EXECUTION_DATE='2026-04-10T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-04-10T00:00:00+00:00'
+[2026-04-11T05:25:22.445+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/sales_pipeline.py", line 29, in fetch
+    with open(f"{DATA_DIR}/data.json", "w") as f:
+NameError: name 'DATA_DIR' is not defined
+[2026-04-11T05:25:22.457+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=sales_pipeline_demo, task_id=fetch, execution_date=20260410T000000, start_date=20260411T052522, end_date=20260411T052522
+[2026-04-11T05:25:22.471+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 220 for task fetch (name 'DATA_DIR' is not defined; 82)
+[2026-04-11T05:25:22.506+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-04-11T05:25:22.537+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
