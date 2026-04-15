@@ -5,8 +5,20 @@ import json
 import random
 import os
 
-DATA_DIR = "../airflow_demo"
-os.makedirs(DATA_DIR, exist_ok=True)
+# DATA_DIR = "/opt/airflow/data"
+# os.makedirs(DATA_DIR, exist_ok=True)
+
+
+def create_data_dir():
+    import os
+    os.makedirs('/opt/airflow/data', exist_ok=True)
+
+create_dir_task = PythonOperator(
+    task_id='create_data_dir',
+    python_callable=create_data_dir
+)
+
+
 
 # -------------------
 # TASK 1: FETCH
@@ -84,4 +96,4 @@ with DAG(
         python_callable=load
     )
 
-    fetch_task >> transform_task >> load_task
+create_dir_task >>   fetch_task >> transform_task >> load_task

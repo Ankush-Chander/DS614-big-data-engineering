@@ -32,4 +32,6 @@ Welcome to the course on Big Data Engineering.
     - Data Ingestion
         - [Introduction](lectures/data_ingestion.md)
         - [Stream Ingestion](lectures/stream_ingestion.md)
+        - [Data Orchestration](lectures/data_orchestration.md)
+        - [Data Encoding](lectures/encoding.md)
 ---
