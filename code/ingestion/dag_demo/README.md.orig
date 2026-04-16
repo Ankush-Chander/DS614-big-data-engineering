@@ -16,7 +16,6 @@ export AIRFLOW_UID=$(id -u)
 ```bash
 mkdir -p dags
 ```
-<<<<<<< HEAD
 
 File: dags/sales_pipeline.py
 
@@ -121,5 +120,3 @@ with DAG(
 
 create_dir_task >>   fetch_task >> transform_task >> load_task
 ```
-=======
->>>>>>> main
