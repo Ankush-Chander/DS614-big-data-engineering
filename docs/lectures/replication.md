@@ -6,26 +6,26 @@
 1. **The Physical I/O Limit (The "Waiting" Trap)**
  Even if you put the fastest CPU in the world into a single server, the database process will eventually start **waiting**.
 
-* **Disk I/O:** Databases (especially storage-intensive ones) often run at 100% CPU utilization but still run slowly because the storage system cannot keep up. In a single monolithic machine, the CPU and storage are connected by a finite bus (PCIe). If the SSD's write speed is 5GB/s, no amount of CPU power will make the database run faster than 5GB/s.
-* **Network I/O:** If your application needs to handle 100 million requests a second, sending them to a single machine means that machine needs to handle the network stack of 100 million machines. A single NIC (Network Interface Card) has a bandwidth limit.
+    * **Disk I/O:** Databases (especially storage-intensive ones) often run at 100% CPU utilization but still run slowly because the storage system cannot keep up. In a single monolithic machine, the CPU and storage are connected by a finite bus (PCIe). If the SSD's write speed is 5GB/s, no amount of CPU power will make the database run faster than 5GB/s.
+    * **Network I/O:** If your application needs to handle 100 million requests a second, sending them to a single machine means that machine needs to handle the network stack of 100 million machines. A single NIC (Network Interface Card) has a bandwidth limit.
 
 1. **The Hypervisor Overhead**
  If you are using virtualization (AWS EC2, Azure VMs, VMware), scaling up is constrained by the virtualization layer.
 
-* **Paravirtualization Drivers:** To make VMs perform like bare metal, hypervisors require specific drivers. There is a constant battle between the Guest OS and the Host for control of hardware.
-* **vCPU/DRAM Allocation:** Cloud providers limit you to specific configurations (e.g., "High Memory" instances).
-  * *Constraint:* You can easily scale out to add 10 shards and let Kubernetes handle the overhead.
-  * *Constraint:* You cannot "add" RAM to a hypervisor arbitrarily. You must upgrade to an entirely different, much larger instance tier, which might cost 10x more.
+    * **Paravirtualization Drivers:** To make VMs perform like bare metal, hypervisors require specific drivers. There is a constant battle between the Guest OS and the Host for control of hardware.
+    * **vCPU/DRAM Allocation:** Cloud providers limit you to specific configurations (e.g., "High Memory" instances).
+      * *Constraint:* You can easily scale out to add 10 shards and let Kubernetes handle the overhead.
+      * *Constraint:* You cannot "add" RAM to a hypervisor arbitrarily. You must upgrade to an entirely different, much larger instance tier, which might cost 10x more.
 
 1. **Single Point of Failure (SPOF)**
 
-* **Availability Risk:** Scaling up maximizes the damage of a failure. If you put your entire business on the world’s largest single computer, that computer is a **Single Point of Failure** (SPOF). If a capacitor blows, the router drops, or a hypervisor host fails, **everyone** goes down simultaneously.
-* *Replication Logic:* This is why replication is important. If you have 5 smaller machines, one can fail, and your system stays up.
+    * **Availability Risk:** Scaling up maximizes the damage of a failure. If you put your entire business on the world’s largest single computer, that computer is a **Single Point of Failure** (SPOF). If a capacitor blows, the router drops, or a hypervisor host fails, **everyone** goes down simultaneously.
+    * *Replication Logic:* This is why replication is important. If you have 5 smaller machines, one can fail, and your system stays up.
 
 1. **The Economic Ceiling**
 
-* There are diminishing returns on hardware. To double the capacity of a single server, you often have to pay for more than double the hardware because server vendors bundle packages (Motherboard + RAM + PSU + Cooling) rather than selling parts incrementally.
-* **Cloud Economics:** In the cloud, there is usually a cap on instance size. You cannot simply purchase "Unlimited RAM." If your database needs 8TB of RAM, you cannot put that in a single VM; you must split it into partitions (sharding) across multiple machines.
+    * There are diminishing returns on hardware. To double the capacity of a single server, you often have to pay for more than double the hardware because server vendors bundle packages (Motherboard + RAM + PSU + Cooling) rather than selling parts incrementally.
+    * **Cloud Economics:** In the cloud, there is usually a cap on instance size. You cannot simply purchase "Unlimited RAM." If your database needs 8TB of RAM, you cannot put that in a single VM; you must split it into partitions (sharding) across multiple machines.
 
 ---
 
@@ -63,8 +63,15 @@ All other replicas (followers) can only receive and handle read requests.
 
 #### Replication Modes
 
+![](../images/distributed_systems/synchronous_replication.png)
+
+![](../images/distributed_systems/asynchronous_replication.png)
+
+Credits: [@arpitbhayani](https://arpitbhayani.me/blogs/replication-strategies/)
+
 | Feature          | Synchronous Replication                                                        | Asynchronous Replication                                              |
 | ---------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+||||
 | **Confirmation** | Leader waits for follower confirmation before reporting success to the client. | Leader sends the message but does not wait for a follower response.   |
 | **Consistency**  | Follower is guaranteed to have an up-to-date copy consistent with the leader.  | Follower may fall behind the leader (replication lag).                |
 | **Availability** | If a synchronous follower fails, the leader must block all writes.             | The leader can continue processing writes even if all followers fail. |
@@ -130,7 +137,7 @@ Databases use various methods to communicate changes from the leader to follower
 * **Monotonic Reads:** A user sees data in one query but, upon refreshing, the request goes to a more lagged follower, making the data "disappear."
   * *Solution:* Route a specific user's requests to the same replica (e.g., using a hash of the user ID).
 * **Consistent Prefix Reads:** In partitioned databases, causal dependencies may be violated (e.g., seeing an answer before a question) if different partitions replicate at different speeds.
-  * *Solution:* Ensure causally related writes are directed to the same partition.
+ Solution:* Ensure causally related writes are directed to the same partition.
 
 <!-- ### Multi Leader  
 
