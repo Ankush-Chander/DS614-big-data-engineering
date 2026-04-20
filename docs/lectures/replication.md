@@ -139,52 +139,131 @@ Databases use various methods to communicate changes from the leader to follower
 * **Consistent Prefix Reads:** In partitioned databases, causal dependencies may be violated (e.g., seeing an answer before a question) if different partitions replicate at different speeds.
  Solution:* Ensure causally related writes are directed to the same partition.
 
-<!-- ### Multi Leader  
+---
 
-More nodes act as leaders, receiving and applying the write requests.  
+### Multi-Leader Replication
 
-**Pros:**
+In a multi-leader configuration (also known as active-active or master-master replication), more than one node can process write requests. Each leader also acts as a follower to all other leaders, propagating changes across the network.
 
-* The main benefit is that more databases perform writes, being located closer to the clients.  
-* This increases the write throughput and reduce the latency.  
+#### Primary Use Cases
 
-**Cons:**
+* **Multi-Datacenter Operation:** A leader is placed in each datacenter. Within the datacenter, leader-follower replication is used; between datacenters, leaders replicate to one another.
+* **Offline Operation:** Applications like mobile calendars act as local leaders, allowing writes while disconnected. These changes are synchronized asynchronously when the device regains internet access.
+* **Collaborative Editing:** Real-time tools (e.g., Google Docs) treat local edits as writes to a local replica that are asynchronously replicated to other users.
 
-The drawback is that it's necessary to solve write conflicts.  
-Some possible solutions are:  
+![Multileader Replication Setup](../images/distributed_systems/multileader_replication_setup.png)
 
-* attach a timestamp to each write and let followers apply the write with highest value  
-* record the conflicts and write application code to let users manually resolve them  
-* store all the conflicting writes and return them to the clients when they try to read that data.  
-The client is then responsible for solving the conflict and write the data back to the database.  
-CouchDB follows this last approach.  
+#### Comparison of Deployment Models
+
+| Feature               | Single-Leader (Multi-DC)                                                  | Multi-Leader (Multi-DC)                                                                         |
+| --------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| **Performance**       | High latency; all writes must travel to the leader's DC.                  | Low latency; writes are processed in the local DC.                                              |
+| **Outage Tolerance**  | Requires failover/promotion of a new leader if the main DC fails.         | Each DC operates independently; replication resumes when the failed DC recovers.                |
+| **Network Tolerance** | Sensitive to inter-DC link reliability; writes are typically synchronous. | Better tolerance; asynchronous replication prevents network interruptions from blocking writes. |
+
+![Multileader Multi-DC](../images/distributed_systems/multileader_multidc.png)
+
+#### Replication Topologies
+
+The communication paths between nodes define the replication topology:  
+
+![](../images/distributed_systems/multileader_topology.jpg)  
+Source: [@satyavarssheni](https://medium.com/@satyavarssheni/mastering-multi-leader-replication-topologies-conflicts-scenarios-explained-0fedf8f5ed7d)
+
+**Star Topology:**
+
+* Single root node forwards writes to cluster (generalizes to tree)
+* Loop prevention via ID tagging on each write
+* Single point of failure; requires manual reconfiguration when node fails
+
+**Circular Topology:**
+
+* Sequential data flow where writes trickle through replicated nodes
+* Loop prevention via ID tagging on each write
+* Single-failure point; high manual intervention requirement
+* MySQL's default multi-leader topology
+
+**All-to-All Topology:**
+
+* Every leader broadcasts to all others
+* Better fault tolerance via alternative routing
+* Network delays cause message order violations
+* Requires careful conflict detection implementation
 
 ---
 
-### Leaderless  
+#### Handling Write Conflicts
 
-Each database instance can accept writes and the clients can send writes concurrently.  
-As soon a client gets a confirmation from some of the instances, a write is successful.  
+The primary disadvantage of multi-leader replication is the occurrence of write conflicts, where the same data is modified concurrently in different locations.
 
-**Pros:**
+![Write Conflict](../images/distributed_systems/write_conflict.png)
 
-* The benefit is that failures are tolerated easily without failover strategies.  
+##### **Strategies for Resolution**
 
-**Cons:**
+1. **Conflict Avoidance:** The most recommended approach. All writes for a specific record are routed to the same leader (e.g., based on the user's geographic location).
+2. **Convergent Consistency:** Ensuring all replicas arrive at the same final value.
 
-* But having no leader handling any kind of synchronization causes other issues.  
-* First of all if some writes fail, the corresponding instances will have stale data.  
-* To deal with this, clients need to read data from several instances concurrently.  
-* The instances then return their data with a kind of version number.  
-* The clients can use this number to decide which data to keep and which to discard.  
-* But how to update instances having stale data?  
+    * **Last Write Wins (LWW):** Uses a timestamp or unique ID to pick a winner; prone to data loss.
+    * **Replica ID Precedence:** Writes from higher-numbered replicas take priority.
+    * **Value Merging:** Combining conflicting values (e.g., alphabetical concatenation).
 
-There are 2 common techniques.  
+3. **Custom Logic:**
+    * On Write: A background process runs a conflict handler as soon as the conflict is detected.
+    * On Read: Conflicting versions (siblings) are stored and returned to the application, which then resolves the conflict and writes the result back.
 
-* read repair: when a client detects that a read data is stale, it sends a write request with the correct data  
-* background process: a background process take care of periodically synchronize all database instances.  
+---
 
---- -->
+### Leaderless Replication
+
+Leaderless (or Dynamo-style) replication allows any replica to directly accept writes. This model was pioneered by Amazon's Dynamo and is used by Riak, Cassandra, and Voldemort.
+
+![Leaderless Replication](../images/distributed_systems/quorum.png)  
+Source: Designing Data-Intensive Applications
+
+#### Quorum Consistency Mechanics
+
+![Quorum Consistency](../images/distributed_systems/quorum_n_r_phenomenon.png)  
+Source: Designing Data-Intensive Applications
+
+Consistency is managed through configurable parameters:
+
+* n: The number of replicas.
+* w: The number of nodes that must acknowledge a write for it to be successful.
+* r: The number of nodes that must be queried for a read.
+
+To ensure an up-to-date value is returned, the system must satisfy the condition: w + r > n. This ensures the set of nodes written to and the set of nodes read from overlap by at least one node.
+
+#### Healing and Synchronization
+
+Because nodes can miss writes while offline, leaderless systems use two primary healing mechanisms:
+
+* **Read Repair:** When a client reads from multiple nodes and detects a stale value, it writes the newest version back to the lagging node.
+* **Anti-Entropy Process:** A background process that constantly compares replicas and synchronizes missing data.
+
+#### Sloppy Quorums and Hinted Handoff
+
+In a large cluster, if a client cannot reach the n designated "home" nodes for a value, it may write to other reachable nodes. This is a **sloppy quorum**.
+Once the home nodes return, the temporary holders send the writes to them; this is known as **hinted handoff**. This increases write availability but compromises the w + r > n consistency guarantee until the handoff completes.
+
+---
+
+#### Causality and Concurrency
+
+In distributed systems, physical time is unreliable for ordering events. Instead, these systems rely on the "happens-before" relationship to define concurrency.
+
+##### **Defining Concurrency**
+
+Two operations are concurrent if neither knows about the other. If operation B knows about, builds upon, or depends on operation A, then A happened before B, and B should overwrite A.
+
+##### **Versioning and Conflict Detection**
+
+* **Version Numbers:** On a single node, a version number is incremented for every write. The server returns the version number with the value, and the client must include that version number in subsequent writes to show which state the write is based on.
+* **Version Vectors:** In leaderless systems with multiple replicas, a single version number is insufficient. A version vector—a collection of version numbers from all replicas—is used. This allows the database to distinguish between overwrites and concurrent writes across different nodes.
+* **Tombstones:** When deleting an item in a system that allows merging (like a shopping cart), the system cannot simply erase the record. It must leave a tombstone (a deletion marker) so that the item does not "reappear" when siblings are merged.
+
+##### **Limitations of Last Write Wins (LWW)**
+
+LWW forces an arbitrary order on concurrent writes based on timestamps. While it achieves eventual convergence, it does so at the cost of durability, as successful writes can be silently discarded in favor of "newer" ones based on skewed clocks. For applications where data loss is unacceptable, LWW is considered a poor choice for conflict resolution.
 
 ---
 
