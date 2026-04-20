@@ -1,0 +1,3279 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Home of DS614 - Big Data Engineering, DAU">
+      
+      
+      
+        <link rel="canonical" href="https://ankushchander.com/lectures/es_replication/">
+      
+      
+        <link rel="prev" href="../replication/">
+      
+      
+        <link rel="next" href="../../code/storage_engines/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Elasticsearch Replication - DS614 - Big Data Engineering | DAU</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#elasticsearch-data-replication" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DS614 - Big Data Engineering | DAU" class="md-header__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DS614 - Big Data Engineering | DAU
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Elasticsearch Replication
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../0storage_prerequisites/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../code/storage_engines/" class="md-tabs__link">
+          
+  
+  
+  Code
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DS614 - Big Data Engineering | DAU" class="md-nav__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DS614 - Big Data Engineering | DAU
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lectures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lectures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Storage
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Storage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prerequisites
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0storage_prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/concurrency_prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concurrency Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/python_profiling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python profiling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1hash_indexes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Log Based Storage + Hash Indexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2ssts_lsm_trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSTables + LSM Trees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3btrees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B-Trees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_5" id="__nav_2_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Columnar Storage
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Columnar Storage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4columnar_storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OLTP vs OLAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/pandas_parquet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pandas parquet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Transformation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Transformation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1" id="__nav_2_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Batch Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/batch_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch processing: Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6hdfs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed Filesystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../map_reduce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Map reduce framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spark_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spark Intro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_5" id="__nav_2_2_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformation layer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Transformation layer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformation_quering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Querying
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformation_modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformation_joins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Joins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stream Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../streaming_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../streaming_examples_with_aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Ingestion
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Ingestion
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_ingestion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stream_ingestion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Ingestion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_orchestration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Orchestration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Distributed Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../replication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Replication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Elasticsearch Replication
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Elasticsearch Replication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#elasticsearch-data-replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elasticsearch Data Replication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-core-abstraction-index-shards-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Core Abstraction: Index → Shards → Replicas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-write-path-indexing-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Write Path (Indexing Flow)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Write Path (Indexing Flow)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-step flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acknowledgment-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acknowledgment modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-read-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Read Path
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Read Path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-balancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load balancing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-consistency-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Consistency Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Consistency Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key concepts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-failure-handling-and-failover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Failure Handling and Failover
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Failure Handling and Failover">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-shard-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primary shard failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replica-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replica failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-replication-guarantees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Replication Guarantees
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-shard-allocation-and-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Shard Allocation and Placement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Shard Allocation and Placement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-network-and-performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Network and Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-handling-replication-lag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Handling Replication Lag
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Handling Replication Lag">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-sync-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In-sync replicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-comparison-with-classical-replication-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Comparison with Classical Replication Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-key-design-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Key Design Insights
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Key Design Insights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-shard-level-leadership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Shard-level leadership
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-tight-integration-with-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Tight integration with storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-built-for-search-not-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Built for search, not transactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-subtle-failure-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Subtle Failure Scenarios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Subtle Failure Scenarios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lost-acknowledged-writes-rare-but-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lost acknowledged writes (rare but possible)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stale-reads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stale reads
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Mental Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/storage_engines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Engines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Ankush-Chander/sorted-string-table-101" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSTable
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B-Tree
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    B-Tree
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/sql_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQLite Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Batch Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/batch_processing/hadoop%20single%20node%20cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hadoop Single Node Cluster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/batch_processing/non_sudoer_hadoop_single_node_cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non Sudoer Hadoop Single Node Cluster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/batch_processing/non_sudoer_hadoop_multi_node_cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non Sudoer Hadoop Multi Node Cluster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/spark_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PySpark Demo: NYC Taxi Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Demos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../demo/db-normalization-demo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Normal forms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stream Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/stream_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Processing — Four Ways to Consume a Data Stream
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/cdc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Change Data Capture (CDC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#elasticsearch-data-replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elasticsearch Data Replication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-core-abstraction-index-shards-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Core Abstraction: Index → Shards → Replicas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-write-path-indexing-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Write Path (Indexing Flow)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Write Path (Indexing Flow)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-step flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acknowledgment-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acknowledgment modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-read-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Read Path
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Read Path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-balancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load balancing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-consistency-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Consistency Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Consistency Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key concepts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-failure-handling-and-failover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Failure Handling and Failover
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Failure Handling and Failover">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-shard-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primary shard failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replica-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replica failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-replication-guarantees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Replication Guarantees
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-shard-allocation-and-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Shard Allocation and Placement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Shard Allocation and Placement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-network-and-performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Network and Performance Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-handling-replication-lag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Handling Replication Lag
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Handling Replication Lag">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-sync-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In-sync replicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-comparison-with-classical-replication-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Comparison with Classical Replication Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-key-design-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Key Design Insights
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Key Design Insights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-shard-level-leadership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Shard-level leadership
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-tight-integration-with-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Tight integration with storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-built-for-search-not-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Built for search, not transactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-subtle-failure-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Subtle Failure Scenarios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Subtle Failure Scenarios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lost-acknowledged-writes-rare-but-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lost acknowledged writes (rare but possible)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stale-reads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stale reads
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Mental Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Elasticsearch Replication</h1>
+
+<h2 id="elasticsearch-data-replication">Elasticsearch Data Replication</h2>
+<p><img alt="Image" src="https://images.openai.com/static-rsc-4/biZ5ehuRhj02T_Q7ksHruI9jcfe4I8mwQ1abTETurxRSsIuK0_oDDL7DZEPe-1SLPFQ6JoKJo9r9c3NV4lD5JdGCrEofhr6GkPncgJR1XXgnlZPLNTynvbo-11clOdo4GbRJ1vN7LKxajSKiMdNVkwuKgC4HU5gj4pfjEB0KhkdRcIw6p5XgQsMT94ZdGGnG?purpose=fullsize" /></p>
+<p><img alt="Image" src="https://images.openai.com/static-rsc-4/oUZI1Y93GOPN5S5QS7MeiNDb8qbd0JwYORi-EVEs8v_dv-taBlDgBqblGyDFtcXtO5l9Qtlb7CNeZVIf9s-AaltbyQkjL44BH5XIqxLVrh9ybJvKmkrU1bSxAc55TTr1zovJ4CiBLBpikeW9nYjfjSprgvzO6dfHOswbRNrmjqhzJ59ee5f5e2lhRqUfgWSo?purpose=fullsize" /></p>
+<p><img alt="Image" src="https://images.openai.com/static-rsc-4/d0Z_S6zc_07R2_-Lh-OWnMpNsFEWLSBAgbDv62BcLd0r1JoyC_Z2V8AEvmDhhuZGZKL4gRjTqR-mxYc-PoCsuj_2JmCdAhTeLkLwCG8pNkK2wrSh3O1_lu7VhCtahekfYMsJE9eFo6K3ToPSXsngLu2UM0QAaioVRty-rzb_IA0kkQPOdiUSJqBm2iLh3Rfa?purpose=fullsize" /></p>
+<p><img alt="Image" src="https://images.openai.com/static-rsc-4/B6fOKq_g3DGKrNS0is7jsKwQRZoMOwA_BvNqul6Jwu7JsTHoRl5iePsivcpjaIBlGvMtlvYIgdHyuU1Sg9ISIWPPPx8B53iuWW4ahjpsV_RSuVNwsBbjQtMbIbmj-97BW5xVHCV1E29XWEWqa4B6z7GInsXEpS_KFED8km9ECi4wIsMUqUPj4CD8OGUzCJES?purpose=fullsize" /></p>
+<p><img alt="Image" src="https://images.openai.com/static-rsc-4/fgNPQmatEMsHWz9yGYS_f4kfzyMo4nQBM14HdgyPtELQ60_AnZ_oGZNnhtd9EF7cs5KIYJT9PRhoVrUh4X4Rk_oXDq-Lim-RjQhMlB64phxcQ2hRA6-8SldfgngSOXTHQoUxs3FOG5JlHim7mx1v9rFAw4YzGFQG0Ilkj9fhNzWd9Ngz58qahw_fUSuMTXsI?purpose=fullsize" /></p>
+<p><img alt="Image" src="https://images.openai.com/static-rsc-4/tgU3V-cPQaCfAZdjgD5aWL8cBbd6OKDa4Emi27RAaf5CV9bL6C3IJe0TrpU9-f1Kn-FQct61UPcCUAYQIkkpv0TGpZkXFaogW0TB7xXVWaqIZV7II_N-DfDos7WbMzOxR3Q-1_jOD-xt5nxjQh5FVtODaJfG8-aC0vdeca4FpWqcaoXrPCAIzEM9-Ou8BvbB?purpose=fullsize" /></p>
+<p><img alt="Image" src="https://images.openai.com/static-rsc-4/AILcp_NOYcax0Jxe0AciXRl3wUoER7XdHtiGDX8P7cniIBg-LRC3zEZ_Uq-QXSlF4OiYDs2SZPbe5S7HUYmaXLC4yjgkcCus-UCb8tB2-2Xxzre0_O8OQZJDbFcZruvbnInVkUJZef28samb3-_DpVUNZ7fP21s826ovfsnNZVIK6GGzIYBqHSq-TEef66eG?purpose=fullsize" /></p>
+<p>Elasticsearch uses a <strong>leader-based replication model at the shard level</strong>, combined with automatic distribution and failover mechanisms. It is conceptually closest to <strong>single-leader replication</strong>, but applied <strong>per shard rather than per database</strong>.</p>
+<hr />
+<h2 id="1-core-abstraction-index-shards-replicas">1. Core Abstraction: Index → Shards → Replicas</h2>
+<p>An index in Elasticsearch is divided into <strong>shards</strong>, and each shard is replicated.</p>
+<ul>
+<li>
+<p><strong>Primary Shard</strong></p>
+</li>
+<li>
+<p>Acts as the <strong>leader</strong> for that shard</p>
+</li>
+<li>
+<p>Handles all write operations</p>
+</li>
+<li>
+<p><strong>Replica Shard</strong></p>
+</li>
+<li>
+<p>Copies of the primary shard</p>
+</li>
+<li>Serve read requests</li>
+<li>Provide redundancy</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Index: users
+Shards: 3 primary shards
+Replicas: 1 replica per primary
+
+Total shards = 3 primaries + 3 replicas = 6
+</code></pre></div>
+<p>Each shard is placed on a different node to ensure fault tolerance.</p>
+<hr />
+<h2 id="2-write-path-indexing-flow">2. Write Path (Indexing Flow)</h2>
+<p>Elasticsearch enforces a strict <strong>primary-first write model</strong>.</p>
+<h3 id="step-by-step-flow">Step-by-step flow</h3>
+<ol>
+<li>Client sends a write request (index/update/delete) to any node</li>
+<li>That node acts as a <strong>coordinating node</strong></li>
+<li>Request is routed to the appropriate <strong>primary shard</strong></li>
+<li>
+<p>Primary shard:</p>
+</li>
+<li>
+<p>Validates and applies the operation</p>
+</li>
+<li>Assigns a sequence number (ordering guarantee)</li>
+<li>Primary forwards the operation to all <strong>replica shards</strong></li>
+<li>Replicas apply the operation in the same order</li>
+<li>Acknowledgment is returned</li>
+</ol>
+<h3 id="acknowledgment-modes">Acknowledgment modes</h3>
+<ul>
+<li><strong>default (quorum-like behavior)</strong>: success after primary + replicas respond</li>
+<li><strong>async option</strong>: client gets response after primary (faster but riskier)</li>
+</ul>
+<p>This is similar to <strong>semi-synchronous replication</strong> in traditional databases.</p>
+<hr />
+<h2 id="3-read-path">3. Read Path</h2>
+<p>Reads can be served from:</p>
+<ul>
+<li>Primary shard</li>
+<li>Any replica shard</li>
+</ul>
+<p>This enables <strong>horizontal read scaling</strong>.</p>
+<h3 id="load-balancing">Load balancing</h3>
+<ul>
+<li>Elasticsearch automatically distributes read requests across replicas</li>
+<li>Improves throughput and latency</li>
+</ul>
+<hr />
+<h2 id="4-consistency-model">4. Consistency Model</h2>
+<p>Elasticsearch provides <strong>near real-time (NRT) consistency</strong>, not strict immediate consistency.</p>
+<h3 id="key-concepts">Key concepts</h3>
+<ul>
+<li>
+<p><strong>Refresh interval (default ~1 second)</strong></p>
+</li>
+<li>
+<p>Data becomes searchable only after refresh</p>
+</li>
+<li>
+<p>Writes are durable before they are searchable</p>
+</li>
+<li>
+<p><strong>Translog (transaction log)</strong></p>
+</li>
+<li>
+<p>Ensures durability before data is flushed to disk</p>
+</li>
+<li>
+<p><strong>Sequence numbers + primary terms</strong></p>
+</li>
+<li>
+<p>Ensure correct ordering of operations</p>
+</li>
+<li>Prevent stale replicas from overwriting newer data</li>
+</ul>
+<hr />
+<h2 id="5-failure-handling-and-failover">5. Failure Handling and Failover</h2>
+<h3 id="primary-shard-failure">Primary shard failure</h3>
+<ol>
+<li>Cluster detects node failure</li>
+<li>One of the replicas is promoted to <strong>new primary</strong></li>
+<li>Cluster rebalances to maintain replica count</li>
+</ol>
+<p>This is analogous to <strong>automatic failover in leader-based systems</strong>.</p>
+<h3 id="replica-failure">Replica failure</h3>
+<ul>
+<li>Missing replica is recreated from primary</li>
+<li>No write disruption unless replication factor is violated</li>
+</ul>
+<hr />
+<h2 id="6-replication-guarantees">6. Replication Guarantees</h2>
+<p>Elasticsearch ensures:</p>
+<ul>
+<li><strong>Write ordering per shard</strong></li>
+<li><strong>At-least-once replication</strong></li>
+<li><strong>No split-brain (via cluster coordination)</strong></li>
+</ul>
+<p>Cluster coordination is handled by a consensus mechanism (Zen2, inspired by Raft-like principles).</p>
+<hr />
+<h2 id="7-shard-allocation-and-placement">7. Shard Allocation and Placement</h2>
+<p>Elasticsearch automatically manages:</p>
+<ul>
+<li><strong>Shard distribution across nodes</strong></li>
+<li>Avoids placing primary and replica on same node</li>
+<li>Rebalances when nodes join/leave</li>
+</ul>
+<h3 id="goals">Goals</h3>
+<ul>
+<li>Fault tolerance</li>
+<li>Even load distribution</li>
+<li>Efficient resource usage</li>
+</ul>
+<hr />
+<h2 id="8-network-and-performance-considerations">8. Network and Performance Considerations</h2>
+<p>Replication cost depends on:</p>
+<ul>
+<li>Number of replicas</li>
+<li>Network bandwidth</li>
+<li>Write rate</li>
+</ul>
+<p>Trade-offs:</p>
+<table>
+<thead>
+<tr>
+<th>More Replicas</th>
+<th>Fewer Replicas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Higher read throughput</td>
+<td>Faster writes</td>
+</tr>
+<tr>
+<td>Better fault tolerance</td>
+<td>Lower resource usage</td>
+</tr>
+<tr>
+<td>Higher network overhead</td>
+<td>Less redundancy</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-handling-replication-lag">9. Handling Replication Lag</h2>
+<p>Unlike async DBs, Elasticsearch minimizes lag by:</p>
+<ul>
+<li>Applying writes to replicas immediately</li>
+<li>Using <strong>in-sync replica set (ISR)</strong></li>
+</ul>
+<h3 id="in-sync-replicas">In-sync replicas</h3>
+<ul>
+<li>Only replicas that are fully caught up</li>
+<li>Writes are acknowledged only if ISR condition is satisfied</li>
+</ul>
+<p>If a replica falls behind:</p>
+<ul>
+<li>It is removed from ISR</li>
+<li>Must catch up before rejoining</li>
+</ul>
+<hr />
+<h2 id="10-comparison-with-classical-replication-models">10. Comparison with Classical Replication Models</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Elasticsearch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model</td>
+<td>Single-leader (per shard)</td>
+</tr>
+<tr>
+<td>Writes</td>
+<td>Only to primary shard</td>
+</tr>
+<tr>
+<td>Reads</td>
+<td>Primary + replicas</td>
+</tr>
+<tr>
+<td>Failover</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td>Consistency</td>
+<td>Near real-time</td>
+</tr>
+<tr>
+<td>Scaling</td>
+<td>Horizontal via sharding</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-key-design-insights">11. Key Design Insights</h2>
+<h3 id="1-shard-level-leadership">1. Shard-level leadership</h3>
+<p>Instead of one global leader:</p>
+<ul>
+<li>Each shard has its own leader</li>
+<li>Enables massive parallelism</li>
+</ul>
+<h3 id="2-tight-integration-with-storage">2. Tight integration with storage</h3>
+<ul>
+<li>Replication is tied to Lucene segments</li>
+<li>Efficient but less flexible than logical replication</li>
+</ul>
+<h3 id="3-built-for-search-not-transactions">3. Built for search, not transactions</h3>
+<ul>
+<li>
+<p>Optimized for:</p>
+</li>
+<li>
+<p>High read throughput</p>
+</li>
+<li>Distributed indexing</li>
+<li>
+<p>Not ideal for:</p>
+</li>
+<li>
+<p>Strong transactional guarantees</p>
+</li>
+</ul>
+<hr />
+<h2 id="12-subtle-failure-scenarios">12. Subtle Failure Scenarios</h2>
+<h3 id="lost-acknowledged-writes-rare-but-possible">Lost acknowledged writes (rare but possible)</h3>
+<p>If:</p>
+<ul>
+<li>Primary acknowledges</li>
+<li>Crashes before replicas persist</li>
+</ul>
+<p>Mitigation:</p>
+<ul>
+<li>Use higher replication settings</li>
+<li>Durable translog configuration</li>
+</ul>
+<hr />
+<h3 id="stale-reads">Stale reads</h3>
+<p>Due to refresh interval:</p>
+<ul>
+<li>Recently written data may not appear in search immediately</li>
+</ul>
+<p>Solution:</p>
+<ul>
+<li>Force refresh (costly)</li>
+<li>Use GET (real-time API)</li>
+</ul>
+<hr />
+<h2 id="13-mental-model">13. Mental Model</h2>
+<p>Think of Elasticsearch as:</p>
+<ul>
+<li>A <strong>collection of mini leader-follower systems (shards)</strong></li>
+<li>
+<p>Each shard:</p>
+</li>
+<li>
+<p>Has one leader (primary)</p>
+</li>
+<li>Multiple followers (replicas)</li>
+<li>Coordinated by a cluster manager</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../replication/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Replication">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Replication
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../code/storage_engines/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage Engines">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Storage Engines
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Ankush Chander
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.expand", "navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

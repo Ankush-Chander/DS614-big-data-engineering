@@ -16,7 +16,7 @@
         <link rel="prev" href="../encoding/">
       
       
-        <link rel="next" href="../../code/storage_engines/">
+        <link rel="next" href="../es_replication/">
       
       
         
@@ -1636,6 +1636,184 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#multi-leader-replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Leader Replication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-Leader Replication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primary Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison-of-deployment-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison of Deployment Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replication-topologies_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replication Topologies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-write-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handling Write Conflicts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Handling Write Conflicts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategies-for-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategies for Resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leaderless-replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leaderless Replication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Leaderless Replication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quorum-consistency-mechanics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quorum Consistency Mechanics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#healing-and-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Healing and Synchronization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sloppy-quorums-and-hinted-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sloppy Quorums and Hinted Handoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causality-and-concurrency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Causality and Concurrency
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Causality and Concurrency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-concurrency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defining Concurrency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioning-and-conflict-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning and Conflict Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations-of-last-write-wins-lww" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations of Last Write Wins (LWW)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1656,6 +1834,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../es_replication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Elasticsearch Replication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2396,6 +2602,184 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#multi-leader-replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Leader Replication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-Leader Replication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primary Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison-of-deployment-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison of Deployment Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replication-topologies_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replication Topologies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-write-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handling Write Conflicts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Handling Write Conflicts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategies-for-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategies for Resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leaderless-replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leaderless Replication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Leaderless Replication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quorum-consistency-mechanics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quorum Consistency Mechanics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#healing-and-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Healing and Synchronization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sloppy-quorums-and-hinted-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sloppy Quorums and Hinted Handoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causality-and-concurrency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Causality and Concurrency
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Causality and Concurrency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-concurrency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defining Concurrency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioning-and-conflict-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning and Conflict Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations-of-last-write-wins-lww" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations of Last Write Wins (LWW)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2594,53 +2978,128 @@ All other replicas (followers) can only receive and handle read requests.</p>
 <li><strong>Consistent Prefix Reads:</strong> In partitioned databases, causal dependencies may be violated (e.g., seeing an answer before a question) if different partitions replicate at different speeds.
  Solution:* Ensure causally related writes are directed to the same partition.</li>
 </ul>
-<!-- ### Multi Leader  
-
-More nodes act as leaders, receiving and applying the write requests.  
-
-**Pros:**
-
-* The main benefit is that more databases perform writes, being located closer to the clients.  
-* This increases the write throughput and reduce the latency.  
-
-**Cons:**
-
-The drawback is that it's necessary to solve write conflicts.  
-Some possible solutions are:  
-
-* attach a timestamp to each write and let followers apply the write with highest value  
-* record the conflicts and write application code to let users manually resolve them  
-* store all the conflicting writes and return them to the clients when they try to read that data.  
-The client is then responsible for solving the conflict and write the data back to the database.  
-CouchDB follows this last approach.  
-
----
-
-### Leaderless  
-
-Each database instance can accept writes and the clients can send writes concurrently.  
-As soon a client gets a confirmation from some of the instances, a write is successful.  
-
-**Pros:**
-
-* The benefit is that failures are tolerated easily without failover strategies.  
-
-**Cons:**
-
-* But having no leader handling any kind of synchronization causes other issues.  
-* First of all if some writes fail, the corresponding instances will have stale data.  
-* To deal with this, clients need to read data from several instances concurrently.  
-* The instances then return their data with a kind of version number.  
-* The clients can use this number to decide which data to keep and which to discard.  
-* But how to update instances having stale data?  
-
-There are 2 common techniques.  
-
-* read repair: when a client detects that a read data is stale, it sends a write request with the correct data  
-* background process: a background process take care of periodically synchronize all database instances.  
-
---- -->
-
+<hr />
+<h3 id="multi-leader-replication">Multi-Leader Replication</h3>
+<p>In a multi-leader configuration (also known as active-active or master-master replication), more than one node can process write requests. Each leader also acts as a follower to all other leaders, propagating changes across the network.</p>
+<h4 id="primary-use-cases">Primary Use Cases</h4>
+<ul>
+<li><strong>Multi-Datacenter Operation:</strong> A leader is placed in each datacenter. Within the datacenter, leader-follower replication is used; between datacenters, leaders replicate to one another.</li>
+<li><strong>Offline Operation:</strong> Applications like mobile calendars act as local leaders, allowing writes while disconnected. These changes are synchronized asynchronously when the device regains internet access.</li>
+<li><strong>Collaborative Editing:</strong> Real-time tools (e.g., Google Docs) treat local edits as writes to a local replica that are asynchronously replicated to other users.</li>
+</ul>
+<p><img alt="Multileader Replication Setup" src="../../images/distributed_systems/multileader_replication_setup.png" /></p>
+<h4 id="comparison-of-deployment-models">Comparison of Deployment Models</h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Single-Leader (Multi-DC)</th>
+<th>Multi-Leader (Multi-DC)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Performance</strong></td>
+<td>High latency; all writes must travel to the leader's DC.</td>
+<td>Low latency; writes are processed in the local DC.</td>
+</tr>
+<tr>
+<td><strong>Outage Tolerance</strong></td>
+<td>Requires failover/promotion of a new leader if the main DC fails.</td>
+<td>Each DC operates independently; replication resumes when the failed DC recovers.</td>
+</tr>
+<tr>
+<td><strong>Network Tolerance</strong></td>
+<td>Sensitive to inter-DC link reliability; writes are typically synchronous.</td>
+<td>Better tolerance; asynchronous replication prevents network interruptions from blocking writes.</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Multileader Multi-DC" src="../../images/distributed_systems/multileader_multidc.png" /></p>
+<h4 id="replication-topologies_1">Replication Topologies</h4>
+<p>The communication paths between nodes define the replication topology:  </p>
+<p><img alt="" src="../../images/distributed_systems/multileader_topology.jpg" /><br />
+Source: <a href="https://medium.com/@satyavarssheni/mastering-multi-leader-replication-topologies-conflicts-scenarios-explained-0fedf8f5ed7d">@satyavarssheni</a></p>
+<p><strong>Star Topology:</strong></p>
+<ul>
+<li>Single root node forwards writes to cluster (generalizes to tree)</li>
+<li>Loop prevention via ID tagging on each write</li>
+<li>Single point of failure; requires manual reconfiguration when node fails</li>
+</ul>
+<p><strong>Circular Topology:</strong></p>
+<ul>
+<li>Sequential data flow where writes trickle through replicated nodes</li>
+<li>Loop prevention via ID tagging on each write</li>
+<li>Single-failure point; high manual intervention requirement</li>
+<li>MySQL's default multi-leader topology</li>
+</ul>
+<p><strong>All-to-All Topology:</strong></p>
+<ul>
+<li>Every leader broadcasts to all others</li>
+<li>Better fault tolerance via alternative routing</li>
+<li>Network delays cause message order violations</li>
+<li>Requires careful conflict detection implementation</li>
+</ul>
+<hr />
+<h4 id="handling-write-conflicts">Handling Write Conflicts</h4>
+<p>The primary disadvantage of multi-leader replication is the occurrence of write conflicts, where the same data is modified concurrently in different locations.</p>
+<p><img alt="Write Conflict" src="../../images/distributed_systems/write_conflict.png" /></p>
+<h5 id="strategies-for-resolution"><strong>Strategies for Resolution</strong></h5>
+<ol>
+<li><strong>Conflict Avoidance:</strong> The most recommended approach. All writes for a specific record are routed to the same leader (e.g., based on the user's geographic location).</li>
+<li>
+<p><strong>Convergent Consistency:</strong> Ensuring all replicas arrive at the same final value.</p>
+<ul>
+<li><strong>Last Write Wins (LWW):</strong> Uses a timestamp or unique ID to pick a winner; prone to data loss.</li>
+<li><strong>Replica ID Precedence:</strong> Writes from higher-numbered replicas take priority.</li>
+<li><strong>Value Merging:</strong> Combining conflicting values (e.g., alphabetical concatenation).</li>
+</ul>
+</li>
+<li>
+<p><strong>Custom Logic:</strong></p>
+<ul>
+<li>On Write: A background process runs a conflict handler as soon as the conflict is detected.</li>
+<li>On Read: Conflicting versions (siblings) are stored and returned to the application, which then resolves the conflict and writes the result back.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="leaderless-replication">Leaderless Replication</h3>
+<p>Leaderless (or Dynamo-style) replication allows any replica to directly accept writes. This model was pioneered by Amazon's Dynamo and is used by Riak, Cassandra, and Voldemort.</p>
+<p><img alt="Leaderless Replication" src="../../images/distributed_systems/quorum.png" /><br />
+Source: Designing Data-Intensive Applications</p>
+<h4 id="quorum-consistency-mechanics">Quorum Consistency Mechanics</h4>
+<p><img alt="Quorum Consistency" src="../../images/distributed_systems/quorum_n_r_phenomenon.png" /><br />
+Source: Designing Data-Intensive Applications</p>
+<p>Consistency is managed through configurable parameters:</p>
+<ul>
+<li>n: The number of replicas.</li>
+<li>w: The number of nodes that must acknowledge a write for it to be successful.</li>
+<li>r: The number of nodes that must be queried for a read.</li>
+</ul>
+<p>To ensure an up-to-date value is returned, the system must satisfy the condition: w + r &gt; n. This ensures the set of nodes written to and the set of nodes read from overlap by at least one node.</p>
+<h4 id="healing-and-synchronization">Healing and Synchronization</h4>
+<p>Because nodes can miss writes while offline, leaderless systems use two primary healing mechanisms:</p>
+<ul>
+<li><strong>Read Repair:</strong> When a client reads from multiple nodes and detects a stale value, it writes the newest version back to the lagging node.</li>
+<li><strong>Anti-Entropy Process:</strong> A background process that constantly compares replicas and synchronizes missing data.</li>
+</ul>
+<h4 id="sloppy-quorums-and-hinted-handoff">Sloppy Quorums and Hinted Handoff</h4>
+<p>In a large cluster, if a client cannot reach the n designated "home" nodes for a value, it may write to other reachable nodes. This is a <strong>sloppy quorum</strong>.
+Once the home nodes return, the temporary holders send the writes to them; this is known as <strong>hinted handoff</strong>. This increases write availability but compromises the w + r &gt; n consistency guarantee until the handoff completes.</p>
+<hr />
+<h4 id="causality-and-concurrency">Causality and Concurrency</h4>
+<p>In distributed systems, physical time is unreliable for ordering events. Instead, these systems rely on the "happens-before" relationship to define concurrency.</p>
+<h5 id="defining-concurrency"><strong>Defining Concurrency</strong></h5>
+<p>Two operations are concurrent if neither knows about the other. If operation B knows about, builds upon, or depends on operation A, then A happened before B, and B should overwrite A.</p>
+<h5 id="versioning-and-conflict-detection"><strong>Versioning and Conflict Detection</strong></h5>
+<ul>
+<li><strong>Version Numbers:</strong> On a single node, a version number is incremented for every write. The server returns the version number with the value, and the client must include that version number in subsequent writes to show which state the write is based on.</li>
+<li><strong>Version Vectors:</strong> In leaderless systems with multiple replicas, a single version number is insufficient. A version vector—a collection of version numbers from all replicas—is used. This allows the database to distinguish between overwrites and concurrent writes across different nodes.</li>
+<li><strong>Tombstones:</strong> When deleting an item in a system that allows merging (like a shopping cart), the system cannot simply erase the record. It must leave a tombstone (a deletion marker) so that the item does not "reappear" when siblings are merged.</li>
+</ul>
+<h5 id="limitations-of-last-write-wins-lww"><strong>Limitations of Last Write Wins (LWW)</strong></h5>
+<p>LWW forces an arbitrary order on concurrent writes based on timestamps. While it achieves eventual convergence, it does so at the cost of durability, as successful writes can be silently discarded in favor of "newer" ones based on skewed clocks. For applications where data loss is unacceptable, LWW is considered a poor choice for conflict resolution.</p>
 <hr />
 <h2 id="references">References</h2>
 <ol>
@@ -2692,13 +3151,13 @@ There are 2 common techniques.
         
         
           
-          <a href="../../code/storage_engines/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage Engines">
+          <a href="../es_replication/" class="md-footer__link md-footer__link--next" aria-label="Next: Elasticsearch Replication">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Storage Engines
+                Elasticsearch Replication
               </div>
             </div>
             <div class="md-footer__button md-icon">
