@@ -37,6 +37,6 @@ Welcome to the course on Big Data Engineering.
     - [Data Encoding](lectures/encoding.md)
   - Distributed Systems
     - [Replication](lectures/replication.md)
-    - [Elasticsearch Replication](lectures/es_replication.md)
+    - [Replication(examples)](lectures/es_replication.md)
 
 ---

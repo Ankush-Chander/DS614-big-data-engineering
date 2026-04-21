@@ -220,6 +220,24 @@ Leaderless (or Dynamo-style) replication allows any replica to directly accept w
 ![Leaderless Replication](../images/distributed_systems/quorum.png)  
 Source: Designing Data-Intensive Applications
 
+**Concrete example (Dynamo-style)**
+
+Let’s say you write:
+
+```bash
+put("user123", {...})
+```
+
+What happens:
+
+1. Your backend calls the DB client (SDK/driver)
+2. The client library:
+    * Uses partitioning (consistent hashing)
+    * Finds the responsible nodes
+    * Sends write to N replicas
+3. Waits for W acknowledgments
+4. Returns success/failure
+
 #### Quorum Consistency Mechanics
 
 ![Quorum Consistency](../images/distributed_systems/quorum_n_r_phenomenon.png)  
