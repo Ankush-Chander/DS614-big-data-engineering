@@ -27,7 +27,7 @@
     
     
       
-        <title>Elasticsearch Replication - DS614 - Big Data Engineering | DAU</title>
+        <title>Replication(examples) - DS614 - Big Data Engineering | DAU</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#elasticsearch-data-replication" class="md-skip">
+        <a href="#elasticsearch-replication" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Elasticsearch Replication
+              Replication(examples)
             
           </span>
         </div>
@@ -1506,7 +1506,7 @@
   <span class="md-ellipsis">
     
   
-    Elasticsearch Replication
+    Replication(examples)
   
 
     
@@ -1524,7 +1524,7 @@
   <span class="md-ellipsis">
     
   
-    Elasticsearch Replication
+    Replication(examples)
   
 
     
@@ -1548,44 +1548,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#elasticsearch-data-replication" class="md-nav__link">
+  <a href="#elasticsearch-replication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Elasticsearch Data Replication
+        Elasticsearch Replication
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-core-abstraction-index-shards-replicas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Core Abstraction: Index → Shards → Replicas
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-write-path-indexing-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Write Path (Indexing Flow)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Write Path (Indexing Flow)">
+    <nav class="md-nav" aria-label="Elasticsearch Replication">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-by-step-flow" class="md-nav__link">
+  <a href="#1-the-core-concept-primary-and-replica-shards" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step-by-step flow
+        1. The Core Concept: Primary and Replica Shards
       
     </span>
   </a>
@@ -1593,10 +1571,187 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#acknowledgment-modes" class="md-nav__link">
+  <a href="#2-the-replication-mechanism-how-it-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Acknowledgment modes
+        2. The Replication Mechanism (How it works)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-why-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Why Replicas?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Why Replicas?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-read-scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Read Scalability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-high-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. High Availability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-search-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Search Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-write-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Write Consistency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-rebalancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Rebalancing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-opensearch-specifics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. OpenSearch Specifics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffsbest-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tradeoffs/Best practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tradeoffs/Best practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-know-your-workload-always-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Know Your Workload (Always First)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-number-of-shards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Number of Shards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-number-of-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Number of Replicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-number-of-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Number of Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-number-of-indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Number of Indexes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-heuristics-practical-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Heuristics (Practical Defaults)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Mental Model
       
     </span>
   </a>
@@ -1609,22 +1764,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-read-path" class="md-nav__link">
+  <a href="#mysql-replication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Read Path
+        Mysql replication
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Read Path">
+    <nav class="md-nav" aria-label="Mysql replication">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#load-balancing" class="md-nav__link">
+  <a href="#1-the-core-mechanism-binary-logging" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Load balancing
+        1. The Core Mechanism: Binary Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-the-replication-process-io-and-sql-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The Replication Process (IO and SQL Threads)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-types-of-replication-latency-vs-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Types of Replication (Latency vs. Safety)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-binlog-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Binlog Formats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-global-transaction-identifiers-gtids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Global Transaction Identifiers (GTIDs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Common Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-crucial-considerations-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Crucial Considerations &amp; Risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-table-replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary Table: Replication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mental-model-shift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mental Model Shift
       
     </span>
   </a>
@@ -1633,262 +1876,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-consistency-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Consistency Model
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Consistency Model">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#key-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key concepts
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-failure-handling-and-failover" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Failure Handling and Failover
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Failure Handling and Failover">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#primary-shard-failure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Primary shard failure
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#replica-failure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Replica failure
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-replication-guarantees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Replication Guarantees
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-shard-allocation-and-placement" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. Shard Allocation and Placement
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7. Shard Allocation and Placement">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#goals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Goals
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8-network-and-performance-considerations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. Network and Performance Considerations
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-handling-replication-lag" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        9. Handling Replication Lag
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="9. Handling Replication Lag">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#in-sync-replicas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In-sync replicas
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#10-comparison-with-classical-replication-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        10. Comparison with Classical Replication Models
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#11-key-design-insights" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        11. Key Design Insights
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="11. Key Design Insights">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-shard-level-leadership" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Shard-level leadership
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-tight-integration-with-storage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Tight integration with storage
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-built-for-search-not-transactions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Built for search, not transactions
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#12-subtle-failure-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        12. Subtle Failure Scenarios
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="12. Subtle Failure Scenarios">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#lost-acknowledged-writes-rare-but-possible" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Lost acknowledged writes (rare but possible)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stale-reads" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Stale reads
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#13-mental-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        13. Mental Model
-      
-    </span>
-  </a>
   
 </li>
       
@@ -2488,6 +2475,94 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Distributed Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/distributed_systems/opensearch-lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Replication with Opensearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2520,44 +2595,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#elasticsearch-data-replication" class="md-nav__link">
+  <a href="#elasticsearch-replication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Elasticsearch Data Replication
+        Elasticsearch Replication
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-core-abstraction-index-shards-replicas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Core Abstraction: Index → Shards → Replicas
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-write-path-indexing-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Write Path (Indexing Flow)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Write Path (Indexing Flow)">
+    <nav class="md-nav" aria-label="Elasticsearch Replication">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-by-step-flow" class="md-nav__link">
+  <a href="#1-the-core-concept-primary-and-replica-shards" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step-by-step flow
+        1. The Core Concept: Primary and Replica Shards
       
     </span>
   </a>
@@ -2565,10 +2618,187 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#acknowledgment-modes" class="md-nav__link">
+  <a href="#2-the-replication-mechanism-how-it-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Acknowledgment modes
+        2. The Replication Mechanism (How it works)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-why-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Why Replicas?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Why Replicas?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-read-scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Read Scalability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-high-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. High Availability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-search-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Search Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-write-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Write Consistency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-rebalancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Rebalancing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-opensearch-specifics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. OpenSearch Specifics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffsbest-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tradeoffs/Best practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tradeoffs/Best practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-know-your-workload-always-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Know Your Workload (Always First)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-number-of-shards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Number of Shards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-number-of-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Number of Replicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-number-of-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Number of Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-number-of-indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Number of Indexes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-heuristics-practical-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Heuristics (Practical Defaults)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Mental Model
       
     </span>
   </a>
@@ -2581,22 +2811,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-read-path" class="md-nav__link">
+  <a href="#mysql-replication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Read Path
+        Mysql replication
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Read Path">
+    <nav class="md-nav" aria-label="Mysql replication">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#load-balancing" class="md-nav__link">
+  <a href="#1-the-core-mechanism-binary-logging" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Load balancing
+        1. The Core Mechanism: Binary Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-the-replication-process-io-and-sql-threads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The Replication Process (IO and SQL Threads)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-types-of-replication-latency-vs-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Types of Replication (Latency vs. Safety)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-binlog-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Binlog Formats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-global-transaction-identifiers-gtids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Global Transaction Identifiers (GTIDs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Common Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-crucial-considerations-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Crucial Considerations &amp; Risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-table-replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary Table: Replication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mental-model-shift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mental Model Shift
       
     </span>
   </a>
@@ -2605,262 +2923,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-consistency-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Consistency Model
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Consistency Model">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#key-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key concepts
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-failure-handling-and-failover" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Failure Handling and Failover
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Failure Handling and Failover">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#primary-shard-failure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Primary shard failure
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#replica-failure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Replica failure
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-replication-guarantees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Replication Guarantees
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-shard-allocation-and-placement" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. Shard Allocation and Placement
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7. Shard Allocation and Placement">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#goals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Goals
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8-network-and-performance-considerations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. Network and Performance Considerations
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#9-handling-replication-lag" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        9. Handling Replication Lag
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="9. Handling Replication Lag">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#in-sync-replicas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In-sync replicas
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#10-comparison-with-classical-replication-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        10. Comparison with Classical Replication Models
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#11-key-design-insights" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        11. Key Design Insights
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="11. Key Design Insights">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-shard-level-leadership" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Shard-level leadership
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-tight-integration-with-storage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Tight integration with storage
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-built-for-search-not-transactions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Built for search, not transactions
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#12-subtle-failure-scenarios" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        12. Subtle Failure Scenarios
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="12. Subtle Failure Scenarios">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#lost-acknowledged-writes-rare-but-possible" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Lost acknowledged writes (rare but possible)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stale-reads" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Stale reads
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#13-mental-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        13. Mental Model
-      
-    </span>
-  </a>
   
 </li>
       
@@ -2881,301 +2943,521 @@
 
 
 
-  <h1>Elasticsearch Replication</h1>
+  <h1>Replication(examples)</h1>
 
-<h2 id="elasticsearch-data-replication">Elasticsearch Data Replication</h2>
-<p><img alt="Image" src="https://images.openai.com/static-rsc-4/biZ5ehuRhj02T_Q7ksHruI9jcfe4I8mwQ1abTETurxRSsIuK0_oDDL7DZEPe-1SLPFQ6JoKJo9r9c3NV4lD5JdGCrEofhr6GkPncgJR1XXgnlZPLNTynvbo-11clOdo4GbRJ1vN7LKxajSKiMdNVkwuKgC4HU5gj4pfjEB0KhkdRcIw6p5XgQsMT94ZdGGnG?purpose=fullsize" /></p>
-<p><img alt="Image" src="https://images.openai.com/static-rsc-4/oUZI1Y93GOPN5S5QS7MeiNDb8qbd0JwYORi-EVEs8v_dv-taBlDgBqblGyDFtcXtO5l9Qtlb7CNeZVIf9s-AaltbyQkjL44BH5XIqxLVrh9ybJvKmkrU1bSxAc55TTr1zovJ4CiBLBpikeW9nYjfjSprgvzO6dfHOswbRNrmjqhzJ59ee5f5e2lhRqUfgWSo?purpose=fullsize" /></p>
-<p><img alt="Image" src="https://images.openai.com/static-rsc-4/d0Z_S6zc_07R2_-Lh-OWnMpNsFEWLSBAgbDv62BcLd0r1JoyC_Z2V8AEvmDhhuZGZKL4gRjTqR-mxYc-PoCsuj_2JmCdAhTeLkLwCG8pNkK2wrSh3O1_lu7VhCtahekfYMsJE9eFo6K3ToPSXsngLu2UM0QAaioVRty-rzb_IA0kkQPOdiUSJqBm2iLh3Rfa?purpose=fullsize" /></p>
-<p><img alt="Image" src="https://images.openai.com/static-rsc-4/B6fOKq_g3DGKrNS0is7jsKwQRZoMOwA_BvNqul6Jwu7JsTHoRl5iePsivcpjaIBlGvMtlvYIgdHyuU1Sg9ISIWPPPx8B53iuWW4ahjpsV_RSuVNwsBbjQtMbIbmj-97BW5xVHCV1E29XWEWqa4B6z7GInsXEpS_KFED8km9ECi4wIsMUqUPj4CD8OGUzCJES?purpose=fullsize" /></p>
-<p><img alt="Image" src="https://images.openai.com/static-rsc-4/fgNPQmatEMsHWz9yGYS_f4kfzyMo4nQBM14HdgyPtELQ60_AnZ_oGZNnhtd9EF7cs5KIYJT9PRhoVrUh4X4Rk_oXDq-Lim-RjQhMlB64phxcQ2hRA6-8SldfgngSOXTHQoUxs3FOG5JlHim7mx1v9rFAw4YzGFQG0Ilkj9fhNzWd9Ngz58qahw_fUSuMTXsI?purpose=fullsize" /></p>
-<p><img alt="Image" src="https://images.openai.com/static-rsc-4/tgU3V-cPQaCfAZdjgD5aWL8cBbd6OKDa4Emi27RAaf5CV9bL6C3IJe0TrpU9-f1Kn-FQct61UPcCUAYQIkkpv0TGpZkXFaogW0TB7xXVWaqIZV7II_N-DfDos7WbMzOxR3Q-1_jOD-xt5nxjQh5FVtODaJfG8-aC0vdeca4FpWqcaoXrPCAIzEM9-Ou8BvbB?purpose=fullsize" /></p>
-<p><img alt="Image" src="https://images.openai.com/static-rsc-4/AILcp_NOYcax0Jxe0AciXRl3wUoER7XdHtiGDX8P7cniIBg-LRC3zEZ_Uq-QXSlF4OiYDs2SZPbe5S7HUYmaXLC4yjgkcCus-UCb8tB2-2Xxzre0_O8OQZJDbFcZruvbnInVkUJZef28samb3-_DpVUNZ7fP21s826ovfsnNZVIK6GGzIYBqHSq-TEef66eG?purpose=fullsize" /></p>
-<p>Elasticsearch uses a <strong>leader-based replication model at the shard level</strong>, combined with automatic distribution and failover mechanisms. It is conceptually closest to <strong>single-leader replication</strong>, but applied <strong>per shard rather than per database</strong>.</p>
+<h2 id="elasticsearch-replication">Elasticsearch Replication</h2>
+<p>When comparing MySQL replication to Elasticsearch/OpenSearch replication, the key shift is from <strong>"replaying SQL logs"</strong> to <strong>"replicating operations and building index structures independently."</strong></p>
+<p>Unlike MySQL, Elasticsearch does <strong>not copy segment files during normal operation</strong>. Instead, it replicates indexing operations, and each node builds its own internal index.</p>
 <hr />
-<h2 id="1-core-abstraction-index-shards-replicas">1. Core Abstraction: Index → Shards → Replicas</h2>
-<p>An index in Elasticsearch is divided into <strong>shards</strong>, and each shard is replicated.</p>
+<h3 id="1-the-core-concept-primary-and-replica-shards">1. The Core Concept: Primary and Replica Shards</h3>
+<p><img alt="" src="../../images/distributed_systems/es_index_setup.jpeg" /><br />
+Source: ChatGPT</p>
+<p>In Elasticsearch, an index is split into <strong>Shards</strong>.</p>
 <ul>
 <li>
-<p><strong>Primary Shard</strong></p>
+<p><strong>Primary Shard (<span class="arithmatex"><span class="MathJax_Preview">P0</span><script type="math/tex">P0</script></span>):</strong> Handles all write operations for that shard.</p>
 </li>
 <li>
-<p>Acts as the <strong>leader</strong> for that shard</p>
+<p><strong>Replica Shards (<span class="arithmatex"><span class="MathJax_Preview">R0, R1, R2</span><script type="math/tex">R0, R1, R2</script></span>):</strong> Receive replicated operations and serve read requests.</p>
 </li>
-<li>
-<p>Handles all write operations</p>
-</li>
-<li>
-<p><strong>Replica Shard</strong></p>
-</li>
-<li>
-<p>Copies of the primary shard</p>
-</li>
-<li>Serve read requests</li>
-<li>Provide redundancy</li>
 </ul>
-<p>Example:</p>
-<div class="highlight"><pre><span></span><code>Index: users
-Shards: 3 primary shards
-Replicas: 1 replica per primary
-
-Total shards = 3 primaries + 3 replicas = 6
+<hr />
+<h3 id="2-the-replication-mechanism-how-it-works">2. The Replication Mechanism (How it works)</h3>
+<p>When a write operation is sent:</p>
+<ol>
+<li>
+<p><strong>Primary Shard:</strong></p>
+<ul>
+<li>
+<p>Applies the operation (index/update/delete)</p>
+</li>
+<li>
+<p>Writes to in-memory buffer and transaction log (translog)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Replication:</strong></p>
+<ul>
+<li>The operation (not segment files) is forwarded to Replica Shards</li>
+</ul>
+</li>
+<li>
+<p><strong>Replica Shards:</strong></p>
+<ul>
+<li>
+<p>Apply the same operation independently</p>
+</li>
+<li>
+<p>Build their own Lucene segments</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Acknowledgment:</strong></p>
+<ul>
+<li>Depends on configuration (e.g., required active shards)</li>
+</ul>
+</li>
+<li>
+<p><strong>Refresh (Background):</strong></p>
+<ul>
+<li>Makes data searchable (default ~1 second)</li>
+</ul>
+</li>
+</ol>
+<p><strong>Key Insight:</strong> Replication is <strong>operation-based</strong>, not file-copy-based (segment copying only occurs during recovery or rebalancing).</p>
+<hr />
+<h3 id="3-why-replicas">3. Why Replicas?</h3>
+<h4 id="a-read-scalability">A. Read Scalability</h4>
+<p>Queries are distributed across Primary + Replica shards in parallel.</p>
+<h4 id="b-high-availability">B. High Availability</h4>
+<p>If a Primary fails:</p>
+<ul>
+<li>A Replica is promoted automatically</li>
+</ul>
+<h4 id="c-search-performance">C. Search Performance</h4>
+<p>Replicas improve throughput and reduce query latency.</p>
+<hr />
+<h3 id="4-write-consistency">4. Write Consistency</h3>
+<p>Elasticsearch uses configurable acknowledgment settings:</p>
+<ul>
+<li>
+<p><strong>Default Behavior:</strong></p>
+</li>
+<li>
+<p>Primary must succeed</p>
+</li>
+<li>
+<p>Replicas may also be required depending on <code>wait_for_active_shards</code></p>
+</li>
+<li>
+<p><strong>Stronger Durability:</strong></p>
+</li>
+<li>
+<p>Wait for one or more replicas before acknowledging</p>
+</li>
+<li>
+<p><strong>Weaker Durability:</strong></p>
+</li>
+<li>
+<p>Acknowledge after primary only (faster, risk of data loss)</p>
+</li>
+</ul>
+<p>There is no strict quorum protocol like Raft; consistency is configurable rather than enforced via majority consensus.</p>
+<hr />
+<h3 id="5-rebalancing">5. Rebalancing</h3>
+<ul>
+<li>
+<p><strong>New Node Joins:</strong> Shards are redistributed automatically.</p>
+</li>
+<li>
+<p><strong>Node Failure:</strong></p>
+</li>
+<li>
+<p>Replica promoted to Primary</p>
+</li>
+<li>
+<p>Missing replicas rebuilt in background</p>
+</li>
+</ul>
+<hr />
+<h3 id="6-opensearch-specifics">6. OpenSearch Specifics</h3>
+<ul>
+<li>
+<p>Enhanced self-healing and cluster management</p>
+</li>
+<li>
+<p>Strong open-source ecosystem</p>
+</li>
+<li>
+<p>Kubernetes-native deployments via operators</p>
+</li>
+</ul>
+<h3 id="tradeoffsbest-practices">Tradeoffs/Best practices</h3>
+<h4 id="1-know-your-workload-always-first">1. Know Your Workload (Always First)</h4>
+<ul>
+<li>Define:<ul>
+<li>Queries/sec, indexing rate, data growth</li>
+<li>Query types (filters vs full-text vs aggregations)</li>
+</ul>
+</li>
+<li>Expect <strong>2–3 iterations</strong> before optimal design</li>
+</ul>
+<p><strong>Tradeoff:</strong></p>
+<ul>
+<li>Overestimate → wasted resources</li>
+<li>Underestimate → reindexing + scaling pain</li>
+</ul>
+<hr />
+<h4 id="2-number-of-shards">2. Number of Shards</h4>
+<ul>
+<li>Each shard = <strong>single-threaded query execution</strong></li>
+<li>Parallelism = across shards, not within shard</li>
+</ul>
+<p><strong>Guideline:</strong></p>
+<ul>
+<li>Target <strong>20–40 GB per shard</strong> (typical sweet spot)</li>
+<li>Avoid:<ul>
+<li>Too many tiny shards (&lt;1 GB)</li>
+<li>Too few huge shards (&gt;50–100 GB)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Tradeoffs:</strong></p>
+<ul>
+<li>
+<p><strong>More shards</strong></p>
+<ul>
+<li>Higher parallelism</li>
+<li>− More overhead (CPU, memory, scheduling)</li>
+<li>
+<p><strong>Fewer shards</strong></p>
+</li>
+<li>
+<p>Lower overhead</p>
+</li>
+<li>− Reduced parallelism, slower large queries</li>
+</ul>
+</li>
+</ul>
+<p><strong>Rule:</strong> Benchmark with real workload.</p>
+<hr />
+<h4 id="3-number-of-replicas">3. Number of Replicas</h4>
+<ul>
+<li>Max replicas ≤ (nodes − 1)</li>
+<li>Default = 1 (good baseline)</li>
+</ul>
+<p><strong>Use more replicas when:</strong></p>
+<ul>
+<li>Read-heavy workload</li>
+<li>Small dataset (can fit on each node)</li>
+</ul>
+<p><strong>Tradeoffs:</strong></p>
+<ul>
+<li><strong>More replicas</strong><ul>
+<li>Higher query throughput</li>
+<li>Better availability</li>
+<li>− More disk + memory usage</li>
+<li>− Higher cluster coordination cost</li>
+</ul>
+</li>
+<li><strong>Fewer replicas</strong><ul>
+<li>Lower cost</li>
+<li>− Reduced fault tolerance and read scaling</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h4 id="4-number-of-nodes">4. Number of Nodes</h4>
+<ul>
+<li>Minimum:</li>
+<li><strong>3 master-eligible nodes</strong> (avoid split brain)</li>
+<li>Prefer:</li>
+<li>Dedicated master nodes (no data role)</li>
+</ul>
+<p><strong>Scaling rule:</strong></p>
+<ul>
+<li>More data → more data nodes</li>
+<li>Keep shard size in target range</li>
+</ul>
+<p><strong>Tradeoffs:</strong></p>
+<ul>
+<li>
+<p><strong>More nodes</strong></p>
+</li>
+<li>
+<ul>
+<li>Better distribution, fault tolerance</li>
+</ul>
+</li>
+<li>− Higher coordination overhead</li>
+<li><strong>Fewer nodes</strong></li>
+<li>
+<ul>
+<li>Simpler cluster</li>
+</ul>
+</li>
+<li>− Risk of overload, poor resilience</li>
+</ul>
+<hr />
+<h4 id="5-number-of-indexes">5. Number of Indexes</h4>
+<ul>
+<li>Focus on <strong>total shard count</strong>, not index count</li>
+</ul>
+<p><strong>Best practice:</strong></p>
+<ul>
+<li>Prefer <strong>fewer, larger indexes</strong></li>
+<li>Avoid many tiny indexes/shards</li>
+</ul>
+<p><strong>Tradeoffs:</strong></p>
+<ul>
+<li><strong>Many small indexes</strong><ul>
+<li>− High overhead, inefficient</li>
+</ul>
+</li>
+<li><strong>Fewer consolidated indexes</strong><ul>
+<li>Better performance, resource usage</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h4 id="quick-heuristics-practical-defaults">Quick Heuristics (Practical Defaults)</h4>
+<ul>
+<li>Shard size: <strong>20–40 GB</strong></li>
+<li>Replicas: <strong>1 (increase for read-heavy)</strong></li>
+<li>Masters: <strong>3 dedicated nodes</strong></li>
+<li>Avoid: <strong>too many small shards</strong></li>
+<li>Always: <strong>benchmark with real queries</strong></li>
+</ul>
+<hr />
+<h3 id="core-mental-model">Core Mental Model</h3>
+<ul>
+<li>Shards = <strong>parallelism unit</strong></li>
+<li>Replicas = <strong>read scaling + availability</strong></li>
+<li>Nodes = <strong>capacity + fault tolerance</strong></li>
+</ul>
+<p>Optimizing a cluster = balancing these three.</p>
+<h2 id="mysql-replication">Mysql replication</h2>
+<p>MySQL replication is a powerful mechanism that allows you to copy database changes from a <strong>Primary server</strong> (formerly called Master) to one or more <strong>Replica servers</strong> (formerly called Slaves).</p>
+<p>Here is a comprehensive overview of what you need to know about how MySQL handles replication, ranging from the basic architecture to modern best practices.</p>
+<hr />
+<h3 id="1-the-core-mechanism-binary-logging">1. The Core Mechanism: Binary Logging</h3>
+<p>The foundation of replication is the <strong>Binary Log</strong> (<code>binlog</code>). Think of this as a database journal that records every data change (INSERT, UPDATE, DELETE) in chronological order.</p>
+<ul>
+<li>
+<p><strong>How it works:</strong> The Primary server records every change in its Binary Log.</p>
+</li>
+<li>
+<p><strong>The Task:</strong> The Replica server periodically connects to the Primary and asks, "What changes have you made since the last time we spoke?"</p>
+</li>
+<li>
+<p><strong>Storage:</strong> The Primary does not send the actual data; it sends the log entries (events).</p>
+</li>
+</ul>
+<hr />
+<h3 id="2-the-replication-process-io-and-sql-threads">2. The Replication Process (IO and SQL Threads)</h3>
+<p>MySQL uses a "Two-Thread" architecture to ensure replication doesn't slow down writing to the database.</p>
+<ol>
+<li>
+<p><strong>The I/O Thread:</strong></p>
+<ul>
+<li>
+<p>Runs on the <strong>Replica</strong>.</p>
+</li>
+<li>
+<p>Connects to the Primary and reads the Binary Log events.</p>
+</li>
+<li>
+<p><strong>Keeps a local copy:</strong> It stores these events in a file on the Replica called the <strong>Relay Log</strong>.</p>
+</li>
+<li>
+<p><em>It is asynchronous</em>, meaning the Primary does not pause while waiting for the Replica to save the log.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>The SQL Thread:</strong></p>
+<ul>
+<li>
+<p>Runs on the <strong>Replica</strong>.</p>
+</li>
+<li>
+<p>Reads the events from the Relay Log.</p>
+</li>
+<li>
+<p><strong>Executes the SQL:</strong> It applies the changes to the Replica's data files just as if a user had typed the commands.</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="3-types-of-replication-latency-vs-safety">3. Types of Replication (Latency vs. Safety)</h3>
+<p>The most critical decision you make is how "strong" the connection between Primary and Replica is.</p>
+<ul>
+<li>
+<p><strong>Asynchronous Replication (Classic):</strong></p>
+</li>
+<li>
+<p>The Primary does not wait for confirmation from the Replica before confirming a transaction to the client.</p>
+</li>
+<li>
+<p><em>Pros:</em> Lowest latency.</p>
+</li>
+<li>
+<p><em>Cons:</em> If the Primary crashes before the Replica receives the update, data may be lost.</p>
+</li>
+<li>
+<p><strong>Semi-Synchronous Replication:</strong></p>
+</li>
+<li>
+<p>The Primary waits until <strong>at least one</strong> Replica has received the log event and synced it to its relay log before acknowledging the transaction.</p>
+</li>
+<li>
+<p><em>Pros:</em> Reduces probability of data loss.</p>
+</li>
+<li>
+<p><em>Cons:</em> Does not completely eliminate data loss (e.g., if the acknowledged replica fails before applying the transaction).</p>
+</li>
+<li>
+<p><strong>Group Replication:</strong> (Advanced)</p>
+</li>
+<li>
+<p>A distributed replication scheme using <strong>certification-based conflict detection</strong>.</p>
+</li>
+<li>
+<p>Supports <strong>multi-primary</strong> setups (multiple nodes can accept writes).</p>
+</li>
+<li>
+<p>Transactions are checked for conflicts before commit, and conflicting transactions may be rolled back.</p>
+</li>
+</ul>
+<hr />
+<h3 id="4-binlog-formats">4. Binlog Formats</h3>
+<p>MySQL can record changes in three ways. The format on the Primary must match the expectations of the Replica (unless using Mixed mode).</p>
+<ol>
+<li>
+<p><strong>Statement-Based (SBR):</strong></p>
+<ul>
+<li>
+<p>Records the exact SQL statement (e.g., <code>UPDATE users SET age = 20 WHERE id = 1</code>).</p>
+</li>
+<li>
+<p><em>Pros:</em> Logs are smaller; easier to debug.</p>
+</li>
+<li>
+<p><em>Cons:</em> <strong>Non-Deterministic.</strong> If a function like <code>NOW()</code> returns different values on different servers, data will diverge.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Row-Based (RBR):</strong></p>
+<ul>
+<li>
+<p>Records the actual changed data (e.g., <code>Row id=1 changes to age=20</code>).</p>
+</li>
+<li>
+<p><em>Pros:</em> Most accurate; works with non-deterministic functions.</p>
+</li>
+<li>
+<p><em>Cons:</em> Binary logs can be very large.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Mixed-Based (MBR):</strong></p>
+<ul>
+<li>
+<p>MySQL automatically chooses Statement or Row based on the query.</p>
+</li>
+<li>
+<p><em>Note:</em> This is commonly used in modern deployments.</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="5-global-transaction-identifiers-gtids">5. Global Transaction Identifiers (GTIDs)</h3>
+<p>GTIDs are the modern way to manage replication.</p>
+<ul>
+<li>
+<p><strong>What is it?</strong> Every transaction is assigned a unique ID composed of server ID + sequence number.</p>
+</li>
+<li>
+<p><strong>Advantage:</strong> Simplifies failover and replication topology management; eliminates manual tracking of file/position.</p>
+</li>
+<li>
+<p><strong>Note:</strong> Helps prevent issues like missing or duplicate transactions ("GTID holes") in complex setups.</p>
+</li>
+</ul>
+<hr />
+<h3 id="6-common-use-cases">6. Common Use Cases</h3>
+<ul>
+<li>
+<p><strong>Read Scaling (Load Balancing):</strong> Distribute read queries to replicas while writes go to the primary. Note that replicas may serve <strong>stale reads</strong> due to replication lag.</p>
+</li>
+<li>
+<p><strong>Failover:</strong> Maintain a standby replica that can be promoted if the Primary fails.</p>
+</li>
+<li>
+<p><strong>Data Archiving:</strong> Offload historical or analytical workloads to replicas.</p>
+</li>
+</ul>
+<hr />
+<h3 id="7-crucial-considerations-risks">7. Crucial Considerations &amp; Risks</h3>
+<ul>
+<li>
+<p><strong>Replication Lag:</strong> Replicas can fall behind the Primary. This breaks <strong>read-after-write consistency</strong>.</p>
+</li>
+<li>
+<p><strong>Data Divergence:</strong> Manual writes on replicas or inconsistent environments can cause drift.</p>
+</li>
+<li>
+<p><strong>Replication is not Backup:</strong> Corrupted or deleted data will replicate as well.</p>
+</li>
+<li>
+<p><strong>Read-Only Mode:</strong> Set <code>read_only = 1</code> on replicas to prevent accidental writes.</p>
+</li>
+<li>
+<p><strong>Network Latency:</strong> High latency increases lag and can cause backlog buildup.</p>
+</li>
+<li>
+<p><strong>Failover Risks:</strong> Improper failover can lead to split-brain scenarios or data inconsistencies.</p>
+</li>
+</ul>
+<hr />
+<h3 id="summary-table-replication">Summary Table: Replication</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Feature</th>
+<th style="text-align: left;">MySQL Replication</th>
+<th style="text-align: left;">Elasticsearch/OpenSearch Replication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Mechanism</strong></td>
+<td style="text-align: left;">Binary Log (logical changes)</td>
+<td style="text-align: left;">Operation-based replication</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>The "Writer"</strong></td>
+<td style="text-align: left;">Primary DB</td>
+<td style="text-align: left;">Primary Shard</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Replication Unit</strong></td>
+<td style="text-align: left;">SQL/row events</td>
+<td style="text-align: left;">Indexing operations</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Execution Model</strong></td>
+<td style="text-align: left;">Replay logs</td>
+<td style="text-align: left;">Re-execute operations</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Search Visibility</strong></td>
+<td style="text-align: left;">Immediate</td>
+<td style="text-align: left;">Near real-time (refresh-based)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Failure Handling</strong></td>
+<td style="text-align: left;">Manual/managed failover</td>
+<td style="text-align: left;">Automatic promotion</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Consistency</strong></td>
+<td style="text-align: left;">Eventual (async by default)</td>
+<td style="text-align: left;">Configurable (NRT model)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="mental-model-shift">Mental Model Shift</h3>
+<div class="highlight"><pre><span></span><code>MySQL → logical replication (replay intent via logs)
+Elasticsearch → operational replication (replay operations, build index independently)
 </code></pre></div>
-<p>Each shard is placed on a different node to ensure fault tolerance.</p>
-<hr />
-<h2 id="2-write-path-indexing-flow">2. Write Path (Indexing Flow)</h2>
-<p>Elasticsearch enforces a strict <strong>primary-first write model</strong>.</p>
-<h3 id="step-by-step-flow">Step-by-step flow</h3>
-<ol>
-<li>Client sends a write request (index/update/delete) to any node</li>
-<li>That node acts as a <strong>coordinating node</strong></li>
-<li>Request is routed to the appropriate <strong>primary shard</strong></li>
-<li>
-<p>Primary shard:</p>
-</li>
-<li>
-<p>Validates and applies the operation</p>
-</li>
-<li>Assigns a sequence number (ordering guarantee)</li>
-<li>Primary forwards the operation to all <strong>replica shards</strong></li>
-<li>Replicas apply the operation in the same order</li>
-<li>Acknowledgment is returned</li>
-</ol>
-<h3 id="acknowledgment-modes">Acknowledgment modes</h3>
-<ul>
-<li><strong>default (quorum-like behavior)</strong>: success after primary + replicas respond</li>
-<li><strong>async option</strong>: client gets response after primary (faster but riskier)</li>
-</ul>
-<p>This is similar to <strong>semi-synchronous replication</strong> in traditional databases.</p>
-<hr />
-<h2 id="3-read-path">3. Read Path</h2>
-<p>Reads can be served from:</p>
-<ul>
-<li>Primary shard</li>
-<li>Any replica shard</li>
-</ul>
-<p>This enables <strong>horizontal read scaling</strong>.</p>
-<h3 id="load-balancing">Load balancing</h3>
-<ul>
-<li>Elasticsearch automatically distributes read requests across replicas</li>
-<li>Improves throughput and latency</li>
-</ul>
-<hr />
-<h2 id="4-consistency-model">4. Consistency Model</h2>
-<p>Elasticsearch provides <strong>near real-time (NRT) consistency</strong>, not strict immediate consistency.</p>
-<h3 id="key-concepts">Key concepts</h3>
-<ul>
-<li>
-<p><strong>Refresh interval (default ~1 second)</strong></p>
-</li>
-<li>
-<p>Data becomes searchable only after refresh</p>
-</li>
-<li>
-<p>Writes are durable before they are searchable</p>
-</li>
-<li>
-<p><strong>Translog (transaction log)</strong></p>
-</li>
-<li>
-<p>Ensures durability before data is flushed to disk</p>
-</li>
-<li>
-<p><strong>Sequence numbers + primary terms</strong></p>
-</li>
-<li>
-<p>Ensure correct ordering of operations</p>
-</li>
-<li>Prevent stale replicas from overwriting newer data</li>
-</ul>
-<hr />
-<h2 id="5-failure-handling-and-failover">5. Failure Handling and Failover</h2>
-<h3 id="primary-shard-failure">Primary shard failure</h3>
-<ol>
-<li>Cluster detects node failure</li>
-<li>One of the replicas is promoted to <strong>new primary</strong></li>
-<li>Cluster rebalances to maintain replica count</li>
-</ol>
-<p>This is analogous to <strong>automatic failover in leader-based systems</strong>.</p>
-<h3 id="replica-failure">Replica failure</h3>
-<ul>
-<li>Missing replica is recreated from primary</li>
-<li>No write disruption unless replication factor is violated</li>
-</ul>
-<hr />
-<h2 id="6-replication-guarantees">6. Replication Guarantees</h2>
-<p>Elasticsearch ensures:</p>
-<ul>
-<li><strong>Write ordering per shard</strong></li>
-<li><strong>At-least-once replication</strong></li>
-<li><strong>No split-brain (via cluster coordination)</strong></li>
-</ul>
-<p>Cluster coordination is handled by a consensus mechanism (Zen2, inspired by Raft-like principles).</p>
-<hr />
-<h2 id="7-shard-allocation-and-placement">7. Shard Allocation and Placement</h2>
-<p>Elasticsearch automatically manages:</p>
-<ul>
-<li><strong>Shard distribution across nodes</strong></li>
-<li>Avoids placing primary and replica on same node</li>
-<li>Rebalances when nodes join/leave</li>
-</ul>
-<h3 id="goals">Goals</h3>
-<ul>
-<li>Fault tolerance</li>
-<li>Even load distribution</li>
-<li>Efficient resource usage</li>
-</ul>
-<hr />
-<h2 id="8-network-and-performance-considerations">8. Network and Performance Considerations</h2>
-<p>Replication cost depends on:</p>
-<ul>
-<li>Number of replicas</li>
-<li>Network bandwidth</li>
-<li>Write rate</li>
-</ul>
-<p>Trade-offs:</p>
-<table>
-<thead>
-<tr>
-<th>More Replicas</th>
-<th>Fewer Replicas</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Higher read throughput</td>
-<td>Faster writes</td>
-</tr>
-<tr>
-<td>Better fault tolerance</td>
-<td>Lower resource usage</td>
-</tr>
-<tr>
-<td>Higher network overhead</td>
-<td>Less redundancy</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="9-handling-replication-lag">9. Handling Replication Lag</h2>
-<p>Unlike async DBs, Elasticsearch minimizes lag by:</p>
-<ul>
-<li>Applying writes to replicas immediately</li>
-<li>Using <strong>in-sync replica set (ISR)</strong></li>
-</ul>
-<h3 id="in-sync-replicas">In-sync replicas</h3>
-<ul>
-<li>Only replicas that are fully caught up</li>
-<li>Writes are acknowledged only if ISR condition is satisfied</li>
-</ul>
-<p>If a replica falls behind:</p>
-<ul>
-<li>It is removed from ISR</li>
-<li>Must catch up before rejoining</li>
-</ul>
-<hr />
-<h2 id="10-comparison-with-classical-replication-models">10. Comparison with Classical Replication Models</h2>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Elasticsearch</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Model</td>
-<td>Single-leader (per shard)</td>
-</tr>
-<tr>
-<td>Writes</td>
-<td>Only to primary shard</td>
-</tr>
-<tr>
-<td>Reads</td>
-<td>Primary + replicas</td>
-</tr>
-<tr>
-<td>Failover</td>
-<td>Automatic</td>
-</tr>
-<tr>
-<td>Consistency</td>
-<td>Near real-time</td>
-</tr>
-<tr>
-<td>Scaling</td>
-<td>Horizontal via sharding</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="11-key-design-insights">11. Key Design Insights</h2>
-<h3 id="1-shard-level-leadership">1. Shard-level leadership</h3>
-<p>Instead of one global leader:</p>
-<ul>
-<li>Each shard has its own leader</li>
-<li>Enables massive parallelism</li>
-</ul>
-<h3 id="2-tight-integration-with-storage">2. Tight integration with storage</h3>
-<ul>
-<li>Replication is tied to Lucene segments</li>
-<li>Efficient but less flexible than logical replication</li>
-</ul>
-<h3 id="3-built-for-search-not-transactions">3. Built for search, not transactions</h3>
-<ul>
-<li>
-<p>Optimized for:</p>
-</li>
-<li>
-<p>High read throughput</p>
-</li>
-<li>Distributed indexing</li>
-<li>
-<p>Not ideal for:</p>
-</li>
-<li>
-<p>Strong transactional guarantees</p>
-</li>
-</ul>
-<hr />
-<h2 id="12-subtle-failure-scenarios">12. Subtle Failure Scenarios</h2>
-<h3 id="lost-acknowledged-writes-rare-but-possible">Lost acknowledged writes (rare but possible)</h3>
-<p>If:</p>
-<ul>
-<li>Primary acknowledges</li>
-<li>Crashes before replicas persist</li>
-</ul>
-<p>Mitigation:</p>
-<ul>
-<li>Use higher replication settings</li>
-<li>Durable translog configuration</li>
-</ul>
-<hr />
-<h3 id="stale-reads">Stale reads</h3>
-<p>Due to refresh interval:</p>
-<ul>
-<li>Recently written data may not appear in search immediately</li>
-</ul>
-<p>Solution:</p>
-<ul>
-<li>Force refresh (costly)</li>
-<li>Use GET (real-time API)</li>
-</ul>
-<hr />
-<h2 id="13-mental-model">13. Mental Model</h2>
-<p>Think of Elasticsearch as:</p>
-<ul>
-<li>A <strong>collection of mini leader-follower systems (shards)</strong></li>
-<li>
-<p>Each shard:</p>
-</li>
-<li>
-<p>Has one leader (primary)</p>
-</li>
-<li>Multiple followers (replicas)</li>
-<li>Coordinated by a cluster manager</li>
-</ul>
 
 
 

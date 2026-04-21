@@ -1853,7 +1853,7 @@
   <span class="md-ellipsis">
     
   
-    Elasticsearch Replication
+    Replication(examples)
   
 
     
@@ -2433,6 +2433,94 @@
     
   
     Change Data Capture (CDC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Distributed Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/distributed_systems/opensearch-lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Replication with Opensearch
   
 
     
@@ -3068,6 +3156,22 @@ Source: <a href="https://medium.com/@satyavarssheni/mastering-multi-leader-repli
 <p>Leaderless (or Dynamo-style) replication allows any replica to directly accept writes. This model was pioneered by Amazon's Dynamo and is used by Riak, Cassandra, and Voldemort.</p>
 <p><img alt="Leaderless Replication" src="../../images/distributed_systems/quorum.png" /><br />
 Source: Designing Data-Intensive Applications</p>
+<p><strong>Concrete example (Dynamo-style)</strong></p>
+<p>Let’s say you write:</p>
+<div class="highlight"><pre><span></span><code>put<span class="o">(</span><span class="s2">&quot;user123&quot;</span>,<span class="w"> </span><span class="o">{</span>...<span class="o">})</span>
+</code></pre></div>
+<p>What happens:</p>
+<ol>
+<li>Your backend calls the DB client (SDK/driver)</li>
+<li>The client library:<ul>
+<li>Uses partitioning (consistent hashing)</li>
+<li>Finds the responsible nodes</li>
+<li>Sends write to N replicas</li>
+</ul>
+</li>
+<li>Waits for W acknowledgments</li>
+<li>Returns success/failure</li>
+</ol>
 <h4 id="quorum-consistency-mechanics">Quorum Consistency Mechanics</h4>
 <p><img alt="Quorum Consistency" src="../../images/distributed_systems/quorum_n_r_phenomenon.png" /><br />
 Source: Designing Data-Intensive Applications</p>
@@ -3151,13 +3255,13 @@ Once the home nodes return, the temporary holders send the writes to them; this 
         
         
           
-          <a href="../es_replication/" class="md-footer__link md-footer__link--next" aria-label="Next: Elasticsearch Replication">
+          <a href="../es_replication/" class="md-footer__link md-footer__link--next" aria-label="Next: Replication(examples)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Elasticsearch Replication
+                Replication(examples)
               </div>
             </div>
             <div class="md-footer__button md-icon">
