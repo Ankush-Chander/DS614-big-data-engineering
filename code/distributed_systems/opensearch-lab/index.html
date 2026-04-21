@@ -2929,23 +2929,30 @@
 <ol>
 <li>Duplicate the extracted folder into a separate directory for Node 1.</li>
 <li>Follow <a href="https://docs.opensearch.org/latest/install-and-configure/install-opensearch/tar">installation guide</a></li>
-<li>Edit configuration:<ul>
+<li>
+<p>Edit configuration:</p>
+<ul>
 <li>Assign a <strong>cluster name</strong></li>
 <li>Assign a <strong>node name</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">cluster.name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ds614-lab</span>
+<span class="nt">node.name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">node-1</span>
+<span class="nt">node.roles</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">cluster_manager</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">data</span><span class="p p-Indicator">]</span>
+<span class="nt">network.host</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">IP_ADDRESS</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># &quot;localhost&quot; if both nodes on same machine, private ip if on different machines</span>
+<span class="nt">http.port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9200</span>
+<span class="nt">transport.port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9300</span>
+</code></pre></div>
+<ul>
 <li>Configure:<ul>
 <li>Network host (local machine)</li>
 <li>Port (default or custom)</li>
 </ul>
 </li>
-</ul>
-</li>
-<li>Configure discovery settings:<ul>
+<li>Configure discovery settings:</li>
 <li>Define this node as part of a cluster (even if single node for now)</li>
-</ul>
-</li>
 <li>Set a <strong>data directory inside your home folder</strong></li>
 <li>Start the node</li>
-<li>Verify:<ul>
+<li>Verify:</li>
 <li>Node is running at this url: <a href="http://localhost:9200"></a></li>
 <li>It responds to HTTP requests</li>
 <li>Cluster health is available <a href="http://localhost:9200/_cat/health"></a></li>
@@ -2995,17 +3002,24 @@
 <p>Configure <strong>discovery/seed hosts</strong>:</p>
 <ul>
 <li>Node 2 should know about Node 1</li>
+<li>Set in each node config file(opensearch.yml)</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="nt">discovery.seed_hosts</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;localhost:9300&quot;</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># other nodes transport port</span>
+</code></pre></div>
+<ul>
+<li>Set in each node config file(opensearch.yml)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">cluster.initial_cluster_manager_nodes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;node-1&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;node-2&quot;</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># on both nodes</span>
+</code></pre></div>
 </li>
 <li>
 <p>Ensure:</p>
 <ul>
 <li>Unique data directory</li>
+<li>Clear data directories</li>
 </ul>
 </li>
-<li>
-<p>Start Node 2</p>
-</li>
+<li>Restart both nodes</li>
 <li>Verify:<ul>
 <li>Both nodes appear in the same cluster</li>
 <li>Cluster size = 2 nodes</li>
