@@ -38,5 +38,6 @@ Welcome to the course on Big Data Engineering.
   - Distributed Systems
     - [Replication](lectures/replication.md)
     - [Replication(examples)](lectures/es_replication.md)
+    - [Partitioning](lectures/partitioning.md)
 
 ---
