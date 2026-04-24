@@ -1,0 +1,3273 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Home of DS614 - Big Data Engineering, DAU">
+      
+      
+      
+        <link rel="canonical" href="https://ankushchander.com/lectures/distributed_systems_challenges/">
+      
+      
+        <link rel="prev" href="../partitioning/">
+      
+      
+        <link rel="next" href="../../code/storage_engines/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Distributed Systems Challenges - DS614 - Big Data Engineering | DAU</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-trouble-with-distributed-systems" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DS614 - Big Data Engineering | DAU" class="md-header__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DS614 - Big Data Engineering | DAU
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Distributed Systems Challenges
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../0storage_prerequisites/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../code/storage_engines/" class="md-tabs__link">
+          
+  
+  
+  Code
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DS614 - Big Data Engineering | DAU" class="md-nav__button md-logo" aria-label="DS614 - Big Data Engineering | DAU" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DS614 - Big Data Engineering | DAU
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lectures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lectures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Storage
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Storage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prerequisites
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0storage_prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/concurrency_prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concurrency Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/python_profiling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python profiling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1hash_indexes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Log Based Storage + Hash Indexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2ssts_lsm_trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSTables + LSM Trees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3btrees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B-Trees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_5" id="__nav_2_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Columnar Storage
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Columnar Storage
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4columnar_storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OLTP vs OLAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/pandas_parquet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pandas parquet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Transformation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Transformation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1" id="__nav_2_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Batch Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/batch_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch processing: Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6hdfs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed Filesystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../map_reduce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Map reduce framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spark_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spark Intro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_5" id="__nav_2_2_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformation layer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Transformation layer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformation_quering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Querying
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformation_modelling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformation_joins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Joins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stream Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../streaming_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../streaming_examples_with_aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Ingestion
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Ingestion
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_ingestion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stream_ingestion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Ingestion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_orchestration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Orchestration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Distributed Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../replication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Replication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../es_replication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Replication(examples)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../partitioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Partitioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed Systems Challenges
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed Systems Challenges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#single-node-vs-distributed-systems-developer-mindset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-Node vs Distributed Systems: Developer Mindset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faults-and-the-reality-of-partial-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Faults and the Reality of Partial Failure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unreliable-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unreliable Networks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unreliable Networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-six-points-of-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Six Points of Failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeouts-and-unbounded-delays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Timeouts and Unbounded Delays
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Timeouts and Unbounded Delays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-congestion-and-queueing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network congestion and queueing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-latency-packet-vs-circuit-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variable Latency: Packet vs. Circuit Switching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unreliable-clocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unreliable Clocks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unreliable Clocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monotonic-vs-time-of-day-clocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monotonic vs. Time-of-Day Clocks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-danger-of-last-write-wins-lww" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Danger of Last Write Wins (LWW)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confidence-intervals-and-truetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Confidence Intervals and TrueTime
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#process-pauses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process Pauses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Process Pauses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#causes-of-stop-the-world-pauses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Causes of "Stop-the-World" Pauses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-lease-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Lease Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knowledge-truth-and-lies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knowledge, Truth, and Lies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Knowledge, Truth, and Lies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quorums-truth-by-majority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quorums: Truth by Majority
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fencing-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fencing Tokens
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#byzantine-faults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Byzantine Faults
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-models-and-correctness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Models and Correctness
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Models and Correctness">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#timing-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Timing Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safety-vs-liveness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety vs. Liveness
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/storage_engines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Engines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Ankush-Chander/sorted-string-table-101" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSTable
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B-Tree
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    B-Tree
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/sql_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQLite Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Batch Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/batch_processing/hadoop%20single%20node%20cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hadoop Single Node Cluster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/batch_processing/non_sudoer_hadoop_single_node_cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non Sudoer Hadoop Single Node Cluster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/batch_processing/non_sudoer_hadoop_multi_node_cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non Sudoer Hadoop Multi Node Cluster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/spark_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PySpark Demo: NYC Taxi Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Demos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../demo/db-normalization-demo.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Normal forms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Processing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Stream Processing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/stream_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stream Processing — Four Ways to Consume a Data Stream
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/cdc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Change Data Capture (CDC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed Systems
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Distributed Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/distributed_systems/opensearch-lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Replication with Opensearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#single-node-vs-distributed-systems-developer-mindset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-Node vs Distributed Systems: Developer Mindset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faults-and-the-reality-of-partial-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Faults and the Reality of Partial Failure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unreliable-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unreliable Networks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unreliable Networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-six-points-of-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Six Points of Failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeouts-and-unbounded-delays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Timeouts and Unbounded Delays
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Timeouts and Unbounded Delays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-congestion-and-queueing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network congestion and queueing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-latency-packet-vs-circuit-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variable Latency: Packet vs. Circuit Switching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unreliable-clocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unreliable Clocks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unreliable Clocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monotonic-vs-time-of-day-clocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monotonic vs. Time-of-Day Clocks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-danger-of-last-write-wins-lww" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Danger of Last Write Wins (LWW)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confidence-intervals-and-truetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Confidence Intervals and TrueTime
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#process-pauses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process Pauses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Process Pauses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#causes-of-stop-the-world-pauses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Causes of "Stop-the-World" Pauses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-lease-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Lease Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knowledge-truth-and-lies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knowledge, Truth, and Lies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Knowledge, Truth, and Lies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quorums-truth-by-majority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quorums: Truth by Majority
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fencing-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fencing Tokens
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#byzantine-faults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Byzantine Faults
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-models-and-correctness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Models and Correctness
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Models and Correctness">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#timing-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Timing Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safety-vs-liveness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety vs. Liveness
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="the-trouble-with-distributed-systems">The Trouble with Distributed Systems</h1>
+<h2 id="single-node-vs-distributed-systems-developer-mindset">Single-Node vs Distributed Systems: Developer Mindset</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Single-Node Developer</th>
+<th>Distributed Systems Developer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Failure Model</strong></td>
+<td>Failures are <strong>rare and total</strong> (process crash)</td>
+<td><strong>Partial failures are normal</strong>—some nodes fail, others continue</td>
+</tr>
+<tr>
+<td><strong>Failure Detection</strong></td>
+<td>Immediate and obvious (exceptions, crashes)</td>
+<td><strong>Ambiguous</strong>—timeout could mean crash, delay, or network loss</td>
+</tr>
+<tr>
+<td><strong>Communication</strong></td>
+<td>Function calls, shared memory (reliable, instant)</td>
+<td>Message passing over network (<strong>lossy, delayed, duplicated</strong>)</td>
+</tr>
+<tr>
+<td><strong>Latency Assumption</strong></td>
+<td>Predictable, low (ns–µs)</td>
+<td><strong>Variable, unbounded</strong> (ms–seconds)</td>
+</tr>
+<tr>
+<td><strong>Time Model</strong></td>
+<td>Single system clock; consistent ordering</td>
+<td><strong>No global clock</strong>; clock drift; ordering is uncertain</td>
+</tr>
+<tr>
+<td><strong>Event Ordering</strong></td>
+<td>Deterministic execution order</td>
+<td><strong>Partial ordering only</strong>; causality must be inferred</td>
+</tr>
+<tr>
+<td><strong>State Management</strong></td>
+<td>Single source of truth</td>
+<td><strong>Multiple replicas</strong>; state can diverge</td>
+</tr>
+<tr>
+<td><strong>Consistency</strong></td>
+<td>Strong consistency by default</td>
+<td>Tradeoffs: <strong>consistency vs availability vs latency</strong></td>
+</tr>
+<tr>
+<td><strong>Concurrency</strong></td>
+<td>Threads/processes with shared memory</td>
+<td>Independent nodes; <strong>no shared memory</strong>; coordination is hard</td>
+</tr>
+<tr>
+<td><strong>Error Handling</strong></td>
+<td>Exceptions are exceptional</td>
+<td><strong>Failures are expected</strong>; retries are common</td>
+</tr>
+<tr>
+<td><strong>Retry Semantics</strong></td>
+<td>Usually unnecessary</td>
+<td>Must consider <strong>idempotency</strong> and duplicate effects</td>
+</tr>
+<tr>
+<td><strong>Knowledge Model</strong></td>
+<td>Node has full, accurate system view</td>
+<td><strong>Node’s view is incomplete and possibly wrong</strong></td>
+</tr>
+<tr>
+<td><strong>Leadership / Coordination</strong></td>
+<td>Simple (in-process locks)</td>
+<td>Requires <strong>consensus, leader election, leases</strong></td>
+</tr>
+<tr>
+<td><strong>Edge Cases</strong></td>
+<td>Limited and predictable</td>
+<td><strong>Combinatorial explosion</strong> of edge cases</td>
+</tr>
+<tr>
+<td><strong>Debugging</strong></td>
+<td>Reproducible, local debugging</td>
+<td><strong>Non-deterministic</strong>, timing-dependent, hard to reproduce</td>
+</tr>
+<tr>
+<td><strong>Correctness Definition</strong></td>
+<td>Correct output for given input</td>
+<td><strong>Safety + Liveness guarantees</strong></td>
+</tr>
+<tr>
+<td><strong>Performance Focus</strong></td>
+<td>CPU, memory optimization</td>
+<td><strong>Latency, throughput, fault tolerance tradeoffs</strong></td>
+</tr>
+<tr>
+<td><strong>Design Philosophy</strong></td>
+<td>“Make it work efficiently”</td>
+<td>“Assume everything can fail—design for recovery”</td>
+</tr>
+<tr>
+<td><strong>Core Abstraction</strong></td>
+<td>Deterministic computation</td>
+<td><strong>Unreliable communication + uncertainty</strong></td>
+</tr>
+<tr>
+<td><strong>Typical Bugs</strong></td>
+<td>Logic errors, memory bugs</td>
+<td><strong>Race conditions, split-brain, stale reads, data loss</strong></td>
+</tr>
+<tr>
+<td><strong>Mental Model</strong></td>
+<td>Program = function</td>
+<td><strong>System = protocol among unreliable participants</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Single-node programming is about controlling execution.
+Distributed systems programming is about surviving uncertainty.</strong></p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>**Q &amp; A**
+Which row introduces the *biggest conceptual break* from what you already know?
+</code></pre></div>
+<hr />
+<p>The core challenges of distributed systems stem from three primary areas of unreliability:</p>
+<ol>
+<li><strong>Networks:</strong> Asynchronous packet networks offer no guarantees on delivery or latency. Timeouts are the only mechanism for failure detection, yet they cannot distinguish between a crashed node, a network outage, or a slow response.</li>
+<li><strong>Clocks:</strong> Hardware clocks drift and synchronization protocols like NTP are subject to network delays. Relying on timestamps for ordering events often leads to silent data loss.</li>
+<li><strong>Processes:</strong> Unpredictable "stop-the-world" garbage collection pauses, virtualization "steal time," and I/O latencies can halt a process at any moment, causing it to lose leadership or violate lease agreements.</li>
+</ol>
+<p>To operate reliably, engineers must abandon optimism and assume that anything that can go wrong will go wrong. Reliability is achieved by building fault-tolerant mechanisms—such as quorums and fencing tokens—that allow the system as a whole to function even when its individual components are unreliable.</p>
+<div class="highlight"><pre><span></span><code>**Q and A**
+
+- Which of these do you think is the hardest to deal with in practice?
+- In a single-machine program, which of these do we usually ignore?
+</code></pre></div>
+<hr />
+<h2 id="faults-and-the-reality-of-partial-failure">Faults and the Reality of Partial Failure</h2>
+<p>In a single-node environment, hardware is designed to present an idealized system model of mathematical perfection. If an internal fault occurs, the system typically crashes entirely to avoid returning confusing, incorrect results.</p>
+<p>In contrast, distributed systems must confront the "messy reality of the physical world." This includes:</p>
+<ul>
+<li><strong>Partial Failure</strong>: A state where some components are broken but others are fine. This is nondeterministic; an operation may succeed one moment and fail the next without a clear cause.</li>
+<li><strong>Component Reliability</strong>: While supercomputers (HPC) often treat partial failure as total failure (stopping the entire cluster), cloud-based internet services must remain available. They are built from "commodity" hardware with higher failure rates but lower costs, necessitating software-level fault tolerance.</li>
+<li><strong>The Goal</strong>: The objective is to build a reliable higher-level system from unreliable underlying components. While this doesn't eliminate all faults, it makes the remaining issues easier to reason about.</li>
+</ul>
+<hr />
+<h2 id="unreliable-networks">Unreliable Networks</h2>
+<p>Internet services primarily use shared-nothing architectures, where machines communicate solely via asynchronous packet networks (Ethernet/IP). These networks provide no guarantees regarding when a message will arrive or if it will arrive at all.</p>
+<h3 id="the-six-points-of-failure">The Six Points of Failure</h3>
+<p>When a sender transmits a request and fails to receive a response, it is impossible to distinguish between these scenarios:</p>
+<p><img alt="" src="../../images/distributed_systems/no_response_scenario.png" /></p>
+<ol>
+<li>The request was lost (e.g., an unplugged cable).</li>
+<li>The request is waiting in a queue (overload).</li>
+<li>The remote node has failed (crash or power loss).</li>
+<li>The remote node has temporarily stopped responding (e.g., a GC pause).</li>
+<li>The response was lost on the network (misconfigured switch).</li>
+<li>The response was delayed (congestion).</li>
+</ol>
+<h3 id="timeouts-and-unbounded-delays">Timeouts and Unbounded Delays</h3>
+<p>Because delays are unbounded, there is no "correct" value for a timeout.</p>
+<ul>
+<li>Long timeouts: Increase the time users must wait to see an error.</li>
+<li>Short timeouts: Risk prematurely declaring a node "dead," which can lead to cascading failures as load is transferred to already struggling nodes.  </li>
+</ul>
+<p>Time out estimation: 2d + r where d is the maximum delay to deliver a packet and r is the maximum delay to process a request.</p>
+<div class="highlight"><pre><span></span><code>**Q and A**
+</code></pre></div>
+<ul>
+<li>Should we always choose a very large timeout to be safe?</li>
+<li>What happens if every node uses aggressive short timeouts?</li>
+</ul>
+<h4 id="network-congestion-and-queueing">Network congestion and queueing</h4>
+<p><img alt="" src="../../images/distributed_systems/types_of_queuing.png" /></p>
+<ul>
+<li>
+<p><strong>Network Switch</strong>: Multiple sources competing for one link leads to output queuing and congestion delay. If the queue overflows, packets are dropped and must be resent.</p>
+</li>
+<li>
+<p><strong>Operating System</strong>: Incoming network requests are queued in the OS kernel until a busy CPU or application can handle them, introducing arbitrary delay.</p>
+</li>
+<li>
+<p><strong>Virtualized Environments</strong>: When a running OS (VM) is paused by the VMM to allow another VM to use the CPU, incoming data is buffered by the VMM, increasing delay variability.</p>
+</li>
+<li>
+<p><strong>TCP Sender</strong>: Flow control (backpressure) causes the sender to limit its output rate, creating additional queuing before the data enters the network.</p>
+</li>
+</ul>
+<h2 id="variable-latency-packet-vs-circuit-switching">Variable Latency: Packet vs. Circuit Switching</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Feature</th>
+<th style="text-align: left;">Packet Switching (Internet/Datacenter)</th>
+<th style="text-align: left;">Circuit Switching (Telephone Network)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Bandwidth</td>
+<td style="text-align: left;">Opportunistic; shared dynamically.</td>
+<td style="text-align: left;">Fixed and guaranteed for the duration.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Utilization</td>
+<td style="text-align: left;">High; optimized for bursty traffic.</td>
+<td style="text-align: left;">Low; bandwidth is wasted if idle.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Delays</td>
+<td style="text-align: left;">Unbounded; subject to queueing.</td>
+<td style="text-align: left;">Bounded; no queueing.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="unreliable-clocks">Unreliable Clocks</h2>
+<p>Distributed systems rely on clocks for timeouts, expiration dates, and event ordering. However, hardware clocks (quartz oscillators) are imprecise and subject to clock drift (varying by temperature and age).</p>
+<h3 id="monotonic-vs-time-of-day-clocks">Monotonic vs. Time-of-Day Clocks</h3>
+<table>
+<thead>
+<tr>
+<th>Clock Type</th>
+<th>Purpose</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Time-of-Day</strong></td>
+<td>Wall-clock time (e.g., UTC).</td>
+<td>Can jump backward if resynced via NTP; unsuitable for measuring elapsed time.</td>
+</tr>
+<tr>
+<td><strong>Monotonic</strong></td>
+<td>Measuring duration (e.g., timeouts).</td>
+<td>Guaranteed to move forward; absolute value is meaningless (often nanoseconds since boot).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-danger-of-last-write-wins-lww">The Danger of Last Write Wins (LWW)</h3>
+<p>Many databases use timestamps to resolve conflicts. This is dangerous because:</p>
+<ul>
+<li>A node with a lagging clock can silently overwrite data from a node with a faster clock.</li>
+<li>It cannot distinguish between sequential writes and truly concurrent ones.</li>
+<li>NTP synchronization is limited by network round-trip time, making it nearly impossible to ensure perfect ordering across nodes.</li>
+</ul>
+<h3 id="confidence-intervals-and-truetime">Confidence Intervals and TrueTime</h3>
+<p>A clock reading should be viewed as a confidence interval rather than a point in time. Google’s Spanner uses the TrueTime API to return a range [earliest, latest]. By deliberately waiting for the length of the uncertainty interval before committing a transaction, Spanner ensures that causality is respected across datacenters.</p>
+<hr />
+<h2 id="process-pauses">Process Pauses</h2>
+<p>A node in a distributed system may be "preempted" at any moment, halting execution for seconds or even minutes.</p>
+<h3 id="causes-of-stop-the-world-pauses">Causes of "Stop-the-World" Pauses</h3>
+<ul>
+<li>Garbage Collection (GC): In languages like Java, GC can pause all threads.</li>
+<li>Virtualization: A hypervisor may suspend a VM to allow another VM to use the CPU (steal time).</li>
+<li>Paging/Thrashing: The OS may pause a process to swap memory pages from disk.</li>
+<li>Disk/Network I/O: Synchronous I/O operations can block threads unexpectedly.</li>
+</ul>
+<h3 id="the-lease-problem">The Lease Problem</h3>
+<p>A common pattern involves a leader obtaining a "lease" to perform writes. If a process is paused after checking that its lease is valid but before performing the write, the lease may expire during the pause. If another node has been elected leader in the meantime, the original node will unknowingly perform an unauthorized write, leading to data corruption.</p>
+<hr />
+<h2 id="knowledge-truth-and-lies">Knowledge, Truth, and Lies</h2>
+<p>In a distributed system, a node cannot trust its own perception. It can only know the state of other nodes by exchanging messages, which are themselves unreliable.</p>
+<h3 id="quorums-truth-by-majority">Quorums: Truth by Majority</h3>
+<p>Decisions (such as declaring a node "dead") must be made by a quorum—usually an absolute majority of nodes. This prevents a single "limping" or semi-disconnected node from causing a total system failure.</p>
+<h3 id="fencing-tokens">Fencing Tokens</h3>
+<p>To prevent a "zombie" leader (one that was paused and replaced) from corrupting data, fencing tokens must be used.</p>
+<ol>
+<li>The lock service issues a monotonically increasing token with every lease.</li>
+<li>The storage service records the highest token it has processed.</li>
+<li>Any write request with an older (lower) token is rejected.</li>
+</ol>
+<h3 id="byzantine-faults">Byzantine Faults</h3>
+<p>While most datacenter systems assume nodes are "unreliable but honest," Byzantine faults occur when nodes "lie" or send corrupted data (common in aerospace or blockchain).</p>
+<ul>
+<li>Byzantine Fault Tolerance (BFT): Extremely complex and expensive to implement; generally unnecessary for internal datacenter applications where nodes are controlled by a single organization.</li>
+</ul>
+<hr />
+<h2 id="system-models-and-correctness">System Models and Correctness</h2>
+<p>To prove the correctness of distributed algorithms, engineers use formalized System Models based on timing and fault assumptions.</p>
+<h3 id="timing-models">Timing Models</h3>
+<ul>
+<li>Synchronous: Bounded delays and clock errors (unrealistic for most).</li>
+<li>Partially Synchronous: Behaves synchronously most of the time but allows for occasional unbounded delays (the most practical model).</li>
+<li>Asynchronous: No timing assumptions; no clocks; very restrictive.</li>
+</ul>
+<h3 id="safety-vs-liveness">Safety vs. Liveness</h3>
+<ul>
+<li>Safety: "Nothing bad happens." If violated, the damage is permanent (e.g., a duplicate fencing token).</li>
+<li>Liveness: "Something good eventually happens" (e.g., a node eventually receives a response). Liveness properties are allowed to fail during network outages but must recover once the network is restored.</li>
+</ul>
+<p>Final Insight: "In distributed systems, suspicion, pessimism, and paranoia pay off." Theoretical models are essential for uncovering hidden flaws, but real-world implementations must always be prepared for the "impossible" to happen.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../partitioning/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Partitioning">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Partitioning
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../code/storage_engines/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage Engines">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Storage Engines
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Ankush Chander
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.expand", "navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
