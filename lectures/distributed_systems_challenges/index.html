@@ -1709,10 +1709,54 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#network-time-protocol-ntp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Time Protocol (NTP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#monotonic-vs-time-of-day-clocks" class="md-nav__link">
     <span class="md-ellipsis">
       
         Monotonic vs. Time-of-Day Clocks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slewing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slewing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leap-seconds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leap seconds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#language-specific-timestamps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Language specific timestamps
       
     </span>
   </a>
@@ -2693,10 +2737,54 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#network-time-protocol-ntp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Time Protocol (NTP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#monotonic-vs-time-of-day-clocks" class="md-nav__link">
     <span class="md-ellipsis">
       
         Monotonic vs. Time-of-Day Clocks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slewing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slewing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leap-seconds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leap seconds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#language-specific-timestamps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Language specific timestamps
       
     </span>
   </a>
@@ -3095,6 +3183,8 @@ Which row introduces the *biggest conceptual break* from what you already know?
 <hr />
 <h2 id="unreliable-clocks">Unreliable Clocks</h2>
 <p>Distributed systems rely on clocks for timeouts, expiration dates, and event ordering. However, hardware clocks (quartz oscillators) are imprecise and subject to clock drift (varying by temperature and age).</p>
+<h3 id="network-time-protocol-ntp">Network Time Protocol (NTP)</h3>
+<p>NTP is a networking protocol used to synchronize the clocks of computers over a network to a common timebase. It ensures accurate timekeeping for various applications, including GPS and financial services.</p>
 <h3 id="monotonic-vs-time-of-day-clocks">Monotonic vs. Time-of-Day Clocks</h3>
 <table>
 <thead>
@@ -3117,6 +3207,38 @@ Which row introduces the *biggest conceptual break* from what you already know?
 </tr>
 </tbody>
 </table>
+<h3 id="slewing">Slewing</h3>
+<p>Slewing in clocks refers to the gradual adjustment of the clock's time to correct for drift, ensuring smooth synchronization without abrupt changes. This process is crucial for maintaining accurate timekeeping in systems like NTP (Network Time Protocol) where precise timing is essential.</p>
+<h3 id="leap-seconds">Leap seconds</h3>
+<p>A leap second is an additional second added to Coordinated Universal Time (UTC) to keep it in sync with astronomical time (UT1), which is based on the Earth's rotation. Leap seconds are typically added at the end of June or December to ensure the difference between UTC and UT1 remains within 0.9 seconds.</p>
+<h3 id="language-specific-timestamps">Language specific timestamps</h3>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Function/Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td><code>time.monotonic()</code></td>
+<td>Returns monotonic time unaffected by system clock changes.</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td><code>performance.now()</code></td>
+<td>Provides a high-resolution monotonic timestamp.</td>
+</tr>
+<tr>
+<td>Bash</td>
+<td><code>date +%s.%N</code></td>
+<td>Gets a high-resolution timestamp (not fully monotonic).</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="" src="../../images/distributed_systems/timestamp_issues.png" /></p>
 <h3 id="the-danger-of-last-write-wins-lww">The Danger of Last Write Wins (LWW)</h3>
 <p>Many databases use timestamps to resolve conflicts. This is dangerous because:</p>
 <ul>
