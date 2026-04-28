@@ -1,13 +1,51 @@
 # The Trouble with Distributed Systems
 
+## Single-Node vs Distributed Systems: Developer Mindset
+
+| Aspect                        | Single-Node Developer                             | Distributed Systems Developer                                     |
+| ----------------------------- | ------------------------------------------------- | ----------------------------------------------------------------- |
+| **Failure Model**             | Failures are **rare and total** (process crash)   | **Partial failures are normal**—some nodes fail, others continue  |
+| **Failure Detection**         | Immediate and obvious (exceptions, crashes)       | **Ambiguous**—timeout could mean crash, delay, or network loss    |
+| **Communication**             | Function calls, shared memory (reliable, instant) | Message passing over network (**lossy, delayed, duplicated**)     |
+| **Latency Assumption**        | Predictable, low (ns–µs)                          | **Variable, unbounded** (ms–seconds)                              |
+| **Time Model**                | Single system clock; consistent ordering          | **No global clock**; clock drift; ordering is uncertain           |
+| **Event Ordering**            | Deterministic execution order                     | **Partial ordering only**; causality must be inferred             |
+| **State Management**          | Single source of truth                            | **Multiple replicas**; state can diverge                          |
+| **Consistency**               | Strong consistency by default                     | Tradeoffs: **consistency vs availability vs latency**             |
+| **Concurrency**               | Threads/processes with shared memory              | Independent nodes; **no shared memory**; coordination is hard     |
+| **Error Handling**            | Exceptions are exceptional                        | **Failures are expected**; retries are common                     |
+| **Retry Semantics**           | Usually unnecessary                               | Must consider **idempotency** and duplicate effects               |
+| **Knowledge Model**           | Node has full, accurate system view               | **Node’s view is incomplete and possibly wrong**                  |
+| **Leadership / Coordination** | Simple (in-process locks)                         | Requires **consensus, leader election, leases**                   |
+| **Edge Cases**                | Limited and predictable                           | **Combinatorial explosion** of edge cases                         |
+| **Debugging**                 | Reproducible, local debugging                     | **Non-deterministic**, timing-dependent, hard to reproduce        |
+| **Correctness Definition**    | Correct output for given input                    | **Safety + Liveness guarantees**                                  |
+| **Performance Focus**         | CPU, memory optimization                          | **Latency, throughput, fault tolerance tradeoffs**                |
+| **Design Philosophy**         | “Make it work efficiently”                        | “Assume everything can fail—design for recovery”                  |
+| **Core Abstraction**          | Deterministic computation                         | **Unreliable communication + uncertainty**                        |
+| **Typical Bugs**              | Logic errors, memory bugs                         | **Race conditions, split-brain, stale reads, data loss**          |
+| **Mental Model**              | Program = function                                | **System = protocol among unreliable participants**               |
+
+> **Single-node programming is about controlling execution.
+> Distributed systems programming is about surviving uncertainty.**
+
+    **Q & A**
+    Which row introduces the *biggest conceptual break* from what you already know?
+
+---
+
 The core challenges of distributed systems stem from three primary areas of unreliability:
 
-1. Networks: Asynchronous packet networks offer no guarantees on delivery or latency. Timeouts are the only mechanism for failure detection, yet they cannot distinguish between a crashed node, a network outage, or a slow response.
-2. Clocks: Hardware clocks drift and synchronization protocols like NTP are subject to network delays. Relying on timestamps for ordering events often leads to silent data loss.
-3. Processes: Unpredictable "stop-the-world" garbage collection pauses, virtualization "steal time," and I/O latencies can halt a process at any moment, causing it to lose leadership or violate lease agreements.
+1. **Networks:** Asynchronous packet networks offer no guarantees on delivery or latency. Timeouts are the only mechanism for failure detection, yet they cannot distinguish between a crashed node, a network outage, or a slow response.
+2. **Clocks:** Hardware clocks drift and synchronization protocols like NTP are subject to network delays. Relying on timestamps for ordering events often leads to silent data loss.
+3. **Processes:** Unpredictable "stop-the-world" garbage collection pauses, virtualization "steal time," and I/O latencies can halt a process at any moment, causing it to lose leadership or violate lease agreements.
 
 To operate reliably, engineers must abandon optimism and assume that anything that can go wrong will go wrong. Reliability is achieved by building fault-tolerant mechanisms—such as quorums and fencing tokens—that allow the system as a whole to function even when its individual components are unreliable.
 
+    **Q and A**
+
+    - Which of these do you think is the hardest to deal with in practice?
+    - In a single-machine program, which of these do we usually ignore?
 ---
 
 ## Faults and the Reality of Partial Failure
@@ -30,6 +68,8 @@ Internet services primarily use shared-nothing architectures, where machines com
 
 When a sender transmits a request and fails to receive a response, it is impossible to distinguish between these scenarios:
 
+![](../images/distributed_systems/no_response_scenario.png)
+
 1. The request was lost (e.g., an unplugged cable).
 2. The request is waiting in a queue (overload).
 3. The remote node has failed (crash or power loss).
@@ -42,7 +82,26 @@ When a sender transmits a request and fails to receive a response, it is impossi
 Because delays are unbounded, there is no "correct" value for a timeout.
 
 * Long timeouts: Increase the time users must wait to see an error.
-* Short timeouts: Risk prematurely declaring a node "dead," which can lead to cascading failures as load is transferred to already struggling nodes.
+* Short timeouts: Risk prematurely declaring a node "dead," which can lead to cascading failures as load is transferred to already struggling nodes.  
+
+Time out estimation: 2d + r where d is the maximum delay to deliver a packet and r is the maximum delay to process a request.
+
+    **Q and A**
+
+* Should we always choose a very large timeout to be safe?
+* What happens if every node uses aggressive short timeouts?
+
+#### Network congestion and queueing
+
+![](../images/distributed_systems/types_of_queuing.png)
+
+* **Network Switch**: Multiple sources competing for one link leads to output queuing and congestion delay. If the queue overflows, packets are dropped and must be resent.
+
+* **Operating System**: Incoming network requests are queued in the OS kernel until a busy CPU or application can handle them, introducing arbitrary delay.
+
+* **Virtualized Environments**: When a running OS (VM) is paused by the VMM to allow another VM to use the CPU, incoming data is buffered by the VMM, increasing delay variability.
+
+* **TCP Sender**: Flow control (backpressure) causes the sender to limit its output rate, creating additional queuing before the data enters the network.
 
 ## Variable Latency: Packet vs. Circuit Switching
 
@@ -58,11 +117,34 @@ Because delays are unbounded, there is no "correct" value for a timeout.
 
 Distributed systems rely on clocks for timeouts, expiration dates, and event ordering. However, hardware clocks (quartz oscillators) are imprecise and subject to clock drift (varying by temperature and age).
 
+### Network Time Protocol (NTP)
+
+NTP is a networking protocol used to synchronize the clocks of computers over a network to a common timebase. It ensures accurate timekeeping for various applications, including GPS and financial services.
+
 ### Monotonic vs. Time-of-Day Clocks
 
-Clock Type Purpose Behavior
-Time-of-Day Wall-clock time (e.g., UTC). Can jump backward if resynced via NTP; unsuitable for measuring elapsed time.
-Monotonic Measuring duration (e.g., timeouts). Guaranteed to move forward; absolute value is meaningless (often nanoseconds since boot).
+|Clock Type|Purpose|Behavior|
+|---|---|---|
+|**Time-of-Day**|Wall-clock time (e.g., UTC).|Can jump backward if resynced via NTP; unsuitable for measuring elapsed time.|
+|**Monotonic**|Measuring duration (e.g., timeouts).|Guaranteed to move forward; absolute value is meaningless (often nanoseconds since boot).|
+
+### Slewing
+
+Slewing in clocks refers to the gradual adjustment of the clock's time to correct for drift, ensuring smooth synchronization without abrupt changes. This process is crucial for maintaining accurate timekeeping in systems like NTP (Network Time Protocol) where precise timing is essential.
+
+### Leap seconds
+
+A leap second is an additional second added to Coordinated Universal Time (UTC) to keep it in sync with astronomical time (UT1), which is based on the Earth's rotation. Leap seconds are typically added at the end of June or December to ensure the difference between UTC and UT1 remains within 0.9 seconds.
+
+### Language specific timestamps
+
+| Language   | Function/Command    | Description                                                |
+| ---------- | ------------------- | ---------------------------------------------------------- |
+| Python     | `time.monotonic()`  | Returns monotonic time unaffected by system clock changes. |
+| JavaScript | `performance.now()` | Provides a high-resolution monotonic timestamp.            |
+| Bash       | `date +%s.%N`       | Gets a high-resolution timestamp (not fully monotonic).    |
+
+![](../images/distributed_systems/timestamp_issues.png)
 
 ### The Danger of Last Write Wins (LWW)
 
